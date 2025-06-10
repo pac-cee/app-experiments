@@ -36,3 +36,22 @@ const accountRoutes = require('./routes/accountRoutes');
 const socialAuthRoutes = require('./routes/socialAuthRoutes');
 
 // Mount routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/transactions', transactionRoutes);
+app.use('/api/wallets', walletRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/budgets', budgetRoutes);
+app.use('/api/reports', reportRoutes);
+app.use('/api/accounts', accountRoutes);
+app.use('/api/social-auth', socialAuthRoutes);
+
+// Error handler middleware
+app.use(errorHandler);
+
+// MongoDB connection with retry logic
+const connectWithRetry = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
