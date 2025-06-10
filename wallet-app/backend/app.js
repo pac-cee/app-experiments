@@ -55,3 +55,22 @@ const connectWithRetry = async () => {
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+      retryWrites: true,
+      w: 'majority'
+    });
+    console.log('MongoDB Connected...');
+    
+    // Start server only after successful DB connection
+    const PORT = process.env.PORT || 5002;
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    console.log('Retrying in 5 seconds...');
+    setTimeout(connectWithRetry, 5000);
+  }
+};
+
+// Initial connection attempt
