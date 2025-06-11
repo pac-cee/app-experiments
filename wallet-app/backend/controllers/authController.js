@@ -93,3 +93,22 @@ const updateProfile = asyncHandler(async (req, res) => {
 });
 
 // @desc    Update user password
+// @route   PUT /api/auth/password
+// @access  Private
+const updatePassword = asyncHandler(async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  const user = await User.findById(req.user._id);
+
+  if (user && (await user.matchPassword(currentPassword))) {
+    user.password = newPassword;
+    await user.save();
+    res.json({ message: 'Password updated successfully' });
+  } else {
+    res.status(401);
+    throw new Error('Invalid current password');
+  }
+});
+
+// @desc    Request password reset
+// @route   POST /api/auth/forgot-password
+// @access  Public
