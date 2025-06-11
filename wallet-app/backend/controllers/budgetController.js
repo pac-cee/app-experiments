@@ -36,3 +36,22 @@ const createBudget = asyncHandler(async (req, res) => {
     user: req.user._id
   });
 
+  res.status(201).json(budget);
+});
+
+// @desc    Get all budgets
+// @route   GET /api/budgets
+// @access  Private
+const getBudgets = asyncHandler(async (req, res) => {
+  const budgets = await Budget.find({ user: req.user._id })
+    .populate('category', 'name type color');
+
+  // Calculate spent amount for each budget
+  const budgetsWithSpent = await Promise.all(
+    budgets.map(async (budget) => {
+      const spent = await Transaction.aggregate([
+        {
+          $match: {
+            user: mongoose.Types.ObjectId(req.user._id),
+            category: mongoose.Types.ObjectId(budget.category._id),
+            type: 'expense',
