@@ -55,3 +55,22 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error('Invalid email or password');
   }
+});
+
+// @desc    Get user profile
+// @route   GET /api/auth/profile
+// @access  Private
+const verifyToken = asyncHandler(async (req, res) => {
+  res.json({
+    _id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+  });
+});
+
+// @desc    Update user profile
+// @route   PUT /api/auth/profile
+// @access  Private
+const updateProfile = asyncHandler(async (req, res) => {
+  const { name, email } = req.body;
+  const user = await User.findById(req.user._id);
