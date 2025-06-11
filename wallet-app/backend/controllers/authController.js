@@ -112,3 +112,22 @@ const updatePassword = asyncHandler(async (req, res) => {
 // @desc    Request password reset
 // @route   POST /api/auth/forgot-password
 // @access  Public
+const forgotPassword = asyncHandler(async (req, res) => {
+  // In a real app, you would:
+  // 1. Generate a reset token
+  // 2. Save it to the user document with an expiry
+  // 3. Send an email with the reset link
+  res.json({ message: 'Reset instructions sent to email' });
+});
+
+// @desc    Reset password
+// @route   POST /api/auth/reset-password
+// @access  Public
+const resetPassword = asyncHandler(async (req, res) => {
+  // In a real app, you would verify the token and update the password
+  res.json({ message: 'Password reset successful' });
+});
+
+// Generate JWT
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
