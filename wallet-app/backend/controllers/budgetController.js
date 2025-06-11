@@ -55,3 +55,22 @@ const getBudgets = asyncHandler(async (req, res) => {
             user: mongoose.Types.ObjectId(req.user._id),
             category: mongoose.Types.ObjectId(budget.category._id),
             type: 'expense',
+            date: {
+              $gte: budget.startDate,
+              $lte: budget.endDate
+            }
+          }
+        },
+        {
+          $group: {
+            _id: null,
+            total: { $sum: '$amount' }
+          }
+        }
+      ]);
+
+      return {
+        ...budget.toObject(),
+        spent: spent[0]?.total || 0,
+        remaining: budget.amount - (spent[0]?.total || 0),
+        percentUsed: ((spent[0]?.total || 0) / budget.amount) * 100
