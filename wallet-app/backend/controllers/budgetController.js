@@ -17,3 +17,22 @@ const createBudget = asyncHandler(async (req, res) => {
       {
         startDate: { $lte: new Date(endDate) },
         endDate: { $gte: new Date(startDate) }
+      }
+    ]
+  });
+
+  if (existingBudget) {
+    res.status(400);
+    throw new Error('A budget already exists for this category in the specified period');
+  }
+
+  const budget = await Budget.create({
+    category,
+    amount,
+    period,
+    startDate,
+    endDate,
+    notifications,
+    user: req.user._id
+  });
+
