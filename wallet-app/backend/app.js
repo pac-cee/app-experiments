@@ -74,3 +74,11 @@ const connectWithRetry = async () => {
 };
 
 // Initial connection attempt
+connectWithRetry();
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Promise Rejection:', err);
+});
+
+module.exports = app;
