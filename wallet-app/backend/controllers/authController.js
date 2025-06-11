@@ -74,3 +74,22 @@ const verifyToken = asyncHandler(async (req, res) => {
 const updateProfile = asyncHandler(async (req, res) => {
   const { name, email } = req.body;
   const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.name = name || user.name;
+    user.email = email || user.email;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+// @desc    Update user password
