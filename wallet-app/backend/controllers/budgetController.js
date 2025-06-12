@@ -74,3 +74,22 @@ const getBudgets = asyncHandler(async (req, res) => {
         spent: spent[0]?.total || 0,
         remaining: budget.amount - (spent[0]?.total || 0),
         percentUsed: ((spent[0]?.total || 0) / budget.amount) * 100
+      };
+    })
+  );
+
+  res.json(budgetsWithSpent);
+});
+
+// @desc    Update budget
+// @route   PUT /api/budgets/:id
+// @access  Private
+const updateBudget = asyncHandler(async (req, res) => {
+  const budget = await Budget.findById(req.params.id);
+
+  if (!budget) {
+    res.status(404);
+    throw new Error('Budget not found');
+  }
+
+  if (budget.user.toString() !== req.user._id.toString()) {
