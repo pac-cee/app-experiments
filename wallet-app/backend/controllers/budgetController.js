@@ -112,3 +112,22 @@ const updateBudget = asyncHandler(async (req, res) => {
 const deleteBudget = asyncHandler(async (req, res) => {
   const budget = await Budget.findById(req.params.id);
 
+  if (!budget) {
+    res.status(404);
+    throw new Error('Budget not found');
+  }
+
+  if (budget.user.toString() !== req.user._id.toString()) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  await budget.remove();
+  res.json({ message: 'Budget removed' });
+});
+
+// @desc    Check budget and create notification if exceeded
+// @route   POST /api/budgets/check
+// @access  Private
+const checkBudget = asyncHandler(async (req, res) => {
+  const { categoryId, amount } = req.body;
