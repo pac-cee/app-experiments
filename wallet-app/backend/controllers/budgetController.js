@@ -131,3 +131,22 @@ const deleteBudget = asyncHandler(async (req, res) => {
 // @access  Private
 const checkBudget = asyncHandler(async (req, res) => {
   const { categoryId, amount } = req.body;
+  
+  const budget = await Budget.findOne({
+    category: categoryId,
+    user: req.user._id,
+    startDate: { $lte: new Date() },
+    endDate: { $gte: new Date() }
+  }).populate('category', 'name');
+
+  if (budget) {
+    const spent = await Transaction.aggregate([
+      {
+        $match: {
+          user: mongoose.Types.ObjectId(req.user._id),
+          category: mongoose.Types.ObjectId(categoryId),
+          type: 'expense',
+          date: {
+            $gte: budget.startDate,
+            $lte: budget.endDate
+          }
