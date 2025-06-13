@@ -93,3 +93,22 @@ const updateBudget = asyncHandler(async (req, res) => {
   }
 
   if (budget.user.toString() !== req.user._id.toString()) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  const updatedBudget = await Budget.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  ).populate('category', 'name type color');
+
+  res.json(updatedBudget);
+});
+
+// @desc    Delete budget
+// @route   DELETE /api/budgets/:id
+// @access  Private
+const deleteBudget = asyncHandler(async (req, res) => {
+  const budget = await Budget.findById(req.params.id);
+
