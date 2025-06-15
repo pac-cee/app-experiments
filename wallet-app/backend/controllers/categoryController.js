@@ -17,3 +17,22 @@ const getCategoryById = asyncHandler(async (req, res) => {
   if (!category) {
     res.status(404);
     throw new Error('Category not found');
+  }
+  res.json(category);
+});
+
+// @desc    Create category
+// @route   POST /api/categories
+// @access  Private
+const createCategory = asyncHandler(async (req, res) => {
+  const { name, type, color, icon } = req.body;
+
+  // Validate required fields
+  if (!name || !type) {
+    res.status(400);
+    throw new Error('Name and type are required');
+  }
+
+  // Validate type
+  if (!['income', 'expense'].includes(type)) {
+    res.status(400);
