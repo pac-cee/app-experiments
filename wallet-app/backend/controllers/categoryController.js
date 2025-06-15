@@ -36,3 +36,22 @@ const createCategory = asyncHandler(async (req, res) => {
   // Validate type
   if (!['income', 'expense'].includes(type)) {
     res.status(400);
+    throw new Error('Type must be either income or expense');
+  }
+
+  const category = await Category.create({
+    name,
+    type,
+    color: color || '#1976d2',
+    icon: icon || 'category',
+    user: req.user._id,
+  });
+
+  res.status(201).json(category);
+});
+
+// @desc    Update category
+// @route   PUT /api/categories/:id
+// @access  Private
+const updateCategory = asyncHandler(async (req, res) => {
+  const { name, type, color, icon } = req.body;
