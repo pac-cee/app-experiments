@@ -150,3 +150,22 @@ const checkBudget = asyncHandler(async (req, res) => {
             $gte: budget.startDate,
             $lte: budget.endDate
           }
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          total: { $sum: '$amount' }
+        }
+      }
+    ]);
+
+    const totalSpent = (spent[0]?.total || 0) + amount;
+    const percentUsed = (totalSpent / budget.amount) * 100;
+
+    if (budget.notifications.enabled && percentUsed >= budget.notifications.threshold) {
+      // You might want to implement a notification system here
+      // For now, we'll just return the warning
+      return res.json({
+        exceeded: true,
+        budget,
