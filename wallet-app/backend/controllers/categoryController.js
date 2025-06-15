@@ -55,3 +55,22 @@ const createCategory = asyncHandler(async (req, res) => {
 // @access  Private
 const updateCategory = asyncHandler(async (req, res) => {
   const { name, type, color, icon } = req.body;
+  const category = await Category.findOne({ _id: req.params.id, user: req.user._id });
+
+  if (!category) {
+    res.status(404);
+    throw new Error('Category not found');
+  }
+
+  if (type && !['income', 'expense'].includes(type)) {
+    res.status(400);
+    throw new Error('Type must be either income or expense');
+  }
+
+  category.name = name || category.name;
+  category.type = type || category.type;
+  category.color = color || category.color;
+  category.icon = icon || category.icon;
+
+  const updatedCategory = await category.save();
+  res.json(updatedCategory);
