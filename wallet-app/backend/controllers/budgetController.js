@@ -169,3 +169,21 @@ const checkBudget = asyncHandler(async (req, res) => {
       return res.json({
         exceeded: true,
         budget,
+        spent: totalSpent,
+        remaining: budget.amount - totalSpent,
+        percentUsed,
+        warning: `You've reached ${budget.notifications.threshold}% of your budget for ${budget.category.name}`
+      });
+    }
+  }
+
+  res.json({ exceeded: false });
+});
+
+module.exports = {
+  createBudget,
+  getBudgets,
+  updateBudget,
+  deleteBudget,
+  checkBudget
+};
