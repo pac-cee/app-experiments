@@ -150,3 +150,26 @@ const deleteSubcategory = asyncHandler(async (req, res) => {
   if (!category) {
     res.status(404);
     throw new Error('Category not found');
+  }
+
+  const subcategory = category.subcategories.id(req.params.subcategoryId);
+  if (!subcategory) {
+    res.status(404);
+    throw new Error('Subcategory not found');
+  }
+
+  category.subcategories.pull(subcategory);
+  await category.save();
+  res.json({ message: 'Subcategory deleted' });
+});
+
+module.exports = {
+  getAllCategories,
+  getCategoryById,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+  createSubcategory,
+  updateSubcategory,
+  deleteSubcategory,
+};
