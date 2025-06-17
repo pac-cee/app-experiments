@@ -74,3 +74,22 @@ const getReport = asyncHandler(async (req, res) => {
       
       doc.pipe(res);
       
+      // Add report header
+      doc.fontSize(20).text('Financial Report', { align: 'center' });
+      doc.moveDown();
+      doc.fontSize(12).text(`Period: ${format(new Date(startDate), 'PPP')} to ${format(new Date(endDate), 'PPP')}`);
+      doc.moveDown();
+      
+      // Add summary
+      doc.fontSize(16).text('Summary');
+      doc.fontSize(12).text(`Total Income: $${summary.totalIncome.toFixed(2)}`);
+      doc.text(`Total Expense: $${summary.totalExpense.toFixed(2)}`);
+      doc.text(`Net Balance: $${(summary.totalIncome - summary.totalExpense).toFixed(2)}`);
+      doc.moveDown();
+      
+      // Add category breakdown
+      doc.fontSize(16).text('Category Breakdown');
+      summary.categorySummary.forEach(category => {
+        doc.fontSize(12).text(`${category.category} (${category.type})`);
+        doc.text(`Total: $${category.total.toFixed(2)} (${category.count} transactions)`);
+        doc.moveDown(0.5);
