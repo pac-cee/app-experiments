@@ -17,3 +17,22 @@ const getReport = asyncHandler(async (req, res) => {
       $lte: new Date(endDate)
     }
   };
+
+  const report = await Transaction.aggregate([
+    { $match: matchStage },
+    {
+      $group: {
+        _id: {
+          category: '$category',
+          type: '$type'
+        },
+        total: { $sum: '$amount' },
+        count: { $sum: 1 },
+        transactions: { $push: '$$ROOT' }
+      }
+    },
+    {
+      $lookup: {
+        from: 'categories',
+        localField: '_id.category',
+        foreignField: '_id',
