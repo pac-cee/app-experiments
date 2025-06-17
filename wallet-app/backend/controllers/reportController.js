@@ -112,3 +112,22 @@ const getReport = asyncHandler(async (req, res) => {
       res.json(summary);
   }
 });
+
+// @desc    Get category spending trends
+// @route   GET /api/reports/trends
+// @access  Private
+const getTrends = asyncHandler(async (req, res) => {
+  const { months = 6 } = req.query;
+  
+  const startDate = new Date();
+  startDate.setMonth(startDate.getMonth() - months);
+
+  const trends = await Transaction.aggregate([
+    {
+      $match: {
+        user: req.user._id,
+        date: { $gte: startDate }
+      }
+    },
+    {
+      $group: {
