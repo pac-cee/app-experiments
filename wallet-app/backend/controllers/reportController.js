@@ -131,3 +131,22 @@ const getTrends = asyncHandler(async (req, res) => {
     },
     {
       $group: {
+        _id: {
+          year: { $year: '$date' },
+          month: { $month: '$date' },
+          category: '$category',
+          type: '$type'
+        },
+        total: { $sum: '$amount' }
+      }
+    },
+    {
+      $lookup: {
+        from: 'categories',
+        localField: '_id.category',
+        foreignField: '_id',
+        as: 'category'
+      }
+    },
+    { $unwind: '$category' },
+    {
