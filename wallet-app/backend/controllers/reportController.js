@@ -93,3 +93,22 @@ const getReport = asyncHandler(async (req, res) => {
         doc.fontSize(12).text(`${category.category} (${category.type})`);
         doc.text(`Total: $${category.total.toFixed(2)} (${category.count} transactions)`);
         doc.moveDown(0.5);
+      });
+      
+      doc.end();
+      break;
+
+    case 'csv':
+      const fields = ['category', 'type', 'total', 'count'];
+      const json2csvParser = new Parser({ fields });
+      const csv = json2csvParser.parse(summary.categorySummary);
+      
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', `attachment; filename=report-${format(new Date(), 'yyyy-MM-dd')}.csv`);
+      res.send(csv);
+      break;
+
+    default:
+      res.json(summary);
+  }
+});
