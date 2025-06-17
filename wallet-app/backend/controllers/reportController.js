@@ -150,3 +150,22 @@ const getTrends = asyncHandler(async (req, res) => {
     },
     { $unwind: '$category' },
     {
+      $project: {
+        date: {
+          $dateFromParts: {
+            year: '$_id.year',
+            month: '$_id.month'
+          }
+        },
+        category: '$category.name',
+        type: '$_id.type',
+        total: 1
+      }
+    },
+    { $sort: { date: 1 } }
+  ]);
+
+  res.json(trends);
+});
+
+// @desc    Get budget analysis
