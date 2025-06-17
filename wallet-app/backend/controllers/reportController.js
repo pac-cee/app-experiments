@@ -55,3 +55,22 @@ const getReport = asyncHandler(async (req, res) => {
   const summary = {
     totalIncome: report
       .filter(item => item.type === 'income')
+      .reduce((sum, item) => sum + item.total, 0),
+    totalExpense: report
+      .filter(item => item.type === 'expense')
+      .reduce((sum, item) => sum + item.total, 0),
+    categorySummary: report,
+    period: {
+      start: startDate,
+      end: endDate
+    }
+  };
+
+  switch (format) {
+    case 'pdf':
+      const doc = new PDFDocument();
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename=report-${format(new Date(), 'yyyy-MM-dd')}.pdf`);
+      
+      doc.pipe(res);
+      
