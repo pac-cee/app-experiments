@@ -93,3 +93,22 @@ const deleteCategory = asyncHandler(async (req, res) => {
 // @access  Private
 const createSubcategory = asyncHandler(async (req, res) => {
   const { name, color } = req.body;
+  const category = await Category.findOne({ _id: req.params.categoryId, user: req.user._id });
+  
+  if (!category) {
+    res.status(404);
+    throw new Error('Category not found');
+  }
+
+  if (!name || !color) {
+    res.status(400);
+    throw new Error('Name and color are required');
+  }
+
+  const subcategory = {
+    name,
+    color,
+  };
+
+  category.subcategories.push(subcategory);
+  const updatedCategory = await category.save();
