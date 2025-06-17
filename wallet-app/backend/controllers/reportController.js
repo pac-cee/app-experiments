@@ -169,3 +169,22 @@ const getTrends = asyncHandler(async (req, res) => {
 });
 
 // @desc    Get budget analysis
+// @route   GET /api/reports/budget
+// @access  Private
+const getBudgetAnalysis = asyncHandler(async (req, res) => {
+  const { startDate, endDate } = req.query;
+
+  const analysis = await Transaction.aggregate([
+    {
+      $match: {
+        user: req.user._id,
+        date: {
+          $gte: new Date(startDate),
+          $lte: new Date(endDate)
+        }
+      }
+    },
+    {
+      $lookup: {
+        from: 'budgets',
+        let: { categoryId: '$category' },
