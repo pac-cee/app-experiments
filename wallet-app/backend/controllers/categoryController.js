@@ -131,3 +131,22 @@ const updateSubcategory = asyncHandler(async (req, res) => {
   const subcategory = category.subcategories.id(req.params.subcategoryId);
   if (!subcategory) {
     res.status(404);
+    throw new Error('Subcategory not found');
+  }
+
+  subcategory.name = name || subcategory.name;
+  subcategory.color = color || subcategory.color;
+
+  const updatedCategory = await category.save();
+  res.json(subcategory);
+});
+
+// @desc    Delete subcategory
+// @route   DELETE /api/categories/:categoryId/subcategories/:subcategoryId
+// @access  Private
+const deleteSubcategory = asyncHandler(async (req, res) => {
+  const category = await Category.findOne({ _id: req.params.categoryId, user: req.user._id });
+  
+  if (!category) {
+    res.status(404);
+    throw new Error('Category not found');
