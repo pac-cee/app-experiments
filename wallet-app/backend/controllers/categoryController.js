@@ -112,3 +112,22 @@ const createSubcategory = asyncHandler(async (req, res) => {
 
   category.subcategories.push(subcategory);
   const updatedCategory = await category.save();
+  
+  res.status(201).json(updatedCategory.subcategories[updatedCategory.subcategories.length - 1]);
+});
+
+// @desc    Update subcategory
+// @route   PUT /api/categories/:categoryId/subcategories/:subcategoryId
+// @access  Private
+const updateSubcategory = asyncHandler(async (req, res) => {
+  const { name, color } = req.body;
+  const category = await Category.findOne({ _id: req.params.categoryId, user: req.user._id });
+  
+  if (!category) {
+    res.status(404);
+    throw new Error('Category not found');
+  }
+
+  const subcategory = category.subcategories.id(req.params.subcategoryId);
+  if (!subcategory) {
+    res.status(404);
