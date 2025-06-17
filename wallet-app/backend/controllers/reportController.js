@@ -188,3 +188,22 @@ const getBudgetAnalysis = asyncHandler(async (req, res) => {
       $lookup: {
         from: 'budgets',
         let: { categoryId: '$category' },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $and: [
+                  { $eq: ['$category', '$$categoryId'] },
+                  { $lte: ['$startDate', new Date(endDate)] },
+                  { $gte: ['$endDate', new Date(startDate)] }
+                ]
+              }
+            }
+          }
+        ],
+        as: 'budget'
+      }
+    },
+    { $unwind: { path: '$budget', preserveNullAndEmptyArrays: true } },
+    {
+      $group: {
