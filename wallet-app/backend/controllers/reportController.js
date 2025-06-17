@@ -36,3 +36,22 @@ const getReport = asyncHandler(async (req, res) => {
         from: 'categories',
         localField: '_id.category',
         foreignField: '_id',
+        as: 'category'
+      }
+    },
+    { $unwind: '$category' },
+    {
+      $project: {
+        category: '$category.name',
+        type: '$_id.type',
+        total: 1,
+        count: 1,
+        transactions: 1
+      }
+    }
+  ]);
+
+  // Calculate summary
+  const summary = {
+    totalIncome: report
+      .filter(item => item.type === 'income')
