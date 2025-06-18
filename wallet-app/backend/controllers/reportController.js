@@ -207,3 +207,22 @@ const getBudgetAnalysis = asyncHandler(async (req, res) => {
     { $unwind: { path: '$budget', preserveNullAndEmptyArrays: true } },
     {
       $group: {
+        _id: '$category',
+        spent: { $sum: '$amount' },
+        budget: { $first: '$budget.amount' }
+      }
+    },
+    {
+      $lookup: {
+        from: 'categories',
+        localField: '_id',
+        foreignField: '_id',
+        as: 'category'
+      }
+    },
+    { $unwind: '$category' },
+    {
+      $project: {
+        category: '$category.name',
+        spent: 1,
+        budget: 1,
