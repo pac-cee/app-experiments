@@ -55,3 +55,22 @@ const handleGoogleCallback = asyncHandler(async (req, res) => {
     );
 
     const profile = {
+      id: profileResponse.data.sub,
+      name: profileResponse.data.name,
+      email: profileResponse.data.email,
+    };
+
+    // Create or get user
+    const user = await createUserFromSocialProfile(profile, 'google');
+    
+    // Generate JWT
+    const token = generateToken(user._id);
+
+    res.json({
+      token,
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } catch (error) {
+    console.error('Google auth error:', error);
