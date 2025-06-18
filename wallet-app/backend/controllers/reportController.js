@@ -226,3 +226,22 @@ const getBudgetAnalysis = asyncHandler(async (req, res) => {
         category: '$category.name',
         spent: 1,
         budget: 1,
+        remaining: { $subtract: ['$budget', '$spent'] },
+        percentUsed: {
+          $multiply: [
+            { $divide: ['$spent', { $cond: [{ $eq: ['$budget', 0] }, 1, '$budget'] }] },
+            100
+          ]
+        }
+      }
+    }
+  ]);
+
+  res.json(analysis);
+});
+
+module.exports = {
+  getReport,
+  getTrends,
+  getBudgetAnalysis
+};
