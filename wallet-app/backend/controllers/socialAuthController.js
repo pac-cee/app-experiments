@@ -17,3 +17,22 @@ const createUserFromSocialProfile = async (profile, provider) => {
 
   if (!user) {
     // Create new user if doesn't exist
+    user = await User.create({
+      name: profile.name,
+      email: profile.email,
+      password: jwt.sign({ date: Date.now() }, process.env.JWT_SECRET), // Generate random secure password
+      provider,
+      providerId: profile.id,
+    });
+  }
+
+  return user;
+};
+
+// @desc    Handle Google OAuth callback
+// @route   POST /api/auth/google/callback
+// @access  Public
+const handleGoogleCallback = asyncHandler(async (req, res) => {
+  const { code } = req.body;
+
+  try {
