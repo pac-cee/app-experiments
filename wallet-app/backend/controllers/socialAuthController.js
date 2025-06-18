@@ -36,3 +36,22 @@ const handleGoogleCallback = asyncHandler(async (req, res) => {
   const { code } = req.body;
 
   try {
+    // Exchange code for tokens
+    const tokenResponse = await axios.post('https://oauth2.googleapis.com/token', {
+      code,
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET,
+      redirect_uri: `${process.env.FRONTEND_URL}/auth/google/callback`,
+      grant_type: 'authorization_code',
+    });
+
+    // Get user profile
+    const { access_token } = tokenResponse.data;
+    const profileResponse = await axios.get(
+      'https://www.googleapis.com/oauth2/v3/userinfo',
+      {
+        headers: { Authorization: `Bearer ${access_token}` },
+      }
+    );
+
+    const profile = {
