@@ -131,3 +131,22 @@ const handleGithubCallback = asyncHandler(async (req, res) => {
     // Generate JWT
     const token = generateToken(user._id);
 
+    res.json({
+      token,
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } catch (error) {
+    console.error('GitHub auth error:', error);
+    res.status(401);
+    throw new Error('Invalid authorization code');
+  }
+});
+
+// @desc    Handle Twitter OAuth callback
+// @route   POST /api/auth/twitter/callback
+// @access  Public
+const handleTwitterCallback = asyncHandler(async (req, res) => {
+  const { code } = req.body;
+
