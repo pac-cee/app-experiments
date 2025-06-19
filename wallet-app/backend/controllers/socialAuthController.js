@@ -93,3 +93,22 @@ const handleGithubCallback = asyncHandler(async (req, res) => {
         client_id: process.env.GITHUB_CLIENT_ID,
         client_secret: process.env.GITHUB_CLIENT_SECRET,
         code,
+        redirect_uri: `${process.env.FRONTEND_URL}/auth/github/callback`,
+      },
+      {
+        headers: { Accept: 'application/json' },
+      }
+    );
+
+    // Get user profile
+    const { access_token } = tokenResponse.data;
+    const profileResponse = await axios.get('https://api.github.com/user', {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        Accept: 'application/vnd.github.v3+json',
+      },
+    });
+
+    // Get user email (GitHub might not provide email in profile)
+    const emailResponse = await axios.get('https://api.github.com/user/emails', {
+      headers: {
