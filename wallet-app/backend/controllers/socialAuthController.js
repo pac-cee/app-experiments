@@ -169,3 +169,22 @@ const handleTwitterCallback = asyncHandler(async (req, res) => {
           ).toString('base64')}`,
         },
       }
+    );
+
+    // Get user profile
+    const { access_token } = tokenResponse.data;
+    const profileResponse = await axios.get(
+      'https://api.twitter.com/2/users/me',
+      {
+        headers: { Authorization: `Bearer ${access_token}` },
+        params: {
+          'user.fields': 'name,username,email',
+        },
+      }
+    );
+
+    const profile = {
+      id: profileResponse.data.data.id,
+      name: profileResponse.data.data.name,
+      email: profileResponse.data.data.email || `${profileResponse.data.data.username}@twitter.com`,
+    };
