@@ -74,3 +74,22 @@ const handleGoogleCallback = asyncHandler(async (req, res) => {
     });
   } catch (error) {
     console.error('Google auth error:', error);
+    res.status(401);
+    throw new Error('Invalid authorization code');
+  }
+});
+
+// @desc    Handle GitHub OAuth callback
+// @route   POST /api/auth/github/callback
+// @access  Public
+const handleGithubCallback = asyncHandler(async (req, res) => {
+  const { code } = req.body;
+
+  try {
+    // Exchange code for access token
+    const tokenResponse = await axios.post(
+      'https://github.com/login/oauth/access_token',
+      {
+        client_id: process.env.GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        code,
