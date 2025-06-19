@@ -112,3 +112,22 @@ const handleGithubCallback = asyncHandler(async (req, res) => {
     // Get user email (GitHub might not provide email in profile)
     const emailResponse = await axios.get('https://api.github.com/user/emails', {
       headers: {
+        Authorization: `Bearer ${access_token}`,
+        Accept: 'application/vnd.github.v3+json',
+      },
+    });
+
+    const primaryEmail = emailResponse.data.find(email => email.primary)?.email;
+
+    const profile = {
+      id: profileResponse.data.id.toString(),
+      name: profileResponse.data.name || profileResponse.data.login,
+      email: primaryEmail,
+    };
+
+    // Create or get user
+    const user = await createUserFromSocialProfile(profile, 'github');
+    
+    // Generate JWT
+    const token = generateToken(user._id);
+
