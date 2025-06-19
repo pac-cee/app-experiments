@@ -150,3 +150,22 @@ const handleGithubCallback = asyncHandler(async (req, res) => {
 const handleTwitterCallback = asyncHandler(async (req, res) => {
   const { code } = req.body;
 
+  try {
+    // Exchange code for tokens
+    const tokenResponse = await axios.post(
+      'https://api.twitter.com/2/oauth2/token',
+      new URLSearchParams({
+        code,
+        grant_type: 'authorization_code',
+        client_id: process.env.TWITTER_CLIENT_ID,
+        redirect_uri: `${process.env.FRONTEND_URL}/auth/twitter/callback`,
+        code_verifier: 'challenge',
+      }).toString(),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: `Basic ${Buffer.from(
+            `${process.env.TWITTER_CLIENT_ID}:${process.env.TWITTER_CLIENT_SECRET}`
+          ).toString('base64')}`,
+        },
+      }
