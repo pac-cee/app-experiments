@@ -207,3 +207,9 @@ const handleTwitterCallback = asyncHandler(async (req, res) => {
     throw new Error('Invalid authorization code');
   }
 });
+
+module.exports = {
+  handleGoogleCallback,
+  handleGithubCallback,
+  handleTwitterCallback,
+};
