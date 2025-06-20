@@ -188,3 +188,22 @@ const handleTwitterCallback = asyncHandler(async (req, res) => {
       name: profileResponse.data.data.name,
       email: profileResponse.data.data.email || `${profileResponse.data.data.username}@twitter.com`,
     };
+
+    // Create or get user
+    const user = await createUserFromSocialProfile(profile, 'twitter');
+    
+    // Generate JWT
+    const token = generateToken(user._id);
+
+    res.json({
+      token,
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } catch (error) {
+    console.error('Twitter auth error:', error);
+    res.status(401);
+    throw new Error('Invalid authorization code');
+  }
+});
