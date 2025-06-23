@@ -36,3 +36,22 @@ const createTransaction = asyncHandler(async (req, res) => {
   await wallet.save();
 
   const transaction = await Transaction.create({
+    wallet: walletId,
+    type,
+    amount,
+    category,
+    description,
+  });
+
+  res.status(201).json(transaction);
+});
+
+// @desc    Get wallet transactions
+// @route   GET /api/transactions/wallet/:walletId
+// @access  Private
+const getWalletTransactions = asyncHandler(async (req, res) => {
+  const wallet = await Wallet.findById(req.params.walletId);
+  if (!wallet || wallet.user.toString() !== req.user._id.toString()) {
+    res.status(404);
+    throw new Error('Wallet not found');
+  }
