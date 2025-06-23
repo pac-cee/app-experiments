@@ -17,3 +17,22 @@ const getAllTransactions = asyncHandler(async (req, res) => {
 // @desc    Create new transaction
 // @route   POST /api/transactions
 // @access  Private
+const createTransaction = asyncHandler(async (req, res) => {
+  const { walletId, type, amount, category, description } = req.body;
+
+  // Verify wallet ownership
+  const wallet = await Wallet.findById(walletId);
+  if (!wallet || wallet.user.toString() !== req.user._id.toString()) {
+    res.status(404);
+    throw new Error('Wallet not found');
+  }
+
+  // Update wallet balance
+  if (type === 'income') {
+    wallet.balance += amount;
+  } else if (type === 'expense') {
+    wallet.balance -= amount;
+  }
+  await wallet.save();
+
+  const transaction = await Transaction.create({
