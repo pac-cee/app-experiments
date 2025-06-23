@@ -55,3 +55,22 @@ const getWalletTransactions = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('Wallet not found');
   }
+
+  const transactions = await Transaction.find({ wallet: req.params.walletId })
+    .sort({ date: -1 });
+  res.json(transactions);
+});
+
+// @desc    Get transaction by ID
+// @route   GET /api/transactions/:id
+// @access  Private
+const getTransactionById = asyncHandler(async (req, res) => {
+  const transaction = await Transaction.findById(req.params.id)
+    .populate('wallet');
+
+  if (transaction && transaction.wallet.user.toString() === req.user._id.toString()) {
+    res.json(transaction);
+  } else {
+    res.status(404);
+    throw new Error('Transaction not found');
+  }
