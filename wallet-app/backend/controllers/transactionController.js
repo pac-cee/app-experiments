@@ -74,3 +74,22 @@ const getTransactionById = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('Transaction not found');
   }
+});
+
+// @desc    Update transaction
+// @route   PUT /api/transactions/:id
+// @access  Private
+const updateTransaction = asyncHandler(async (req, res) => {
+  const transaction = await Transaction.findById(req.params.id)
+    .populate('wallet');
+
+  if (transaction && transaction.wallet.user.toString() === req.user._id.toString()) {
+    // Revert previous transaction effect on wallet
+    const wallet = transaction.wallet;
+    if (transaction.type === 'income') {
+      wallet.balance -= transaction.amount;
+    } else if (transaction.type === 'expense') {
+      wallet.balance += transaction.amount;
+    }
+
+    // Apply new transaction
