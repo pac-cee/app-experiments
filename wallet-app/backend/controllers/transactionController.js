@@ -207,3 +207,19 @@ const getTransactionSummary = asyncHandler(async (req, res) => {
     .populate('wallet', 'name balance');
 
   res.json({
+    totalIncome: totals[0]?.totalIncome || 0,
+    totalExpense: totals[0]?.totalExpense || 0,
+    categoryBreakdown,
+    transactions
+  });
+});
+
+module.exports = {
+  getAllTransactions,
+  createTransaction,
+  getWalletTransactions,
+  getTransactionById,
+  updateTransaction,
+  deleteTransaction,
+  getTransactionSummary,
+};
