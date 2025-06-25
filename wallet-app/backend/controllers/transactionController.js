@@ -93,3 +93,22 @@ const updateTransaction = asyncHandler(async (req, res) => {
     }
 
     // Apply new transaction
+    if (req.body.type === 'income') {
+      wallet.balance += req.body.amount;
+    } else if (req.body.type === 'expense') {
+      wallet.balance -= req.body.amount;
+    }
+
+    await wallet.save();
+
+    // Update transaction
+    transaction.type = req.body.type || transaction.type;
+    transaction.amount = req.body.amount || transaction.amount;
+    transaction.category = req.body.category || transaction.category;
+    transaction.description = req.body.description || transaction.description;
+
+    const updatedTransaction = await transaction.save();
+    res.json(updatedTransaction);
+  } else {
+    res.status(404);
+    throw new Error('Transaction not found');
