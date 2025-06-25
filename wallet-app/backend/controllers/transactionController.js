@@ -150,3 +150,22 @@ const getTransactionSummary = asyncHandler(async (req, res) => {
     date: {
       $gte: new Date(startDate),
       $lte: new Date(endDate)
+    }
+  };
+
+  // Get total income and expense
+  const [totals, categoryBreakdown] = await Promise.all([
+    Transaction.aggregate([
+      { $match: query },
+      {
+        $group: {
+          _id: null,
+          totalIncome: {
+            $sum: {
+              $cond: [{ $eq: ['$type', 'income'] }, '$amount', 0]
+            }
+          },
+          totalExpense: {
+            $sum: {
+              $cond: [{ $eq: ['$type', 'expense'] }, '$amount', 0]
+            }
