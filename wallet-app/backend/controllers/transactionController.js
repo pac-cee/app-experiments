@@ -131,3 +131,22 @@ const deleteTransaction = asyncHandler(async (req, res) => {
       wallet.balance += transaction.amount;
     }
     await wallet.save();
+
+    await transaction.remove();
+    res.json({ message: 'Transaction removed' });
+  } else {
+    res.status(404);
+    throw new Error('Transaction not found');
+  }
+});
+
+// @desc    Get transaction summary
+// @route   GET /api/transactions/summary
+// @access  Private
+const getTransactionSummary = asyncHandler(async (req, res) => {
+  const { startDate, endDate } = req.query;
+  const query = {
+    user: req.user._id,
+    date: {
+      $gte: new Date(startDate),
+      $lte: new Date(endDate)
