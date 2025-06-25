@@ -169,3 +169,22 @@ const getTransactionSummary = asyncHandler(async (req, res) => {
             $sum: {
               $cond: [{ $eq: ['$type', 'expense'] }, '$amount', 0]
             }
+          }
+        }
+      }
+    ]),
+    Transaction.aggregate([
+      { $match: query },
+      {
+        $group: {
+          _id: '$category',
+          amount: { $sum: '$amount' }
+        }
+      },
+      {
+        $lookup: {
+          from: 'categories',
+          localField: '_id',
+          foreignField: '_id',
+          as: 'category'
+        }
