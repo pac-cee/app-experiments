@@ -17,3 +17,22 @@ const createWallet = asyncHandler(async (req, res) => {
     name,
     balance,
     currency,
+    accountType,
+  });
+
+  res.status(201).json(wallet);
+});
+
+// @desc    Get user wallets
+// @route   GET /api/wallets
+// @access  Private
+const getWallets = asyncHandler(async (req, res) => {
+  const wallets = await Wallet.find({ user: req.user._id });
+  res.json(wallets);
+});
+
+// @desc    Get wallet by ID
+// @route   GET /api/wallets/:id
+// @access  Private
+const getWalletById = asyncHandler(async (req, res) => {
+  const wallet = await Wallet.findById(req.params.id);
