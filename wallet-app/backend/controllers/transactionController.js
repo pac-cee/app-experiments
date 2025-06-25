@@ -188,3 +188,22 @@ const getTransactionSummary = asyncHandler(async (req, res) => {
           foreignField: '_id',
           as: 'category'
         }
+      },
+      { $unwind: '$category' },
+      {
+        $project: {
+          category: '$category.name',
+          amount: 1,
+          type: '$category.type'
+        }
+      }
+    ])
+  ]);
+
+  // Get transactions for the period
+  const transactions = await Transaction.find(query)
+    .sort({ date: -1 })
+    .populate('category', 'name color type')
+    .populate('wallet', 'name balance');
+
+  res.json({
