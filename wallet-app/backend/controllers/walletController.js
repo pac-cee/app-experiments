@@ -36,3 +36,22 @@ const getWallets = asyncHandler(async (req, res) => {
 // @access  Private
 const getWalletById = asyncHandler(async (req, res) => {
   const wallet = await Wallet.findById(req.params.id);
+
+  if (wallet && wallet.user.toString() === req.user._id.toString()) {
+    res.json(wallet);
+  } else {
+    res.status(404);
+    throw new Error('Wallet not found');
+  }
+});
+
+// @desc    Update wallet
+// @route   PUT /api/wallets/:id
+// @access  Private
+const updateWallet = asyncHandler(async (req, res) => {
+  const wallet = await Wallet.findById(req.params.id);
+
+  if (wallet && wallet.user.toString() === req.user._id.toString()) {
+    wallet.name = req.body.name || wallet.name;
+    wallet.balance = req.body.balance || wallet.balance;
+    wallet.currency = req.body.currency || wallet.currency;
