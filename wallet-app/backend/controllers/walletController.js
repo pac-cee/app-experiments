@@ -55,3 +55,22 @@ const updateWallet = asyncHandler(async (req, res) => {
     wallet.name = req.body.name || wallet.name;
     wallet.balance = req.body.balance || wallet.balance;
     wallet.currency = req.body.currency || wallet.currency;
+
+    const updatedWallet = await wallet.save();
+    res.json(updatedWallet);
+  } else {
+    res.status(404);
+    throw new Error('Wallet not found');
+  }
+});
+
+// @desc    Delete wallet
+// @route   DELETE /api/wallets/:id
+// @access  Private
+const deleteWallet = asyncHandler(async (req, res) => {
+  const wallet = await Wallet.findById(req.params.id);
+
+  if (wallet && wallet.user.toString() === req.user._id.toString()) {
+    await wallet.remove();
+    res.json({ message: 'Wallet removed' });
+  } else {
