@@ -74,3 +74,15 @@ transactionSchema.pre('remove', async function(next) {
   await account.save();
   next();
 });
+
+// Virtual field for formatted amount
+transactionSchema.virtual('formattedAmount').get(function() {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD' // You might want to get this from the account
+  }).format(this.amount);
+});
+
+const Transaction = mongoose.model('Transaction', transactionSchema);
+
+module.exports = Transaction;
