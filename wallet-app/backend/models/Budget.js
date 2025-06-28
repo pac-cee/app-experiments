@@ -17,3 +17,22 @@ const budgetSchema = new mongoose.Schema({
     min: 0
   },
   period: {
+    type: String,
+    enum: ['daily', 'weekly', 'monthly', 'yearly'],
+    default: 'monthly'
+  },
+  startDate: {
+    type: Date,
+    default: Date.now
+  },
+  endDate: {
+    type: Date,
+    required: true
+  },
+  notifications: {
+    enabled: {
+      type: Boolean,
+      default: true
+    },
+    threshold: {
+      type: Number,
