@@ -55,3 +55,22 @@ transactionSchema.pre('save', async function(next) {
 
     // Update account balance
     account.balance += this.type === 'income' ? this.amount : -this.amount;
+    await account.save();
+  }
+  next();
+});
+
+// Update account balance when transaction is deleted
+transactionSchema.pre('remove', async function(next) {
+  const Account = mongoose.model('Account');
+  const account = await Account.findById(this.account);
+  
+  if (!account) {
+    throw new Error('Account not found');
+  }
+
+  // Reverse the transaction effect on balance
+  account.balance -= this.type === 'income' ? this.amount : -this.amount;
+  await account.save();
+  next();
+});
