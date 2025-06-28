@@ -55,3 +55,20 @@ accountSchema.pre('save', async function(next) {
   if (this.isDefault) {
     await this.constructor.updateMany(
       { user: this.user, _id: { $ne: this._id } },
+      { isDefault: false }
+    );
+  }
+  next();
+});
+
+// Virtual field for formatted balance
+accountSchema.virtual('formattedBalance').get(function() {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: this.currency
+  }).format(this.balance);
+});
+
+const Account = mongoose.model('Account', accountSchema);
+
+module.exports = Account;
