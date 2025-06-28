@@ -17,3 +17,22 @@ const accountSchema = new mongoose.Schema({
     required: true
   },
   balance: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  currency: {
+    type: String,
+    required: true,
+    default: 'USD'
+  },
+  description: {
+    type: String,
+    trim: true
+  },
+  accountNumber: {
+    type: String,
+    trim: true
+  },
+  bankName: {
+    type: String,
