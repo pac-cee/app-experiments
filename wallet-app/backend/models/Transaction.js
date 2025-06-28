@@ -36,3 +36,22 @@ const transactionSchema = new mongoose.Schema({
     default: Date.now
   },
   notes: {
+    type: String,
+    trim: true
+  }
+}, {
+  timestamps: true
+});
+
+// Update account balance when transaction is created
+transactionSchema.pre('save', async function(next) {
+  if (this.isNew) {
+    const Account = mongoose.model('Account');
+    const account = await Account.findById(this.account);
+    
+    if (!account) {
+      throw new Error('Account not found');
+    }
+
+    // Update account balance
+    account.balance += this.type === 'income' ? this.amount : -this.amount;
