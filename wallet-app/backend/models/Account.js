@@ -36,3 +36,22 @@ const accountSchema = new mongoose.Schema({
   },
   bankName: {
     type: String,
+    trim: true
+  },
+  mobileProvider: {
+    type: String,
+    trim: true
+  },
+  isDefault: {
+    type: Boolean,
+    default: false
+  }
+}, {
+  timestamps: true
+});
+
+// Ensure only one default account per user
+accountSchema.pre('save', async function(next) {
+  if (this.isDefault) {
+    await this.constructor.updateMany(
+      { user: this.user, _id: { $ne: this._id } },
