@@ -55,3 +55,12 @@ categorySchema.statics.createDefaultCategories = async function(userId) {
 
   const categories = defaultCategories.map(category => ({
     ...category,
+    user: userId
+  }));
+
+  return this.insertMany(categories);
+};
+
+const Category = mongoose.model('Category', categorySchema);
+
+module.exports = Category;
