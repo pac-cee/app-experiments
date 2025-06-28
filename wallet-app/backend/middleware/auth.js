@@ -17,3 +17,11 @@ const auth = async (req, res, next) => {
     }
 
     req.token = token;
+    req.user = user;
+    next();
+  } catch (err) {
+    res.status(401).json({ message: 'Please authenticate' });
+  }
+};
+
+module.exports = auth;
