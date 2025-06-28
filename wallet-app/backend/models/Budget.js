@@ -36,3 +36,21 @@ const budgetSchema = new mongoose.Schema({
     },
     threshold: {
       type: Number,
+      default: 80, // percentage
+      min: 1,
+      max: 100
+    }
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+// Add indexes for better query performance
+budgetSchema.index({ user: 1, category: 1 });
+budgetSchema.index({ startDate: 1, endDate: 1 });
+
+const Budget = mongoose.model('Budget', budgetSchema);
+
+module.exports = Budget;
