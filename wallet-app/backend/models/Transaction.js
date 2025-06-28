@@ -17,3 +17,22 @@ const transactionSchema = new mongoose.Schema({
     required: true
   },
   type: {
+    type: String,
+    enum: ['income', 'expense'],
+    required: true
+  },
+  amount: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  date: {
+    type: Date,
+    required: true,
+    default: Date.now
+  },
+  notes: {
