@@ -17,3 +17,22 @@ const userSchema = mongoose.Schema(
     },
     password: {
       type: String,
+      required: [true, 'Please add a password'],
+      minlength: [6, 'Password must be at least 6 characters'],
+    },
+    provider: {
+      type: String,
+      enum: ['local', 'google', 'github', 'twitter'],
+      default: 'local',
+    },
+    providerId: {
+      type: String,
+      sparse: true,
+    },
+    isEmailVerified: {
+      type: Boolean,
+      default: false,
+    },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
+  },
