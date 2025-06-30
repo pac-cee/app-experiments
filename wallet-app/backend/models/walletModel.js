@@ -36,3 +36,22 @@ const walletSchema = new mongoose.Schema({
       default: 'monthly',
     },
     startDate: {
+      type: Date,
+      default: Date.now,
+    },
+    notifications: {
+      enabled: {
+        type: Boolean,
+        default: true,
+      },
+      threshold: {
+        type: Number,
+        default: 80, // percentage
+      },
+    },
+  },
+}, {
+  timestamps: true,
+});
+
+module.exports = mongoose.model('Wallet', walletSchema);
