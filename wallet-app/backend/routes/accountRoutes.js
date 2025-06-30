@@ -17,3 +17,22 @@ const validateAccount = [
   body('bankName').optional().trim(),
   body('mobileProvider').optional().trim(),
 ];
+
+// Get all accounts for a user
+router.get('/', auth, async (req, res) => {
+  try {
+    const accounts = await Account.find({ user: req.user._id }).sort({ createdAt: -1 });
+    res.json(accounts);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Create a new account
+router.post('/', auth, validateAccount, async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
