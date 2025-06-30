@@ -17,3 +17,22 @@ const walletSchema = new mongoose.Schema({
   },
   currency: {
     type: String,
+    required: [true, 'Please add a currency'],
+    default: 'USD',
+  },
+  balance: {
+    type: Number,
+    required: [true, 'Please add a balance'],
+    default: 0,
+  },
+  budget: {
+    amount: {
+      type: Number,
+      default: 0,
+    },
+    period: {
+      type: String,
+      enum: ['daily', 'weekly', 'monthly', 'yearly'],
+      default: 'monthly',
+    },
+    startDate: {
