@@ -36,3 +36,22 @@ router.post('/register', validateRegistration, async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
+    // Create new user
+    user = new User({
+      name,
+      email,
+      password,
+    });
+
+    // Save user
+    await user.save();
+
+    // Create token
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRE }
+    );
+
+    res.status(201).json({
+      token,
