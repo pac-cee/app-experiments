@@ -93,3 +93,22 @@ router.patch('/:id', auth, validateAccount, async (req, res) => {
     if (updates.balance) {
       updates.balance = parseFloat(updates.balance);
     }
+
+    Object.keys(updates).forEach(update => {
+      account[update] = updates[update];
+    });
+
+    await account.save();
+    res.json(account);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Delete an account
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const account = await Account.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user._id
+    });
