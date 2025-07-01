@@ -169,3 +169,22 @@ router.get('/stats', auth, async (req, res) => {
   try {
     const accounts = await Account.find({ user: req.user._id });
     
+    const stats = {
+      totalAccounts: accounts.length,
+      byType: accounts.reduce((acc, account) => {
+        if (!acc[account.type]) {
+          acc[account.type] = 0;
+        }
+        acc[account.type]++;
+        return acc;
+      }, {}),
+      byCurrency: accounts.reduce((acc, account) => {
+        if (!acc[account.currency]) {
+          acc[account.currency] = 0;
+        }
+        acc[account.currency] += account.balance;
+        return acc;
+      }, {})
+    };
+
+    res.json(stats);
