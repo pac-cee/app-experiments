@@ -150,3 +150,22 @@ router.get('/summary', auth, async (req, res) => {
 
     // Format balances
     const formattedSummary = Object.entries(summary).map(([currency, balance]) => ({
+      currency,
+      balance,
+      formattedBalance: new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency
+      }).format(balance)
+    }));
+
+    res.json(formattedSummary);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Get account statistics
+router.get('/stats', auth, async (req, res) => {
+  try {
+    const accounts = await Account.find({ user: req.user._id });
+    
