@@ -112,3 +112,22 @@ router.delete('/:id', auth, async (req, res) => {
       _id: req.params.id,
       user: req.user._id
     });
+
+    if (!account) {
+      return res.status(404).json({ message: 'Account not found' });
+    }
+
+    // If the deleted account was default, make the oldest remaining account default
+    if (account.isDefault) {
+      const oldestAccount = await Account.findOne({ user: req.user._id })
+        .sort({ createdAt: 1 });
+      
+      if (oldestAccount) {
+        oldestAccount.isDefault = true;
+        await oldestAccount.save();
+      }
+    }
+
+    res.json({ message: 'Account deleted' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
