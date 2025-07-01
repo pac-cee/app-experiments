@@ -93,3 +93,22 @@ router.post('/login', validateLogin, async (req, res) => {
       { id: user._id },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRE }
+    );
+
+    // Remove password from response
+    user.password = undefined;
+
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Get current user
