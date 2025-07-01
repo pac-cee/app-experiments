@@ -36,3 +36,22 @@ router.post('/', auth, validateAccount, async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
+    const {
+      name,
+      type,
+      balance,
+      currency,
+      description,
+      accountNumber,
+      bankName,
+      mobileProvider,
+      isDefault
+    } = req.body;
+
+    // If this is the first account, make it default
+    const accountCount = await Account.countDocuments({ user: req.user._id });
+    const shouldBeDefault = accountCount === 0 ? true : isDefault;
+
+    const account = new Account({
+      user: req.user._id,
+      name,
