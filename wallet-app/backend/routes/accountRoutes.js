@@ -55,3 +55,22 @@ router.post('/', auth, validateAccount, async (req, res) => {
     const account = new Account({
       user: req.user._id,
       name,
+      type,
+      balance: parseFloat(balance),
+      currency,
+      description,
+      accountNumber,
+      bankName,
+      mobileProvider,
+      isDefault: shouldBeDefault
+    });
+
+    await account.save();
+    res.status(201).json(account);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Update an account
+router.patch('/:id', auth, validateAccount, async (req, res) => {
