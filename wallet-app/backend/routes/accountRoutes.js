@@ -74,3 +74,22 @@ router.post('/', auth, validateAccount, async (req, res) => {
 
 // Update an account
 router.patch('/:id', auth, validateAccount, async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const account = await Account.findOne({
+      _id: req.params.id,
+      user: req.user._id
+    });
+
+    if (!account) {
+      return res.status(404).json({ message: 'Account not found' });
+    }
+
+    const updates = req.body;
+    if (updates.balance) {
+      updates.balance = parseFloat(updates.balance);
+    }
