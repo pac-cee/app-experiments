@@ -131,3 +131,22 @@ router.delete('/:id', auth, async (req, res) => {
     res.json({ message: 'Account deleted' });
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Get account balance summary
+router.get('/summary', auth, async (req, res) => {
+  try {
+    const accounts = await Account.find({ user: req.user._id });
+    
+    // Group balances by currency
+    const summary = accounts.reduce((acc, account) => {
+      if (!acc[account.currency]) {
+        acc[account.currency] = 0;
+      }
+      acc[account.currency] += account.balance;
+      return acc;
+    }, {});
+
+    // Format balances
+    const formattedSummary = Object.entries(summary).map(([currency, balance]) => ({
