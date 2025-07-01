@@ -188,3 +188,9 @@ router.get('/stats', auth, async (req, res) => {
     };
 
     res.json(stats);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+module.exports = router;
