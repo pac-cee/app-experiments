@@ -207,3 +207,22 @@ router.get('/stats', auth, async (req, res) => {
           },
           total: { $sum: '$amount' },
           count: { $sum: 1 }
+        }
+      },
+      {
+        $group: {
+          _id: '$_id.type',
+          monthly: {
+            $push: {
+              month: '$_id.month',
+              year: '$_id.year',
+              total: '$total',
+              count: '$count'
+            }
+          },
+          totalAmount: { $sum: '$total' },
+          totalCount: { $sum: '$count' }
+        }
+      }
+    ]);
+
