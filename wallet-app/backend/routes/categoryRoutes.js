@@ -93,3 +93,22 @@ router.delete('/:id', async (req, res) => {
     res.json({ message: 'Category deleted' });
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Create default categories
+router.post('/defaults', async (req, res) => {
+  try {
+    await Category.createDefaultCategories(req.user._id);
+    const categories = await Category.find({ user: req.user._id });
+    res.json(categories);
+  } catch (err) {
+    console.error('Error creating default categories:', err);
+    res.status(500).json({ message: 'Failed to create default categories' });
+  }
+});
+
+// Create default categories for a user
+router.post('/create-defaults', async (req, res) => {
+  try {
+    await Category.createDefaultCategories(req.user._id);
