@@ -169,3 +169,22 @@ router.delete('/:id', auth, async (req, res) => {
   try {
     const transaction = await Transaction.findOne({
       _id: req.params.id,
+      user: req.user._id
+    });
+
+    if (!transaction) {
+      return res.status(404).json({ message: 'Transaction not found' });
+    }
+
+    await transaction.remove();
+    res.json({ message: 'Transaction deleted' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Get transaction statistics
+router.get('/stats', auth, async (req, res) => {
+  try {
+    const { startDate, endDate } = req.query;
+
