@@ -169,3 +169,21 @@ router.delete('/:categoryId/subcategories/:subcategoryId', async (req, res) => {
     if (!category) {
       return res.status(404).json({ message: 'Category not found' });
     }
+
+    const subcategory = await Category.findOneAndDelete({
+      _id: req.params.subcategoryId,
+      user: req.user._id,
+      parent: req.params.categoryId
+    });
+
+    if (!subcategory) {
+      return res.status(404).json({ message: 'Subcategory not found' });
+    }
+
+    res.json({ message: 'Subcategory deleted' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+module.exports = router;
