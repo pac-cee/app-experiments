@@ -150,3 +150,22 @@ router.put('/:categoryId/subcategories/:subcategoryId', async (req, res) => {
     const subcategory = await Category.findOneAndUpdate(
       { _id: req.params.subcategoryId, user: req.user._id, parent: req.params.categoryId },
       { $set: req.body },
+      { new: true }
+    );
+
+    if (!subcategory) {
+      return res.status(404).json({ message: 'Subcategory not found' });
+    }
+
+    res.json(subcategory);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.delete('/:categoryId/subcategories/:subcategoryId', async (req, res) => {
+  try {
+    const category = await Category.findOne({ _id: req.params.categoryId, user: req.user._id });
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
