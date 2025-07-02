@@ -131,3 +131,22 @@ router.patch('/:id', auth, validateTransaction, async (req, res) => {
 
       // Revert balance change from old account
       const oldAccount = await Account.findById(transaction.account);
+      oldAccount.balance -= transaction.type === 'income' ? transaction.amount : -transaction.amount;
+      await oldAccount.save();
+
+      // Apply balance change to new account
+      newAccount.balance += transaction.type === 'income' ? transaction.amount : -transaction.amount;
+      await newAccount.save();
+    }
+
+    // Update transaction
+    const updates = req.body;
+    if (updates.amount) {
+      updates.amount = parseFloat(updates.amount);
+    }
+    if (updates.date) {
+      updates.date = new Date(updates.date);
+    }
+
+    Object.keys(updates).forEach(update => {
+      transaction[update] = updates[update];
