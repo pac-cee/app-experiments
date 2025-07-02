@@ -17,3 +17,22 @@ router.use(auth);
 
 // Category routes
 router.get('/', async (req, res) => {
+  try {
+    const categories = await Category.find({ user: req.user._id });
+    res.json(categories);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const category = await Category.findOne({ _id: req.params.id, user: req.user._id });
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
+    res.json(category);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
