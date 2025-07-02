@@ -112,3 +112,13 @@ router.post('/login', validateLogin, async (req, res) => {
 });
 
 // Get current user
+router.get('/me', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+module.exports = router;
