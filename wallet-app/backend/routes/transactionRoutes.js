@@ -112,3 +112,22 @@ router.patch('/:id', auth, validateTransaction, async (req, res) => {
     const transaction = await Transaction.findOne({
       _id: req.params.id,
       user: req.user._id
+    });
+
+    if (!transaction) {
+      return res.status(404).json({ message: 'Transaction not found' });
+    }
+
+    // If account is being changed, verify new account belongs to user
+    if (req.body.account && req.body.account !== transaction.account.toString()) {
+      const newAccount = await Account.findOne({
+        _id: req.body.account,
+        user: req.user._id
+      });
+
+      if (!newAccount) {
+        return res.status(404).json({ message: 'New account not found' });
+      }
+
+      // Revert balance change from old account
+      const oldAccount = await Account.findById(transaction.account);
