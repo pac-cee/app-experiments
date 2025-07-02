@@ -17,3 +17,22 @@ const validateTransaction = [
 ];
 
 // Get all transactions for a user
+router.get('/', auth, async (req, res) => {
+  try {
+    const { startDate, endDate, type, category, account, sortBy = 'date', sortOrder = 'desc' } = req.query;
+
+    // Build query
+    const query = { user: req.user._id };
+    
+    if (startDate && endDate) {
+      query.date = {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate)
+      };
+    }
+    
+    if (type) query.type = type;
+    if (category) query.category = category;
+    if (account) query.account = account;
+
+    // Build sort object
