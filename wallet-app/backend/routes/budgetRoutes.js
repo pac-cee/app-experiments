@@ -17,3 +17,10 @@ router.route('/')
   .get(getBudgets)
   .post(createBudget);
 
+router.route('/:id')
+  .put(updateBudget)
+  .delete(deleteBudget);
+
+router.post('/check', checkBudget);
+
+module.exports = router;
