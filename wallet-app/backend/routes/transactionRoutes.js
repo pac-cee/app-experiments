@@ -188,3 +188,22 @@ router.get('/stats', auth, async (req, res) => {
   try {
     const { startDate, endDate } = req.query;
 
+    const query = { user: req.user._id };
+    if (startDate && endDate) {
+      query.date = {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate)
+      };
+    }
+
+    const stats = await Transaction.aggregate([
+      { $match: query },
+      {
+        $group: {
+          _id: {
+            type: '$type',
+            month: { $month: '$date' },
+            year: { $year: '$date' }
+          },
+          total: { $sum: '$amount' },
+          count: { $sum: 1 }
