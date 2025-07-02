@@ -55,3 +55,22 @@ router.post('/', auth, validateTransaction, async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      account: accountId,
+      category,
+      type,
+      amount,
+      description,
+      date,
+      notes
+    } = req.body;
+
+    // Verify account belongs to user
+    const account = await Account.findOne({
+      _id: accountId,
+      user: req.user._id
+    });
+
