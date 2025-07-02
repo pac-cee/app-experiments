@@ -131,3 +131,22 @@ router.post('/:categoryId/subcategories', async (req, res) => {
       ...req.body,
       user: req.user._id,
       parent: req.params.categoryId
+    });
+
+    await subcategory.save();
+    res.status(201).json(subcategory);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.put('/:categoryId/subcategories/:subcategoryId', async (req, res) => {
+  try {
+    const category = await Category.findOne({ _id: req.params.categoryId, user: req.user._id });
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
+
+    const subcategory = await Category.findOneAndUpdate(
+      { _id: req.params.subcategoryId, user: req.user._id, parent: req.params.categoryId },
+      { $set: req.body },
