@@ -112,3 +112,22 @@ router.post('/defaults', async (req, res) => {
 router.post('/create-defaults', async (req, res) => {
   try {
     await Category.createDefaultCategories(req.user._id);
+    const categories = await Category.find({ user: req.user._id });
+    res.status(201).json(categories);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Subcategory routes
+router.post('/:categoryId/subcategories', async (req, res) => {
+  try {
+    const category = await Category.findOne({ _id: req.params.categoryId, user: req.user._id });
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
+
+    const subcategory = new Category({
+      ...req.body,
+      user: req.user._id,
+      parent: req.params.categoryId
