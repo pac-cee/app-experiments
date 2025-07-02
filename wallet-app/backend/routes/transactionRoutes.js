@@ -93,3 +93,22 @@ router.post('/', auth, validateTransaction, async (req, res) => {
 
     // Populate category and account details
     await transaction.populate('category', 'name type');
+    await transaction.populate('account', 'name type currency');
+
+    res.status(201).json(transaction);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Update a transaction
+router.patch('/:id', auth, validateTransaction, async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const transaction = await Transaction.findOne({
+      _id: req.params.id,
+      user: req.user._id
