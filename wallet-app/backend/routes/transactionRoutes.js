@@ -74,3 +74,22 @@ router.post('/', auth, validateTransaction, async (req, res) => {
       user: req.user._id
     });
 
+    if (!account) {
+      return res.status(404).json({ message: 'Account not found' });
+    }
+
+    const transaction = new Transaction({
+      user: req.user._id,
+      account: accountId,
+      category,
+      type,
+      amount: parseFloat(amount),
+      description,
+      date: new Date(date),
+      notes
+    });
+
+    await transaction.save();
+
+    // Populate category and account details
+    await transaction.populate('category', 'name type');
