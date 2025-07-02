@@ -150,3 +150,22 @@ router.patch('/:id', auth, validateTransaction, async (req, res) => {
 
     Object.keys(updates).forEach(update => {
       transaction[update] = updates[update];
+    });
+
+    await transaction.save();
+
+    // Populate category and account details
+    await transaction.populate('category', 'name type');
+    await transaction.populate('account', 'name type currency');
+
+    res.json(transaction);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Delete a transaction
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const transaction = await Transaction.findOne({
+      _id: req.params.id,
