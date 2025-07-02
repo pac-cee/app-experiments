@@ -36,3 +36,22 @@ router.get('/', auth, async (req, res) => {
     if (account) query.account = account;
 
     // Build sort object
+    const sort = {};
+    sort[sortBy] = sortOrder === 'desc' ? -1 : 1;
+
+    const transactions = await Transaction.find(query)
+      .populate('category', 'name type')
+      .populate('account', 'name type currency')
+      .sort(sort);
+
+    res.json(transactions);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Create a new transaction
+router.post('/', auth, validateTransaction, async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
