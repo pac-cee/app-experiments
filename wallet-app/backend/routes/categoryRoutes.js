@@ -55,3 +55,22 @@ router.post('/', validateCategory, async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+router.put('/:id', validateCategory, async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const category = await Category.findOneAndUpdate(
+      { _id: req.params.id, user: req.user._id },
+      { $set: req.body },
+      { new: true }
+    );
+
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
+
+    res.json(category);
