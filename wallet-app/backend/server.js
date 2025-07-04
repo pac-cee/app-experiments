@@ -74,3 +74,14 @@ const connectDB = async () => {
 
 // Connect to MongoDB
 connectDB();
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Promise Rejection:', err);
+});
+
+// Start server
+const PORT = process.env.PORT || 5002;
+app.listen(PORT, () => {
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+});
