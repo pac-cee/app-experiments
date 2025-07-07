@@ -55,3 +55,22 @@ const ThemedApp = () => {
   const { theme } = useTheme();
   const muiTheme = getTheme(theme === 'system' 
     ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    : theme
+  );
+
+  return (
+    <MuiThemeProvider theme={muiTheme}>
+      <CssBaseline />
+      <Router>
+        <Layout>
+          <Routes>
+            {/* Redirect root to login or dashboard */}
+            <Route 
+              path="/" 
+              element={<Navigate to="/login" replace />} 
+            />
+
+            {/* Public routes */}
+            <Route
+              path="/login"
+              element={
