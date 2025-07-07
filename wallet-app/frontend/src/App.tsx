@@ -17,3 +17,22 @@ const Categories = React.lazy(() => import('./pages/Categories'));
 const Reports = React.lazy(() => import('./pages/Reports'));
 const Settings = React.lazy(() => import('./pages/Settings'));
 const ForgotPassword = React.lazy(() => import('./pages/ForgotPassword'));
+const ResetPassword = React.lazy(() => import('./pages/ResetPassword'));
+const OAuthCallback = React.lazy(() => import('./pages/OAuthCallback'));
+
+// Protected Route wrapper
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user } = useAuth();
+  return user ? <>{children}</> : <Navigate to="/login" replace />;
+};
+
+// Public Route wrapper (redirects to dashboard if logged in)
+const PublicRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user } = useAuth();
+  return user ? <Navigate to="/dashboard" replace /> : <>{children}</>;
+};
+
+// Main App Routes
+const AppRoutes = () => {
+  return (
+    <Routes>
