@@ -93,3 +93,22 @@ const ThemedApp = () => {
               path="/auth/google/callback"
               element={<OAuthCallback />}
             />
+            <Route
+              path="/auth/github/callback"
+              element={<OAuthCallback />}
+            />
+            <Route
+              path="/auth/twitter/callback"
+              element={<OAuthCallback />}
+            />
+
+            {/* Protected routes */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+
