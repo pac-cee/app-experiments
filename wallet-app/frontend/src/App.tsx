@@ -93,3 +93,22 @@ const AppRoutes = () => {
       </Route>
 
       {/* Catch all route */}
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
+  );
+};
+
+const App = () => {
+  const { loading } = useAuth();
+
+  if (loading) {
+    return (
+      <Box 
+        display="flex" 
+        justifyContent="center" 
+        alignItems="center" 
+        minHeight="100vh"
+      >
+        <CircularProgress />
+      </Box>
+    );
