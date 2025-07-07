@@ -55,3 +55,22 @@ const AppRoutes = () => {
       <Route path="/reset-password" element={
         <PublicRoute>
           <ResetPassword />
+        </PublicRoute>
+      } />
+
+      {/* OAuth callback routes */}
+      <Route path="/auth/google/callback" element={
+        <PublicRoute>
+          <OAuthCallback />
+        </PublicRoute>
+      } />
+      <Route path="/auth/github/callback" element={
+        <PublicRoute>
+          <OAuthCallback />
+        </PublicRoute>
+      } />
+      <Route path="/auth/twitter/callback" element={
+        <PublicRoute>
+          <OAuthCallback />
+        </PublicRoute>
+      } />
