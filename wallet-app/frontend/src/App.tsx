@@ -36,3 +36,22 @@ const PublicRoute = ({ children }: { children: React.ReactNode }) => {
 const AppRoutes = () => {
   return (
     <Routes>
+      {/* Public Routes */}
+      <Route path="/login" element={
+        <PublicRoute>
+          <Login />
+        </PublicRoute>
+      } />
+      <Route path="/register" element={
+        <PublicRoute>
+          <Register />
+        </PublicRoute>
+      } />
+      <Route path="/forgot-password" element={
+        <PublicRoute>
+          <ForgotPassword />
+        </PublicRoute>
+      } />
+      <Route path="/reset-password" element={
+        <PublicRoute>
+          <ResetPassword />
