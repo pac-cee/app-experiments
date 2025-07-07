@@ -74,3 +74,22 @@ const ThemedApp = () => {
             <Route
               path="/login"
               element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute>
+                  <Register />
+                </PublicRoute>
+              }
+            />
+
+            {/* OAuth callback routes */}
+            <Route
+              path="/auth/google/callback"
+              element={<OAuthCallback />}
+            />
