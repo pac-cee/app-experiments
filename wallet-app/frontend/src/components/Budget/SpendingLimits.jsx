@@ -74,3 +74,22 @@ const SpendingLimits = () => {
         startDate: new Date(budget.startDate),
         endDate: new Date(budget.endDate),
         notifications: budget.notifications
+      });
+    } else {
+      setSelectedBudget(null);
+      setFormData({
+        category: '',
+        amount: 0,
+        period: 'monthly',
+        startDate: new Date(),
+        endDate: new Date(),
+        notifications: {
+          enabled: true,
+          threshold: 80
+        }
+      });
+    }
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
