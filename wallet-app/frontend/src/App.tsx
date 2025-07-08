@@ -112,3 +112,20 @@ const App = () => {
         <CircularProgress />
       </Box>
     );
+  }
+
+  return (
+    <ErrorBoundary>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <Suspense fallback={<LoadingIndicator />}>
+            <AppRoutes />
+          </Suspense>
+        </Router>
+      </ThemeProvider>
+    </ErrorBoundary>
+  );
+};
+
+export default App;
