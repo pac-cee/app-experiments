@@ -55,3 +55,22 @@ const SpendingLimits = () => {
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get('/api/categories');
+      setCategories(response.data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const handleOpenDialog = (budget = null) => {
+    if (budget) {
+      setSelectedBudget(budget);
+      setFormData({
+        category: budget.category._id,
+        amount: budget.amount,
+        period: budget.period,
+        startDate: new Date(budget.startDate),
+        endDate: new Date(budget.endDate),
+        notifications: budget.notifications
