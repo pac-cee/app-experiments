@@ -36,3 +36,22 @@ const SpendingLimits = () => {
     startDate: new Date(),
     endDate: new Date(),
     notifications: {
+      enabled: true,
+      threshold: 80
+    }
+  });
+
+  useEffect(() => {
+    fetchBudgets();
+    fetchCategories();
+  }, []);
+
+  const fetchBudgets = async () => {
+    try {
+      const response = await axios.get('/api/budgets');
+      setBudgets(response.data);
+    } catch (error) {
+      console.error('Error fetching budgets:', error);
+    }
+  };
+
