@@ -17,3 +17,22 @@ import {
   DialogContent,
   DialogActions,
   FormControl,
+  InputLabel,
+  Alert,
+} from '@mui/material';
+import { Add as AddIcon } from '@mui/icons-material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import axios from 'axios';
+
+const SpendingLimits = () => {
+  const [budgets, setBudgets] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedBudget, setSelectedBudget] = useState(null);
+  const [formData, setFormData] = useState({
+    category: '',
+    amount: 0,
+    period: 'monthly',
+    startDate: new Date(),
+    endDate: new Date(),
+    notifications: {
