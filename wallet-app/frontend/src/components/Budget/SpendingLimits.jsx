@@ -150,3 +150,22 @@ const SpendingLimits = () => {
                     onClick={() => handleOpenDialog(budget)}
                   >
                     Edit
+                  </Button>
+                </Box>
+
+                <Typography variant="body2" color="textSecondary" gutterBottom>
+                  Period: {budget.period}
+                </Typography>
+
+                <Box display="flex" justifyContent="space-between" mb={1}>
+                  <Typography>
+                    ${budget.spent || 0} of ${budget.amount}
+                  </Typography>
+                  <Typography>
+                    {Math.round(calculateProgress(budget))}%
+                  </Typography>
+                </Box>
+
+                <LinearProgress
+                  variant="determinate"
+                  value={calculateProgress(budget)}
