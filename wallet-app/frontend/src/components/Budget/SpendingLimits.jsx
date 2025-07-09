@@ -93,3 +93,22 @@ const SpendingLimits = () => {
   };
 
   const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (selectedBudget) {
+        await axios.put(`/api/budgets/${selectedBudget._id}`, formData);
+      } else {
+        await axios.post('/api/budgets', formData);
+      }
+      fetchBudgets();
+      handleCloseDialog();
+    } catch (error) {
+      console.error('Error saving budget:', error);
+    }
+  };
+
+  const calculateProgress = (budget) => {
+    const spent = budget.spent || 0;
