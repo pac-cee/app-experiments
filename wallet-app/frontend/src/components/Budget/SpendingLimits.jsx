@@ -131,3 +131,22 @@ const SpendingLimits = () => {
               variant="contained"
               color="primary"
               startIcon={<AddIcon />}
+              onClick={() => handleOpenDialog()}
+            >
+              Add Limit
+            </Button>
+          </Box>
+        </Grid>
+
+        {budgets.map((budget) => (
+          <Grid item xs={12} md={6} key={budget._id}>
+            <Card>
+              <CardContent>
+                <Box display="flex" justifyContent="space-between" mb={2}>
+                  <Typography variant="h6">{budget.category.name}</Typography>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    onClick={() => handleOpenDialog(budget)}
+                  >
+                    Edit
