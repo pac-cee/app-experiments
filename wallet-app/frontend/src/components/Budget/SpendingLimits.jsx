@@ -112,3 +112,22 @@ const SpendingLimits = () => {
 
   const calculateProgress = (budget) => {
     const spent = budget.spent || 0;
+    return (spent / budget.amount) * 100;
+  };
+
+  const getProgressColor = (progress) => {
+    if (progress >= 90) return 'error';
+    if (progress >= 70) return 'warning';
+    return 'success';
+  };
+
+  return (
+    <Box sx={{ flexGrow: 1, p: 3 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="h4">Spending Limits</Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<AddIcon />}
