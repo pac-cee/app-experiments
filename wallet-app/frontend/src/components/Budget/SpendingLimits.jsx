@@ -226,3 +226,22 @@ const SpendingLimits = () => {
                   value={formData.period}
                   label="Period"
                   onChange={(e) =>
+                    setFormData({ ...formData, period: e.target.value })
+                  }
+                >
+                  <MenuItem value="daily">Daily</MenuItem>
+                  <MenuItem value="weekly">Weekly</MenuItem>
+                  <MenuItem value="monthly">Monthly</MenuItem>
+                  <MenuItem value="yearly">Yearly</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <DatePicker
+                label="Start Date"
+                value={formData.startDate}
+                onChange={(newValue) =>
+                  setFormData({ ...formData, startDate: newValue })
+                }
+                renderInput={(params) => <TextField {...params} fullWidth />}
+              />
