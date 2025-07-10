@@ -245,3 +245,22 @@ const SpendingLimits = () => {
                 }
                 renderInput={(params) => <TextField {...params} fullWidth />}
               />
+            </Grid>
+            <Grid item xs={12}>
+              <DatePicker
+                label="End Date"
+                value={formData.endDate}
+                onChange={(newValue) =>
+                  setFormData({ ...formData, endDate: newValue })
+                }
+                renderInput={(params) => <TextField {...params} fullWidth />}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={formData.notifications.enabled}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
