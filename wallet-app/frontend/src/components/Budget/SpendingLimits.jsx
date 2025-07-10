@@ -264,3 +264,22 @@ const SpendingLimits = () => {
                     onChange={(e) =>
                       setFormData({
                         ...formData,
+                        notifications: {
+                          ...formData.notifications,
+                          enabled: e.target.checked
+                        }
+                      })
+                    }
+                  />
+                }
+                label="Enable Notifications"
+              />
+            </Grid>
+            {formData.notifications.enabled && (
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Notification Threshold (%)"
+                  type="number"
+                  value={formData.notifications.threshold}
+                  onChange={(e) =>
