@@ -169,3 +169,22 @@ const SpendingLimits = () => {
                 <LinearProgress
                   variant="determinate"
                   value={calculateProgress(budget)}
+                  color={getProgressColor(calculateProgress(budget))}
+                  sx={{ height: 10, borderRadius: 5 }}
+                />
+
+                {calculateProgress(budget) >= budget.notifications.threshold && (
+                  <Alert severity="warning" sx={{ mt: 2 }}>
+                    You've reached {budget.notifications.threshold}% of your budget!
+                  </Alert>
+                )}
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>
+          {selectedBudget ? 'Edit Spending Limit' : 'Add Spending Limit'}
+        </DialogTitle>
