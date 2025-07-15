@@ -112,3 +112,22 @@ const BudgetManager = ({ wallet, onUpdateBudget }) => {
 
           <TextField
             fullWidth
+            select
+            label="Budget Period"
+            value={budget.period}
+            onChange={handleBudgetChange('period')}
+            margin="normal"
+          >
+            <MenuItem value="daily">Daily</MenuItem>
+            <MenuItem value="weekly">Weekly</MenuItem>
+            <MenuItem value="monthly">Monthly</MenuItem>
+            <MenuItem value="yearly">Yearly</MenuItem>
+          </TextField>
+
+          <FormControlLabel
+            control={
+              <Switch
+                checked={budget.notifications.enabled}
+                onChange={handleNotificationChange('enabled')}
+                color="primary"
+              />
