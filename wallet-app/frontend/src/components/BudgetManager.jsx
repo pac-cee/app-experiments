@@ -169,3 +169,22 @@ const BudgetManager = ({ wallet, onUpdateBudget }) => {
               Current Spending Progress
             </Typography>
             <LinearProgress
+              variant="determinate"
+              value={Math.min(spendingPercentage, 100)}
+              color={getProgressColor()}
+              sx={{ height: 10, borderRadius: 5 }}
+            />
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              {`${Math.round(spendingPercentage)}% of budget used (${currentSpending.toLocaleString('en-US', {
+                style: 'currency',
+                currency: wallet.currency,
+              })} / ${budget.amount.toLocaleString('en-US', {
+                style: 'currency',
+                currency: wallet.currency,
+              })})`}
+            </Typography>
+          </Box>
+
+          {budget.notifications.enabled && spendingPercentage >= budget.notifications.threshold && (
+            <Alert severity={spendingPercentage >= 100 ? 'error' : 'warning'} sx={{ mt: 2 }}>
+              {spendingPercentage >= 100
