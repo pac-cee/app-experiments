@@ -131,3 +131,22 @@ const BudgetManager = ({ wallet, onUpdateBudget }) => {
                 onChange={handleNotificationChange('enabled')}
                 color="primary"
               />
+            }
+            label="Enable Budget Notifications"
+          />
+
+          {budget.notifications.enabled && (
+            <TextField
+              fullWidth
+              type="number"
+              label="Notification Threshold (%)"
+              value={budget.notifications.threshold}
+              onChange={handleNotificationChange('threshold')}
+              margin="normal"
+              InputProps={{
+                inputProps: {
+                  min: 0,
+                  max: 100,
+                },
+              }}
+            />
