@@ -55,3 +55,22 @@ const BudgetManager = ({ wallet, onUpdateBudget }) => {
     setBudget((prev) => ({
       ...prev,
       [field]: event.target.value,
+    }));
+  };
+
+  const handleNotificationChange = (field) => (event) => {
+    setBudget((prev) => ({
+      ...prev,
+      notifications: {
+        ...prev.notifications,
+        [field]: field === 'enabled' ? event.target.checked : event.target.value,
+      },
+    }));
+  };
+
+  const saveBudget = async () => {
+    try {
+      setError(null);
+      await onUpdateBudget(budget);
+      await fetchCurrentSpending();
+    } catch (err) {
