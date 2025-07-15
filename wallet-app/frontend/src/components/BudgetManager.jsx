@@ -74,3 +74,22 @@ const BudgetManager = ({ wallet, onUpdateBudget }) => {
       await onUpdateBudget(budget);
       await fetchCurrentSpending();
     } catch (err) {
+      setError('Failed to update budget settings');
+    }
+  };
+
+  const getProgressColor = () => {
+    if (spendingPercentage >= 100) return 'error';
+    if (spendingPercentage >= budget.notifications.threshold) return 'warning';
+    return 'success';
+  };
+
+  return (
+    <Paper sx={{ p: 3 }}>
+      <Typography variant="h6" gutterBottom>
+        Budget Settings for {wallet.name}
+      </Typography>
+
+      {error && (
+        <Alert severity="error" sx={{ mb: 2 }} onClose={() => setError(null)}>
+          {error}
