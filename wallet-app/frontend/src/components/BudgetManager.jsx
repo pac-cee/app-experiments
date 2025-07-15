@@ -93,3 +93,22 @@ const BudgetManager = ({ wallet, onUpdateBudget }) => {
       {error && (
         <Alert severity="error" sx={{ mb: 2 }} onClose={() => setError(null)}>
           {error}
+        </Alert>
+      )}
+
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <TextField
+            fullWidth
+            label="Budget Amount"
+            type="number"
+            value={budget.amount}
+            onChange={handleBudgetChange('amount')}
+            margin="normal"
+            InputProps={{
+              startAdornment: wallet.currency,
+            }}
+          />
+
+          <TextField
+            fullWidth
