@@ -36,3 +36,22 @@ const BudgetManager = ({ wallet, onUpdateBudget }) => {
     try {
       setLoading(true);
       const response = await transactionsAPI.getReport({
+        walletId: wallet._id,
+        period: budget.period,
+        type: 'expense',
+      });
+      setCurrentSpending(response.data.total);
+    } catch (err) {
+      console.error('Error fetching spending:', err);
+      setError('Failed to fetch current spending');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const spendingPercentage = (currentSpending / budget.amount) * 100;
+
+  const handleBudgetChange = (field) => (event) => {
+    setBudget((prev) => ({
+      ...prev,
+      [field]: event.target.value,
