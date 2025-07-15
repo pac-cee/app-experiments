@@ -283,3 +283,22 @@ const SpendingLimits = () => {
                   type="number"
                   value={formData.notifications.threshold}
                   onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      notifications: {
+                        ...formData.notifications,
+                        threshold: Number(e.target.value)
+                      }
+                    })
+                  }
+                  inputProps={{ min: 1, max: 100 }}
+                />
+              </Grid>
+            )}
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={handleSubmit} variant="contained" color="primary">
+            {selectedBudget ? 'Update' : 'Add'}
+          </Button>
