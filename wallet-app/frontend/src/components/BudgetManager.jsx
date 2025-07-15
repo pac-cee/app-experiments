@@ -150,3 +150,22 @@ const BudgetManager = ({ wallet, onUpdateBudget }) => {
                 },
               }}
             />
+          )}
+
+          <Button
+            variant="contained"
+            onClick={saveBudget}
+            sx={{ mt: 2 }}
+            fullWidth
+            disabled={loading}
+          >
+            {loading ? 'Saving...' : 'Save Budget Settings'}
+          </Button>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="subtitle1" gutterBottom>
+              Current Spending Progress
+            </Typography>
+            <LinearProgress
