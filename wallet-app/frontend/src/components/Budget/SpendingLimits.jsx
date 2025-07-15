@@ -302,3 +302,10 @@ const SpendingLimits = () => {
           <Button onClick={handleSubmit} variant="contained" color="primary">
             {selectedBudget ? 'Update' : 'Add'}
           </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
+  );
+};
+
+export default SpendingLimits;
