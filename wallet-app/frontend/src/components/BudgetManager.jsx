@@ -188,3 +188,14 @@ const BudgetManager = ({ wallet, onUpdateBudget }) => {
           {budget.notifications.enabled && spendingPercentage >= budget.notifications.threshold && (
             <Alert severity={spendingPercentage >= 100 ? 'error' : 'warning'} sx={{ mt: 2 }}>
               {spendingPercentage >= 100
+                ? `Budget exceeded! You've spent ${(spendingPercentage - 100).toFixed(1)}% more than your budget.`
+                : `Warning: You've used ${spendingPercentage.toFixed(1)}% of your budget.`}
+            </Alert>
+          )}
+        </Grid>
+      </Grid>
+    </Paper>
+  );
+};
+
+export default BudgetManager;
