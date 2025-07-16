@@ -55,3 +55,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
     limit: 0,
     period: 'monthly',
     notifications: true,
+    notificationThreshold: 80,
+  });
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (selectedBudget) {
+      setFormData({
+        category: typeof selectedBudget.category === 'object' ? selectedBudget.category._id : selectedBudget.category,
+        limit: selectedBudget.limit,
+        period: selectedBudget.period,
+        notifications: selectedBudget.notifications,
+        notificationThreshold: selectedBudget.notificationThreshold,
+      });
+    }
+  }, [selectedBudget]);
+
+  const handleOpenDialog = (budget?: Budget) => {
+    if (budget) {
+      setSelectedBudget(budget);
