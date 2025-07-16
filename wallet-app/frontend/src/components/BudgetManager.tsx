@@ -74,3 +74,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
   const handleOpenDialog = (budget?: Budget) => {
     if (budget) {
       setSelectedBudget(budget);
+    } else {
+      setSelectedBudget(null);
+      setFormData({
+        category: '',
+        limit: 0,
+        period: 'monthly',
+        notifications: true,
+        notificationThreshold: 80,
+      });
+    }
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setSelectedBudget(null);
+    setError('');
+  };
+
