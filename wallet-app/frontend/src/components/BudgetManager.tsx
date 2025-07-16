@@ -36,3 +36,22 @@ interface FormData {
 interface BudgetManagerProps {
   budgets: Budget[];
   categories: Category[];
+  onAddBudget: (budget: FormData) => Promise<void>;
+  onUpdateBudget: (id: string, budget: Partial<FormData>) => Promise<void>;
+  onDeleteBudget: (id: string) => Promise<void>;
+}
+
+const BudgetManager: React.FC<BudgetManagerProps> = ({
+  budgets,
+  categories,
+  onAddBudget,
+  onUpdateBudget,
+  onDeleteBudget,
+}) => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedBudget, setSelectedBudget] = useState<Budget | null>(null);
+  const [formData, setFormData] = useState<FormData>({
+    category: '',
+    limit: 0,
+    period: 'monthly',
+    notifications: true,
