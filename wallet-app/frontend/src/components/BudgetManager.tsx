@@ -264,3 +264,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
                 sx={{ mb: 2 }}
               />
 
+              {formData.notifications && (
+                <TextField
+                  fullWidth
+                  label="Notification Threshold (%)"
+                  name="notificationThreshold"
+                  type="number"
+                  value={formData.notificationThreshold}
+                  onChange={handleChange}
+                  InputProps={{ inputProps: { min: 0, max: 100 } }}
+                  required
+                />
+              )}
+            </Box>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseDialog}>Cancel</Button>
+            <Button type="submit" variant="contained" color="primary">
+              {selectedBudget ? 'Update' : 'Add'} Budget
+            </Button>
