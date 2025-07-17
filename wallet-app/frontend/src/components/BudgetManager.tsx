@@ -169,3 +169,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
                     <IconButton size="small" onClick={() => handleDelete(budget._id)}>
                       <DeleteIcon />
                     </IconButton>
+                  </Box>
+                </Box>
+
+                <Typography variant="body2" color="textSecondary" gutterBottom>
+                  {budget.period.charAt(0).toUpperCase() + budget.period.slice(1)} Budget
+                </Typography>
+
+                <Box sx={{ mt: 2, mb: 1 }}>
+                  <LinearProgress
+                    variant="determinate"
+                    value={calculateProgress(budget.spent, budget.limit)}
+                    color={getProgressColor(calculateProgress(budget.spent, budget.limit)) as any}
+                    sx={{ height: 10, borderRadius: 5 }}
+                  />
+                </Box>
+
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
+                  <Typography variant="body2">
+                    Spent: ${budget.spent.toFixed(2)}
