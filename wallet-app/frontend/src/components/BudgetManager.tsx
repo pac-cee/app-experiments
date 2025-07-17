@@ -207,3 +207,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
           <DialogContent>
             <Box sx={{ mt: 2 }}>
               {error && (
+                <Typography color="error" sx={{ mb: 2 }}>
+                  {error}
+                </Typography>
+              )}
+
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel>Category</InputLabel>
+                <Select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  required
+                >
+                  {categories.map((category) => (
+                    <MenuItem key={category._id} value={category._id}>
+                      {category.name}
+                    </MenuItem>
+                  ))}
+                </Select>
