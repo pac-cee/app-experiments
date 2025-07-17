@@ -36,3 +36,22 @@ const CategoryManager = () => {
   const [formData, setFormData] = useState({
     name: '',
     type: 'expense',
+    color: '#000000',
+    icon: 'attach_money',
+    budget: 0
+  });
+  const [showColorPicker, setShowColorPicker] = useState(false);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get('/api/categories');
+      setCategories(response.data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
