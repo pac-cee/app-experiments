@@ -150,3 +150,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
         </Typography>
         <Button variant="contained" color="primary" onClick={() => handleOpenDialog()}>
           Add New Budget
+        </Button>
+      </Box>
+
+      <Grid container spacing={3}>
+        {budgets.map((budget) => (
+          <Grid item xs={12} sm={6} md={4} key={budget._id}>
+            <Card>
+              <CardContent>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                  <Typography variant="h6">
+                    {typeof budget.category === 'object' ? budget.category.name : 'Unknown Category'}
+                  </Typography>
+                  <Box>
+                    <IconButton size="small" onClick={() => handleOpenDialog(budget)}>
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton size="small" onClick={() => handleDelete(budget._id)}>
+                      <DeleteIcon />
+                    </IconButton>
