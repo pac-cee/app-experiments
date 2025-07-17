@@ -188,3 +188,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
                   <Typography variant="body2">
                     Spent: ${budget.spent.toFixed(2)}
+                  </Typography>
+                  <Typography variant="body2">
+                    Limit: ${budget.limit.toFixed(2)}
+                  </Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
+        <form onSubmit={handleSubmit}>
+          <DialogTitle>
+            {selectedBudget ? 'Edit Budget' : 'Add New Budget'}
+          </DialogTitle>
+          <DialogContent>
+            <Box sx={{ mt: 2 }}>
+              {error && (
