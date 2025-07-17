@@ -55,3 +55,22 @@ const CategoryManager = () => {
     }
   };
 
+  const handleOpenDialog = (category = null) => {
+    if (category) {
+      setSelectedCategory(category);
+      setFormData({
+        name: category.name,
+        type: category.type,
+        color: category.color,
+        icon: category.icon,
+        budget: category.budget
+      });
+    } else {
+      setSelectedCategory(null);
+      setFormData({
+        name: '',
+        type: 'expense',
+        color: '#000000',
+        icon: 'attach_money',
+        budget: 0
+      });
