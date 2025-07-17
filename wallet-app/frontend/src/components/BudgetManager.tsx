@@ -112,3 +112,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      if (selectedBudget) {
+        await onUpdateBudget(selectedBudget._id, formData);
+      } else {
+        await onAddBudget(formData);
+      }
+      handleCloseDialog();
+    } catch (err) {
+      setError('Failed to save budget');
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await onDeleteBudget(id);
+    } catch (err) {
+      setError('Failed to delete budget');
+    }
+  };
