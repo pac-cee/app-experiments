@@ -131,3 +131,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
       setError('Failed to delete budget');
     }
   };
+
+  const calculateProgress = (spent: number, limit: number): number => {
+    return Math.min((spent / limit) * 100, 100);
+  };
+
+  const getProgressColor = (progress: number): string => {
+    if (progress >= 90) return 'error';
+    if (progress >= 70) return 'warning';
+    return 'success';
+  };
+
+  return (
+    <Container>
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="h4" gutterBottom>
+          Budget Manager
+        </Typography>
+        <Button variant="contained" color="primary" onClick={() => handleOpenDialog()}>
+          Add New Budget
