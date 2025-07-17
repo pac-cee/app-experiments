@@ -245,3 +245,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
                   name="period"
                   value={formData.period}
                   onChange={handleChange}
+                  required
+                >
+                  <MenuItem value="monthly">Monthly</MenuItem>
+                  <MenuItem value="yearly">Yearly</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControlLabel
+                control={
+                  <Switch
+                    name="notifications"
+                    checked={formData.notifications}
+                    onChange={handleSwitchChange('notifications')}
+                  />
+                }
+                label="Enable Notifications"
+                sx={{ mb: 2 }}
+              />
+
