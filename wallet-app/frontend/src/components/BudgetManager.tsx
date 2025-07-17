@@ -226,3 +226,22 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
                     </MenuItem>
                   ))}
                 </Select>
+              </FormControl>
+
+              <TextField
+                fullWidth
+                label="Budget Limit"
+                name="limit"
+                type="number"
+                value={formData.limit}
+                onChange={handleChange}
+                required
+                sx={{ mb: 2 }}
+              />
+
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel>Period</InputLabel>
+                <Select
+                  name="period"
+                  value={formData.period}
+                  onChange={handleChange}
