@@ -283,3 +283,11 @@ const BudgetManager: React.FC<BudgetManagerProps> = ({
             <Button type="submit" variant="contained" color="primary">
               {selectedBudget ? 'Update' : 'Add'} Budget
             </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
+    </Container>
+  );
+};
+
+export default BudgetManager;
