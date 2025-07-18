@@ -188,3 +188,22 @@ const CategoryManager = () => {
                           onClick={() => handleOpenDialog(category)}
                         >
                           <EditIcon />
+                        </IconButton>
+                        <IconButton
+                          edge="end"
+                          onClick={() => handleDelete(category._id)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  ))}
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>
+          {selectedCategory ? 'Edit Category' : 'Add Category'}
