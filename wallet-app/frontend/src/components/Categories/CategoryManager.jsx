@@ -207,3 +207,22 @@ const CategoryManager = () => {
       <Dialog open={openDialog} onClose={handleCloseDialog}>
         <DialogTitle>
           {selectedCategory ? 'Edit Category' : 'Add Category'}
+        </DialogTitle>
+        <DialogContent>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl fullWidth>
+                <InputLabel>Type</InputLabel>
+                <Select
+                  value={formData.type}
+                  label="Type"
