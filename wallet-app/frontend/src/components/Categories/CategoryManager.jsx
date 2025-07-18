@@ -74,3 +74,22 @@ const CategoryManager = () => {
         icon: 'attach_money',
         budget: 0
       });
+    }
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setShowColorPicker(false);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (selectedCategory) {
+        await axios.put(`/api/categories/${selectedCategory._id}`, formData);
+      } else {
+        await axios.post('/api/categories', formData);
+      }
+      fetchCategories();
+      handleCloseDialog();
+    } catch (error) {
