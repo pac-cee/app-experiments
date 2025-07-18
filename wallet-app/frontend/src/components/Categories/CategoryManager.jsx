@@ -226,3 +226,22 @@ const CategoryManager = () => {
                 <Select
                   value={formData.type}
                   label="Type"
+                  onChange={(e) =>
+                    setFormData({ ...formData, type: e.target.value })
+                  }
+                >
+                  <MenuItem value="income">Income</MenuItem>
+                  <MenuItem value="expense">Expense</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Budget"
+                type="number"
+                value={formData.budget}
+                onChange={(e) =>
+                  setFormData({ ...formData, budget: Number(e.target.value) })
+                }
+              />
