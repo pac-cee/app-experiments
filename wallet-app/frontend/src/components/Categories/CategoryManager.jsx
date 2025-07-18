@@ -93,3 +93,22 @@ const CategoryManager = () => {
       fetchCategories();
       handleCloseDialog();
     } catch (error) {
+      console.error('Error saving category:', error);
+    }
+  };
+
+  const handleDelete = async (categoryId) => {
+    if (window.confirm('Are you sure you want to delete this category?')) {
+      try {
+        await axios.delete(`/api/categories/${categoryId}`);
+        fetchCategories();
+      } catch (error) {
+        console.error('Error deleting category:', error);
+      }
+    }
+  };
+
+  return (
+    <Box sx={{ flexGrow: 1, p: 3 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
