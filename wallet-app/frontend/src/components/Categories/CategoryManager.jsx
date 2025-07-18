@@ -150,3 +150,22 @@ const CategoryManager = () => {
                         >
                           <EditIcon />
                         </IconButton>
+                        <IconButton
+                          edge="end"
+                          onClick={() => handleDelete(category._id)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  ))}
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>
+                Expense Categories
