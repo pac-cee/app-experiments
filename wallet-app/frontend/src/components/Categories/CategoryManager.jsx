@@ -131,3 +131,22 @@ const CategoryManager = () => {
               <Typography variant="h6" gutterBottom>
                 Income Categories
               </Typography>
+              <List>
+                {categories
+                  .filter((category) => category.type === 'income')
+                  .map((category) => (
+                    <ListItem
+                      key={category._id}
+                      sx={{ borderLeft: `4px solid ${category.color}` }}
+                    >
+                      <ListItemText
+                        primary={category.name}
+                        secondary={`Budget: $${category.budget}`}
+                      />
+                      <ListItemSecondaryAction>
+                        <IconButton
+                          edge="end"
+                          onClick={() => handleOpenDialog(category)}
+                        >
+                          <EditIcon />
+                        </IconButton>
