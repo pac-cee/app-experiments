@@ -150,3 +150,22 @@ const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
                       <Delete />
                     </IconButton>
                   </ListItemSecondaryAction>
+                </ListItem>
+              ))}
+            </List>
+          </React.Fragment>
+        ))}
+      </List>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>
+          {editMode ? 'Edit Category' : 'Add New Category'}
+        </DialogTitle>
+        <DialogContent>
+          <TextField
+            fullWidth
+            label="Category Name"
+            value={formData.name}
+            onChange={handleChange('name')}
+            margin="normal"
+          />
