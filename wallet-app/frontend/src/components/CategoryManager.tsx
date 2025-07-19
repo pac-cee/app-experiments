@@ -207,3 +207,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
                 value={formData.name}
                 onChange={handleChange}
                 required
+                sx={{ mb: 2 }}
+              />
+
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel>Type</InputLabel>
+                <Select
+                  name="type"
+                  value={formData.type}
+                  onChange={handleChange}
+                  required
+                >
+                  <MenuItem value="income">Income</MenuItem>
+                  <MenuItem value="expense">Expense</MenuItem>
+                </Select>
+              </FormControl>
+
+              <TextField
+                fullWidth
+                label="Color"
