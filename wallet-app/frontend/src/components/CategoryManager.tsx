@@ -169,3 +169,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
                     </IconButton>
                   </Box>
                 </Box>
+                <Box
+                  sx={{
+                    width: 24,
+                    height: 24,
+                    backgroundColor: category.color,
+                    borderRadius: '50%',
+                    mt: 1,
+                  }}
+                />
+                <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+                  {category.type.charAt(0).toUpperCase() + category.type.slice(1)}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
