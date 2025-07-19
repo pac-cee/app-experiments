@@ -169,3 +169,22 @@ const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
             onChange={handleChange('name')}
             margin="normal"
           />
+          
+          <TextField
+            fullWidth
+            select
+            label="Type"
+            value={formData.type}
+            onChange={handleChange('type')}
+            margin="normal"
+          >
+            <MenuItem value="income">Income</MenuItem>
+            <MenuItem value="expense">Expense</MenuItem>
+          </TextField>
+
+          <TextField
+            fullWidth
+            select
+            label="Parent Category"
+            value={formData.parent || ''}
+            onChange={handleChange('parent')}
