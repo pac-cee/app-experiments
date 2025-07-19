@@ -245,3 +245,22 @@ const CategoryManager = () => {
                   setFormData({ ...formData, budget: Number(e.target.value) })
                 }
               />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                fullWidth
+                variant="outlined"
+                onClick={() => setShowColorPicker(!showColorPicker)}
+                style={{ backgroundColor: formData.color }}
+              >
+                {showColorPicker ? 'Close Color Picker' : 'Choose Color'}
+              </Button>
+              {showColorPicker && (
+                <Box mt={2}>
+                  <ChromePicker
+                    color={formData.color}
+                    onChange={(color) =>
+                      setFormData({ ...formData, color: color.hex })
+                    }
+                  />
+                </Box>
