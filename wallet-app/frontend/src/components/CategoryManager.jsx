@@ -17,3 +17,22 @@ import {
   Box,
 } from '@mui/material';
 import { Add, Edit, Delete, Category } from '@mui/icons-material';
+import { ChromePicker } from 'react-color';
+
+const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
+  const [open, setOpen] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    type: 'expense',
+    color: '#1976d2',
+    icon: 'category',
+    parent: null,
+  });
+
+  const handleOpen = (category = null) => {
+    if (category) {
+      setEditMode(true);
+      setSelectedCategory(category);
+      setFormData({
