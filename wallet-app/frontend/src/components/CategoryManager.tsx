@@ -74,3 +74,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
         name: '',
         type: 'expense',
         color: '#000000',
+      });
+    }
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setSelectedCategory(null);
+    setError('');
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
