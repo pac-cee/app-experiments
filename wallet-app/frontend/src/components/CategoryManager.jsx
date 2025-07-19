@@ -74,3 +74,22 @@ const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
   const handleChange = (field) => (event) => {
     setFormData((prev) => ({
       ...prev,
+      [field]: event.target.value,
+    }));
+  };
+
+  const getParentCategories = () => {
+    return categories.filter(cat => !cat.parent);
+  };
+
+  const getSubcategories = (parentId) => {
+    return categories.filter(cat => cat.parent === parentId);
+  };
+
+  return (
+    <Paper sx={{ p: 3 }}>
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+        <Typography variant="h6">
+          Categories & Subcategories
+        </Typography>
+        <Button
