@@ -188,3 +188,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
       </Grid>
 
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
+        <form onSubmit={handleSubmit}>
+          <DialogTitle>
+            {selectedCategory ? 'Edit Category' : 'Add New Category'}
+          </DialogTitle>
+          <DialogContent>
+            <Box sx={{ mt: 2 }}>
+              {error && (
+                <Typography color="error" sx={{ mb: 2 }}>
+                  {error}
+                </Typography>
+              )}
+
+              <TextField
+                fullWidth
+                label="Category Name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
