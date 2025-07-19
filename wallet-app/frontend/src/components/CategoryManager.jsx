@@ -207,3 +207,16 @@ const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
               onChange={(color) => setFormData(prev => ({ ...prev, color: color.hex }))}
             />
           </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSubmit} variant="contained">
+            {editMode ? 'Update' : 'Add'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Paper>
+  );
+};
+
+export default CategoryManager;
