@@ -17,3 +17,17 @@ const CreateDefaultCategories: React.FC<CreateDefaultCategoriesProps> = ({ onSuc
       console.error('Failed to create default categories:', error);
       alert('Failed to create default categories. Please try again.');
     }
+  };
+
+  return (
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={handleCreateDefaults}
+    >
+      Create Default Categories
+    </Button>
+  );
+};
+
+export default CreateDefaultCategories;
