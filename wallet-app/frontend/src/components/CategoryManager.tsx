@@ -150,3 +150,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
                           width: 24,
                           height: 24,
                           mr: 1,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        {category.icon}
+                      </Box>
+                    )}
+                    <Typography variant="h6">{category.name}</Typography>
+                  </Box>
+                  <Box>
+                    <IconButton size="small" onClick={() => handleOpenDialog(category)}>
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton size="small" onClick={() => handleDelete(category._id)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </Box>
+                </Box>
