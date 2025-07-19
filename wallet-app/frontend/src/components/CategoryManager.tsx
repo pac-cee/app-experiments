@@ -226,3 +226,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
               <TextField
                 fullWidth
                 label="Color"
+                name="color"
+                type="color"
+                value={formData.color}
+                onChange={handleChange}
+                required
+                sx={{ mb: 2 }}
+              />
+
+              <TextField
+                fullWidth
+                label="Icon (optional)"
+                name="icon"
+                value={formData.icon || ''}
+                onChange={handleChange}
+                helperText="Enter an icon name or emoji"
+              />
+            </Box>
+          </DialogContent>
+          <DialogActions>
