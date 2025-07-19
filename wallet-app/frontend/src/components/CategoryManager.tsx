@@ -112,3 +112,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
   const handleDelete = async (id: string) => {
     try {
       await onDeleteCategory(id);
+    } catch (err) {
+      setError('Failed to delete category');
+    }
+  };
+
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  return (
+    <Container>
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="h4" gutterBottom>
+          Category Manager
+        </Typography>
