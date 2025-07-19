@@ -55,3 +55,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
   const [error, setError] = useState('');
 
   useEffect(() => {
+    if (selectedCategory) {
+      setFormData({
+        name: selectedCategory.name,
+        type: selectedCategory.type,
+        color: selectedCategory.color,
+        icon: selectedCategory.icon,
+      });
+    }
+  }, [selectedCategory]);
+
+  const handleOpenDialog = (category?: Category) => {
+    if (category) {
+      setSelectedCategory(category);
+    } else {
+      setSelectedCategory(null);
+      setFormData({
+        name: '',
+        type: 'expense',
+        color: '#000000',
