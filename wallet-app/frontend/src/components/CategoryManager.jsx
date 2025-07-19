@@ -93,3 +93,22 @@ const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
           Categories & Subcategories
         </Typography>
         <Button
+          variant="contained"
+          startIcon={<Add />}
+          onClick={() => handleOpen()}
+        >
+          Add Category
+        </Button>
+      </Box>
+
+      <List>
+        {getParentCategories().map((category) => (
+          <React.Fragment key={category._id}>
+            <ListItem
+              sx={{
+                borderLeft: `4px solid ${category.color}`,
+                mb: 1,
+                bgcolor: 'background.paper',
+              }}
+            >
+              <Category sx={{ color: category.color, mr: 1 }} />
