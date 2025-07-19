@@ -36,3 +36,22 @@ const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
       setEditMode(true);
       setSelectedCategory(category);
       setFormData({
+        name: category.name,
+        type: category.type,
+        color: category.color,
+        icon: category.icon,
+        parent: category.parent,
+      });
+    } else {
+      setEditMode(false);
+      setSelectedCategory(null);
+      setFormData({
+        name: '',
+        type: 'expense',
+        color: '#1976d2',
+        icon: 'category',
+        parent: null,
+      });
+    }
+    setOpen(true);
+  };
