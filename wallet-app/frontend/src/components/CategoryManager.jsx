@@ -188,3 +188,22 @@ const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
             label="Parent Category"
             value={formData.parent || ''}
             onChange={handleChange('parent')}
+            margin="normal"
+          >
+            <MenuItem value="">None (Main Category)</MenuItem>
+            {getParentCategories().map((cat) => (
+              <MenuItem key={cat._id} value={cat._id}>
+                {cat.name}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <Box mt={2}>
+            <Typography variant="subtitle2" gutterBottom>
+              Category Color
+            </Typography>
+            <ChromePicker
+              color={formData.color}
+              onChange={(color) => setFormData(prev => ({ ...prev, color: color.hex }))}
+            />
+          </Box>
