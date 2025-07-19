@@ -131,3 +131,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
         <Typography variant="h4" gutterBottom>
           Category Manager
         </Typography>
+        <Button variant="contained" color="primary" onClick={() => handleOpenDialog()}>
+          Add New Category
+        </Button>
+      </Box>
+
+      <Grid container spacing={3}>
+        {categories.map((category) => (
+          <Grid item xs={12} sm={6} md={4} key={category._id}>
+            <Card>
+              <CardContent>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    {category.icon && (
+                      <Box
+                        component="span"
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          mr: 1,
