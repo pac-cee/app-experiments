@@ -55,3 +55,22 @@ const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
     }
     setOpen(true);
   };
+
+  const handleClose = () => {
+    setOpen(false);
+    setEditMode(false);
+    setSelectedCategory(null);
+  };
+
+  const handleSubmit = () => {
+    if (editMode) {
+      onEdit(selectedCategory._id, formData);
+    } else {
+      onAdd(formData);
+    }
+    handleClose();
+  };
+
+  const handleChange = (field) => (event) => {
+    setFormData((prev) => ({
+      ...prev,
