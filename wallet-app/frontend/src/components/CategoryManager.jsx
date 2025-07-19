@@ -131,3 +131,22 @@ const CategoryManager = ({ categories, onAdd, onEdit, onDelete }) => {
               {getSubcategories(category._id).map((subcategory) => (
                 <ListItem
                   key={subcategory._id}
+                  sx={{
+                    borderLeft: `2px solid ${subcategory.color}`,
+                    mb: 1,
+                    bgcolor: 'background.paper',
+                  }}
+                >
+                  <Category sx={{ color: subcategory.color, mr: 1 }} />
+                  <ListItemText
+                    primary={subcategory.name}
+                    secondary={`Type: ${subcategory.type}`}
+                  />
+                  <ListItemSecondaryAction>
+                    <IconButton onClick={() => handleOpen(subcategory)}>
+                      <Edit />
+                    </IconButton>
+                    <IconButton onClick={() => onDelete(subcategory._id)}>
+                      <Delete />
+                    </IconButton>
+                  </ListItemSecondaryAction>
