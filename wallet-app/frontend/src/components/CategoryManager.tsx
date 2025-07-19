@@ -36,3 +36,22 @@ interface CategoryManagerProps {
   onUpdateCategory: (id: string, category: Partial<FormData>) => Promise<void>;
   onDeleteCategory: (id: string) => Promise<void>;
   loading?: boolean;
+}
+
+const CategoryManager: React.FC<CategoryManagerProps> = ({
+  categories,
+  onAddCategory,
+  onUpdateCategory,
+  onDeleteCategory,
+  loading = false,
+}) => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    type: 'expense',
+    color: '#000000',
+  });
+  const [error, setError] = useState('');
+
+  useEffect(() => {
