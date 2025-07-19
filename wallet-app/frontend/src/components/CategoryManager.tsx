@@ -93,3 +93,22 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      if (selectedCategory) {
+        await onUpdateCategory(selectedCategory._id, formData);
+      } else {
+        await onAddCategory(formData);
+      }
+      handleCloseDialog();
+    } catch (err) {
+      setError('Failed to save category');
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await onDeleteCategory(id);
