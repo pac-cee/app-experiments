@@ -17,3 +17,27 @@ const ScrollToTop: React.FC = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
+    });
+  };
+
+  return (
+    <Zoom in={isVisible}>
+      <Fab
+        color="primary"
+        size="small"
+        onClick={handleClick}
+        sx={{
+          position: 'fixed',
+          bottom: 16,
+          right: 16,
+          zIndex: 1000,
+        }}
+        aria-label="scroll back to top"
+      >
+        <KeyboardArrowUp />
+      </Fab>
+    </Zoom>
+  );
+};
+
+export default ScrollToTop;
