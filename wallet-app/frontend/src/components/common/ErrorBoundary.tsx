@@ -36,3 +36,22 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <MotionBox
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh',
+            gap: 3,
+            p: 3,
+            textAlign: 'center',
+          }}
+        >
+          <Typography variant="h4" color="error" gutterBottom>
+            Oops! Something went wrong
+          </Typography>
+          <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600 }}>
+            We apologize for the inconvenience. Please try refreshing the page or contact support if the problem persists.
+          </Typography>
