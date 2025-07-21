@@ -17,3 +17,22 @@ const ThemeToggle = () => {
     }
   };
 
+  const getTooltipTitle = () => {
+    switch (theme) {
+      case 'light':
+        return 'Switch to Dark Mode';
+      case 'dark':
+        return 'Switch to System Theme';
+      default:
+        return 'Switch to Light Mode';
+    }
+  };
+
+  return (
+    <Tooltip title={getTooltipTitle()}>
+      <IconButton
+        onClick={toggleTheme}
+        color="inherit"
+        aria-label="toggle theme"
+        sx={{
+          transition: 'all 0.3s ease-in-out',
