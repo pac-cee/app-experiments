@@ -55,3 +55,21 @@ class ErrorBoundary extends Component<Props, State> {
           <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600 }}>
             We apologize for the inconvenience. Please try refreshing the page or contact support if the problem persists.
           </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<RefreshIcon />}
+            onClick={this.handleRefresh}
+            sx={{ mt: 2 }}
+          >
+            Refresh Page
+          </Button>
+        </MotionBox>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
