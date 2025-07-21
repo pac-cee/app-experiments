@@ -245,3 +245,15 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({
             </Box>
           </DialogContent>
           <DialogActions>
+            <Button onClick={handleCloseDialog}>Cancel</Button>
+            <Button type="submit" variant="contained" color="primary">
+              {selectedCategory ? 'Update' : 'Add'} Category
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
+    </Container>
+  );
+};
+
+export default CategoryManager;
