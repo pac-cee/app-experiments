@@ -17,3 +17,13 @@ const LoadingIndicator: React.FC = () => {
         height: '100vh',
         gap: 2,
       }}
+    >
+      <CircularProgress size={60} thickness={4} />
+      <Typography variant="h6" color="primary">
+        Loading...
+      </Typography>
+    </MotionBox>
+  );
+};
+
+export default LoadingIndicator;
