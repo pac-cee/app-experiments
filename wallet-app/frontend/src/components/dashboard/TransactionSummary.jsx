@@ -36,3 +36,22 @@ const TransactionSummary = () => {
     totalIncome: 0,
     totalExpense: 0,
     categoryBreakdown: []
+  });
+
+  const getDateRange = () => {
+    const now = new Date();
+    switch (timeRange) {
+      case 'week':
+        return {
+          start: startOfWeek(now),
+          end: endOfWeek(now)
+        };
+      case 'month':
+        return {
+          start: startOfMonth(now),
+          end: endOfMonth(now)
+        };
+      default:
+        return {
+          start: startOfMonth(now),
+          end: endOfMonth(now)
