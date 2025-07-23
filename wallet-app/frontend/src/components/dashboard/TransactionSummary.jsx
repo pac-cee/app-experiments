@@ -112,3 +112,22 @@ const TransactionSummary = () => {
           <FormControl sx={{ minWidth: 200 }}>
             <InputLabel>Time Range</InputLabel>
             <Select
+              value={timeRange}
+              label="Time Range"
+              onChange={(e) => setTimeRange(e.target.value)}
+            >
+              <MenuItem value="week">This Week</MenuItem>
+              <MenuItem value="month">This Month</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        {/* Summary Cards */}
+        <Grid item xs={12} md={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>Total Income</Typography>
+              <Typography variant="h4" color="primary">
+                ${summary.totalIncome.toFixed(2)}
+              </Typography>
+            </CardContent>
