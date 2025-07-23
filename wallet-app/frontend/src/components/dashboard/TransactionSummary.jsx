@@ -93,3 +93,22 @@ const TransactionSummary = () => {
         existing.income += transaction.amount;
       } else {
         existing.expense += transaction.amount;
+      }
+    } else {
+      acc.push({
+        date,
+        income: transaction.type === 'income' ? transaction.amount : 0,
+        expense: transaction.type === 'expense' ? transaction.amount : 0
+      });
+    }
+    
+    return acc;
+  }, []);
+
+  return (
+    <Box sx={{ flexGrow: 1, p: 3 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <FormControl sx={{ minWidth: 200 }}>
+            <InputLabel>Time Range</InputLabel>
+            <Select
