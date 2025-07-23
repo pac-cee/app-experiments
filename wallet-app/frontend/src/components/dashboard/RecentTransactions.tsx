@@ -74,3 +74,9 @@ const RecentTransactions: React.FC<RecentTransactionsProps> = ({ transactions })
             No recent transactions
           </Typography>
         )}
+      </CardContent>
+    </Card>
+  );
+};
+
+export default RecentTransactions;
