@@ -93,3 +93,24 @@ const Summary: React.FC<SummaryProps> = ({ data }) => {
               Monthly Budget
             </Typography>
             <Box sx={{ mb: 1 }}>
+              <Typography variant="body2" color="text.secondary">
+                {formatCurrency(data.monthlyExpenses)} of {formatCurrency(data.monthlyBudget)} spent
+              </Typography>
+              <LinearProgress
+                variant="determinate"
+                value={calculateBudgetProgress()}
+                color={getBudgetColor(calculateBudgetProgress()) as any}
+                sx={{ height: 8, borderRadius: 4, mt: 1 }}
+              />
+            </Box>
+            <Typography variant="body2" color="text.secondary">
+              {(100 - calculateBudgetProgress()).toFixed(1)}% of budget remaining
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
+  );
+};
+
+export default Summary;
