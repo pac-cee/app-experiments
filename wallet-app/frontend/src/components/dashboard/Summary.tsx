@@ -74,3 +74,22 @@ const Summary: React.FC<SummaryProps> = ({ data }) => {
 
       <Grid item xs={12} md={4}>
         <Card>
+          <CardContent>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <ExpenseIcon color="error" sx={{ mr: 1 }} />
+              <Typography variant="h6">Total Expenses</Typography>
+            </Box>
+            <Typography variant="h4" color="error.main">
+              {formatCurrency(data.totalExpenses)}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Monthly Budget
+            </Typography>
+            <Box sx={{ mb: 1 }}>
