@@ -36,3 +36,22 @@ const RecentTransactions: React.FC<RecentTransactionsProps> = ({ transactions })
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
           <Typography variant="h6">Recent Transactions</Typography>
           <Button component={RouterLink} to="/transactions" color="primary">
+            View All
+          </Button>
+        </Box>
+
+        <List>
+          {transactions.map((transaction) => (
+            <ListItem key={transaction._id} sx={{ px: 0 }}>
+              <ListItemText
+                primary={transaction.description}
+                secondary={
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Chip
+                      label={typeof transaction.category === 'object' ? transaction.category.name : 'Unknown'}
+                      size="small"
+                    />
+                    <Typography variant="body2" color="text.secondary">
+                      {formatDate(transaction.date)}
+                    </Typography>
+                  </Box>
