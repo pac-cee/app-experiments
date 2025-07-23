@@ -36,3 +36,22 @@ const RecentTransactions = ({ transactions = [], currency = 'USD' }) => {
         <Typography color="text.secondary">No recent transactions</Typography>
       ) : (
         <List>
+          {transactions.map((transaction) => (
+            <ListItem key={transaction._id} sx={{ px: 0 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  color:
+                    transaction.type === 'income'
+                      ? 'success.main'
+                      : 'error.main',
+                  mr: 2,
+                }}
+              >
+                {transaction.type === 'income' ? (
+                  <IncomeIcon />
+                ) : (
+                  <ExpenseIcon />
+                )}
+              </Box>
