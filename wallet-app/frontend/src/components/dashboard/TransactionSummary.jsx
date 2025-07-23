@@ -150,3 +150,22 @@ const TransactionSummary = () => {
               <Typography variant="h4" color={summary.totalIncome - summary.totalExpense >= 0 ? "success" : "error"}>
                 ${(summary.totalIncome - summary.totalExpense).toFixed(2)}
               </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Bar Chart */}
+        <Grid item xs={12} md={8}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>Income vs Expense</Typography>
+              <Box sx={{ width: '100%', height: 300 }}>
+                <BarChart
+                  data={chartData}
+                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
