@@ -55,3 +55,22 @@ const TransactionSummary = () => {
         return {
           start: startOfMonth(now),
           end: endOfMonth(now)
+        };
+    }
+  };
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const { start, end } = getDateRange();
+        const response = await axios.get('/api/transactions/summary', {
+          params: {
+            startDate: start.toISOString(),
+            endDate: end.toISOString()
+          }
+        });
+        
+        setTransactions(response.data.transactions);
+        setSummary({
+          totalIncome: response.data.totalIncome,
+          totalExpense: response.data.totalExpense,
