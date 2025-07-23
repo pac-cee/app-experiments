@@ -55,3 +55,27 @@ const Summary = ({ wallets }) => {
       <Grid item xs={12} sm={4}>
         <SummaryCard
           title="Monthly Income"
+          value={new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(monthlyIncome)}
+          icon={IncomeIcon}
+          color="success"
+        />
+      </Grid>
+      <Grid item xs={12} sm={4}>
+        <SummaryCard
+          title="Monthly Expenses"
+          value={new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(monthlyExpenses)}
+          icon={ExpenseIcon}
+          color="error"
+        />
+      </Grid>
+    </Grid>
+  );
+};
+
+export default Summary;
