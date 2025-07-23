@@ -17,3 +17,10 @@ const ThemeToggle: React.FC<ThemeToggleProps> = (props) => {
       color="inherit"
       {...props}
       aria-label={theme.palette.mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+    >
+      {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+    </IconButton>
+  );
+};
+
+export default ThemeToggle;
