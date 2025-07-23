@@ -36,3 +36,22 @@ const Summary = ({ wallets }) => {
   const totalBalance = wallets.reduce((sum, wallet) => sum + wallet.balance, 0);
   
   // In a real app, you'd calculate these from actual transactions
+  const monthlyIncome = 5000; // Example value
+  const monthlyExpenses = 3000; // Example value
+
+  return (
+    <Grid container spacing={3}>
+      <Grid item xs={12} sm={4}>
+        <SummaryCard
+          title="Total Balance"
+          value={new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(totalBalance)}
+          icon={WalletIcon}
+          color="primary"
+        />
+      </Grid>
+      <Grid item xs={12} sm={4}>
+        <SummaryCard
+          title="Monthly Income"
