@@ -55,3 +55,22 @@ const Summary: React.FC<SummaryProps> = ({ data }) => {
             </Box>
             <Typography variant="h4">{formatCurrency(data.totalBalance)}</Typography>
           </CardContent>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12} md={4}>
+        <Card>
+          <CardContent>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <IncomeIcon color="success" sx={{ mr: 1 }} />
+              <Typography variant="h6">Total Income</Typography>
+            </Box>
+            <Typography variant="h4" color="success.main">
+              {formatCurrency(data.totalIncome)}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12} md={4}>
+        <Card>
