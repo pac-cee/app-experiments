@@ -131,3 +131,22 @@ const TransactionSummary = () => {
                 ${summary.totalIncome.toFixed(2)}
               </Typography>
             </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>Total Expense</Typography>
+              <Typography variant="h4" color="error">
+                ${summary.totalExpense.toFixed(2)}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>Net Balance</Typography>
+              <Typography variant="h4" color={summary.totalIncome - summary.totalExpense >= 0 ? "success" : "error"}>
+                ${(summary.totalIncome - summary.totalExpense).toFixed(2)}
+              </Typography>
