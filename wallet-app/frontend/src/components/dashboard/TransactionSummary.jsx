@@ -74,3 +74,22 @@ const TransactionSummary = () => {
         setSummary({
           totalIncome: response.data.totalIncome,
           totalExpense: response.data.totalExpense,
+          categoryBreakdown: response.data.categoryBreakdown
+        });
+      } catch (error) {
+        console.error('Error fetching transactions:', error);
+      }
+    };
+
+    fetchTransactions();
+  }, [timeRange]);
+
+  const chartData = transactions.reduce((acc, transaction) => {
+    const date = format(new Date(transaction.date), 'MM/dd');
+    const existing = acc.find(item => item.date === date);
+    
+    if (existing) {
+      if (transaction.type === 'income') {
+        existing.income += transaction.amount;
+      } else {
+        existing.expense += transaction.amount;
