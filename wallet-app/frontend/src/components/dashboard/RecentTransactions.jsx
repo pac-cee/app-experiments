@@ -17,3 +17,22 @@ const RecentTransactions = ({ transactions = [], currency = 'USD' }) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
+    });
+  };
+
+  const formatAmount = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: currency,
+    }).format(amount);
+  };
+
+  return (
+    <Paper sx={{ p: 2, height: '100%' }}>
+      <Typography variant="h6" gutterBottom>
+        Recent Transactions
+      </Typography>
+      {transactions.length === 0 ? (
+        <Typography color="text.secondary">No recent transactions</Typography>
+      ) : (
+        <List>
