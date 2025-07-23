@@ -17,3 +17,22 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
+  Tooltip,
+  Legend,
+  PieChart,
+  Pie,
+  Cell
+} from 'recharts';
+import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
+import axios from 'axios';
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
+
+const TransactionSummary = () => {
+  const theme = useTheme();
+  const [timeRange, setTimeRange] = useState('month');
+  const [transactions, setTransactions] = useState([]);
+  const [summary, setSummary] = useState({
+    totalIncome: 0,
+    totalExpense: 0,
+    categoryBreakdown: []
