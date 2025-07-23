@@ -55,3 +55,22 @@ const RecentTransactions: React.FC<RecentTransactionsProps> = ({ transactions })
                       {formatDate(transaction.date)}
                     </Typography>
                   </Box>
+                }
+              />
+              <ListItemSecondaryAction>
+                <Typography
+                  variant="body2"
+                  color={transaction.type === 'expense' ? 'error' : 'success'}
+                >
+                  {formatAmount(transaction.amount, transaction.type)}
+                </Typography>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+        </List>
+
+        {transactions.length === 0 && (
+          <Typography variant="body2" color="text.secondary" align="center">
+            No recent transactions
+          </Typography>
+        )}
