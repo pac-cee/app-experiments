@@ -36,3 +36,22 @@ const Summary: React.FC<SummaryProps> = ({ data }) => {
   const calculateBudgetProgress = (): number => {
     if (data.monthlyBudget === 0) return 0;
     return Math.min((data.monthlyExpenses / data.monthlyBudget) * 100, 100);
+  };
+
+  const getBudgetColor = (progress: number): string => {
+    if (progress >= 90) return 'error';
+    if (progress >= 70) return 'warning';
+    return 'success';
+  };
+
+  return (
+    <Grid container spacing={3}>
+      <Grid item xs={12} md={4}>
+        <Card>
+          <CardContent>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <BalanceIcon color="primary" sx={{ mr: 1 }} />
+              <Typography variant="h6">Total Balance</Typography>
+            </Box>
+            <Typography variant="h4">{formatCurrency(data.totalBalance)}</Typography>
+          </CardContent>
