@@ -55,3 +55,22 @@ const RecentTransactions = ({ transactions = [], currency = 'USD' }) => {
                   <ExpenseIcon />
                 )}
               </Box>
+              <ListItemText
+                primary={transaction.category}
+                secondary={transaction.description || transaction.category}
+              />
+              <Box sx={{ textAlign: 'right' }}>
+                <Typography
+                  variant="body2"
+                  color={
+                    transaction.type === 'income'
+                      ? 'success.main'
+                      : 'error.main'
+                  }
+                >
+                  {transaction.type === 'expense' ? '-' : '+'}
+                  {formatAmount(transaction.amount)}
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  {formatDate(transaction.date)}
+                </Typography>
