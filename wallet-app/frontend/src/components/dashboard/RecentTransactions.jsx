@@ -74,3 +74,13 @@ const RecentTransactions = ({ transactions = [], currency = 'USD' }) => {
                 <Typography variant="caption" color="text.secondary">
                   {formatDate(transaction.date)}
                 </Typography>
+              </Box>
+            </ListItem>
+          ))}
+        </List>
+      )}
+    </Paper>
+  );
+};
+
+export default RecentTransactions;
