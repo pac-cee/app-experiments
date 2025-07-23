@@ -36,3 +36,15 @@ const ThemeToggle = () => {
         aria-label="toggle theme"
         sx={{
           transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            transform: 'rotate(180deg)',
+          },
+        }}
+      >
+        {getIcon()}
+      </IconButton>
+    </Tooltip>
+  );
+};
+
+export default ThemeToggle;
