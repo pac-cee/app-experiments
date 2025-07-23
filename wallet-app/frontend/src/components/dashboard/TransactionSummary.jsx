@@ -169,3 +169,22 @@ const TransactionSummary = () => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
+                  <Bar dataKey="income" fill="#4CAF50" name="Income" />
+                  <Bar dataKey="expense" fill="#f44336" name="Expense" />
+                </BarChart>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Pie Chart */}
+        <Grid item xs={12} md={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>Category Breakdown</Typography>
+              <Box sx={{ width: '100%', height: 300 }}>
+                <PieChart>
+                  <Pie
+                    data={summary.categoryBreakdown}
+                    dataKey="amount"
+                    nameKey="category"
