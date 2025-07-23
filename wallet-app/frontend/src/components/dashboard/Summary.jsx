@@ -17,3 +17,22 @@ const SummaryCard = ({ title, value, icon: Icon, color }) => (
           borderRadius: 1,
           mr: 2,
         }}
+      >
+        <Icon />
+      </Box>
+      <Box>
+        <Typography variant="body2" color="text.secondary">
+          {title}
+        </Typography>
+        <Typography variant="h6" component="div">
+          {value}
+        </Typography>
+      </Box>
+    </Box>
+  </Paper>
+);
+
+const Summary = ({ wallets }) => {
+  const totalBalance = wallets.reduce((sum, wallet) => sum + wallet.balance, 0);
+  
+  // In a real app, you'd calculate these from actual transactions
