@@ -226,3 +226,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
                   }}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box
+                      sx={{
+                        width: 12,
+                        height: 12,
+                        borderRadius: '50%',
+                        backgroundColor: COLORS[index % COLORS.length],
+                        mr: 1,
+                      }}
+                    />
+                    <Typography variant="body2">
+                      {item.category.name}
+                    </Typography>
+                  </Box>
+                  <Typography variant="body2">
+                    {formatCurrency(item.amount)}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
