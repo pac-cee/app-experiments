@@ -245,3 +245,11 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
                 </Box>
               ))}
             </Box>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
+  );
+};
+
+export default TransactionSummary;
