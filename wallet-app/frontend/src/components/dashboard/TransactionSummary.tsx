@@ -112,3 +112,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
                     radius={[4, 4, 0, 0]}
                   />
                   <Bar
+                    dataKey="expenses"
+                    name="Expenses"
+                    fill={theme.palette.error.main}
+                    radius={[4, 4, 0, 0]}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </Box>
+          </CardContent>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Total Overview
+            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'space-around', mb: 2 }}>
