@@ -55,3 +55,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
   const theme = useTheme();
 
   const formatCurrency = (value: number): string => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(value);
+  };
+
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <Card>
+          <CardContent>
+            <Typography variant="subtitle2">{label}</Typography>
+            {payload.map((entry: any, index: number) => (
+              <Box key={index} sx={{ color: entry.color }}>
+                <Typography variant="body2">
+                  {entry.name}: {formatCurrency(entry.value)}
+                </Typography>
+              </Box>
+            ))}
