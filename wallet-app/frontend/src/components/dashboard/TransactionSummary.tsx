@@ -131,3 +131,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
               Total Overview
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'space-around', mb: 2 }}>
+              <Box>
+                <Typography variant="subtitle2" color="text.secondary">
+                  Total Income
+                </Typography>
+                <Typography variant="h5" color="success.main">
+                  {formatCurrency(data.totalIncome)}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography variant="subtitle2" color="text.secondary">
+                  Total Expenses
+                </Typography>
+                <Typography variant="h5" color="error.main">
+                  {formatCurrency(data.totalExpenses)}
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ width: '100%', height: 300 }}>
+              <ResponsiveContainer>
