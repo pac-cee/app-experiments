@@ -169,3 +169,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
                   >
                     <Cell fill={theme.palette.success.main} />
                     <Cell fill={theme.palette.error.main} />
+                  </Pie>
+                  <Tooltip
+                    formatter={(value: number) => formatCurrency(value)}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </Box>
+          </CardContent>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Expense Categories
+            </Typography>
+            <Box sx={{ width: '100%', height: 300 }}>
+              <ResponsiveContainer>
