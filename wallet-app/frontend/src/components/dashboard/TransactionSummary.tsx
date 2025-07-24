@@ -93,3 +93,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
               <ResponsiveContainer>
                 <BarChart
                   data={data.monthlyData}
+                  margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Legend />
+                  <Bar
+                    dataKey="income"
+                    name="Income"
+                    fill={theme.palette.success.main}
+                    radius={[4, 4, 0, 0]}
+                  />
+                  <Bar
