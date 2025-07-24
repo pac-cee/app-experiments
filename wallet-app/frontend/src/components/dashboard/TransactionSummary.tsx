@@ -36,3 +36,22 @@ interface CategoryLabelProps {
 
 interface TransactionSummaryData {
   totalIncome: number;
+  totalExpenses: number;
+  monthlyData: Array<{
+    month: string;
+    income: number;
+    expenses: number;
+  }>;
+  categoryBreakdown: CategoryBreakdown[];
+}
+
+interface TransactionSummaryProps {
+  data: TransactionSummaryData;
+}
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
+
+const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
+  const theme = useTheme();
+
+  const formatCurrency = (value: number): string => {
