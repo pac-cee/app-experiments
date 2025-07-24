@@ -150,3 +150,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
             </Box>
             <Box sx={{ width: '100%', height: 300 }}>
               <ResponsiveContainer>
+                <PieChart>
+                  <Pie
+                    data={[
+                      { name: 'Income', value: data.totalIncome },
+                      { name: 'Expenses', value: data.totalExpenses },
+                    ]}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    paddingAngle={5}
+                    dataKey="value"
+                    label={({ name, percent }: PieChartLabelProps) =>
+                      `${name} ${(percent * 100).toFixed(0)}%`
+                    }
+                  >
+                    <Cell fill={theme.palette.success.main} />
+                    <Cell fill={theme.palette.error.main} />
