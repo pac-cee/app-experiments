@@ -188,3 +188,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
             </Typography>
             <Box sx={{ width: '100%', height: 300 }}>
               <ResponsiveContainer>
+                <PieChart>
+                  <Pie
+                    data={data.categoryBreakdown}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="amount"
+                    nameKey="category.name"
+                    label={({ category, percent }: CategoryLabelProps) =>
+                      `${category.name} ${(percent * 100).toFixed(0)}%`
+                    }
+                  >
+                    {data.categoryBreakdown.map((entry, index) => (
+                      <Cell
+                        key={entry.category._id}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    ))}
