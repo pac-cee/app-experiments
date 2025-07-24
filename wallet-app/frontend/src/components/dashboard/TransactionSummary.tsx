@@ -207,3 +207,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
                         fill={COLORS[index % COLORS.length]}
                       />
                     ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value: number) => formatCurrency(value)}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </Box>
+            <Box sx={{ mt: 2 }}>
+              {data.categoryBreakdown.map((item, index) => (
+                <Box
+                  key={item.category._id}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    mb: 1,
+                  }}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
