@@ -17,3 +17,22 @@ import {
   Legend,
   ResponsiveContainer,
   PieChart,
+  Pie,
+  Cell,
+} from 'recharts';
+import { CategoryBreakdown } from '../../types';
+
+interface PieChartLabelProps {
+  name: string;
+  percent: number;
+}
+
+interface CategoryLabelProps {
+  category: {
+    name: string;
+  };
+  percent: number;
+}
+
+interface TransactionSummaryData {
+  totalIncome: number;
