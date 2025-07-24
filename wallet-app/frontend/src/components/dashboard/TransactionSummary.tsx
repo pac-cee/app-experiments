@@ -74,3 +74,22 @@ const TransactionSummary: React.FC<TransactionSummaryProps> = ({ data }) => {
                 </Typography>
               </Box>
             ))}
+          </CardContent>
+        </Card>
+      );
+    }
+    return null;
+  };
+
+  return (
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Monthly Overview
+            </Typography>
+            <Box sx={{ width: '100%', height: 300 }}>
+              <ResponsiveContainer>
+                <BarChart
+                  data={data.monthlyData}
