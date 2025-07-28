@@ -112,3 +112,22 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     navigate('/login');
   };
 
+  const menuItems = [
+    { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
+    { text: 'Accounts', icon: <AccountIcon />, path: '/accounts' },
+    { text: 'Transactions', icon: <PaymentIcon />, path: '/transactions' },
+    { text: 'Categories', icon: <CategoryIcon />, path: '/categories' },
+    { text: 'Reports', icon: <AssessmentIcon />, path: '/reports' },
+    { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
+  ];
+
+  return (
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <StyledAppBar position="fixed" open={open}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{ mr: 2, ...(open && { display: 'none' }) }}
