@@ -131,3 +131,22 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             onClick={handleDrawerOpen}
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            Personal Wallet
+          </Typography>
+          
+          {/* User Profile Section */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography variant="body1" noWrap>
+              {user?.name}
+            </Typography>
+            <IconButton
+              color="inherit"
+              onClick={handleProfileMenuOpen}
+              sx={{ ml: 1 }}
+            >
+              <Avatar sx={{ bgcolor: theme.palette.secondary.main }}>
+                {user?.name?.[0]?.toUpperCase() || 'U'}
