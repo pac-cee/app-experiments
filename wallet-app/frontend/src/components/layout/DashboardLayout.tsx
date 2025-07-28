@@ -150,3 +150,22 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             >
               <Avatar sx={{ bgcolor: theme.palette.secondary.main }}>
                 {user?.name?.[0]?.toUpperCase() || 'U'}
+              </Avatar>
+            </IconButton>
+          </Box>
+          
+          {/* Profile Menu */}
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleProfileMenuClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <MenuItem onClick={() => {
