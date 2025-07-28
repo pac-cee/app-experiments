@@ -93,3 +93,22 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleProfileMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    handleProfileMenuClose();
+    logout();
+    navigate('/login');
+  };
+
