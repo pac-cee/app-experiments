@@ -74,3 +74,22 @@ const StyledAppBar = styled(AppBar, {
   }),
 }));
 
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
+
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user, logout } = useAuth();
+  const [open, setOpen] = useState(true);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
