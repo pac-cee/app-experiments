@@ -169,3 +169,22 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             }}
           >
             <MenuItem onClick={() => {
+              handleProfileMenuClose();
+              navigate('/settings');
+            }}>
+              <ListItemIcon>
+                <PersonIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Profile</ListItemText>
+            </MenuItem>
+            <MenuItem onClick={handleLogout}>
+              <ListItemIcon>
+                <LogoutIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Logout</ListItemText>
+            </MenuItem>
+          </Menu>
+        </Toolbar>
+      </StyledAppBar>
+      
+      <Drawer
