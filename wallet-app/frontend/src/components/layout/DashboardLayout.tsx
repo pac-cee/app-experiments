@@ -207,3 +207,27 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         </DrawerHeader>
         <Divider />
         <List>
+          {menuItems.map((item) => (
+            <ListItem key={item.text} disablePadding>
+              <ListItemButton
+                selected={location.pathname === item.path}
+                onClick={() => navigate(item.path)}
+              >
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      
+      <Main open={open}>
+        <DrawerHeader />
+        <ScrollToTop />
+        {children}
+      </Main>
+    </Box>
+  );
+};
+
+export default DashboardLayout;
