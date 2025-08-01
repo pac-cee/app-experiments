@@ -93,3 +93,22 @@ const Layout = ({ children }) => {
                   <Typography textAlign="center">Dashboard</Typography>
                 </MenuItem>
               </Menu>
+            </Box>
+
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            >
+              Wallet App
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {/* Add your navigation items here */}
+            </Box>
+
+            <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 2 }}>
+              {/* Theme Toggle */}
+              <ThemeToggle />
+
