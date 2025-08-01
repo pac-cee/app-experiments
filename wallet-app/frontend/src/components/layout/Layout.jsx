@@ -112,3 +112,22 @@ const Layout = ({ children }) => {
               {/* Theme Toggle */}
               <ThemeToggle />
 
+              {/* User Menu */}
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  {user?.photoURL ? (
+                    <Avatar alt={user.name} src={user.photoURL} />
+                  ) : (
+                    <AccountCircle />
+                  )}
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
