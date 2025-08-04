@@ -150,3 +150,10 @@ const Layout = ({ children }) => {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Container maxWidth="lg">
           {children}
+        </Container>
+      </Box>
+    </Box>
+  );
+};
+
+export default Layout;
