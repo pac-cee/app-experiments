@@ -131,3 +131,22 @@ const Layout = ({ children }) => {
                   horizontal: 'right',
                 }}
                 keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Container maxWidth="lg">
+          {children}
