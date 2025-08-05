@@ -55,3 +55,22 @@ const Reports = ({ transactions }) => {
         summary.dailyTransactions[date] = { income: 0, expense: 0 };
       }
       summary.dailyTransactions[date][transaction.type] += transaction.amount;
+    });
+
+    return summary;
+  };
+
+  const summary = generateSummaryData();
+
+  const exportReport = () => {
+    const reportData = {
+      reportType,
+      dateRange: { startDate, endDate },
+      summary,
+    };
+
+    const blob = new Blob([JSON.stringify(reportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `financial-report-${new Date().toISOString()}.json`;
