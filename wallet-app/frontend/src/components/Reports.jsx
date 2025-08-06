@@ -74,3 +74,22 @@ const Reports = ({ transactions }) => {
     const a = document.createElement('a');
     a.href = url;
     a.download = `financial-report-${new Date().toISOString()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <Paper sx={{ p: 3 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Box display="flex" gap={2} mb={3}>
+            <DatePicker
+              label="Start Date"
+              value={startDate}
+              onChange={setStartDate}
+              renderInput={(params) => <TextField {...params} />}
+            />
+            <DatePicker
+              label="End Date"
