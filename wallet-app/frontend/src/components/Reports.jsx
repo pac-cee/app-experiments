@@ -112,3 +112,22 @@ const Reports = ({ transactions }) => {
               Export Report
             </Button>
           </Box>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <Typography variant="h6" gutterBottom>
+            Income vs Expense
+          </Typography>
+          <BarChart width={500} height={300} data={[
+            { name: 'Income', amount: summary.totalIncome },
+            { name: 'Expense', amount: summary.totalExpense },
+          ]}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="amount" fill="#8884d8" />
+          </BarChart>
+        </Grid>
+
