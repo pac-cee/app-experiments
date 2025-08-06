@@ -93,3 +93,22 @@ const Reports = ({ transactions }) => {
             />
             <DatePicker
               label="End Date"
+              value={endDate}
+              onChange={setEndDate}
+              renderInput={(params) => <TextField {...params} />}
+            />
+            <TextField
+              select
+              label="Report Type"
+              value={reportType}
+              onChange={(e) => setReportType(e.target.value)}
+              sx={{ minWidth: 150 }}
+            >
+              <MenuItem value="summary">Summary</MenuItem>
+              <MenuItem value="category">Category Analysis</MenuItem>
+              <MenuItem value="daily">Daily Transactions</MenuItem>
+            </TextField>
+            <Button variant="contained" onClick={exportReport}>
+              Export Report
+            </Button>
+          </Box>
