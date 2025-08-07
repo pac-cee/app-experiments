@@ -74,3 +74,22 @@ const Reports: React.FC<ReportsProps> = ({
       .toISOString()
       .split('T')[0];
 
+    setDateRange({
+      startDate: firstDay,
+      endDate: lastDay,
+    });
+  }, []);
+
+  const handleGenerateReport = () => {
+    onGenerateReport(dateRange.startDate, dateRange.endDate);
+  };
+
+  const handleExport = () => {
+    onExportReport(exportFormat);
+  };
+
+  const formatCurrency = (value: number): string => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(value);
