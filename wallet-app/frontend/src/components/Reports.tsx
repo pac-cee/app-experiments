@@ -55,3 +55,22 @@ const Reports: React.FC<ReportsProps> = ({
   data,
   loading,
   error,
+  onGenerateReport,
+  onExportReport,
+}) => {
+  const [dateRange, setDateRange] = useState({
+    startDate: '',
+    endDate: '',
+  });
+  const [exportFormat, setExportFormat] = useState('pdf');
+
+  useEffect(() => {
+    // Set default date range to current month
+    const now = new Date();
+    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1)
+      .toISOString()
+      .split('T')[0];
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+      .toISOString()
+      .split('T')[0];
+
