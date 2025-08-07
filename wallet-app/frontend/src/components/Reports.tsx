@@ -36,3 +36,22 @@ interface ReportsProps {
   error: string | null;
   onGenerateReport: (startDate: string, endDate: string) => Promise<void>;
   onExportReport: (format: string) => Promise<void>;
+}
+
+interface TooltipFormatterProps {
+  value: number;
+}
+
+interface PieChartEntryProps {
+  category: {
+    name: string;
+  };
+  percentage: number;
+}
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
+
+const Reports: React.FC<ReportsProps> = ({
+  data,
+  loading,
+  error,
