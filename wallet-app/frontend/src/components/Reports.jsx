@@ -131,3 +131,22 @@ const Reports = ({ transactions }) => {
           </BarChart>
         </Grid>
 
+        <Grid item xs={12} md={6}>
+          <Typography variant="h6" gutterBottom>
+            Expense by Category
+          </Typography>
+          <PieChart width={500} height={300}>
+            <Pie
+              data={Object.entries(summary.categoryExpenses).map(([name, value]) => ({
+                name,
+                value,
+              }))}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              fill="#8884d8"
+              label
+            >
+              {Object.entries(summary.categoryExpenses).map((entry, index) => (
