@@ -150,3 +150,16 @@ const Reports = ({ transactions }) => {
               label
             >
               {Object.entries(summary.categoryExpenses).map((entry, index) => (
+                <Cell key={index} fill={`#${Math.floor(Math.random()*16777215).toString(16)}`} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </Grid>
+      </Grid>
+    </Paper>
+  );
+};
+
+export default Reports;
