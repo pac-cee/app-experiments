@@ -112,3 +112,22 @@ const Reports: React.FC<ReportsProps> = ({
 
         <Grid container spacing={2} sx={{ mb: 3 }}>
           <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              label="Start Date"
+              type="date"
+              value={dateRange.startDate}
+              onChange={(e) =>
+                setDateRange((prev) => ({ ...prev, startDate: e.target.value }))
+              }
+              InputLabelProps={{ shrink: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              label="End Date"
+              type="date"
+              value={dateRange.endDate}
+              onChange={(e) =>
+                setDateRange((prev) => ({ ...prev, endDate: e.target.value }))
