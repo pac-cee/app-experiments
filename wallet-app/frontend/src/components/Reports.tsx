@@ -207,3 +207,22 @@ const Reports: React.FC<ReportsProps> = ({
                     <Box sx={{ height: 300 }}>
                       <ResponsiveContainer>
                         <BarChart
+                          data={[
+                            {
+                              name: 'Income',
+                              amount: data.totalIncome,
+                            },
+                            {
+                              name: 'Expenses',
+                              amount: data.totalExpenses,
+                            },
+                          ]}
+                          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis dataKey="name" />
+                          <YAxis />
+                          <Tooltip
+                            formatter={(value: number) => formatCurrency(value)}
+                          />
+                          <Legend />
