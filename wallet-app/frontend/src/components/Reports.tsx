@@ -150,3 +150,22 @@ const Reports: React.FC<ReportsProps> = ({
         {error && (
           <Typography color="error" sx={{ mb: 2 }}>
             {error}
+          </Typography>
+        )}
+
+        {data && (
+          <>
+            <Grid container spacing={3} sx={{ mb: 4 }}>
+              <Grid item xs={12} md={4}>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      Total Income
+                    </Typography>
+                    <Typography variant="h4" color="success.main">
+                      {formatCurrency(data.totalIncome)}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={12} md={4}>
