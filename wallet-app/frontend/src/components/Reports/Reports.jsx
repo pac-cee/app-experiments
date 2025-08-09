@@ -74,3 +74,22 @@ const Reports = () => {
                 value={startDate}
                 onChange={(newValue) => setStartDate(newValue)}
                 renderInput={(params) => <TextField {...params} fullWidth />}
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <DatePicker
+                label="End Date"
+                value={endDate}
+                onChange={(newValue) => setEndDate(newValue)}
+                renderInput={(params) => <TextField {...params} fullWidth />}
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Report Type</InputLabel>
+                <Select
+                  value={reportType}
+                  label="Report Type"
+                  onChange={(e) => setReportType(e.target.value)}
+                >
+                  <MenuItem value="summary">Summary Report</MenuItem>
