@@ -188,3 +188,22 @@ const Reports: React.FC<ReportsProps> = ({
                     </Typography>
                     <Typography
                       variant="h4"
+                      color={data.netIncome >= 0 ? 'success.main' : 'error.main'}
+                    >
+                      {formatCurrency(data.netIncome)}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      Income vs Expenses
+                    </Typography>
+                    <Box sx={{ height: 300 }}>
+                      <ResponsiveContainer>
+                        <BarChart
