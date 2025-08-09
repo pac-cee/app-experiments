@@ -169,3 +169,22 @@ const Reports: React.FC<ReportsProps> = ({
                 </Card>
               </Grid>
               <Grid item xs={12} md={4}>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      Total Expenses
+                    </Typography>
+                    <Typography variant="h4" color="error.main">
+                      {formatCurrency(data.totalExpenses)}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      Net Income
+                    </Typography>
+                    <Typography
+                      variant="h4"
