@@ -93,3 +93,22 @@ const Reports = () => {
                   onChange={(e) => setReportType(e.target.value)}
                 >
                   <MenuItem value="summary">Summary Report</MenuItem>
+                  <MenuItem value="detailed">Detailed Report</MenuItem>
+                  <MenuItem value="category">Category Analysis</MenuItem>
+                  <MenuItem value="budget">Budget Report</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Format</InputLabel>
+                <Select
+                  value={reportFormat}
+                  label="Format"
+                  onChange={(e) => setReportFormat(e.target.value)}
+                >
+                  <MenuItem value="pdf">PDF</MenuItem>
+                  <MenuItem value="csv">CSV</MenuItem>
+                  <MenuItem value="json">JSON</MenuItem>
+                </Select>
+              </FormControl>
