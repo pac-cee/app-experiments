@@ -55,3 +55,22 @@ const Reports = () => {
     } catch (error) {
       console.error('Error generating report:', error);
     } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Box sx={{ flexGrow: 1, p: 3 }}>
+      <Typography variant="h4" gutterBottom>
+        Financial Reports
+      </Typography>
+
+      <Card sx={{ mb: 3 }}>
+        <CardContent>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={3}>
+              <DatePicker
+                label="Start Date"
+                value={startDate}
+                onChange={(newValue) => setStartDate(newValue)}
+                renderInput={(params) => <TextField {...params} fullWidth />}
