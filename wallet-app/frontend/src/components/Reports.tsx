@@ -245,3 +245,22 @@ const Reports: React.FC<ReportsProps> = ({
                         <PieChart>
                           <Pie
                             data={data.categoryBreakdown}
+                            dataKey="amount"
+                            nameKey="category.name"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={80}
+                            label={(entry: PieChartEntryProps) =>
+                              `${entry.category.name} (${entry.percentage.toFixed(
+                                1
+                              )}%)`
+                            }
+                          >
+                            {data.categoryBreakdown.map((entry, index) => (
+                              <Cell
+                                key={entry.category._id}
+                                fill={COLORS[index % COLORS.length]}
+                              />
+                            ))}
+                          </Pie>
+                          <Tooltip
