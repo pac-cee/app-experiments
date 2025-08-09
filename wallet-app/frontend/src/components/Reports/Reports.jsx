@@ -131,3 +131,17 @@ const Reports = () => {
       {reportData && reportFormat === 'json' && (
         <Card>
           <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Report Preview
+            </Typography>
+            <pre style={{ overflow: 'auto', maxHeight: '500px' }}>
+              {JSON.stringify(reportData, null, 2)}
+            </pre>
+          </CardContent>
+        </Card>
+      )}
+    </Box>
+  );
+};
+
+export default Reports;
