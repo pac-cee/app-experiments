@@ -36,3 +36,22 @@ const Reports = () => {
           format: reportFormat
         },
         responseType: reportFormat === 'pdf' ? 'blob' : 'json'
+      });
+
+      if (reportFormat === 'pdf') {
+        // Create blob and download PDF
+        const blob = new Blob([response.data], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `report-${format(new Date(), 'yyyy-MM-dd')}.pdf`);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      } else {
+        // Display JSON data
+        setReportData(response.data);
+      }
+    } catch (error) {
+      console.error('Error generating report:', error);
+    } finally {
