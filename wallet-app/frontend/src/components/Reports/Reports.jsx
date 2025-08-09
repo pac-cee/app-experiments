@@ -112,3 +112,22 @@ const Reports = () => {
                   <MenuItem value="json">JSON</MenuItem>
                 </Select>
               </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={generateReport}
+                disabled={loading}
+                startIcon={<DownloadIcon />}
+              >
+                {loading ? 'Generating...' : 'Generate Report'}
+              </Button>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+
+      {reportData && reportFormat === 'json' && (
+        <Card>
+          <CardContent>
