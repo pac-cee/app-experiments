@@ -131,3 +131,22 @@ const Reports: React.FC<ReportsProps> = ({
               value={dateRange.endDate}
               onChange={(e) =>
                 setDateRange((prev) => ({ ...prev, endDate: e.target.value }))
+              }
+              InputLabelProps={{ shrink: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={handleGenerateReport}
+              sx={{ height: '56px' }}
+            >
+              Generate Report
+            </Button>
+          </Grid>
+        </Grid>
+
+        {error && (
+          <Typography color="error" sx={{ mb: 2 }}>
+            {error}
