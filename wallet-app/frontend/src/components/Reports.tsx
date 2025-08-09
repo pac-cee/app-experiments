@@ -264,3 +264,22 @@ const Reports: React.FC<ReportsProps> = ({
                             ))}
                           </Pie>
                           <Tooltip
+                            formatter={(value: number) => formatCurrency(value)}
+                          />
+                          <Legend />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+
+            <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
+              <FormControl sx={{ minWidth: 120 }}>
+                <InputLabel>Export Format</InputLabel>
+                <Select
+                  value={exportFormat}
+                  onChange={(e) => setExportFormat(e.target.value)}
+                  label="Export Format"
+                >
