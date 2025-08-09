@@ -226,3 +226,22 @@ const Reports: React.FC<ReportsProps> = ({
                             formatter={(value: number) => formatCurrency(value)}
                           />
                           <Legend />
+                          <Bar dataKey="amount" fill="#8884d8" />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      Expense Breakdown
+                    </Typography>
+                    <Box sx={{ height: 300 }}>
+                      <ResponsiveContainer>
+                        <PieChart>
+                          <Pie
+                            data={data.categoryBreakdown}
