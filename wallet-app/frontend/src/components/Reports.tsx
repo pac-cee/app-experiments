@@ -283,3 +283,24 @@ const Reports: React.FC<ReportsProps> = ({
                   onChange={(e) => setExportFormat(e.target.value)}
                   label="Export Format"
                 >
+                  <MenuItem value="pdf">PDF</MenuItem>
+                  <MenuItem value="csv">CSV</MenuItem>
+                  <MenuItem value="excel">Excel</MenuItem>
+                </Select>
+              </FormControl>
+              <Button
+                variant="contained"
+                startIcon={<DownloadIcon />}
+                onClick={handleExport}
+              >
+                Export Report
+              </Button>
+            </Box>
+          </>
+        )}
+      </Box>
+    </Container>
+  );
+};
+
+export default Reports;
