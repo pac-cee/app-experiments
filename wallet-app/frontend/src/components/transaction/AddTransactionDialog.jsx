@@ -36,3 +36,22 @@ const AddTransactionDialog = ({ open, onClose, onSubmit, initialData = null }) =
     amount: initialData?.amount || '',
     category: initialData?.category || '',
     description: initialData?.description || '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+      ...(name === 'type' ? { category: '' } : {}), // Reset category when type changes
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({
+      ...formData,
+      amount: parseFloat(formData.amount),
+    });
+    onClose();
+  };
