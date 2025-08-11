@@ -55,3 +55,22 @@ const AddTransactionDialog = ({ open, onClose, onSubmit, initialData = null }) =
     });
     onClose();
   };
+
+  return (
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+      <form onSubmit={handleSubmit}>
+        <DialogTitle>
+          {initialData ? 'Edit Transaction' : 'Add New Transaction'}
+        </DialogTitle>
+        <DialogContent>
+          <Box sx={{ pt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <TextField
+              name="type"
+              label="Transaction Type"
+              select
+              fullWidth
+              value={formData.type}
+              onChange={handleChange}
+              required
+            >
+              <MenuItem value="income">Income</MenuItem>
