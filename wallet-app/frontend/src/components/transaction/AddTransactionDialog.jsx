@@ -17,3 +17,22 @@ const categories = {
     'Freelance',
     'Gift',
     'Other Income',
+  ],
+  expense: [
+    'Food',
+    'Transportation',
+    'Housing',
+    'Utilities',
+    'Entertainment',
+    'Healthcare',
+    'Shopping',
+    'Other Expense',
+  ],
+};
+
+const AddTransactionDialog = ({ open, onClose, onSubmit, initialData = null }) => {
+  const [formData, setFormData] = useState({
+    type: initialData?.type || 'expense',
+    amount: initialData?.amount || '',
+    category: initialData?.category || '',
+    description: initialData?.description || '',
