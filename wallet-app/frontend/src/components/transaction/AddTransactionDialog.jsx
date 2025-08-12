@@ -74,3 +74,22 @@ const AddTransactionDialog = ({ open, onClose, onSubmit, initialData = null }) =
               required
             >
               <MenuItem value="income">Income</MenuItem>
+              <MenuItem value="expense">Expense</MenuItem>
+            </TextField>
+            <TextField
+              name="amount"
+              label="Amount"
+              type="number"
+              fullWidth
+              value={formData.amount}
+              onChange={handleChange}
+              required
+              inputProps={{ step: '0.01', min: '0' }}
+            />
+            <TextField
+              name="category"
+              label="Category"
+              select
+              fullWidth
+              value={formData.category}
+              onChange={handleChange}
