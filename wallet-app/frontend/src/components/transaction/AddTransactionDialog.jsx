@@ -112,3 +112,15 @@ const AddTransactionDialog = ({ open, onClose, onSubmit, initialData = null }) =
             />
           </Box>
         </DialogContent>
+        <DialogActions>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button type="submit" variant="contained">
+            {initialData ? 'Save Changes' : 'Add Transaction'}
+          </Button>
+        </DialogActions>
+      </form>
+    </Dialog>
+  );
+};
+
+export default AddTransactionDialog;
