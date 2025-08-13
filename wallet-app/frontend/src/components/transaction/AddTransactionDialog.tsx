@@ -55,3 +55,22 @@ const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
     setFormData((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (!formData.description.trim()) {
+        throw new Error('Description is required');
+      }
+
+      if (!formData.amount || isNaN(parseFloat(formData.amount))) {
+        throw new Error('Please enter a valid amount');
+      }
+
+      if (!formData.category) {
+        throw new Error('Category is required');
+      }
+
+      if (!formData.account) {
+        throw new Error('Account is required');
