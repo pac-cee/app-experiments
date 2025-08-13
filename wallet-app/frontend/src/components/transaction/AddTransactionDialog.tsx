@@ -36,3 +36,22 @@ const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
     type: 'expense',
     category: '',
     account: '',
+    date: new Date().toISOString().split('T')[0],
+    notes: '',
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
