@@ -93,3 +93,22 @@ const AddTransactionDialog = ({ open, onClose, onSubmit, initialData = null }) =
               fullWidth
               value={formData.category}
               onChange={handleChange}
+              required
+            >
+              {categories[formData.type].map((category) => (
+                <MenuItem key={category} value={category}>
+                  {category}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              name="description"
+              label="Description"
+              fullWidth
+              value={formData.description}
+              onChange={handleChange}
+              multiline
+              rows={2}
+            />
+          </Box>
+        </DialogContent>
