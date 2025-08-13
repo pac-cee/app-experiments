@@ -17,3 +17,22 @@ import { transactionsAPI } from '../../services/transactionsAPI';
 
 interface AddTransactionDialogProps {
   open: boolean;
+  onClose: () => void;
+  onAdd: (data: Transaction) => Promise<void>;
+  categories: Category[];
+  accounts: Account[];
+}
+
+const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
+  open,
+  onClose,
+  onAdd,
+  categories,
+  accounts,
+}) => {
+  const [formData, setFormData] = React.useState<TransactionFormData>({
+    description: '',
+    amount: '',
+    type: 'expense',
+    category: '',
+    account: '',
