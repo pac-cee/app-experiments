@@ -74,3 +74,22 @@ const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
 
       if (!formData.account) {
         throw new Error('Account is required');
+      }
+
+      if (!formData.date) {
+        throw new Error('Date is required');
+      }
+
+      const transaction = await transactionsAPI.create(formData);
+      onAdd(transaction.data);
+      onClose();
+      setFormData({
+        description: '',
+        amount: '',
+        type: 'expense',
+        category: '',
+        account: '',
+        date: new Date().toISOString().split('T')[0],
+        notes: '',
+      });
+    } catch (error: any) {
