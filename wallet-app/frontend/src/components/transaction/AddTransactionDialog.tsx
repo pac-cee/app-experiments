@@ -93,3 +93,22 @@ const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
         notes: '',
       });
     } catch (error: any) {
+      console.error('Failed to add transaction:', error);
+      alert(error.response?.data?.message || error.message || 'Failed to add transaction');
+    }
+  };
+
+  return (
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+      <DialogTitle>Add Transaction</DialogTitle>
+      <DialogContent>
+        <TextField
+          autoFocus
+          margin="dense"
+          name="description"
+          label="Description"
+          type="text"
+          fullWidth
+          value={formData.description}
+          onChange={handleChange}
+          required
