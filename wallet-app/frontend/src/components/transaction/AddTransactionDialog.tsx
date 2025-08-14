@@ -112,3 +112,22 @@ const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
           value={formData.description}
           onChange={handleChange}
           required
+        />
+        <TextField
+          margin="dense"
+          name="amount"
+          label="Amount"
+          type="number"
+          fullWidth
+          value={formData.amount}
+          onChange={handleChange}
+          required
+        />
+        <FormControl fullWidth margin="dense">
+          <InputLabel>Type</InputLabel>
+          <Select
+            name="type"
+            value={formData.type}
+            onChange={handleSelectChange}
+            required
+          >
