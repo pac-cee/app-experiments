@@ -188,3 +188,13 @@ const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
         />
       </DialogContent>
       <DialogActions>
+        <Button onClick={onClose}>Cancel</Button>
+        <Button onClick={handleSubmit} variant="contained" color="primary">
+          Add
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+export default AddTransactionDialog;
