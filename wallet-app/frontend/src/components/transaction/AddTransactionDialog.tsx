@@ -150,3 +150,22 @@ const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
             ))}
           </Select>
         </FormControl>
+        <FormControl fullWidth margin="dense">
+          <InputLabel>Account</InputLabel>
+          <Select
+            name="account"
+            value={formData.account}
+            onChange={handleSelectChange}
+            required
+          >
+            {accounts.map((account) => (
+              <MenuItem key={account._id} value={account._id}>
+                {account.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <TextField
+          margin="dense"
+          name="date"
+          label="Date"
