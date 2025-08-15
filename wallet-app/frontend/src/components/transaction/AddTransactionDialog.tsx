@@ -131,3 +131,22 @@ const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
             onChange={handleSelectChange}
             required
           >
+            <MenuItem value="income">Income</MenuItem>
+            <MenuItem value="expense">Expense</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl fullWidth margin="dense">
+          <InputLabel>Category</InputLabel>
+          <Select
+            name="category"
+            value={formData.category}
+            onChange={handleSelectChange}
+            required
+          >
+            {categories.map((category) => (
+              <MenuItem key={category._id} value={category._id}>
+                {category.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
