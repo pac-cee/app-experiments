@@ -169,3 +169,22 @@ const AddTransactionDialog: React.FC<AddTransactionDialogProps> = ({
           margin="dense"
           name="date"
           label="Date"
+          type="date"
+          fullWidth
+          value={formData.date}
+          onChange={handleChange}
+          required
+        />
+        <TextField
+          margin="dense"
+          name="notes"
+          label="Notes"
+          type="text"
+          fullWidth
+          multiline
+          rows={4}
+          value={formData.notes}
+          onChange={handleChange}
+        />
+      </DialogContent>
+      <DialogActions>
