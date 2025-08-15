@@ -36,3 +36,22 @@ const CreateTestTransactions: React.FC<CreateTestTransactionsProps> = ({
         {
           description: 'Stock Dividend',
           amount: '500',
+          type: 'income',
+          category: findCategory('Investment') || '',
+          account: defaultAccount._id,
+          date: new Date().toISOString().split('T')[0],
+        },
+        {
+          description: 'Grocery Shopping',
+          amount: '150',
+          type: 'expense',
+          category: findCategory('Food & Dining') || '',
+          account: defaultAccount._id,
+          date: new Date().toISOString().split('T')[0],
+        },
+        {
+          description: 'Gas Fill-up',
+          amount: '60',
+          type: 'expense',
+          category: findCategory('Transportation') || '',
+          account: defaultAccount._id,
