@@ -93,3 +93,25 @@ const CreateTestTransactions: React.FC<CreateTestTransactionsProps> = ({
       }
 
       if (onSuccess) {
+        onSuccess();
+      }
+
+      alert('Test transactions created successfully!');
+    } catch (error: any) {
+      console.error('Failed to create test transactions:', error);
+      alert(error.message || 'Failed to create test transactions. Please try again.');
+    }
+  };
+
+  return (
+    <Button
+      variant="contained"
+      color="secondary"
+      onClick={handleCreateTestTransactions}
+    >
+      Create Test Transactions
+    </Button>
+  );
+};
+
+export default CreateTestTransactions;
