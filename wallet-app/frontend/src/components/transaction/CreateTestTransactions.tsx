@@ -55,3 +55,22 @@ const CreateTestTransactions: React.FC<CreateTestTransactionsProps> = ({
           type: 'expense',
           category: findCategory('Transportation') || '',
           account: defaultAccount._id,
+          date: new Date().toISOString().split('T')[0],
+        },
+        {
+          description: 'Monthly Rent',
+          amount: '1200',
+          type: 'expense',
+          category: findCategory('Housing') || '',
+          account: defaultAccount._id,
+          date: new Date().toISOString().split('T')[0],
+        },
+        {
+          description: 'Movie Night',
+          amount: '30',
+          type: 'expense',
+          category: findCategory('Entertainment') || '',
+          account: defaultAccount._id,
+          date: new Date().toISOString().split('T')[0],
+        },
+        {
