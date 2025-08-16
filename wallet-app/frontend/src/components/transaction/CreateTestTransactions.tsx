@@ -74,3 +74,22 @@ const CreateTestTransactions: React.FC<CreateTestTransactionsProps> = ({
           date: new Date().toISOString().split('T')[0],
         },
         {
+          description: 'New Clothes',
+          amount: '120',
+          type: 'expense',
+          category: findCategory('Shopping') || '',
+          account: defaultAccount._id,
+          date: new Date().toISOString().split('T')[0],
+        }
+      ];
+
+      // Create transactions sequentially to maintain order
+      for (const transaction of testTransactions) {
+        if (!transaction.category) {
+          console.warn(`Skipping transaction "${transaction.description}" - category not found`);
+          continue;
+        }
+        await transactionsAPI.create(transaction);
+      }
+
+      if (onSuccess) {
