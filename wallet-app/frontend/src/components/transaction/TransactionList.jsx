@@ -17,3 +17,22 @@ const TransactionList = ({ wallet, onTransactionChange }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('all');
+
+  useEffect(() => {
+    fetchTransactions();
+  }, [wallet._id]);
+
+  const fetchTransactions = async () => {
+    try {
+      const response = await transactionsAPI.getAll(wallet._id);
+      setTransactions(response.data);
+    } catch (error) {
+      console.error('Error fetching transactions:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAddClick = () => {
+    setEditingTransaction(null);
