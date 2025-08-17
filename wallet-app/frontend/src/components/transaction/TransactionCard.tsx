@@ -112,3 +112,12 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
           open={Boolean(anchorEl)}
           onClose={handleMenuClose}
         >
+          <MenuItem onClick={handleEdit}>Edit</MenuItem>
+          <MenuItem onClick={handleDelete}>Delete</MenuItem>
+        </Menu>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default TransactionCard;
