@@ -36,3 +36,22 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  const handleEdit = () => {
+    onEdit(transaction);
+    handleMenuClose();
+  };
+
+  const handleDelete = async () => {
+    try {
+      await onDelete(transaction._id);
+    } catch (err) {
+      console.error('Failed to delete transaction:', err);
+    }
+    handleMenuClose();
+  };
+
+  const formatDate = (dateString: string): string => {
+    return new Date(dateString).toLocaleDateString();
+  };
+
