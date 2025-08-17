@@ -55,3 +55,22 @@ const TransactionCard = ({ transaction, onEdit, onDelete, currency }) => {
       </Box>
       <ListItemText
         primary={
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant="subtitle1">{category}</Typography>
+            <Typography
+              variant="subtitle1"
+              color={type === 'income' ? 'success.main' : 'error.main'}
+            >
+              {type === 'expense' ? '-' : '+'}
+              {formatAmount(amount)}
+            </Typography>
+          </Box>
+        }
+        secondary={
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant="body2" color="text.secondary">
+              {description || category}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {formatDate(date)}
+            </Typography>
