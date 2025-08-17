@@ -93,3 +93,22 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
                 <ExpenseIcon color="error" sx={{ mr: 0.5 }} />
               ) : (
                 <IncomeIcon color="success" sx={{ mr: 0.5 }} />
+              )}
+              <Typography
+                variant="h6"
+                color={transaction.type === 'expense' ? 'error' : 'success'}
+              >
+                {formatCurrency(transaction.amount)}
+              </Typography>
+            </Box>
+            <IconButton onClick={handleMenuOpen} size="small">
+              <MoreIcon />
+            </IconButton>
+          </Box>
+        </Box>
+
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
