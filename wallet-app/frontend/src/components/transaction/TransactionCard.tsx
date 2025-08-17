@@ -74,3 +74,22 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
               <Chip
                 label={typeof transaction.category === 'object' ? transaction.category.name : 'Unknown'}
                 size="small"
+                color={transaction.type === 'expense' ? 'error' : 'success'}
+              />
+              <Typography variant="body2" color="text.secondary">
+                {formatDate(transaction.date)}
+              </Typography>
+            </Box>
+            {transaction.notes && (
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                {transaction.notes}
+              </Typography>
+            )}
+          </Box>
+
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mr: 1 }}>
+              {transaction.type === 'expense' ? (
+                <ExpenseIcon color="error" sx={{ mr: 0.5 }} />
+              ) : (
+                <IncomeIcon color="success" sx={{ mr: 0.5 }} />
