@@ -36,3 +36,22 @@ const TransactionCard = ({ transaction, onEdit, onDelete, currency }) => {
     <ListItem
       sx={{
         mb: 1,
+        bgcolor: 'background.paper',
+        borderRadius: 1,
+        '&:hover': {
+          bgcolor: 'action.hover',
+        },
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          color: type === 'income' ? 'success.main' : 'error.main',
+          mr: 2,
+        }}
+      >
+        {type === 'income' ? <IncomeIcon /> : <ExpenseIcon />}
+      </Box>
+      <ListItemText
+        primary={
