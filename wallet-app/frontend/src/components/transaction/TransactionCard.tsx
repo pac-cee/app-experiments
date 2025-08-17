@@ -55,3 +55,22 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
     return new Date(dateString).toLocaleDateString();
   };
 
+  const formatCurrency = (amount: number): string => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(amount);
+  };
+
+  return (
+    <Card>
+      <CardContent>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <Box>
+            <Typography variant="h6" component="div">
+              {transaction.description}
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1 }}>
+              <Chip
+                label={typeof transaction.category === 'object' ? transaction.category.name : 'Unknown'}
+                size="small"
