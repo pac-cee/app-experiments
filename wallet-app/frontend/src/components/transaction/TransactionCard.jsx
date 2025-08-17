@@ -74,3 +74,24 @@ const TransactionCard = ({ transaction, onEdit, onDelete, currency }) => {
             <Typography variant="body2" color="text.secondary">
               {formatDate(date)}
             </Typography>
+          </Box>
+        }
+      />
+      <ListItemSecondaryAction>
+        <IconButton edge="end" onClick={() => onEdit(transaction)} size="small">
+          <EditIcon />
+        </IconButton>
+        <IconButton
+          edge="end"
+          onClick={() => onDelete(transaction._id)}
+          size="small"
+          sx={{ ml: 1 }}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
+  );
+};
+
+export default TransactionCard;
