@@ -74,3 +74,22 @@ const TransactionList = ({ wallet, onTransactionChange }) => {
           walletId: wallet._id,
         });
       }
+      onTransactionChange();
+      fetchTransactions();
+    } catch (error) {
+      console.error('Error saving transaction:', error);
+    }
+  };
+
+  const filteredTransactions = transactions.filter((transaction) => {
+    if (filter === 'all') return true;
+    return transaction.type === filter;
+  });
+
+  return (
+    <>
+      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={handleAddClick}
