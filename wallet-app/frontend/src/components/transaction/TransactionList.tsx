@@ -112,3 +112,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
     setFilters((prev) => ({
       ...prev,
       type: event.target.value as 'all' | 'income' | 'expense',
+    }));
+  };
+
+  const handleFormTypeChange = (event: SelectChangeEvent<'income' | 'expense'>) => {
+    setFormData((prev) => ({
+      ...prev,
+      type: event.target.value as 'income' | 'expense',
+    }));
+  };
+
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFilterSelectChange = (event: SelectChangeEvent<string>) => {
