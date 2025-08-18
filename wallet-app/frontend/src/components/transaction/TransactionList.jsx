@@ -131,3 +131,10 @@ const TransactionList = ({ wallet, onTransactionChange }) => {
         open={dialogOpen}
         onClose={handleDialogClose}
         onSubmit={handleDialogSubmit}
+        initialData={editingTransaction}
+      />
+    </>
+  );
+};
+
+export default TransactionList;
