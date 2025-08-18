@@ -36,3 +36,22 @@ interface FormData {
   account: string;
   date: string;
   notes?: string;
+}
+
+interface TransactionListProps {
+  transactions: Transaction[];
+  categories: Category[];
+  accounts: Account[];
+  onAddTransaction: (data: Omit<Transaction, '_id'>) => Promise<void>;
+  onUpdateTransaction: (id: string, data: Partial<Transaction>) => Promise<void>;
+  onDeleteTransaction: (id: string) => Promise<void>;
+}
+
+const TransactionList: React.FC<TransactionListProps> = ({
+  transactions,
+  categories,
+  accounts,
+  onAddTransaction,
+  onUpdateTransaction,
+  onDeleteTransaction,
+}) => {
