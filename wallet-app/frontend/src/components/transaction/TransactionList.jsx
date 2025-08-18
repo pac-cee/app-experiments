@@ -36,3 +36,22 @@ const TransactionList = ({ wallet, onTransactionChange }) => {
 
   const handleAddClick = () => {
     setEditingTransaction(null);
+    setDialogOpen(true);
+  };
+
+  const handleEditClick = (transaction) => {
+    setEditingTransaction(transaction);
+    setDialogOpen(true);
+  };
+
+  const handleDeleteClick = async (transactionId) => {
+    if (window.confirm('Are you sure you want to delete this transaction?')) {
+      try {
+        await transactionsAPI.delete(transactionId);
+        onTransactionChange();
+        fetchTransactions();
+      } catch (error) {
+        console.error('Error deleting transaction:', error);
+      }
+    }
+  };
