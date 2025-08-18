@@ -112,3 +112,22 @@ const TransactionList = ({ wallet, onTransactionChange }) => {
       {loading ? (
         <Typography>Loading transactions...</Typography>
       ) : filteredTransactions.length === 0 ? (
+        <Typography>No transactions found.</Typography>
+      ) : (
+        <List>
+          {filteredTransactions.map((transaction) => (
+            <TransactionCard
+              key={transaction._id}
+              transaction={transaction}
+              onEdit={handleEditClick}
+              onDelete={handleDeleteClick}
+              currency={wallet.currency}
+            />
+          ))}
+        </List>
+      )}
+      
+      <AddTransactionDialog
+        open={dialogOpen}
+        onClose={handleDialogClose}
+        onSubmit={handleDialogSubmit}
