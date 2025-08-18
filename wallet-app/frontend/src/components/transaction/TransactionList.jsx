@@ -93,3 +93,22 @@ const TransactionList = ({ wallet, onTransactionChange }) => {
           variant="contained"
           startIcon={<AddIcon />}
           onClick={handleAddClick}
+        >
+          Add Transaction
+        </Button>
+        <TextField
+          select
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          size="small"
+          sx={{ width: 150 }}
+        >
+          <MenuItem value="all">All Transactions</MenuItem>
+          <MenuItem value="income">Income Only</MenuItem>
+          <MenuItem value="expense">Expenses Only</MenuItem>
+        </TextField>
+      </Box>
+      
+      {loading ? (
+        <Typography>Loading transactions...</Typography>
+      ) : filteredTransactions.length === 0 ? (
