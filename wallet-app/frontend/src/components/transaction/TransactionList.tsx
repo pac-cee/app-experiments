@@ -55,3 +55,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
   onUpdateTransaction,
   onDeleteTransaction,
 }) => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+  const [filters, setFilters] = useState<FilterState>({
+    search: '',
+    type: 'all',
+    category: 'all',
+    account: 'all',
+    startDate: '',
+    endDate: '',
+    sortBy: 'date'
+  });
+
+  const [formData, setFormData] = useState<FormData>({
+    description: '',
+    amount: 0,
+    type: 'expense',
+    category: '',
+    account: '',
+    date: new Date().toISOString().split('T')[0],
