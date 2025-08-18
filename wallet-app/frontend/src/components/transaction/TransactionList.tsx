@@ -93,3 +93,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
   };
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFilterTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFilters((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleTypeChange = (event: SelectChangeEvent<'all' | 'income' | 'expense'>) => {
+    setFilters((prev) => ({
+      ...prev,
+      type: event.target.value as 'all' | 'income' | 'expense',
