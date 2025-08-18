@@ -74,3 +74,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
     category: '',
     account: '',
     date: new Date().toISOString().split('T')[0],
+    notes: '',
+  });
+
+  const handleOpenDialog = () => {
+    setSelectedTransaction(null);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setSelectedTransaction(null);
+  };
+
+  const handleEditTransaction = (transaction: Transaction) => {
+    setSelectedTransaction(transaction);
+    setOpenDialog(true);
+  };
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
