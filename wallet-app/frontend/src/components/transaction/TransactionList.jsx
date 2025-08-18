@@ -55,3 +55,22 @@ const TransactionList = ({ wallet, onTransactionChange }) => {
       }
     }
   };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+    setEditingTransaction(null);
+  };
+
+  const handleDialogSubmit = async (data) => {
+    try {
+      if (editingTransaction) {
+        await transactionsAPI.update(editingTransaction._id, {
+          ...data,
+          walletId: wallet._id,
+        });
+      } else {
+        await transactionsAPI.create({
+          ...data,
+          walletId: wallet._id,
+        });
+      }
