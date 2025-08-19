@@ -131,3 +131,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
   };
 
   const handleFilterSelectChange = (event: SelectChangeEvent<string>) => {
+    const { name, value } = event.target;
+    setFilters((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const filterTransactions = (transaction: Transaction): boolean => {
+    const searchMatch = transaction.description
+      .toLowerCase()
+      .includes(filters.search.toLowerCase());
+    const typeMatch =
+      filters.type === 'all' || transaction.type === filters.type;
+    const categoryMatch =
+      filters.category === 'all' ||
+      (typeof transaction.category === 'object' &&
+        transaction.category._id === filters.category);
+    const accountMatch =
+      filters.account === 'all' ||
