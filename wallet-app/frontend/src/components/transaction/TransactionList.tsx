@@ -169,3 +169,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
 
   const filteredTransactions = transactions
     .filter(filterTransactions)
+    .sort(sortTransactions);
+
+  return (
+    <Box>
+      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h5">Transactions</Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<AddIcon />}
+          onClick={handleOpenDialog}
+        >
+          Add Transaction
+        </Button>
+      </Box>
+
+      <Grid container spacing={2} sx={{ mb: 3 }}>
+        <Grid item xs={12} sm={6} md={3}>
+          <TextField
