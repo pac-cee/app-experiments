@@ -150,3 +150,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
         transaction.category._id === filters.category);
     const accountMatch =
       filters.account === 'all' ||
+      (typeof transaction.account === 'object' &&
+        transaction.account._id === filters.account);
+
+    return searchMatch && typeMatch && categoryMatch && accountMatch;
+  };
+
+  const sortTransactions = (a: Transaction, b: Transaction): number => {
+    switch (filters.sortBy) {
+      case 'date':
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      case 'amount':
+        return b.amount - a.amount;
+      default:
+        return 0;
+    }
+  };
+
+  const filteredTransactions = transactions
+    .filter(filterTransactions)
