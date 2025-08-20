@@ -188,3 +188,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
       <Grid container spacing={2} sx={{ mb: 3 }}>
         <Grid item xs={12} sm={6} md={3}>
           <TextField
+            fullWidth
+            label="Search"
+            name="search"
+            value={filters.search}
+            onChange={handleFilterTextChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={3}>
+          <FormControl fullWidth>
+            <InputLabel>Type</InputLabel>
+            <Select
