@@ -245,3 +245,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
               onChange={handleFilterSelectChange}
             >
               <MenuItem value="all">All Accounts</MenuItem>
+              {accounts.map((account) => (
+                <MenuItem key={account._id} value={account._id}>
+                  {account.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={2}>
+        {filteredTransactions.map((transaction) => (
+          <Grid item xs={12} key={transaction._id}>
+            <TransactionCard
+              transaction={transaction}
+              onEdit={handleEditTransaction}
+              onDelete={onDeleteTransaction}
+            />
+          </Grid>
