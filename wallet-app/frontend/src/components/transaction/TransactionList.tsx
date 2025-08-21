@@ -226,3 +226,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
               value={filters.category}
               onChange={handleFilterSelectChange}
             >
+              <MenuItem value="all">All Categories</MenuItem>
+              {categories.map((category) => (
+                <MenuItem key={category._id} value={category._id}>
+                  {category.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={3}>
+          <FormControl fullWidth>
+            <InputLabel>Account</InputLabel>
+            <Select
+              name="account"
+              value={filters.account}
+              onChange={handleFilterSelectChange}
+            >
+              <MenuItem value="all">All Accounts</MenuItem>
