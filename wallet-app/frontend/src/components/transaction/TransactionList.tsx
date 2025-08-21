@@ -207,3 +207,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
           <FormControl fullWidth>
             <InputLabel>Type</InputLabel>
             <Select
+              name="type"
+              value={filters.type}
+              onChange={handleTypeChange}
+            >
+              <MenuItem value="all">All Types</MenuItem>
+              <MenuItem value="income">Income</MenuItem>
+              <MenuItem value="expense">Expense</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={3}>
+          <FormControl fullWidth>
+            <InputLabel>Category</InputLabel>
+            <Select
+              name="category"
+              value={filters.category}
+              onChange={handleFilterSelectChange}
+            >
