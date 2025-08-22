@@ -264,3 +264,24 @@ const TransactionList: React.FC<TransactionListProps> = ({
               onDelete={onDeleteTransaction}
             />
           </Grid>
+        ))}
+      </Grid>
+
+      {filteredTransactions.length === 0 && (
+        <Typography variant="body1" color="text.secondary" align="center" sx={{ mt: 3 }}>
+          No transactions found
+        </Typography>
+      )}
+
+      <AddTransactionDialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        onAdd={onAddTransaction}
+        categories={categories}
+        accounts={accounts}
+      />
+    </Box>
+  );
+};
+
+export default TransactionList;
