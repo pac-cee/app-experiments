@@ -36,3 +36,22 @@ const TransactionList = ({ transactions, onEdit, onDelete }) => {
         />
         <TextField
           select
+          label="Transaction Type"
+          value={typeFilter}
+          onChange={(e) => setTypeFilter(e.target.value)}
+          sx={{ minWidth: 120 }}
+        >
+          <MenuItem value="all">All</MenuItem>
+          <MenuItem value="income">Income</MenuItem>
+          <MenuItem value="expense">Expense</MenuItem>
+        </TextField>
+      </div>
+      
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader>
+          <TableHead>
+            <TableRow>
+              <TableCell>Date</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Category</TableCell>
+              <TableCell>Amount</TableCell>
