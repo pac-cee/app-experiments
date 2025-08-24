@@ -74,3 +74,25 @@ const TransactionList = ({ transactions, onEdit, onDelete }) => {
                 <TableCell>
                   {transaction.amount.toLocaleString('en-US', {
                     style: 'currency',
+                    currency: transaction.wallet.currency,
+                  })}
+                </TableCell>
+                <TableCell>{transaction.description}</TableCell>
+                <TableCell>
+                  <IconButton onClick={() => onEdit(transaction)}>
+                    <Edit />
+                  </IconButton>
+                  <IconButton onClick={() => onDelete(transaction._id)}>
+                    <Delete />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
+  );
+};
+
+export default TransactionList;
