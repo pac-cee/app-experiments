@@ -55,3 +55,22 @@ const TransactionList = ({ transactions, onEdit, onDelete }) => {
               <TableCell>Type</TableCell>
               <TableCell>Category</TableCell>
               <TableCell>Amount</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredTransactions.map((transaction) => (
+              <TableRow key={transaction._id}>
+                <TableCell>{new Date(transaction.date).toLocaleDateString()}</TableCell>
+                <TableCell>
+                  <Chip
+                    label={transaction.type}
+                    color={transaction.type === 'income' ? 'success' : 'error'}
+                    size="small"
+                  />
+                </TableCell>
+                <TableCell>{transaction.category.name}</TableCell>
+                <TableCell>
+                  {transaction.amount.toLocaleString('en-US', {
+                    style: 'currency',
