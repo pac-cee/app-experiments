@@ -55,3 +55,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
     description: '',
     amount: '',
     type: 'expense',
+    category: '',
+    account: '',
+    date: new Date().toISOString().split('T')[0],
+    notes: '',
+  });
+  const [error, setError] = useState('');
+
+  const handleEditClick = (transaction: Transaction) => {
+    setSelectedTransaction(transaction);
+    setFormData({
+      description: transaction.description,
+      amount: transaction.amount.toString(),
+      type: transaction.type,
+      category: typeof transaction.category === 'object' ? transaction.category._id : transaction.category,
+      account: typeof transaction.account === 'object' ? transaction.account._id : transaction.account,
+      date: new Date(transaction.date).toISOString().split('T')[0],
+      notes: transaction.notes || '',
+    });
+    setOpenDialog(true);
