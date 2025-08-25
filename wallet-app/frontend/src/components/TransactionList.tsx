@@ -150,3 +150,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
           <ListItem
             key={transaction._id}
             sx={{
+              mb: 1,
+              bgcolor: 'background.paper',
+              borderRadius: 1,
+              boxShadow: 1,
+            }}
+          >
+            <ListItemText
+              primary={transaction.description}
+              secondary={
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.5 }}>
+                  <Chip
+                    label={typeof transaction.category === 'object' ? transaction.category.name : 'Unknown'}
+                    size="small"
+                  />
+                  <Typography variant="body2" color="text.secondary">
+                    {formatDate(transaction.date)}
+                  </Typography>
+                </Box>
+              }
