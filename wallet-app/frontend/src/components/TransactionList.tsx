@@ -93,3 +93,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
   };
 
   const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
+    try {
+      if (selectedTransaction) {
+        await onUpdateTransaction(selectedTransaction._id, formData);
+      }
+
+      handleCloseDialog();
+      setFormData({
+        description: '',
