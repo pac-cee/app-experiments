@@ -112,3 +112,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
       handleCloseDialog();
       setFormData({
         description: '',
+        amount: '',
+        type: 'expense',
+        category: '',
+        account: '',
+        date: new Date().toISOString().split('T')[0],
+        notes: '',
+      });
+    } catch (err) {
+      setError('Failed to update transaction');
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await onDeleteTransaction(id);
+    } catch (err) {
+      setError('Failed to delete transaction');
+    }
+  };
