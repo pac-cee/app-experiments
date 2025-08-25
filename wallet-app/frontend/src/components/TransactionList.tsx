@@ -169,3 +169,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
                   </Typography>
                 </Box>
               }
+            />
+            <ListItemSecondaryAction>
+              <Typography
+                variant="body1"
+                color={transaction.type === 'expense' ? 'error' : 'success'}
+                sx={{ display: 'inline-block', mr: 2 }}
+              >
+                {formatAmount(transaction.amount.toString(), transaction.type)}
+              </Typography>
+              <IconButton
+                edge="end"
+                aria-label="edit"
+                onClick={() => handleEditClick(transaction)}
+                sx={{ mr: 1 }}
+              >
+                <EditIcon />
+              </IconButton>
+              <IconButton
+                edge="end"
