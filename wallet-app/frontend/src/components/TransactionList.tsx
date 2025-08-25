@@ -36,3 +36,22 @@ interface TransactionFormData {
 
 interface TransactionListProps {
   transactions: Transaction[];
+  categories: Category[];
+  accounts: Account[];
+  onUpdateTransaction: (id: string, data: Partial<TransactionFormData>) => Promise<void>;
+  onDeleteTransaction: (id: string) => Promise<void>;
+}
+
+const TransactionList: React.FC<TransactionListProps> = ({
+  transactions,
+  categories,
+  accounts,
+  onUpdateTransaction,
+  onDeleteTransaction,
+}) => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+  const [formData, setFormData] = useState<TransactionFormData>({
+    description: '',
+    amount: '',
+    type: 'expense',
