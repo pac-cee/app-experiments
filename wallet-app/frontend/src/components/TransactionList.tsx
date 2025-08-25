@@ -131,3 +131,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
       setError('Failed to delete transaction');
     }
   };
+
+  const formatDate = (dateString: string): string => {
+    return new Date(dateString).toLocaleDateString();
+  };
+
+  const formatAmount = (amount: string, type: string): string => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(type === 'expense' ? -parseFloat(amount) : parseFloat(amount));
+  };
+
+  return (
+    <Box>
+      <List>
+        {transactions.map((transaction) => (
+          <ListItem
+            key={transaction._id}
+            sx={{
