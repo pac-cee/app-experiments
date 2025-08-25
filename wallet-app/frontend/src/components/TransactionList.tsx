@@ -188,3 +188,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
               </IconButton>
               <IconButton
                 edge="end"
+                aria-label="delete"
+                onClick={() => handleDelete(transaction._id)}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))}
+      </List>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
+        <form onSubmit={handleSubmit}>
+          <DialogTitle>
+            {selectedTransaction ? 'Edit Transaction' : 'Add Transaction'}
+          </DialogTitle>
+          <DialogContent>
+            <Box sx={{ mt: 2 }}>
+              {error && (
+                <Typography color="error" sx={{ mb: 2 }}>
