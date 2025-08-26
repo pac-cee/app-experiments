@@ -245,3 +245,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
                       required
                     >
                       <MenuItem value="income">Income</MenuItem>
+                      <MenuItem value="expense">Expense</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <FormControl fullWidth>
+                    <InputLabel>Category</InputLabel>
+                    <Select
+                      name="category"
+                      value={formData.category}
+                      onChange={handleSelectChange}
+                      required
+                    >
+                      {categories.map((category) => (
+                        <MenuItem key={category._id} value={category._id}>
+                          {category.name}
+                        </MenuItem>
+                      ))}
