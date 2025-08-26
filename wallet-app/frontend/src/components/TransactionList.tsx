@@ -264,3 +264,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
                           {category.name}
                         </MenuItem>
                       ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <FormControl fullWidth>
+                    <InputLabel>Account</InputLabel>
+                    <Select
+                      name="account"
+                      value={formData.account}
+                      onChange={handleSelectChange}
+                      required
+                    >
+                      {accounts.map((account) => (
+                        <MenuItem key={account._id} value={account._id}>
+                          {account.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
