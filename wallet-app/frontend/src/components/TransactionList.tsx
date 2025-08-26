@@ -226,3 +226,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
                 <Grid item xs={12} sm={6}>
                   <TextField
                     fullWidth
+                    label="Amount"
+                    name="amount"
+                    type="number"
+                    value={formData.amount}
+                    onChange={handleTextChange}
+                    required
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <FormControl fullWidth>
+                    <InputLabel>Type</InputLabel>
+                    <Select
+                      name="type"
+                      value={formData.type}
+                      onChange={handleSelectChange}
+                      required
+                    >
+                      <MenuItem value="income">Income</MenuItem>
