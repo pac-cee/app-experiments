@@ -17,3 +17,22 @@ const AddWalletDialog = ({ open, onClose, onSubmit, initialData = null }) => {
     name: initialData?.name || '',
     balance: initialData?.balance || '',
     currency: initialData?.currency || 'USD',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({
+      ...formData,
+      balance: parseFloat(formData.balance),
+    });
+    onClose();
+  };
+
