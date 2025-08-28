@@ -302,3 +302,27 @@ const TransactionList: React.FC<TransactionListProps> = ({
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
+                    label="Notes"
+                    name="notes"
+                    value={formData.notes}
+                    onChange={handleTextChange}
+                    multiline
+                    rows={4}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseDialog}>Cancel</Button>
+            <Button type="submit" variant="contained" color="primary">
+              {selectedTransaction ? 'Update' : 'Add'} Transaction
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
+    </Box>
+  );
+};
+
+export default TransactionList;
