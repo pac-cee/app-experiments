@@ -74,3 +74,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
   };
 
   const handleSwitchChange = (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [name]: e.target.checked,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
+    try {
+      await onAdd(formData);
+      onClose();
+      setFormData({
+        name: '',
+        type: 'bank',
+        balance: '',
+        currency: 'USD',
+        description: '',
