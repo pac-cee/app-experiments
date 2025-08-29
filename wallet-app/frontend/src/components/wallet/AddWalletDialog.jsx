@@ -55,3 +55,22 @@ const AddWalletDialog = ({ open, onClose, onSubmit, initialData = null }) => {
             />
             <TextField
               name="balance"
+              label="Initial Balance"
+              type="number"
+              fullWidth
+              value={formData.balance}
+              onChange={handleChange}
+              required
+              inputProps={{ step: '0.01' }}
+            />
+            <TextField
+              name="currency"
+              label="Currency"
+              select
+              fullWidth
+              value={formData.currency}
+              onChange={handleChange}
+              required
+            >
+              {currencies.map((currency) => (
+                <MenuItem key={currency} value={currency}>
