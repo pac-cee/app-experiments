@@ -55,3 +55,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
 
   const [error, setError] = useState('');
 
+  const handleTextChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (event: SelectChangeEvent) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSwitchChange = (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
