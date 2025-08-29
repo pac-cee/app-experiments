@@ -36,3 +36,22 @@ const CURRENCIES = ['USD', 'EUR', 'GBP', 'KES', 'UGX', 'TZS', 'RWF'];
 
 const MOBILE_PROVIDERS = ['Safaricom', 'Airtel', 'Telkom', 'MTN', 'Vodacom'];
 
+const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
+  open,
+  onClose,
+  onAdd,
+}) => {
+  const [formData, setFormData] = useState<AccountFormData>({
+    name: '',
+    type: 'bank',
+    balance: '',
+    currency: 'USD',
+    description: '',
+    accountNumber: '',
+    bankName: '',
+    mobileProvider: '',
+    isDefault: false,
+  });
+
+  const [error, setError] = useState('');
+
