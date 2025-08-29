@@ -74,3 +74,21 @@ const AddWalletDialog = ({ open, onClose, onSubmit, initialData = null }) => {
             >
               {currencies.map((currency) => (
                 <MenuItem key={currency} value={currency}>
+                  {currency}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button type="submit" variant="contained">
+            {initialData ? 'Save Changes' : 'Add Wallet'}
+          </Button>
+        </DialogActions>
+      </form>
+    </Dialog>
+  );
+};
+
+export default AddWalletDialog;
