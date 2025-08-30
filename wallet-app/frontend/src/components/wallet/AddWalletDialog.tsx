@@ -245,3 +245,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                 rows={2}
               />
             </Grid>
+
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={formData.isDefault}
+                    onChange={handleSwitchChange('isDefault')}
+                    name="isDefault"
+                  />
+                }
+                label="Set as default account"
+              />
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button type="submit" variant="contained" color="primary">
+            Add Account
