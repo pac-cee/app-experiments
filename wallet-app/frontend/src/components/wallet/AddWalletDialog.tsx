@@ -93,3 +93,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
         balance: '',
         currency: 'USD',
         description: '',
+        accountNumber: '',
+        bankName: '',
+        mobileProvider: '',
+        isDefault: false,
+      });
+    } catch (err) {
+      setError('Failed to add account');
+    }
+  };
+
+  return (
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+      <form onSubmit={handleSubmit}>
+        <DialogTitle>Add New Account</DialogTitle>
+        <DialogContent>
+          <Grid container spacing={2} sx={{ mt: 1 }}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
