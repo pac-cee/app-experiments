@@ -131,3 +131,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                 >
                   {Object.entries(ACCOUNT_TYPES).map(([value, label]) => (
                     <MenuItem key={value} value={value}>
+                      {label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth>
+                <InputLabel>Currency</InputLabel>
+                <Select
+                  name="currency"
+                  value={formData.currency}
+                  onChange={handleSelectChange}
+                  required
+                >
+                  {CURRENCIES.map((currency) => (
+                    <MenuItem key={currency} value={currency}>
+                      {currency}
