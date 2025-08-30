@@ -207,3 +207,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                           {provider}
                         </MenuItem>
                       ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Phone Number"
+                    name="accountNumber"
+                    value={formData.accountNumber}
+                    onChange={handleTextChange}
+                  />
+                </Grid>
+              </>
+            )}
+
+            {(formData.type === 'credit_card' || formData.type === 'savings') && (
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
