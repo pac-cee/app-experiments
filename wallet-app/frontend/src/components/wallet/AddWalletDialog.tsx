@@ -150,3 +150,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                   {CURRENCIES.map((currency) => (
                     <MenuItem key={currency} value={currency}>
                       {currency}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Initial Balance"
+                name="balance"
+                type="number"
+                value={formData.balance}
+                onChange={handleTextChange}
+                required
+              />
+            </Grid>
+
+            {formData.type === 'bank' && (
