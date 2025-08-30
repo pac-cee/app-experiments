@@ -188,3 +188,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                     onChange={handleTextChange}
                   />
                 </Grid>
+              </>
+            )}
+
+            {formData.type === 'mobile_money' && (
+              <>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <InputLabel>Mobile Provider</InputLabel>
+                    <Select
+                      name="mobileProvider"
+                      value={formData.mobileProvider}
+                      onChange={handleSelectChange}
+                      required
+                    >
+                      {MOBILE_PROVIDERS.map((provider) => (
+                        <MenuItem key={provider} value={provider}>
+                          {provider}
+                        </MenuItem>
+                      ))}
