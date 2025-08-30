@@ -226,3 +226,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
               <Grid item xs={12}>
                 <TextField
                   fullWidth
+                  label="Account Number"
+                  name="accountNumber"
+                  value={formData.accountNumber}
+                  onChange={handleTextChange}
+                />
+              </Grid>
+            )}
+
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Description"
+                name="description"
+                value={formData.description}
+                onChange={handleTextChange}
+                multiline
+                rows={2}
+              />
+            </Grid>
