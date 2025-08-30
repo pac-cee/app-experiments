@@ -112,3 +112,22 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
             <Grid item xs={12}>
               <TextField
                 fullWidth
+                label="Account Name"
+                name="name"
+                value={formData.name}
+                onChange={handleTextChange}
+                required
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth>
+                <InputLabel>Account Type</InputLabel>
+                <Select
+                  name="type"
+                  value={formData.type}
+                  onChange={handleSelectChange}
+                  required
+                >
+                  {Object.entries(ACCOUNT_TYPES).map(([value, label]) => (
+                    <MenuItem key={value} value={value}>
