@@ -264,3 +264,11 @@ const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
           <Button onClick={onClose}>Cancel</Button>
           <Button type="submit" variant="contained" color="primary">
             Add Account
+          </Button>
+        </DialogActions>
+      </form>
+    </Dialog>
+  );
+};
+
+export default AddWalletDialog;
