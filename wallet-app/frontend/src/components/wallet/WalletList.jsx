@@ -17,3 +17,22 @@ const WalletList = ({ wallets, onWalletChange }) => {
   const handleEditClick = (wallet) => {
     setEditingWallet(wallet);
     setDialogOpen(true);
+  };
+
+  const handleDeleteClick = async (walletId) => {
+    if (window.confirm('Are you sure you want to delete this wallet?')) {
+      try {
+        await walletsAPI.delete(walletId);
+        onWalletChange();
+      } catch (error) {
+        console.error('Error deleting wallet:', error);
+      }
+    }
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+    setEditingWallet(null);
+  };
+
+  const handleDialogSubmit = async (data) => {
