@@ -55,3 +55,10 @@ const WalletCard = ({ wallet, onEdit, onDelete }) => {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {wallet.currency}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default WalletCard;
