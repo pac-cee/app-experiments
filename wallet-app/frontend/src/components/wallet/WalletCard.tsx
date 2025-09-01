@@ -150,3 +150,22 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet, onEdit, onDelete }) => 
               WebkitBoxOrient: 'vertical',
             }}
           >
+            {wallet.description}
+          </Typography>
+        )}
+
+        <Typography variant="body2" color="text.secondary">
+          {wallet.type === 'bank' && wallet.bankName && (
+            <Box component="span" sx={{ display: 'block' }}>
+              {wallet.bankName}
+            </Box>
+          )}
+          {wallet.type === 'mobile_money' && wallet.mobileProvider && (
+            <Box component="span" sx={{ display: 'block' }}>
+              {wallet.mobileProvider}
+            </Box>
+          )}
+          {wallet.accountNumber && (
+            <Box component="span" sx={{ display: 'block' }}>
+              {wallet.accountNumber}
+            </Box>
