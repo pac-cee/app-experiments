@@ -112,3 +112,22 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet, onEdit, onDelete }) => 
             justifyContent: 'space-between',
             alignItems: 'flex-start',
             mb: 2,
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            {getWalletIcon(wallet.type)}
+            <Typography variant="h6" component="div">
+              {wallet.name}
+            </Typography>
+          </Box>
+          <IconButton
+            size="small"
+            onClick={handleMenuClick}
+            aria-label="wallet options"
+          >
+            <MoreVertIcon />
+          </IconButton>
+        </Box>
+
+        <Typography
+          variant="h5"
