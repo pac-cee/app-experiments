@@ -55,3 +55,22 @@ const getWalletColor = (type: Account['type']): string => {
     case 'credit_card':
       return '#f44336'; // Red
     case 'savings':
+      return '#9c27b0'; // Purple
+    case 'investment':
+      return '#009688'; // Teal
+    default:
+      return '#757575'; // Grey
+  }
+};
+
+const WalletCard: React.FC<WalletCardProps> = ({ wallet, onEdit, onDelete }) => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
