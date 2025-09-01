@@ -93,3 +93,22 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet, onEdit, onDelete }) => 
 
   return (
     <Card
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+        borderLeft: `6px solid ${getWalletColor(wallet.type)}`,
+        transition: 'transform 0.2s',
+        '&:hover': {
+          transform: 'translateY(-4px)',
+        },
+      }}
+    >
+      <CardContent>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            mb: 2,
