@@ -74,3 +74,22 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet, onEdit, onDelete }) => 
     setAnchorEl(null);
   };
 
+  const handleEdit = () => {
+    handleMenuClose();
+    onEdit(wallet);
+  };
+
+  const handleDelete = async () => {
+    handleMenuClose();
+    await onDelete(wallet._id);
+  };
+
+  const formatBalance = (amount: number, currency: string): string => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: currency,
+    }).format(amount);
+  };
+
+  return (
+    <Card
