@@ -36,3 +36,22 @@ const WalletCard = ({ wallet, onEdit, onDelete }) => {
     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <CardContent sx={{ flexGrow: 1, position: 'relative' }}>
         <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
+          <IconButton onClick={handleClick}>
+            <MoreVertIcon />
+          </IconButton>
+          <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+            <MenuItem onClick={handleEdit}>Edit</MenuItem>
+            <MenuItem onClick={handleDelete}>Delete</MenuItem>
+          </Menu>
+        </Box>
+        <Typography variant="h6" component="div" gutterBottom>
+          {wallet.name}
+        </Typography>
+        <Typography variant="h4" color="primary">
+          {new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: wallet.currency,
+          }).format(wallet.balance)}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {wallet.currency}
