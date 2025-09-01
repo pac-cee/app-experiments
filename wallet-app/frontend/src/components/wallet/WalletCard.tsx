@@ -131,3 +131,22 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet, onEdit, onDelete }) => 
 
         <Typography
           variant="h5"
+          color="primary"
+          sx={{ mb: 1, fontWeight: 'bold' }}
+        >
+          {formatBalance(wallet.balance, wallet.currency)}
+        </Typography>
+
+        {wallet.description && (
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              mb: 1,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
+            }}
+          >
