@@ -17,3 +17,22 @@ const WalletCard = ({ wallet, onEdit, onDelete }) => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleEdit = () => {
+    handleClose();
+    onEdit(wallet);
+  };
+
+  const handleDelete = () => {
+    handleClose();
+    onDelete(wallet._id);
+  };
+
+  return (
+    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <CardContent sx={{ flexGrow: 1, position: 'relative' }}>
+        <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
