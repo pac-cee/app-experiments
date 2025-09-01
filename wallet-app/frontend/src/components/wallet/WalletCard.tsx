@@ -169,3 +169,22 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet, onEdit, onDelete }) => 
             <Box component="span" sx={{ display: 'block' }}>
               {wallet.accountNumber}
             </Box>
+          )}
+        </Typography>
+      </CardContent>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleEdit}>Edit</MenuItem>
+        <MenuItem onClick={handleDelete} sx={{ color: 'error.main' }}>
+          Delete
+        </MenuItem>
+      </Menu>
+    </Card>
+  );
+};
+
+export default WalletCard;
