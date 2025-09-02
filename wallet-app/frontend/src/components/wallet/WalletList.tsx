@@ -17,3 +17,22 @@ const WalletList: React.FC<WalletListProps> = ({
   onAddWallet,
   onUpdateWallet,
   onDeleteWallet,
+}) => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedWallet, setSelectedWallet] = useState<Account | null>(null);
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setSelectedWallet(null);
+  };
+
+  const handleEdit = (wallet: Account) => {
+    setSelectedWallet(wallet);
+    setOpenDialog(true);
+  };
+
+  return (
