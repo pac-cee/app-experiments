@@ -55,3 +55,18 @@ const WalletList: React.FC<WalletListProps> = ({
               wallet={wallet}
               onEdit={handleEdit}
               onDelete={onDeleteWallet}
+            />
+          </Grid>
+        ))}
+      </Grid>
+
+      <AddWalletDialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        onAdd={onAddWallet}
+      />
+    </Box>
+  );
+};
+
+export default WalletList;
