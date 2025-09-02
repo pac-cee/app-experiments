@@ -36,3 +36,22 @@ const WalletList = ({ wallets, onWalletChange }) => {
   };
 
   const handleDialogSubmit = async (data) => {
+    try {
+      if (editingWallet) {
+        await walletsAPI.update(editingWallet._id, data);
+      } else {
+        await walletsAPI.create(data);
+      }
+      onWalletChange();
+    } catch (error) {
+      console.error('Error saving wallet:', error);
+    }
+  };
+
+  return (
+    <>
+      <Box sx={{ mb: 3 }}>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={handleAddClick}
