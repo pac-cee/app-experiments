@@ -36,3 +36,22 @@ const WalletList: React.FC<WalletListProps> = ({
   };
 
   return (
+    <Box>
+      <Box sx={{ mb: 3 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<AddIcon />}
+          onClick={handleOpenDialog}
+        >
+          Add Account
+        </Button>
+      </Box>
+
+      <Grid container spacing={3}>
+        {wallets.map((wallet) => (
+          <Grid item xs={12} sm={6} md={4} key={wallet._id}>
+            <WalletCard
+              wallet={wallet}
+              onEdit={handleEdit}
+              onDelete={onDeleteWallet}
