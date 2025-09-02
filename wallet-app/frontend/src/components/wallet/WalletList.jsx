@@ -74,3 +74,10 @@ const WalletList = ({ wallets, onWalletChange }) => {
         open={dialogOpen}
         onClose={handleDialogClose}
         onSubmit={handleDialogSubmit}
+        initialData={editingWallet}
+      />
+    </>
+  );
+};
+
+export default WalletList;
