@@ -55,3 +55,22 @@ const WalletList = ({ wallets, onWalletChange }) => {
           variant="contained"
           startIcon={<AddIcon />}
           onClick={handleAddClick}
+        >
+          Add Wallet
+        </Button>
+      </Box>
+      <Grid container spacing={3}>
+        {wallets.map((wallet) => (
+          <Grid item xs={12} sm={6} md={4} key={wallet._id}>
+            <WalletCard
+              wallet={wallet}
+              onEdit={handleEditClick}
+              onDelete={handleDeleteClick}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <AddWalletDialog
+        open={dialogOpen}
+        onClose={handleDialogClose}
+        onSubmit={handleDialogSubmit}
