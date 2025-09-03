@@ -17,3 +17,22 @@ interface AuthContextType {
   resetPassword: (token: string, password: string) => Promise<void>;
   clearError: () => void;
   loginWithGoogle: () => Promise<void>;
+  loginWithGithub: () => Promise<void>;
+  loginWithTwitter: () => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
+  const handleError = (error: any) => {
+    console.error('Auth error:', error);
+    if (error.response?.data?.message) {
+      setError(error.response.data.message);
