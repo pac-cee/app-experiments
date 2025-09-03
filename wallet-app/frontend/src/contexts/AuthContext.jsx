@@ -36,3 +36,22 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
+    try {
+      setError(null);
+      const response = await authAPI.login({ email, password });
+      const { token, ...userData } = response.data;
+      
+      // Store token and user data
+      localStorage.setItem('token', token);
+      setUser(userData);
+      
+      return true;
+    } catch (err) {
+      console.error('Login error:', err);
+      setError(err.response?.data?.message || 'Invalid email or password');
+      return false;
+    }
+  };
+
+  const loginWithGoogle = async () => {
+    try {
