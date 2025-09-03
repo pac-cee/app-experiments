@@ -74,3 +74,22 @@ export const AuthProvider = ({ children }) => {
       const response = await authAPI.loginWithGithub();
       const { token, ...userData } = response.data;
       localStorage.setItem('token', token);
+      setUser(userData);
+      return true;
+    } catch (err) {
+      console.error('GitHub login error:', err);
+      setError(err.response?.data?.message || 'GitHub login failed');
+      return false;
+    }
+  };
+
+  const loginWithTwitter = async () => {
+    try {
+      setError(null);
+      const response = await authAPI.loginWithTwitter();
+      const { token, ...userData } = response.data;
+      localStorage.setItem('token', token);
+      setUser(userData);
+      return true;
+    } catch (err) {
+      console.error('Twitter login error:', err);
