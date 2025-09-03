@@ -112,3 +112,27 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       console.error('Registration error:', err);
       setError(err.response?.data?.message || 'Registration failed');
+      return false;
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+    setError(null);
+  };
+
+  const value = {
+    user,
+    loading,
+    error,
+    login,
+    loginWithGoogle,
+    loginWithGithub,
+    loginWithTwitter,
+    register,
+    logout,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
