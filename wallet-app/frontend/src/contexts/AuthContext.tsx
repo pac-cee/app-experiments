@@ -55,3 +55,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       const response = await authAPI.verify();
       if (response.data) {
+        setUser(response.data);
+      } else {
+        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
+        setUser(null);
+      }
+    } catch (error) {
+      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const login = async ({ email, password, remember = true }: LoginForm) => {
+    try {
+      setLoading(true);
+      setError(null);
