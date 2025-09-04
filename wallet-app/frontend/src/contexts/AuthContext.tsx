@@ -36,3 +36,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     console.error('Auth error:', error);
     if (error.response?.data?.message) {
       setError(error.response.data.message);
+    } else if (error.message) {
+      setError(error.message);
+    } else {
+      setError('An unexpected error occurred');
+    }
+    throw error;
+  };
+
+  const checkAuth = async () => {
+    try {
+      const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+      if (!token) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
+      const response = await authAPI.verify();
+      if (response.data) {
