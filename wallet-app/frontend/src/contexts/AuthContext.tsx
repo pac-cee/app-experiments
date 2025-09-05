@@ -93,3 +93,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (!profileResponse.data) {
         throw new Error('Failed to get user profile');
       }
+
+      // Set user data
+      setUser(profileResponse.data);
+      setError(null);
+      return profileResponse.data;
+    } catch (error: any) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const register = async ({ name, email, password, confirmPassword }: RegisterForm) => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      if (password !== confirmPassword) {
+        throw new Error('Passwords do not match');
