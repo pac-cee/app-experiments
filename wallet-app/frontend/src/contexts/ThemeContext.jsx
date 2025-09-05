@@ -17,3 +17,22 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     // Update localStorage and document class when theme changes
+    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Update body class for Material-UI
+    if (theme === 'dark') {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [theme]);
+
+  // Listen for system theme changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => {
+      if (theme === 'system') {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
