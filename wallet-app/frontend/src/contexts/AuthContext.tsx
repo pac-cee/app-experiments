@@ -74,3 +74,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setLoading(true);
       setError(null);
+      
+      const { data } = await authAPI.login({ email, password });
+      
+      if (!data || !data.token) {
+        throw new Error('Invalid response from server');
+      }
+
+      // Store token
+      if (remember) {
+        localStorage.setItem('token', data.token);
+      } else {
+        sessionStorage.setItem('token', data.token);
+      }
+
+      // Get user profile
+      const profileResponse = await authAPI.verify();
+      if (!profileResponse.data) {
+        throw new Error('Failed to get user profile');
+      }
