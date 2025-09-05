@@ -226,3 +226,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     register,
     logout,
     updateProfile,
+    updatePassword,
+    forgotPassword,
+    resetPassword,
+    clearError,
+    loginWithGoogle,
+    loginWithGithub,
+    loginWithTwitter,
+  };
+
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
