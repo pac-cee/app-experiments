@@ -207,3 +207,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(true);
       setError(null);
       await authAPI.loginWithTwitter();
+    } catch (error: any) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearError = () => setError(null);
+
+  const value = {
+    user,
+    setUser,
+    loading,
+    error,
+    isAuthenticated: !!user,
+    login,
+    register,
+    logout,
+    updateProfile,
