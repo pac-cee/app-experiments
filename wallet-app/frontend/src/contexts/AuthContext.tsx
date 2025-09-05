@@ -131,3 +131,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const updateProfile = async (data: Partial<User>) => {
     try {
+      setLoading(true);
+      setError(null);
+      const response = await authAPI.updateProfile(data);
+      setUser(response.data);
+    } catch (error) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updatePassword = async (oldPassword: string, newPassword: string) => {
+    try {
+      setLoading(true);
+      setError(null);
+      await authAPI.updatePassword({ oldPassword, newPassword });
+    } catch (error) {
+      handleError(error);
+    } finally {
