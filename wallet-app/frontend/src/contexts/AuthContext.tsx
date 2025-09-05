@@ -188,3 +188,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } finally {
       setLoading(false);
     }
+  };
+
+  const loginWithGithub = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      await authAPI.loginWithGithub();
+    } catch (error: any) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loginWithTwitter = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      await authAPI.loginWithTwitter();
