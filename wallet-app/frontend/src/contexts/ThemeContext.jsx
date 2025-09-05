@@ -36,3 +36,22 @@ export const ThemeProvider = ({ children }) => {
         setTheme(e.matches ? 'dark' : 'light');
       }
     };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => {
+      switch (prevTheme) {
+        case 'light': return 'dark';
+        case 'dark': return 'system';
+        default: return 'light';
+      }
+    });
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
