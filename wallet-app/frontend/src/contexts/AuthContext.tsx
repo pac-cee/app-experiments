@@ -112,3 +112,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (password !== confirmPassword) {
         throw new Error('Passwords do not match');
+      }
+      
+      await authAPI.register({ name, email, password });
+    } catch (error) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
+    setUser(null);
+    setError(null);
+  };
+
+  const updateProfile = async (data: Partial<User>) => {
+    try {
