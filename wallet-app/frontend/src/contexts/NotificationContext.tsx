@@ -17,3 +17,22 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     setSeverity(severity);
     setMessage(message);
     setOpen(true);
+  }, []);
+
+  const clearNotification = useCallback(() => {
+    setOpen(false);
+    // Wait for the snackbar to close before clearing the message
+    setTimeout(() => {
+      setMessage('');
+    }, 300);
+  }, []);
+
+  const handleClose = useCallback(
+    (event?: React.SyntheticEvent | Event, reason?: string) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      clearNotification();
+    },
+    [clearNotification]
+  );
