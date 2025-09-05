@@ -169,3 +169,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const resetPassword = async (token: string, password: string) => {
     try {
       setLoading(true);
+      setError(null);
+      await authAPI.resetPassword({ token, password });
+    } catch (error) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loginWithGoogle = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      await authAPI.loginWithGoogle();
+    } catch (error: any) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
