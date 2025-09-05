@@ -36,3 +36,22 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     },
     [clearNotification]
   );
+
+  return (
+    <NotificationContext.Provider value={{ showNotification, clearNotification }}>
+      {children}
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+          {message}
+        </Alert>
+      </Snackbar>
+    </NotificationContext.Provider>
+  );
+};
+
+export const useNotification = () => {
