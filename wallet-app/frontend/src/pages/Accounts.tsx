@@ -112,3 +112,22 @@ const Accounts = () => {
     e.preventDefault();
     
     // Validate required fields
+    if (!formData.name.trim()) {
+      setError('Account name is required');
+      return;
+    }
+
+    if (!formData.balance || isNaN(parseFloat(formData.balance))) {
+      setError('Please enter a valid balance amount');
+      return;
+    }
+
+    if (!formData.type) {
+      setError('Please select an account type');
+      return;
+    }
+
+    if (!formData.currency) {
+      setError('Please select a currency');
+      return;
+    }
