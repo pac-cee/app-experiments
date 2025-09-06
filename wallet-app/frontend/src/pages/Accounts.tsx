@@ -74,3 +74,22 @@ const Accounts = () => {
     if (account) {
       setSelectedAccount(account);
       setFormData({
+        name: account.name,
+        balance: account.balance.toString(),
+        type: account.type,
+        currency: account.currency,
+      });
+    } else {
+      setSelectedAccount(null);
+      setFormData({
+        name: '',
+        balance: '',
+        type: 'bank',
+        currency: '',
+      });
+    }
+    setOpenDialog(true);
+    setError('');
+  };
+
+  const handleCloseDialog = () => {
