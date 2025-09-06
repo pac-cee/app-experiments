@@ -55,3 +55,22 @@ const Accounts = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    fetchAccounts();
+  }, []);
+
+  const fetchAccounts = async () => {
+    try {
+      setLoading(true);
+      const response = await accountsAPI.getAll();
+      setAccounts(response.data);
+    } catch (error) {
+      console.error('Error fetching accounts:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOpenDialog = (account?: Account) => {
+    if (account) {
+      setSelectedAccount(account);
+      setFormData({
