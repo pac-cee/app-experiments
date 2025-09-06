@@ -36,3 +36,22 @@ const accountTypes = [
 
 const currencies = [
   { value: 'USD', label: 'USD' },
+  { value: 'EUR', label: 'EUR' },
+  { value: 'GBP', label: 'GBP' },
+  { value: 'JPY', label: 'JPY' },
+];
+
+const Accounts = () => {
+  const [accounts, setAccounts] = useState<Account[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
+  const [formData, setFormData] = useState<AccountFormData>({
+    name: '',
+    balance: '',
+    type: 'bank',
+    currency: '',
+  });
+  const [error, setError] = useState('');
+
+  useEffect(() => {
