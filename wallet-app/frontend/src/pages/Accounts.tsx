@@ -93,3 +93,22 @@ const Accounts = () => {
   };
 
   const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setSelectedAccount(null);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>) => {
+    const name = e.target.name as keyof AccountFormData;
+    const value = e.target.value;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setError('');
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate required fields
