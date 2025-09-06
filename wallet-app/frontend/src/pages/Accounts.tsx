@@ -188,3 +188,22 @@ const Accounts = () => {
           Add Account
         </Button>
       </Box>
+
+      <Grid container spacing={3}>
+        {accounts.map((account) => (
+          <Grid item xs={12} sm={6} md={4} key={account._id}>
+            <Card sx={{ p: 3, position: 'relative' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <AccountIcon sx={{ mr: 1, color: 'primary.main' }} />
+                <Typography variant="h6">{account.name}</Typography>
+              </Box>
+              <Typography variant="h4" sx={{ mb: 1 }}>
+                {account.currency} {account.balance.toFixed(2)}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Type: {account.type ? account.type.charAt(0).toUpperCase() + account.type.slice(1) : 'N/A'}
+              </Typography>
+              <Box sx={{ position: 'absolute', top: 12, right: 12 }}>
+                <IconButton
+                  size="small"
+                  onClick={() => handleOpenDialog(account)}
