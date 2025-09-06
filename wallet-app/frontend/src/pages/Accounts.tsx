@@ -131,3 +131,22 @@ const Accounts = () => {
       setError('Please select a currency');
       return;
     }
+
+    try {
+      const accountData: AccountFormData = {
+        ...formData,
+        name: formData.name.trim(),
+        balance: formData.balance,
+        type: formData.type as AccountType,
+      };
+
+      if (selectedAccount) {
+        await accountsAPI.update(selectedAccount._id, accountData);
+      } else {
+        await accountsAPI.create(accountData);
+      }
+      handleCloseDialog();
+      fetchAccounts();
+    } catch (error: any) {
+      console.error('Error saving account:', error);
+      setError(error.response?.data?.message || 'Failed to save account');
