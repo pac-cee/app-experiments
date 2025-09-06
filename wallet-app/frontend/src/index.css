@@ -17,3 +17,22 @@
   --scrollbar-thumb: rgba(0, 0, 0, 0.2);
   --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
 }
+
+[data-theme='dark'] {
+  /* Dark theme variables */
+  --background-color: #121212;
+  --surface-color: #1e1e2d;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --scrollbar-track: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
