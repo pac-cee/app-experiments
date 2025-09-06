@@ -226,3 +226,22 @@ const Accounts = () => {
 
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
         <DialogTitle>
+          {selectedAccount ? 'Edit Account' : 'Add New Account'}
+        </DialogTitle>
+        <DialogContent>
+          <Box component="form" sx={{ mt: 2 }}>
+            <TextField
+              fullWidth
+              label="Account Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              margin="normal"
+              required
+            />
+            <TextField
+              fullWidth
+              label="Balance"
+              name="balance"
+              type="number"
+              value={formData.balance}
