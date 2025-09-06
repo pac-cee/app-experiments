@@ -150,3 +150,22 @@ const Accounts = () => {
     } catch (error: any) {
       console.error('Error saving account:', error);
       setError(error.response?.data?.message || 'Failed to save account');
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (window.confirm('Are you sure you want to delete this account?')) {
+      try {
+        await accountsAPI.delete(id);
+        fetchAccounts();
+      } catch (error) {
+        console.error('Error deleting account:', error);
+      }
+    }
+  };
+
+  const getAccountTypeIcon = (type: string) => {
+    return <AccountIcon />;
+  };
+
+  if (loading) {
