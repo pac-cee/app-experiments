@@ -17,3 +17,10 @@ const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
+);
+
+root.render(
+  <Providers>
+    <App />
+  </Providers>
+);
