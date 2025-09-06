@@ -264,3 +264,22 @@ const Accounts = () => {
             >
               {accountTypes.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              fullWidth
+              select
+              label="Currency"
+              name="currency"
+              value={formData.currency}
+              onChange={handleChange}
+              margin="normal"
+            >
+              {currencies.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
