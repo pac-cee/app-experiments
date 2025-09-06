@@ -93,3 +93,15 @@ body {
 .card:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
+
+/* Input field styles */
+input, textarea, select {
+  background-color: var(--surface-color);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--text-primary);
+  outline: none;
+}
