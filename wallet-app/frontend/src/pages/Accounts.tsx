@@ -245,3 +245,22 @@ const Accounts = () => {
               name="balance"
               type="number"
               value={formData.balance}
+              onChange={handleChange}
+              margin="normal"
+              required
+              inputProps={{
+                step: "0.01",
+                min: "0",
+              }}
+            />
+            <TextField
+              fullWidth
+              select
+              label="Account Type"
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              margin="normal"
+            >
+              {accountTypes.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
