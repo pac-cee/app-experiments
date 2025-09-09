@@ -17,3 +17,22 @@ const OAuthCallback = () => {
         const code = params.get('code');
         const provider = location.pathname.split('/')[2]; // Get provider from URL path
 
+        if (!code) {
+          throw new Error('No authorization code received');
+        }
+
+        let response;
+        switch (provider) {
+          case 'google':
+            response = await authAPI.handleGoogleCallback(code);
+            break;
+          case 'github':
+            response = await authAPI.handleGithubCallback(code);
+            break;
+          case 'twitter':
+            response = await authAPI.handleTwitterCallback(code);
+            break;
+          default:
+            throw new Error('Unknown provider');
+        }
+
