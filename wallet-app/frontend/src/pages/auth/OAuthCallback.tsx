@@ -55,3 +55,22 @@ const OAuthCallback = () => {
       <Box
         display="flex"
         flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        minHeight="100vh"
+        gap={2}
+      >
+        <Alert severity="error" sx={{ maxWidth: 400 }}>
+          {error}
+        </Alert>
+        <Typography variant="body2" color="text.secondary">
+          Redirecting to login...
+        </Typography>
+      </Box>
+    );
+  }
+
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
