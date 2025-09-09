@@ -55,3 +55,22 @@ interface FormData {
   parentCategoryId?: string;
 }
 
+const initialFormData: FormData = {
+  name: '',
+  type: 'expense',
+  color: '#1976d2'
+};
+
+const categoryTypes = [
+  { value: 'income', label: 'Income' },
+  { value: 'expense', label: 'Expense' },
+];
+
+const colors = [
+  { value: '#1976d2', label: 'Blue' },
+  { value: '#2e7d32', label: 'Green' },
+  { value: '#d32f2f', label: 'Red' },
+  { value: '#ed6c02', label: 'Orange' },
+  { value: '#9c27b0', label: 'Purple' },
+  { value: '#0288d1', label: 'Light Blue' },
+  { value: '#388e3c', label: 'Light Green' },
