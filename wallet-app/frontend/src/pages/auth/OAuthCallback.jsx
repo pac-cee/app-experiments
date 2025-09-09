@@ -74,3 +74,17 @@ const OAuthCallback = () => {
     <Box
       display="flex"
       flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      minHeight="100vh"
+      gap={2}
+    >
+      <CircularProgress />
+      <Typography variant="body1">
+        Completing authentication...
+      </Typography>
+    </Box>
+  );
+};
+
+export default OAuthCallback;
