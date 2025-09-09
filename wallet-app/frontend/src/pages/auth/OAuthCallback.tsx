@@ -36,3 +36,22 @@ const OAuthCallback = () => {
             throw new Error('Unknown provider');
         }
 
+        const { token, ...userData } = response.data;
+        localStorage.setItem('token', token);
+        setUser(userData);
+        navigate('/dashboard', { replace: true });
+      } catch (err: any) {
+        console.error('OAuth callback error:', err);
+        setError(err.message || 'Authentication failed');
+        setTimeout(() => navigate('/login'), 3000);
+      }
+    };
+
+    handleCallback();
+  }, [location, navigate, setUser]);
+
+  if (error) {
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
