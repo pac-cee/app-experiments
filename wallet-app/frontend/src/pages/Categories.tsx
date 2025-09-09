@@ -36,3 +36,22 @@ import CreateDefaultCategories from '../components/category/CreateDefaultCategor
 
 interface SubCategory {
   _id: string;
+  name: string;
+  color: string;
+}
+
+interface Category {
+  _id: string;
+  name: string;
+  type: 'income' | 'expense';
+  color: string;
+  subcategories?: SubCategory[];
+}
+
+interface FormData {
+  name: string;
+  type: 'income' | 'expense';
+  color: string;
+  parentCategoryId?: string;
+}
+
