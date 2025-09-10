@@ -169,3 +169,22 @@ const Categories = () => {
     }
 
     try {
+      const categoryData: FormData = {
+        name: formData.name.trim(),
+        type: formData.type,
+        color: formData.color
+      };
+
+      console.log('Submitting category:', {
+        isUpdate: !!selectedCategory,
+        isSubcategory: !!formData.parentCategoryId,
+        data: categoryData,
+        selectedCategory,
+        selectedSubCategory,
+        parentCategoryId: formData.parentCategoryId
+      });
+
+      if (selectedSubCategory) {
+        // Update subcategory
+        await categoriesAPI.updateSubcategory(
+          formData.parentCategoryId!,
