@@ -131,3 +131,22 @@ const Categories = () => {
       setFormData({
         name: category.name,
         type: category.type,
+        color: category.color,
+        parentCategoryId: '',
+      });
+    } else {
+      setSelectedCategory(null);
+      setSelectedSubCategory(null);
+      setFormData(initialFormData);
+    }
+    setOpenDialog(true);
+    setError('');
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setSelectedCategory(null);
+    setSelectedSubCategory(null);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }> | SelectChangeEvent) => {
