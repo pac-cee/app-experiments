@@ -93,3 +93,22 @@ const Categories = () => {
   }, []);
 
   const fetchCategories = async () => {
+    try {
+      setLoading(true);
+      const response = await categoriesAPI.getAll();
+      if (response.data) {
+        setCategories(response.data);
+      } else {
+        setCategories([]);
+        showNotification('warning', 'No categories found');
+      }
+    } catch (error: any) {
+      console.error('Error fetching categories:', error);
+      setCategories([]);
+      if (error.response?.status === 404) {
+        showNotification('info', 'No categories found. Create your first category!');
+      } else {
+        showNotification('error', error.response?.data?.message || 'Failed to fetch categories');
+      }
+    } finally {
+      setLoading(false);
