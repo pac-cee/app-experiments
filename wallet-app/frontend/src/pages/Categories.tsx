@@ -74,3 +74,22 @@ const colors = [
   { value: '#9c27b0', label: 'Purple' },
   { value: '#0288d1', label: 'Light Blue' },
   { value: '#388e3c', label: 'Light Green' },
+  { value: '#d81b60', label: 'Pink' },
+];
+
+const Categories = () => {
+  const { showNotification } = useNotification();
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState<SubCategory | null>(null);
+  const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
