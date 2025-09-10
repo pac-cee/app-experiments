@@ -112,3 +112,22 @@ const Categories = () => {
       }
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleOpenDialog = (category?: Category, subcategory?: SubCategory) => {
+    if (subcategory) {
+      setSelectedSubCategory(subcategory);
+      setSelectedCategory(category || null);
+      setFormData({
+        name: subcategory.name,
+        type: category?.type || 'expense',
+        color: subcategory.color,
+        parentCategoryId: category?._id || '',
+      });
+    } else if (category) {
+      setSelectedCategory(category);
+      setSelectedSubCategory(null);
+      setFormData({
+        name: category.name,
+        type: category.type,
