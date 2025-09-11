@@ -207,3 +207,22 @@ const Categories = () => {
         // Create subcategory
         await categoriesAPI.createSubcategory(
           formData.parentCategoryId,
+          { 
+            name: categoryData.name,
+            color: categoryData.color
+          }
+        );
+        showNotification('success', 'Subcategory created successfully');
+      } else {
+        // Create new category
+        await categoriesAPI.create({
+          name: categoryData.name,
+          type: categoryData.type,
+          color: categoryData.color
+        });
+        showNotification('success', 'Category created successfully');
+      }
+      
+      handleCloseDialog();
+      await fetchCategories();
+    } catch (error: any) {
