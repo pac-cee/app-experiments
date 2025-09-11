@@ -302,3 +302,22 @@ const Categories = () => {
 
       <Grid container spacing={3}>
         {categories.map((category) => (
+          <Grid item xs={12} key={category._id}>
+            <Card sx={{ p: 2 }}>
+              <List component="nav" disablePadding>
+                <ListItem
+                  button
+                  onClick={() => handleToggleCategory(category._id)}
+                  sx={{
+                    borderLeft: 6,
+                    borderColor: category.color,
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                    },
+                  }}
+                >
+                  <CategoryIcon sx={{ mr: 2, color: category.color }} />
+                  <ListItemText
+                    primary={category.name}
+                    secondary={`${category.type} • ${
+                      category.subcategories?.length || 0
