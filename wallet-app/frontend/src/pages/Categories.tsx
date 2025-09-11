@@ -188,3 +188,22 @@ const Categories = () => {
         // Update subcategory
         await categoriesAPI.updateSubcategory(
           formData.parentCategoryId!,
+          selectedSubCategory._id,
+          { 
+            name: categoryData.name,
+            color: categoryData.color
+          }
+        );
+        showNotification('success', 'Subcategory updated successfully');
+      } else if (selectedCategory) {
+        // Update category
+        await categoriesAPI.update(selectedCategory._id, {
+          name: categoryData.name,
+          type: categoryData.type,
+          color: categoryData.color
+        });
+        showNotification('success', 'Category updated successfully');
+      } else if (formData.parentCategoryId) {
+        // Create subcategory
+        await categoriesAPI.createSubcategory(
+          formData.parentCategoryId,
