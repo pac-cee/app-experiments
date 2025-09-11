@@ -264,3 +264,22 @@ const Categories = () => {
         } else {
           showNotification('error', `Failed to delete ${itemType}. Please try again.`);
         }
+      }
+    }
+  };
+
+  const handleToggleCategory = (categoryId: string) => {
+    setExpandedCategories(prev =>
+      prev.includes(categoryId)
+        ? prev.filter(id => id !== categoryId)
+        : [...prev, categoryId]
+    );
+  };
+
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
