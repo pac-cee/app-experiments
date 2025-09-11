@@ -283,3 +283,22 @@ const Categories = () => {
       </Box>
     );
   }
+
+  return (
+    <Box sx={{ p: 3 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Typography variant="h4">Categories</Typography>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <CreateDefaultCategories onSuccess={fetchCategories} />
+          <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            onClick={() => handleOpenDialog()}
+          >
+            Add Category
+          </Button>
+        </Box>
+      </Box>
+
+      <Grid container spacing={3}>
+        {categories.map((category) => (
