@@ -245,3 +245,22 @@ const Categories = () => {
 
   const handleDelete = async (categoryId: string, subcategoryId?: string) => {
     const itemType = subcategoryId ? 'subcategory' : 'category';
+    const message = `Are you sure you want to delete this ${itemType}? This action cannot be undone and will affect any transactions using this ${itemType}.`;
+    
+    if (window.confirm(message)) {
+      try {
+        if (subcategoryId) {
+          await categoriesAPI.deleteSubcategory(categoryId, subcategoryId);
+          showNotification('success', 'Subcategory deleted successfully');
+        } else {
+          await categoriesAPI.delete(categoryId);
+          showNotification('success', 'Category deleted successfully');
+        }
+        fetchCategories();
+      } catch (error: any) {
+        console.error(`Error deleting ${itemType}:`, error);
+        if (error.response?.status === 409) {
+          showNotification('error', `This ${itemType} is being used by some transactions and cannot be deleted.`);
+        } else {
+          showNotification('error', `Failed to delete ${itemType}. Please try again.`);
+        }
