@@ -226,3 +226,22 @@ const Categories = () => {
       handleCloseDialog();
       await fetchCategories();
     } catch (error: any) {
+      console.error('Error saving category:', {
+        error: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+        config: error.config
+      });
+      
+      if (error.response?.status === 404) {
+        setError('The specified category or endpoint was not found. Please check your connection.');
+      } else if (error.response?.status === 400) {
+        setError(error.response.data?.message || 'Invalid category data');
+      } else {
+        setError('Failed to save category. Please try again.');
+      }
+    }
+  };
+
+  const handleDelete = async (categoryId: string, subcategoryId?: string) => {
+    const itemType = subcategoryId ? 'subcategory' : 'category';
