@@ -340,3 +340,22 @@ const Categories = () => {
                         handleDelete(category._id);
                       }}
                     >
+                      <DeleteIcon />
+                    </IconButton>
+                    <IconButton
+                      edge="end"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFormData(prev => ({
+                          ...prev,
+                          parentCategoryId: category._id,
+                          type: category.type,
+                        }));
+                        handleOpenDialog();
+                      }}
+                    >
+                      <AddIcon />
+                    </IconButton>
+                    {category.subcategories?.length ? (
+                      expandedCategories.includes(category._id) ? (
+                        <ExpandLess />
