@@ -378,3 +378,22 @@ const Categories = () => {
                             borderColor: 'transparent',
                             '&:hover': {
                               backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                            },
+                          }}
+                        >
+                          <SubdirectoryArrowRightIcon sx={{ mr: 2, color: subcategory.color }} />
+                          <ListItemText primary={subcategory.name} />
+                          <ListItemSecondaryAction>
+                            <IconButton
+                              edge="end"
+                              onClick={() => handleOpenDialog(category, subcategory)}
+                            >
+                              <EditIcon />
+                            </IconButton>
+                            <IconButton
+                              edge="end"
+                              onClick={() => handleDelete(category._id, subcategory._id)}
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </ListItemSecondaryAction>
