@@ -321,3 +321,22 @@ const Categories = () => {
                     primary={category.name}
                     secondary={`${category.type} • ${
                       category.subcategories?.length || 0
+                    } subcategories`}
+                  />
+                  <ListItemSecondaryAction>
+                    <IconButton
+                      edge="end"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenDialog(category);
+                      }}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      edge="end"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(category._id);
+                      }}
+                    >
