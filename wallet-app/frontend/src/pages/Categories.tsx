@@ -359,3 +359,22 @@ const Categories = () => {
                     {category.subcategories?.length ? (
                       expandedCategories.includes(category._id) ? (
                         <ExpandLess />
+                      ) : (
+                        <ExpandMore />
+                      )
+                    ) : null}
+                  </ListItemSecondaryAction>
+                </ListItem>
+                
+                {category.subcategories?.length ? (
+                  <Collapse in={expandedCategories.includes(category._id)} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {category.subcategories.map((subcategory) => (
+                        <ListItem
+                          key={subcategory._id}
+                          sx={{
+                            pl: 4,
+                            borderLeft: 6,
+                            borderColor: 'transparent',
+                            '&:hover': {
+                              backgroundColor: 'rgba(0, 0, 0, 0.04)',
