@@ -397,3 +397,22 @@ const Categories = () => {
                               <DeleteIcon />
                             </IconButton>
                           </ListItemSecondaryAction>
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Collapse>
+                ) : null}
+              </List>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
+        <DialogTitle>
+          {selectedSubCategory
+            ? 'Edit Subcategory'
+            : selectedCategory
+            ? 'Edit Category'
+            : formData.parentCategoryId
+            ? 'Add Subcategory'
