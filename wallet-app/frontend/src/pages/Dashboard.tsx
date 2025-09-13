@@ -93,3 +93,22 @@ const Dashboard = () => {
 
       // Process category breakdown
       const categoryBreakdown = categories.map((category: Category) => ({
+        id: category.name,
+        label: category.name,
+        value: transactions
+          .filter((t: Transaction) => t.category === category._id)
+          .reduce((sum: number, t: Transaction) => sum + t.amount, 0),
+        color: category.color,
+      })).filter((c: { value: number }) => c.value > 0);
+
+      // Process trend data
+      const last3Months = Array.from({ length: 3 }, (_, i) => {
+        const date = new Date();
+        date.setMonth(date.getMonth() - i);
+        return date.toLocaleString('default', { month: 'short' });
+      }).reverse();
+
+      const trendData = {
+        income: last3Months.map(month => ({
+          x: month,
+          y: transactions
