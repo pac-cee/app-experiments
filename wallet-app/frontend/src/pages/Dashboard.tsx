@@ -36,3 +36,22 @@ interface DashboardSummary {
   accounts: Account[];
   budgets: Budget[];
   categories: Category[];
+  categoryBreakdown: {
+    id: string;
+    label: string;
+    value: number;
+    color: string;
+  }[];
+  trendData: {
+    income: { x: string; y: number }[];
+    expense: { x: string; y: number }[];
+  };
+}
+
+const Dashboard = () => {
+  const theme = useTheme();
+  const { user } = useAuth();
+  const { showNotification } = useNotification();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
