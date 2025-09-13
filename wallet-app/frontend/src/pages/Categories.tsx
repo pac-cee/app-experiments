@@ -492,3 +492,17 @@ const Categories = () => {
                 ))}
               </Select>
             </FormControl>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={handleSubmit} variant="contained" color="primary">
+            {selectedCategory || selectedSubCategory ? 'Update' : 'Create'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
+  );
+};
+
+export default Categories;
