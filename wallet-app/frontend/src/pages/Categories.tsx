@@ -435,3 +435,22 @@ const Categories = () => {
             {!formData.parentCategoryId && (
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel id="type-label">Type</InputLabel>
+                <Select
+                  labelId="type-label"
+                  label="Type"
+                  name="type"
+                  value={formData.type}
+                  onChange={handleChange as (event: SelectChangeEvent<'income' | 'expense'>) => void}
+                >
+                  {categoryTypes.map((type) => (
+                    <MenuItem key={type.value} value={type.value}>
+                      {type.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+
+            <FormControl fullWidth sx={{ mb: 2 }}>
+              <InputLabel id="color-label">Color</InputLabel>
+              <Select
