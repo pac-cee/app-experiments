@@ -416,3 +416,22 @@ const Categories = () => {
             ? 'Edit Category'
             : formData.parentCategoryId
             ? 'Add Subcategory'
+            : 'Add Category'}
+        </DialogTitle>
+        <DialogContent>
+          <Box component="form" onSubmit={handleSubmit}>
+            <TextField
+              fullWidth
+              label="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              error={!!error}
+              helperText={error}
+              sx={{ mb: 2 }}
+              autoFocus
+            />
+            
+            {!formData.parentCategoryId && (
+              <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="type-label">Type</InputLabel>
