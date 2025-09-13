@@ -454,3 +454,22 @@ const Categories = () => {
             <FormControl fullWidth sx={{ mb: 2 }}>
               <InputLabel id="color-label">Color</InputLabel>
               <Select
+                labelId="color-label"
+                label="Color"
+                name="color"
+                value={formData.color}
+                onChange={handleChange as (event: SelectChangeEvent<string>) => void}
+                renderValue={(selected) => (
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box
+                      sx={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: '50%',
+                        bgcolor: selected,
+                        mr: 1,
+                      }}
+                    />
+                    {colors.find(c => c.value === selected)?.label}
+                  </Box>
+                )}
