@@ -473,3 +473,22 @@ const Categories = () => {
                     {colors.find(c => c.value === selected)?.label}
                   </Box>
                 )}
+              >
+                {colors.map((color) => (
+                  <MenuItem key={color.value} value={color.value}>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Box
+                        sx={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: '50%',
+                          bgcolor: color.value,
+                          mr: 1,
+                        }}
+                      />
+                      {color.label}
+                    </Box>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
