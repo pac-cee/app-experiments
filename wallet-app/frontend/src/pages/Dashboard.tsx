@@ -55,3 +55,22 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [summary, setSummary] = useState<DashboardSummary>({
+    totalBalance: 0,
+    monthlyIncome: 0,
+    monthlyExpenses: 0,
+    transactions: [],
+    accounts: [],
+    budgets: [],
+    categories: [],
+    categoryBreakdown: [],
+    trendData: {
+      income: [],
+      expense: []
+    }
+  });
+
+  const handleError = (error: any) => {
+    console.error('Dashboard error:', error);
+    const message = error.response?.data?.message || error.message || 'An unexpected error occurred';
+    setError(message);
