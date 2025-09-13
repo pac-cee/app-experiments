@@ -74,3 +74,22 @@ const Dashboard = () => {
     console.error('Dashboard error:', error);
     const message = error.response?.data?.message || error.message || 'An unexpected error occurred';
     setError(message);
+    showNotification('error', message);
+  };
+
+  const fetchDashboardData = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Fetch all required data
+      const [transactionsRes, categoriesRes] = await Promise.all([
+        transactionsAPI.getAll(),
+        categoriesAPI.getAll(),
+      ]);
+
+      const transactions = transactionsRes.data;
+      const categories = categoriesRes.data;
+
+      // Process category breakdown
+      const categoryBreakdown = categories.map((category: Category) => ({
