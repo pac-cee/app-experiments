@@ -264,3 +264,22 @@ const Dashboard = () => {
               <MotionCard
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                sx={{ p: 3 }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <TrendingUpIcon sx={{ fontSize: 'medium', color: 'success.main' }} />
+                  <Typography variant="h6" sx={{ ml: 1 }}>Monthly Income</Typography>
+                </Box>
+                <Typography variant="h4" gutterBottom>
+                  {formatCurrency(summary.monthlyIncome)}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  This month's earnings
+                </Typography>
+              </MotionCard>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <MotionCard
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
