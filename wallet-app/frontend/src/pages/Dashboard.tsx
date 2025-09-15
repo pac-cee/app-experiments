@@ -283,3 +283,22 @@ const Dashboard = () => {
               <MotionCard
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+                sx={{ p: 3 }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <TrendingDownIcon sx={{ fontSize: 'medium', color: 'error.main' }} />
+                  <Typography variant="h6" sx={{ ml: 1 }}>Monthly Expenses</Typography>
+                </Box>
+                <Typography variant="h4" gutterBottom>
+                  {formatCurrency(summary.monthlyExpenses)}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  This month's spending
+                </Typography>
+              </MotionCard>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        {/* Budget Progress */}
