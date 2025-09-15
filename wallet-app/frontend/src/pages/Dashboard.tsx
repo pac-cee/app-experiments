@@ -245,3 +245,22 @@ const Dashboard = () => {
                   },
                 }}
               >
+                Add Account
+              </Button>
+            </Box>
+            <Typography variant="h3" sx={{ my: 2 }}>
+              {formatCurrency(summary.totalBalance)}
+            </Typography>
+            <Typography variant="body2" sx={{ opacity: 0.8 }}>
+              {summary.accounts.length} active account{summary.accounts.length !== 1 ? 's' : ''}
+            </Typography>
+          </MotionCard>
+        </Grid>
+
+        {/* Monthly Summary Cards */}
+        <Grid item xs={12} md={8}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6}>
+              <MotionCard
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
