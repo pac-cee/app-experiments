@@ -188,3 +188,22 @@ const Dashboard = () => {
         <CircularProgress />
         <Typography variant="body2" color="text.secondary">
           Loading your financial summary...
+        </Typography>
+      </Box>
+    );
+  }
+
+  const MotionCard = motion(Card);
+
+  return (
+    <Box sx={{ p: 3 }}>
+      {/* Header */}
+      <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box>
+          <Typography variant="h4" gutterBottom>
+            Welcome back, {user?.name}!
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            Here's your financial summary
+          </Typography>
+        </Box>
