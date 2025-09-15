@@ -340,3 +340,22 @@ const Dashboard = () => {
           </Card>
         </Grid>
 
+        {/* Charts */}
+        <Grid item xs={12} md={6}>
+          <Card sx={{ p: 3, height: 400 }}>
+            <Typography variant="h6" gutterBottom>
+              Income vs Expenses
+            </Typography>
+            <Box sx={{ height: 300 }}>
+              {summary.trendData.income.length > 0 && summary.trendData.expense.length > 0 ? (
+                <ResponsiveLine
+                  data={[
+                    {
+                      id: 'Income',
+                      color: theme.palette.success.main,
+                      data: summary.trendData.income,
+                    },
+                    {
+                      id: 'Expenses',
+                      color: theme.palette.error.main,
+                      data: summary.trendData.expense,
