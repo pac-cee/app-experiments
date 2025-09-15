@@ -112,3 +112,22 @@ const Dashboard = () => {
         income: last3Months.map(month => ({
           x: month,
           y: transactions
+            .filter((t: Transaction) => 
+              t.type === 'income' &&
+              new Date(t.date).toLocaleString('default', { month: 'short' }) === month
+            )
+            .reduce((sum: number, t: Transaction) => sum + t.amount, 0),
+        })),
+        expense: last3Months.map(month => ({
+          x: month,
+          y: transactions
+            .filter((t: Transaction) => 
+              t.type === 'expense' &&
+              new Date(t.date).toLocaleString('default', { month: 'short' }) === month
+            )
+            .reduce((sum: number, t: Transaction) => sum + t.amount, 0),
+        })),
+      };
+
+      setSummary({
+        totalBalance: 0,
