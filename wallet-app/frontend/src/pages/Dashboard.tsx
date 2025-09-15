@@ -150,3 +150,22 @@ const Dashboard = () => {
             : budget.category;
           
           if (!category) return;
+          
+          showNotification(
+            'warning',
+            `Budget Alert: ${category.name} is at ${percentage.toFixed(1)}% of limit`
+          );
+        }
+      });
+
+    } catch (error) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
+  }, [showNotification]);
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData, refreshKey]);
+
