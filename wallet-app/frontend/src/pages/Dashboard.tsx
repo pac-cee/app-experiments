@@ -321,3 +321,22 @@ const Dashboard = () => {
                     </Box>
                     <LinearProgress
                       variant="determinate"
+                      value={Math.min((budget.spent / budget.limit) * 100, 100)}
+                      sx={{
+                        height: 8,
+                        borderRadius: 4,
+                        bgcolor: 'rgba(0,0,0,0.1)',
+                        '& .MuiLinearProgress-bar': {
+                          bgcolor: typeof budget.category === 'string'
+                            ? summary.categories.find((c: Category) => c._id === budget.category)?.color
+                            : budget.category.color,
+                        },
+                      }}
+                    />
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Card>
+        </Grid>
+
