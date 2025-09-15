@@ -207,3 +207,22 @@ const Dashboard = () => {
             Here's your financial summary
           </Typography>
         </Box>
+        <IconButton onClick={handleRefresh} disabled={loading}>
+          <RefreshIcon fontSize="medium" />
+        </IconButton>
+      </Box>
+
+      {error && (
+        <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError(null)}>
+          {error}
+        </Alert>
+      )}
+
+      <Grid container spacing={3}>
+        {/* Total Balance Card */}
+        <Grid item xs={12} md={4}>
+          <MotionCard
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            sx={{
