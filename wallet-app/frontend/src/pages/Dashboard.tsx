@@ -302,3 +302,22 @@ const Dashboard = () => {
         </Grid>
 
         {/* Budget Progress */}
+        <Grid item xs={12}>
+          <Card sx={{ p: 3 }}>
+            <Typography variant="h6" gutterBottom>
+              Budget Progress
+            </Typography>
+            <Grid container spacing={2}>
+              {summary.budgets.map((budget) => (
+                <Grid item xs={12} key={budget._id}>
+                  <Box sx={{ mb: 1 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                      <Typography variant="body2">{typeof budget.category === 'string' 
+                        ? summary.categories.find((c: Category) => c._id === budget.category)?.name 
+                        : budget.category.name}</Typography>
+                      <Typography variant="body2">
+                        {formatCurrency(budget.spent)} / {formatCurrency(budget.limit)}
+                      </Typography>
+                    </Box>
+                    <LinearProgress
+                      variant="determinate"
