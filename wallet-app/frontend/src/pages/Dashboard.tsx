@@ -131,3 +131,22 @@ const Dashboard = () => {
 
       setSummary({
         totalBalance: 0,
+        monthlyIncome: 0,
+        monthlyExpenses: 0,
+        transactions,
+        accounts: [],
+        budgets: [],
+        categories,
+        categoryBreakdown,
+        trendData,
+      });
+
+      // Check budget notifications
+      summary.budgets.forEach((budget: Budget) => {
+        const percentage = (budget.spent / budget.limit) * 100;
+        if (percentage >= budget.notificationThreshold) {
+          const category = typeof budget.category === 'string' 
+            ? summary.categories.find((c: Category) => c._id === budget.category) 
+            : budget.category;
+          
+          if (!category) return;
