@@ -226,3 +226,22 @@ const Dashboard = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
             sx={{
+              p: 3,
+              background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
+              color: 'white',
+            }}
+          >
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Typography variant="h6">Total Balance</Typography>
+              <Button
+                variant="contained"
+                size="small"
+                startIcon={<AddIcon fontSize="small" />}
+                onClick={() => window.location.href = '/accounts'}
+                sx={{
+                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  '&:hover': {
+                    bgcolor: 'rgba(255, 255, 255, 0.2)',
+                  },
+                }}
+              >
