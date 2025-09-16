@@ -397,3 +397,22 @@ const Dashboard = () => {
                       itemDirection: 'left-to-right',
                       itemWidth: 80,
                       itemHeight: 20,
+                      symbolSize: 12,
+                      symbolShape: 'circle',
+                    },
+                  ]}
+                  theme={{
+                    axis: {
+                      ticks: {
+                        text: {
+                          fill: theme.palette.text.secondary,
+                        },
+                      },
+                    },
+                    grid: {
+                      line: {
+                        stroke: theme.palette.divider,
+                      },
+                    },
+                  }}
+                />
