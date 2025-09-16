@@ -55,3 +55,22 @@ const ForgotPassword: React.FC = () => {
                 fullWidth
                 label="Email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                margin="normal"
+              />
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                disabled={loading}
+                sx={{ mt: 2 }}
+              >
+                {loading ? 'Sending...' : 'Reset Password'}
+              </Button>
+            </form>
+          )}
+        </Paper>
