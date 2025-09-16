@@ -36,3 +36,22 @@ const ForgotPassword: React.FC = () => {
       <Box sx={{ mt: 8 }}>
         <Paper sx={{ p: 4 }}>
           <Typography variant="h5" component="h1" gutterBottom align="center">
+            Forgot Password
+          </Typography>
+
+          {success ? (
+            <Alert severity="success" sx={{ mb: 2 }}>
+              Password reset instructions have been sent to your email.
+            </Alert>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              {error && (
+                <Alert severity="error" sx={{ mb: 2 }}>
+                  {error}
+                </Alert>
+              )}
+
+              <TextField
+                fullWidth
+                label="Email"
+                type="email"
