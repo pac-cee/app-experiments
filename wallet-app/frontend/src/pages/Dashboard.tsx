@@ -473,3 +473,22 @@ const Dashboard = () => {
         </Grid>
 
         {/* Recent Transactions */}
+        <Grid item xs={12}>
+          <Card sx={{ p: 3 }}>
+            <Typography variant="h6" gutterBottom>
+              Recent Transactions
+            </Typography>
+            <Box>
+              {summary.transactions.slice(0, 5).map((transaction) => (
+                <Box
+                  key={transaction._id}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    py: 2,
+                    borderBottom: `1px solid ${theme.palette.divider}`,
+                    '&:last-child': { borderBottom: 'none' },
+                  }}
+                >
+                  <Box>
