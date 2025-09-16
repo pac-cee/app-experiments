@@ -416,3 +416,22 @@ const Dashboard = () => {
                     },
                   }}
                 />
+              ) : (
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                  <Typography variant="body1" color="text.secondary">
+                    No trend data available
+                  </Typography>
+                </Box>
+              )}
+            </Box>
+          </Card>
+        </Grid>
+
+        {/* Category Breakdown */}
+        <Grid item xs={12} md={6}>
+          <Card sx={{ p: 3, height: 400 }}>
+            <Typography variant="h6" gutterBottom>
+              Expense Breakdown
+            </Typography>
+            <Box sx={{ height: 300 }}>
+              <ResponsivePie
