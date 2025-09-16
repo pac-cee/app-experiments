@@ -359,3 +359,22 @@ const Dashboard = () => {
                       id: 'Expenses',
                       color: theme.palette.error.main,
                       data: summary.trendData.expense,
+                    },
+                  ]}
+                  margin={{ top: 20, right: 20, bottom: 50, left: 60 }}
+                  xScale={{ type: 'point' }}
+                  yScale={{ type: 'linear', min: 'auto', max: 'auto' }}
+                  curve="monotoneX"
+                  axisTop={null}
+                  axisRight={null}
+                  axisBottom={{
+                    tickSize: 5,
+                    tickPadding: 5,
+                    tickRotation: 0,
+                  }}
+                  axisLeft={{
+                    tickSize: 5,
+                    tickPadding: 5,
+                    tickRotation: 0,
+                    format: (value) => formatCurrency(value as number),
+                  }}
