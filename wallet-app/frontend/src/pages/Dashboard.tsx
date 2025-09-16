@@ -378,3 +378,22 @@ const Dashboard = () => {
                     tickRotation: 0,
                     format: (value) => formatCurrency(value as number),
                   }}
+                  enablePoints={true}
+                  pointSize={8}
+                  pointColor={{ theme: 'background' }}
+                  pointBorderWidth={2}
+                  pointBorderColor={{ from: 'serieColor' }}
+                  enableArea={true}
+                  areaOpacity={0.1}
+                  useMesh={true}
+                  legends={[
+                    {
+                      anchor: 'bottom',
+                      direction: 'row',
+                      justify: false,
+                      translateX: 0,
+                      translateY: 50,
+                      itemsSpacing: 0,
+                      itemDirection: 'left-to-right',
+                      itemWidth: 80,
+                      itemHeight: 20,
