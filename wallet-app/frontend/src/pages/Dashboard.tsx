@@ -530,3 +530,21 @@ const Dashboard = () => {
               )}
             </Box>
           </Card>
+        </Grid>
+      </Grid>
+
+      <Snackbar
+        open={!!error}
+        autoHideDuration={6000}
+        onClose={() => setError(null)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert onClose={() => setError(null)} severity="error" sx={{ width: '100%' }}>
+          {error}
+        </Alert>
+      </Snackbar>
+    </Box>
+  );
+};
+
+export default Dashboard;
