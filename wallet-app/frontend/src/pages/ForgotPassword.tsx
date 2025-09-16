@@ -17,3 +17,22 @@ const ForgotPassword: React.FC = () => {
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      await authAPI.forgotPassword({ email });
+      setSuccess(true);
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Failed to send reset email');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Container maxWidth="sm">
+      <Box sx={{ mt: 8 }}>
+        <Paper sx={{ p: 4 }}>
+          <Typography variant="h5" component="h1" gutterBottom align="center">
