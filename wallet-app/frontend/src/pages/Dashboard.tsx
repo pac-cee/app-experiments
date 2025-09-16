@@ -492,3 +492,22 @@ const Dashboard = () => {
                   }}
                 >
                   <Box>
+                    <Typography variant="body1">{transaction.description}</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {new Date(transaction.date).toLocaleDateString()} • {
+                        typeof transaction.category === 'object' ? transaction.category.name : ''
+                      }
+                    </Typography>
+                  </Box>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color:
+                        transaction.type === 'income'
+                          ? theme.palette.success.main
+                          : theme.palette.error.main,
+                    }}
+                  >
+                    {transaction.type === 'income' ? '+' : '-'}{' '}
+                    {formatCurrency(transaction.amount)}
+                  </Typography>
