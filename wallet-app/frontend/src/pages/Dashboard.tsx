@@ -511,3 +511,22 @@ const Dashboard = () => {
                     {transaction.type === 'income' ? '+' : '-'}{' '}
                     {formatCurrency(transaction.amount)}
                   </Typography>
+                </Box>
+              ))}
+              {summary.transactions.length === 0 && (
+                <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', py: 2 }}>
+                  No recent transactions
+                </Typography>
+              )}
+              {summary.transactions.length > 0 && (
+                <Box sx={{ mt: 2, textAlign: 'center' }}>
+                  <Button
+                    variant="outlined"
+                    onClick={() => window.location.href = '/transactions'}
+                  >
+                    View All Transactions
+                  </Button>
+                </Box>
+              )}
+            </Box>
+          </Card>
