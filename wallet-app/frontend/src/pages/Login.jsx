@@ -74,3 +74,22 @@ const Login = () => {
           await loginWithTwitter();
           break;
         default:
+          throw new Error('Invalid provider');
+      }
+      navigate('/dashboard');
+    } catch (err) {
+      setError(`Failed to sign in with ${provider}. Please try again.`);
+      console.error('Social login error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Container maxWidth="sm">
+      <Box
+        sx={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
