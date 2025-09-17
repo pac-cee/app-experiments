@@ -74,3 +74,9 @@ const ForgotPassword: React.FC = () => {
             </form>
           )}
         </Paper>
+      </Box>
+    </Container>
+  );
+};
+
+export default ForgotPassword;
