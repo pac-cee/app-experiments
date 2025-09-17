@@ -93,3 +93,22 @@ const Login = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          py: 3
+        }}
+      >
+        <Card
+          elevation={3}
+          sx={{
+            width: '100%',
+            borderRadius: 2,
+            bgcolor: 'background.paper'
+          }}
+        >
+          <CardContent sx={{ p: 4 }}>
+            <Typography variant="h4" component="h1" align="center" gutterBottom>
+              Welcome Back
+            </Typography>
+            <Typography variant="body2" color="text.secondary" align="center" mb={4}>
+              Sign in to continue to your account
+            </Typography>
+
