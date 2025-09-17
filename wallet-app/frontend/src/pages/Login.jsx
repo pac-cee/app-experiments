@@ -112,3 +112,22 @@ const Login = () => {
               Sign in to continue to your account
             </Typography>
 
+            {error && (
+              <Alert severity="error" sx={{ mb: 3 }}>
+                {error}
+              </Alert>
+            )}
+
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={3}>
+                <TextField
+                  fullWidth
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  autoComplete="email"
+                />
+
