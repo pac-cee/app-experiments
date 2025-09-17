@@ -55,3 +55,22 @@ const Login = () => {
       setError('Failed to sign in. Please check your credentials.');
       console.error('Login error:', err);
     } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSocialLogin = async (provider) => {
+    try {
+      setError('');
+      setLoading(true);
+      switch (provider) {
+        case 'google':
+          await loginWithGoogle();
+          break;
+        case 'github':
+          await loginWithGithub();
+          break;
+        case 'twitter':
+          await loginWithTwitter();
+          break;
+        default:
