@@ -169,3 +169,22 @@ const Login = () => {
             <Box sx={{ mt: 3 }}>
               <Link
                 component={RouterLink}
+                to="/forgot-password"
+                variant="body2"
+                color="primary"
+                align="center"
+                display="block"
+              >
+                Forgot Password?
+              </Link>
+            </Box>
+
+            <Divider sx={{ my: 3 }}>
+              <Typography variant="body2" color="text.secondary">
+                OR
+              </Typography>
+            </Divider>
+
+            <Stack direction="row" spacing={2} justifyContent="center">
+              <Button
+                fullWidth
