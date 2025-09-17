@@ -36,3 +36,22 @@ const Login = () => {
   const { login, loginWithGoogle, loginWithGithub, loginWithTwitter } = useAuth();
   const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setError('');
+      setLoading(true);
+      await login(formData.email, formData.password);
+      navigate('/dashboard');
+    } catch (err) {
+      setError('Failed to sign in. Please check your credentials.');
+      console.error('Login error:', err);
+    } finally {
