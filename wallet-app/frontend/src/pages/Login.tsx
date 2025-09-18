@@ -93,3 +93,22 @@ const Login = () => {
         case 'github':
           await loginWithGithub();
           break;
+        case 'twitter':
+          await loginWithTwitter();
+          break;
+      }
+    } catch (err) {
+      setError('Failed to login with ' + provider);
+      console.error('Social login error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
