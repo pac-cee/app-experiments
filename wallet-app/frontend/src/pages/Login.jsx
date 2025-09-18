@@ -188,3 +188,22 @@ const Login = () => {
             <Stack direction="row" spacing={2} justifyContent="center">
               <Button
                 fullWidth
+                variant="outlined"
+                startIcon={<GoogleIcon />}
+                onClick={() => handleSocialLogin('google')}
+                disabled={loading}
+              >
+                Google
+              </Button>
+              <Button
+                fullWidth
+                variant="outlined"
+                startIcon={<GitHubIcon />}
+                onClick={() => handleSocialLogin('github')}
+                disabled={loading}
+              >
+                GitHub
+              </Button>
+              <Button
+                fullWidth
+                variant="outlined"
