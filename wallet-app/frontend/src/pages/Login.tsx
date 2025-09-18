@@ -226,3 +226,14 @@ const Login = () => {
                   <Link component={RouterLink} to="/register" variant="body2">
                     Sign Up
                   </Link>
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Paper>
+      </Box>
+    </Container>
+  );
+};
+
+export default Login;
