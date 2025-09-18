@@ -36,3 +36,22 @@ const OAuthCallback: React.FC = () => {
           default:
             setError('Unsupported provider');
             return;
+        }
+
+        if (response.data?.user) {
+          auth.login(response.data.user);
+          navigate('/dashboard');
+        } else {
+          setError('Failed to authenticate');
+        }
+      } catch (err: any) {
+        setError(err.response?.data?.message || 'Authentication failed');
+      }
+    };
+
+    handleCallback();
+  }, [location, navigate, auth]);
+
+  return (
+    <Container maxWidth="sm">
+      <Box
