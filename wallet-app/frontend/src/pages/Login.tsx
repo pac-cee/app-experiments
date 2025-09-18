@@ -131,3 +131,22 @@ const Login = () => {
               {error}
             </Alert>
           )}
+
+          <Box component="form" onSubmit={handleSubmit}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={formData.email}
+              onChange={handleChange}
+              error={Boolean(error && !formData.email)}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
