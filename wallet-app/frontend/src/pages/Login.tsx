@@ -169,3 +169,22 @@ const Login = () => {
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
+                ),
+              }}
+            />
+            <Box sx={{ mt: 3, mb: 2 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? 'Logging in...' : 'Login'}
+              </Button>
+            </Box>
+
+            <Divider sx={{ my: 2 }}>OR</Divider>
+
+            <Stack spacing={2} sx={{ mt: 2 }}>
+              <Button
