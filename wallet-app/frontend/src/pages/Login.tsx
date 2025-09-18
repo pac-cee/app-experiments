@@ -207,3 +207,22 @@ const Login = () => {
               </Button>
               <Button
                 startIcon={<TwitterIcon />}
+                variant="outlined"
+                fullWidth
+                onClick={() => handleSocialLogin('twitter')}
+                disabled={loading}
+              >
+                Continue with Twitter
+              </Button>
+            </Stack>
+
+            <Box sx={{ textAlign: 'center' }}>
+              <Link component={RouterLink} to="/forgot-password" variant="body2">
+                Forgot password?
+              </Link>
+              <Box sx={{ mt: 1 }}>
+                <Typography variant="body2">
+                  Don't have an account?{' '}
+                  <Link component={RouterLink} to="/register" variant="body2">
+                    Sign Up
+                  </Link>
