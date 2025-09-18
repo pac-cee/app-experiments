@@ -55,3 +55,22 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    try {
+      setError('');
+      setLoading(true);
+      
+      await login({ 
+        email: formData.email, 
+        password: formData.password,
+        remember: true
+      });
+      
+      // After successful login, navigate to dashboard
+      navigate('/dashboard', { replace: true });
+    } catch (err: any) {
+      console.error('Login error in component:', err);
+      
+      if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else if (err.message) {
+        setError(err.message);
