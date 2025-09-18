@@ -36,3 +36,22 @@ const Login = () => {
   useEffect(() => {
     // Check for success message from registration
     const state = location.state as { message?: string };
+    if (state?.message) {
+      setSuccessMessage(state.message);
+      // Clear the message from location state
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setError('');
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
