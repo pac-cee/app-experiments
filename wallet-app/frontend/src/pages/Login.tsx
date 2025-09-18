@@ -74,3 +74,22 @@ const Login = () => {
         setError(err.response.data.message);
       } else if (err.message) {
         setError(err.message);
+      } else {
+        setError('Failed to sign in. Please try again.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSocialLogin = async (provider: 'google' | 'github' | 'twitter') => {
+    try {
+      setError('');
+      setLoading(true);
+      switch (provider) {
+        case 'google':
+          await loginWithGoogle();
+          break;
+        case 'github':
+          await loginWithGithub();
+          break;
