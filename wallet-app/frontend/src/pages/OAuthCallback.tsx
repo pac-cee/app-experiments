@@ -17,3 +17,22 @@ const OAuthCallback: React.FC = () => {
       const provider = params.get('provider');
 
       if (!code || !provider) {
+        setError('Invalid callback parameters');
+        return;
+      }
+
+      try {
+        let response;
+        switch (provider) {
+          case 'google':
+            response = await authAPI.handleGoogleCallback(code);
+            break;
+          case 'github':
+            response = await authAPI.handleGithubCallback(code);
+            break;
+          case 'twitter':
+            response = await authAPI.handleTwitterCallback(code);
+            break;
+          default:
+            setError('Unsupported provider');
+            return;
