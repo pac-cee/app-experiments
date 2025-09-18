@@ -207,3 +207,27 @@ const Login = () => {
               <Button
                 fullWidth
                 variant="outlined"
+                startIcon={<TwitterIcon />}
+                onClick={() => handleSocialLogin('twitter')}
+                disabled={loading}
+              >
+                Twitter
+              </Button>
+            </Stack>
+
+            <Box sx={{ mt: 3, textAlign: 'center' }}>
+              <Typography variant="body2" color="text.secondary">
+                Don't have an account?{' '}
+                <Link component={RouterLink} to="/register" variant="subtitle2">
+                  Sign Up
+                </Link>
+              </Typography>
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    </Container>
+  );
+};
+
+export default Login;
