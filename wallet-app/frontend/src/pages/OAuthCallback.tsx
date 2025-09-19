@@ -55,3 +55,22 @@ const OAuthCallback: React.FC = () => {
   return (
     <Container maxWidth="sm">
       <Box
+        sx={{
+          mt: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
+        <CircularProgress />
+      </Box>
+    </Container>
+  );
+};
+
+export default OAuthCallback;
