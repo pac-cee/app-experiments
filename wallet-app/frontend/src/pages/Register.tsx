@@ -131,3 +131,22 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSocialLogin = async (provider: 'google' | 'github' | 'twitter') => {
+    try {
+      setError('');
+      setLoading(true);
+      switch (provider) {
+        case 'google':
+          await loginWithGoogle();
+          break;
+        case 'github':
+          await loginWithGithub();
+          break;
+        case 'twitter':
+          await loginWithTwitter();
+          break;
+      }
+    } catch (err: any) {
+      console.error('Social login error:', err);
