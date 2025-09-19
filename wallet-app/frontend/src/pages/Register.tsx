@@ -112,3 +112,22 @@ const Register = () => {
         email: formData.email.toLowerCase(),
         password: formData.password,
         confirmPassword: formData.confirmPassword
+      });
+      // After successful registration, navigate to login
+      navigate('/login', { 
+        state: { 
+          message: 'Registration successful! Please check your email for verification and login.' 
+        } 
+      });
+    } catch (err: any) {
+      console.error('Registration error:', err);
+      if (err.response?.status === 409) {
+        setError('An account with this email already exists');
+      } else if (err.response?.status === 400) {
+        setError(err.response.data.message || 'Invalid registration data');
+      } else {
+        setError('Failed to create an account. Please try again.');
+      }
+    } finally {
+      setLoading(false);
+    }
