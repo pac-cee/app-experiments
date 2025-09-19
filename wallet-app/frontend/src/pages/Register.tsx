@@ -188,3 +188,22 @@ const Register = () => {
             >
               Continue with Google
             </Button>
+            <Button
+              fullWidth
+              variant="outlined"
+              startIcon={<GitHubIcon />}
+              onClick={() => handleSocialLogin('github')}
+              sx={{ mb: 1 }}
+              disabled={loading}
+            >
+              Continue with GitHub
+            </Button>
+          </Box>
+
+          <Divider sx={{ mb: 3 }}>
+            <Typography variant="body2" color="text.secondary">
+              OR
+            </Typography>
+          </Divider>
+
+          <Box component="form" onSubmit={handleSubmit}>
