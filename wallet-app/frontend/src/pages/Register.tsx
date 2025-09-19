@@ -55,3 +55,22 @@ const Register = () => {
     }
 
     // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      setError('Please enter a valid email address');
+      return false;
+    }
+
+    // Password validation
+    if (!formData.password) {
+      setError('Password is required');
+      return false;
+    }
+
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return false;
+    }
+
+    // Password strength check
+    const hasUpperCase = /[A-Z]/.test(formData.password);
