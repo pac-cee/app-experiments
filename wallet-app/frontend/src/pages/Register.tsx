@@ -207,3 +207,22 @@ const Register = () => {
           </Divider>
 
           <Box component="form" onSubmit={handleSubmit}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Full Name"
+              name="name"
+              autoComplete="name"
+              autoFocus
+              value={formData.name}
+              onChange={handleChange}
+              error={Boolean(error && !formData.name)}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
