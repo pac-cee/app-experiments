@@ -93,3 +93,22 @@ const Register = () => {
       setError('Passwords do not match');
       return false;
     }
+
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    try {
+      setError('');
+      setLoading(true);
+      await register({
+        name: formData.name.trim(),
+        email: formData.email.toLowerCase(),
+        password: formData.password,
+        confirmPassword: formData.confirmPassword
