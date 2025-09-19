@@ -226,3 +226,22 @@ const Register = () => {
               fullWidth
               id="email"
               label="Email Address"
+              name="email"
+              autoComplete="email"
+              value={formData.email}
+              onChange={handleChange}
+              error={Boolean(error && !formData.email)}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              autoComplete="new-password"
+              value={formData.password}
+              onChange={handleChange}
+              error={Boolean(error && !formData.password)}
+              helperText="Password must be at least 6 characters long"
