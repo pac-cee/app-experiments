@@ -36,3 +36,22 @@ const Register = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setError('');
+  };
+
+  const validateForm = () => {
+    // Name validation
+    if (!formData.name.trim()) {
+      setError('Full name is required');
+      return false;
+    }
+
+    if (formData.name.trim().length < 2) {
+      setError('Name must be at least 2 characters long');
+      return false;
+    }
+
+    // Email validation
