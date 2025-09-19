@@ -283,3 +283,26 @@ const Register = () => {
                   </InputAdornment>
                 ),
               }}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              disabled={loading}
+            >
+              {loading ? 'Creating Account...' : 'Sign Up'}
+            </Button>
+            <Box sx={{ textAlign: 'center' }}>
+              <Link component={RouterLink} to="/login" variant="body2">
+                {'Already have an account? Sign In'}
+              </Link>
+            </Box>
+          </Box>
+        </Paper>
+      </Box>
+    </Container>
+  );
+};
+
+export default Register;
