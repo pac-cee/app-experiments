@@ -169,3 +169,22 @@ const Register = () => {
         <Paper elevation={3} sx={{ p: 4, width: '100%' }}>
           <Typography component="h1" variant="h5" align="center" gutterBottom>
             Create Account
+          </Typography>
+
+          {error && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {error}
+            </Alert>
+          )}
+
+          <Box sx={{ mb: 3 }}>
+            <Button
+              fullWidth
+              variant="outlined"
+              startIcon={<GoogleIcon />}
+              onClick={() => handleSocialLogin('google')}
+              sx={{ mb: 1 }}
+              disabled={loading}
+            >
+              Continue with Google
+            </Button>
