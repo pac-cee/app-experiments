@@ -74,3 +74,22 @@ const Register = () => {
 
     // Password strength check
     const hasUpperCase = /[A-Z]/.test(formData.password);
+    const hasLowerCase = /[a-z]/.test(formData.password);
+    const hasNumbers = /\d/.test(formData.password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(formData.password);
+
+    if (!(hasUpperCase && hasLowerCase && hasNumbers) || !hasSpecialChar) {
+      setError('Password must contain uppercase, lowercase, numbers, and special characters');
+      return false;
+    }
+
+    // Confirm password validation
+    if (!formData.confirmPassword) {
+      setError('Please confirm your password');
+      return false;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return false;
+    }
