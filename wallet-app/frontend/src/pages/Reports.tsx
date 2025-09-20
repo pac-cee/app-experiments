@@ -131,3 +131,22 @@ const Reports: React.FC = () => {
     }
   };
 
+  // Sample data
+  const incomeVsExpenseData = [
+    {
+      id: 'income',
+      data: [
+        { x: 'Jan', y: 3000 },
+        { x: 'Feb', y: 3200 },
+        { x: 'Mar', y: 2800 },
+        { x: 'Apr', y: 3500 },
+        { x: 'May', y: 3100 },
+        { x: 'Jun', y: 3800 },
+      ],
+    },
+    {
+      id: 'expense',
+      data: [
+        { x: 'Jan', y: 2000 },
+        { x: 'Feb', y: 2100 },
+        { x: 'Mar', y: 1900 },
