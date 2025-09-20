@@ -55,3 +55,22 @@ const Reports: React.FC = () => {
       .split('T')[0]
   );
   const [endDate, setEndDate] = useState(new Date().toISOString().split('T')[0]);
+  const [reportType, setReportType] = useState('monthly');
+  const [selectedAccount, setSelectedAccount] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const validateDateRange = () => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const today = new Date();
+    
+    if (start > end) {
+      setError('Start date cannot be after end date');
+      return false;
+    }
+
+    if (end > today) {
+      setError('End date cannot be in the future');
+      return false;
