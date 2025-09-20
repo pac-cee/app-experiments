@@ -74,3 +74,22 @@ const Reports: React.FC = () => {
     if (end > today) {
       setError('End date cannot be in the future');
       return false;
+    }
+
+    if (start < new Date('2000-01-01')) {
+      setError('Start date cannot be before year 2000');
+      return false;
+    }
+
+    // Calculate date difference in days
+    const diffTime = Math.abs(end.getTime() - start.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays > 365) {
+      setError('Date range cannot exceed one year');
+      return false;
+    }
+
+    setError('');
+    return true;
+  };
