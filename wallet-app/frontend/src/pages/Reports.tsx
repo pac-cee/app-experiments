@@ -112,3 +112,22 @@ const Reports: React.FC = () => {
       // const response = await reportsAPI.export({
       //   startDate,
       //   endDate,
+      //   account: selectedAccount,
+      //   category: selectedCategory,
+      // });
+      
+      // Create and download file
+      // const blob = new Blob([response.data], { type: 'application/pdf' });
+      // const url = window.URL.createObjectURL(blob);
+      // const link = document.createElement('a');
+      // link.href = url;
+      // link.download = `financial-report-${startDate}-to-${endDate}.pdf`;
+      // link.click();
+    } catch (err: any) {
+      console.error('Failed to export report:', err);
+      setError('Failed to export report. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
