@@ -93,3 +93,22 @@ const Reports: React.FC = () => {
     setError('');
     return true;
   };
+
+  const handleDateChange = (type: 'start' | 'end', value: string) => {
+    if (type === 'start') {
+      setStartDate(value);
+    } else {
+      setEndDate(value);
+    }
+    setError('');
+  };
+
+  const handleExportReport = async () => {
+    if (!validateDateRange()) return;
+
+    try {
+      setLoading(true);
+      // Call your API to generate report
+      // const response = await reportsAPI.export({
+      //   startDate,
+      //   endDate,
