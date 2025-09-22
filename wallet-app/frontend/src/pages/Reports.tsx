@@ -226,3 +226,22 @@ const Reports: React.FC = () => {
           />
           <TextField
             select
+            label="Account"
+            size="small"
+            sx={{ minWidth: 150 }}
+            value={selectedAccount}
+            onChange={(e) => setSelectedAccount(e.target.value)}
+          >
+            <MenuItem value="all">All Accounts</MenuItem>
+            <MenuItem value="bank">Main Bank</MenuItem>
+            <MenuItem value="mobile">Mobile Money</MenuItem>
+            <MenuItem value="cash">Cash</MenuItem>
+          </TextField>
+          <TextField
+            select
+            label="Category"
+            size="small"
+            sx={{ minWidth: 150 }}
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
