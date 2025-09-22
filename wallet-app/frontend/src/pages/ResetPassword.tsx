@@ -36,3 +36,22 @@ const ResetPassword: React.FC = () => {
 
     try {
       await authAPI.resetPassword({ token, password });
+      navigate('/login', { state: { message: 'Password has been reset successfully' } });
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Failed to reset password');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!token) {
+    return (
+      <Container maxWidth="sm">
+        <Box sx={{ mt: 8 }}>
+          <Alert severity="error">Invalid reset token</Alert>
+        </Box>
+      </Container>
+    );
+  }
+
+  return (
