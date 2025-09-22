@@ -283,3 +283,22 @@ const Reports: React.FC = () => {
               <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                 +12% from last period
               </Typography>
+            </MotionCard>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <MotionCard
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              sx={{ p: 3, height: '100%' }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <TrendingDown color="error" sx={{ mr: 1 }} />
+                <Typography variant="h6">Total Expenses</Typography>
+              </Box>
+              <Typography variant="h3" color="error.main">
+                $12,700
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                -5% from last period
+              </Typography>
