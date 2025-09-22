@@ -416,3 +416,22 @@ const Reports: React.FC = () => {
                 justify: false,
                 translateX: 0,
                 translateY: 56,
+                itemsSpacing: 0,
+                itemWidth: 100,
+                itemHeight: 18,
+                itemTextColor: theme.palette.text.primary,
+                itemDirection: 'left-to-right',
+                itemOpacity: 1,
+                symbolSize: 18,
+                symbolShape: 'circle',
+              },
+            ]}
+          />
+        </MotionCard>
+      </TabPanel>
+
+      <TabPanel value={tabValue} index={3}>
+        <MotionCard
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
