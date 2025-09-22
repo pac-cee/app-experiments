@@ -245,3 +245,22 @@ const Reports: React.FC = () => {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
+            <MenuItem value="all">All Categories</MenuItem>
+            <MenuItem value="shopping">Shopping</MenuItem>
+            <MenuItem value="transport">Transport</MenuItem>
+            <MenuItem value="food">Food</MenuItem>
+          </TextField>
+        </Box>
+      </MotionCard>
+
+      <Tabs
+        value={tabValue}
+        onChange={(_, newValue) => setTabValue(newValue)}
+        sx={{ mb: 2, borderBottom: 1, borderColor: 'divider' }}
+      >
+        <Tab label="Overview" />
+        <Tab label="Income vs Expense" />
+        <Tab label="Category Analysis" />
+        <Tab label="Account Balances" />
+      </Tabs>
+
