@@ -321,3 +321,22 @@ const Reports: React.FC = () => {
               <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                 +35% from last period
               </Typography>
+            </MotionCard>
+          </Grid>
+        </Grid>
+      </TabPanel>
+
+      <TabPanel value={tabValue} index={1}>
+        <MotionCard
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          sx={{ height: 400 }}
+        >
+          <ResponsiveLine
+            data={incomeVsExpenseData}
+            margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+            xScale={{ type: 'point' }}
+            yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false }}
+            curve="cardinal"
+            axisTop={null}
