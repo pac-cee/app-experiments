@@ -473,3 +473,24 @@ const Reports: React.FC = () => {
                 itemsSpacing: 2,
                 itemWidth: 100,
                 itemHeight: 20,
+                itemDirection: 'left-to-right',
+                itemOpacity: 0.85,
+                symbolSize: 20,
+                effects: [
+                  {
+                    on: 'hover',
+                    style: {
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
+            ]}
+          />
+        </MotionCard>
+      </TabPanel>
+    </Box>
+  );
+};
+
+export default Reports;
