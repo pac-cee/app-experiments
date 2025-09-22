@@ -264,3 +264,22 @@ const Reports: React.FC = () => {
         <Tab label="Account Balances" />
       </Tabs>
 
+      <TabPanel value={tabValue} index={0}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={4}>
+            <MotionCard
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              sx={{ p: 3, height: '100%' }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <TrendingUp color="success" sx={{ mr: 1 }} />
+                <Typography variant="h6">Total Income</Typography>
+              </Box>
+              <Typography variant="h3" color="success.main">
+                $19,400
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                +12% from last period
+              </Typography>
