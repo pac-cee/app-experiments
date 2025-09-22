@@ -150,3 +150,22 @@ const Reports: React.FC = () => {
         { x: 'Jan', y: 2000 },
         { x: 'Feb', y: 2100 },
         { x: 'Mar', y: 1900 },
+        { x: 'Apr', y: 2300 },
+        { x: 'May', y: 2000 },
+        { x: 'Jun', y: 2400 },
+      ],
+    },
+  ];
+
+  const categoryData = [
+    { id: 'Shopping', value: 30 },
+    { id: 'Transport', value: 20 },
+    { id: 'Food', value: 25 },
+    { id: 'Entertainment', value: 15 },
+    { id: 'Others', value: 10 },
+  ];
+
+  const accountBalanceData = [
+    {
+      account: 'Main Bank',
+      balance: 5000,
