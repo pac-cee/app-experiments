@@ -302,3 +302,22 @@ const Reports: React.FC = () => {
               <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                 -5% from last period
               </Typography>
+            </MotionCard>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <MotionCard
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              sx={{ p: 3, height: '100%' }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <AccountBalance color="primary" sx={{ mr: 1 }} />
+                <Typography variant="h6">Net Balance</Typography>
+              </Box>
+              <Typography variant="h3" color="primary.main">
+                $6,700
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                +35% from last period
+              </Typography>
