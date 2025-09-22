@@ -378,3 +378,22 @@ const Reports: React.FC = () => {
                     style: {
                       itemBackground: 'rgba(0, 0, 0, .03)',
                       itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
+            ]}
+          />
+        </MotionCard>
+      </TabPanel>
+
+      <TabPanel value={tabValue} index={2}>
+        <MotionCard
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          sx={{ height: 400 }}
+        >
+          <ResponsivePie
+            data={categoryData}
+            margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
