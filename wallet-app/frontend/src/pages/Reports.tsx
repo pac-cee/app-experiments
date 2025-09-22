@@ -188,3 +188,22 @@ const Reports: React.FC = () => {
           variant="contained"
           startIcon={<DownloadIcon />}
           component={motion.button}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleExportReport}
+          disabled={loading}
+        >
+          {loading ? 'Exporting...' : 'Export Report'}
+        </Button>
+      </Box>
+
+      <MotionCard
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        sx={{ mb: 3 }}
+      >
+        <Box sx={{ p: 2, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+          <TextField
+            label="Start Date"
+            type="date"
