@@ -207,3 +207,22 @@ const Reports: React.FC = () => {
           <TextField
             label="Start Date"
             type="date"
+            value={startDate}
+            onChange={(e) => handleDateChange('start', e.target.value)}
+            InputLabelProps={{ shrink: true }}
+            size="small"
+            error={!!error}
+            helperText={error}
+          />
+          <TextField
+            label="End Date"
+            type="date"
+            value={endDate}
+            onChange={(e) => handleDateChange('end', e.target.value)}
+            InputLabelProps={{ shrink: true }}
+            size="small"
+            error={!!error}
+            helperText={error}
+          />
+          <TextField
+            select
