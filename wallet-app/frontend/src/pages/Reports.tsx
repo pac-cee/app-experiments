@@ -169,3 +169,22 @@ const Reports: React.FC = () => {
     {
       account: 'Main Bank',
       balance: 5000,
+    },
+    {
+      account: 'Mobile Money',
+      balance: 1200,
+    },
+    {
+      account: 'Cash',
+      balance: 300,
+    },
+  ];
+
+  return (
+    <Box sx={{ p: 3 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
+        <Typography variant="h4">Reports</Typography>
+        <Button
+          variant="contained"
+          startIcon={<DownloadIcon />}
+          component={motion.button}
