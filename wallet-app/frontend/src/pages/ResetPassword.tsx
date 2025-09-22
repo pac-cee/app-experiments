@@ -55,3 +55,22 @@ const ResetPassword: React.FC = () => {
   }
 
   return (
+    <Container maxWidth="sm">
+      <Box sx={{ mt: 8 }}>
+        <Paper sx={{ p: 4 }}>
+          <Typography variant="h5" component="h1" gutterBottom align="center">
+            Reset Password
+          </Typography>
+
+          <form onSubmit={handleSubmit}>
+            {error && (
+              <Alert severity="error" sx={{ mb: 2 }}>
+                {error}
+              </Alert>
+            )}
+
+            <TextField
+              fullWidth
+              label="New Password"
+              type="password"
+              value={password}
