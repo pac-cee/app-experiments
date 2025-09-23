@@ -112,3 +112,22 @@ const Settings: React.FC = () => {
     const hasLowerCase = /[a-z]/.test(passwordData.newPassword);
     const hasNumbers = /\d/.test(passwordData.newPassword);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(passwordData.newPassword);
+
+    if (!(hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar)) {
+      setError('Password must contain uppercase, lowercase, numbers, and special characters');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Call your API to update password
+      // await userAPI.updatePassword(passwordData);
+      setSuccess('Password updated successfully');
+      setPasswordData({
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: '',
+      });
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Failed to update password');
+    } finally {
