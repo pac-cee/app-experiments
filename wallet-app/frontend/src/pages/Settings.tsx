@@ -207,3 +207,22 @@ const Settings: React.FC = () => {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <TextField
                 label="Full Name"
+                value={profileData.name}
+                onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
+                fullWidth
+              />
+              <TextField
+                label="Email"
+                value={profileData.email}
+                onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
+                fullWidth
+              />
+              <TextField
+                label="Phone"
+                value={profileData.phone}
+                onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
+                fullWidth
+              />
+            </Box>
+            <Button
+              variant="contained"
