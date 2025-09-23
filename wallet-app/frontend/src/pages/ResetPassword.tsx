@@ -74,3 +74,22 @@ const ResetPassword: React.FC = () => {
               label="New Password"
               type="password"
               value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              margin="normal"
+            />
+
+            <TextField
+              fullWidth
+              label="Confirm New Password"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              margin="normal"
+            />
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
