@@ -226,3 +226,22 @@ const Settings: React.FC = () => {
             </Box>
             <Button
               variant="contained"
+              sx={{ mt: 3 }}
+              component={motion.button}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleProfileUpdate}
+            >
+              Save Changes
+            </Button>
+          </MotionCard>
+
+          {/* Security Settings */}
+          <MotionCard
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            sx={{ mb: 3, p: 3 }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+              <SecurityIcon sx={{ mr: 1 }} />
