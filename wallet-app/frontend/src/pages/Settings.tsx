@@ -188,3 +188,22 @@ const Settings: React.FC = () => {
                 sx={{
                   width: 100,
                   height: 100,
+                  mb: 2,
+                  bgcolor: theme.palette.primary.main,
+                }}
+              >
+                E
+              </Avatar>
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="label"
+                sx={{ position: 'relative', top: -30, right: -30 }}
+              >
+                <input hidden accept="image/*" type="file" />
+                <PhotoCameraIcon />
+              </IconButton>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <TextField
+                label="Full Name"
