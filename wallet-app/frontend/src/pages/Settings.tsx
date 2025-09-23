@@ -321,3 +321,22 @@ const Settings: React.FC = () => {
                 <ListItemSecondaryAction>
                   <Switch
                     edge="end"
+                    checked={emailNotifications}
+                    onChange={(e) => handleNotificationToggle('email', e.target.checked)}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="Budget Alerts"
+                  secondary="Get notified when you exceed your budget"
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    edge="end"
+                    checked={budgetAlerts}
+                    onChange={(e) => handleNotificationToggle('budget', e.target.checked)}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+            </List>
