@@ -283,3 +283,22 @@ const Settings: React.FC = () => {
           </MotionCard>
         </Box>
 
+        {/* Preferences and Notifications */}
+        <Box sx={{ flex: 1 }}>
+          {/* Notifications */}
+          <MotionCard
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            sx={{ mb: 3 }}
+          >
+            <List>
+              <ListItem>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <NotificationsIcon sx={{ mr: 1 }} />
+                  <Typography variant="h6">Notifications</Typography>
+                </Box>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
