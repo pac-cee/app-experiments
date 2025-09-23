@@ -74,3 +74,22 @@ const Settings: React.FC = () => {
     }
 
     try {
+      // Call your API to update profile
+      // await userAPI.updateProfile(profileData);
+      setSuccess('Profile updated successfully');
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Failed to update profile');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePasswordUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    if (!passwordData.currentPassword) {
+      setError('Current password is required');
+      setLoading(false);
