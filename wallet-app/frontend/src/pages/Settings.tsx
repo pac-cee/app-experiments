@@ -245,3 +245,22 @@ const Settings: React.FC = () => {
           >
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
               <SecurityIcon sx={{ mr: 1 }} />
+              <Typography variant="h6">Security Settings</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <TextField
+                label="Current Password"
+                type="password"
+                value={passwordData.currentPassword}
+                onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
+                fullWidth
+              />
+              <TextField
+                label="New Password"
+                type="password"
+                value={passwordData.newPassword}
+                onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
+                fullWidth
+              />
+              <TextField
+                label="Confirm New Password"
