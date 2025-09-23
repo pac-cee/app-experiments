@@ -264,3 +264,22 @@ const Settings: React.FC = () => {
               />
               <TextField
                 label="Confirm New Password"
+                type="password"
+                value={passwordData.confirmPassword}
+                onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
+                fullWidth
+              />
+            </Box>
+            <Button
+              variant="contained"
+              sx={{ mt: 3 }}
+              component={motion.button}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handlePasswordUpdate}
+            >
+              Update Password
+            </Button>
+          </MotionCard>
+        </Box>
+
