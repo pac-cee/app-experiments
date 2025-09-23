@@ -36,3 +36,22 @@ const Settings: React.FC = () => {
   const [budgetAlerts, setBudgetAlerts] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [profileData, setProfileData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    avatar: '',
+  });
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+  });
+  const [preferences, setPreferences] = useState({
+    language: 'en',
+    currency: 'USD',
+    theme: 'light',
+  });
+
+  const handleProfileUpdate = async (e: React.FormEvent) => {
