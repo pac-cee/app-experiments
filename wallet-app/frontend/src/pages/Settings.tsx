@@ -302,3 +302,22 @@ const Settings: React.FC = () => {
               <Divider />
               <ListItem>
                 <ListItemText
+                  primary="Push Notifications"
+                  secondary="Receive notifications about your transactions"
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    edge="end"
+                    checked={notifications}
+                    onChange={(e) => handleNotificationToggle('push', e.target.checked)}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="Email Notifications"
+                  secondary="Receive email updates about your account"
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    edge="end"
