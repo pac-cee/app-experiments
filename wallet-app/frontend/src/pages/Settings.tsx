@@ -340,3 +340,22 @@ const Settings: React.FC = () => {
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
+          </MotionCard>
+
+          {/* Preferences */}
+          <MotionCard
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
+            sx={{ mb: 3 }}
+          >
+            <List>
+              <ListItem>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <LanguageIcon sx={{ mr: 1 }} />
+                  <Typography variant="h6">Preferences</Typography>
+                </Box>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <TextField
