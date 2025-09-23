@@ -55,3 +55,22 @@ const Settings: React.FC = () => {
   });
 
   const handleProfileUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    if (!profileData.name.trim()) {
+      setError('Name is required');
+      setLoading(false);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(profileData.email)) {
+      setError('Please enter a valid email address');
+      setLoading(false);
+      return;
+    }
+
+    try {
