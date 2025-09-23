@@ -150,3 +150,22 @@ const Settings: React.FC = () => {
       switch (key) {
         case 'push':
           setNotifications(value);
+          break;
+        case 'email':
+          setEmailNotifications(value);
+          break;
+        case 'budget':
+          setBudgetAlerts(value);
+          break;
+      }
+      // Call your API to update notification settings
+      // await userAPI.updateNotifications({ [key]: value });
+    } catch (err: any) {
+      console.error('Failed to update notifications:', err);
+    }
+  };
+
+  return (
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4" sx={{ mb: 3 }}>
+        Settings
