@@ -169,3 +169,22 @@ const Settings: React.FC = () => {
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" sx={{ mb: 3 }}>
         Settings
+      </Typography>
+
+      <Box sx={{ display: 'flex', gap: 3, flexDirection: { xs: 'column', md: 'row' } }}>
+        {/* Profile Settings */}
+        <Box sx={{ flex: 1 }}>
+          <MotionCard
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            sx={{ mb: 3, p: 3 }}
+          >
+            <Typography variant="h6" sx={{ mb: 3 }}>
+              Profile Settings
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
+              <Avatar
+                sx={{
+                  width: 100,
+                  height: 100,
