@@ -131,3 +131,22 @@ const Settings: React.FC = () => {
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to update password');
     } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePreferencesUpdate = async (key: string, value: string) => {
+    try {
+      setPreferences(prev => ({ ...prev, [key]: value }));
+      // Call your API to update preferences
+      // await userAPI.updatePreferences({ [key]: value });
+    } catch (err: any) {
+      console.error('Failed to update preferences:', err);
+    }
+  };
+
+  const handleNotificationToggle = async (key: string, value: boolean) => {
+    try {
+      switch (key) {
+        case 'push':
+          setNotifications(value);
