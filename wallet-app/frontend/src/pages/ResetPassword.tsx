@@ -93,3 +93,17 @@ const ResetPassword: React.FC = () => {
               type="submit"
               fullWidth
               variant="contained"
+              color="primary"
+              disabled={loading}
+              sx={{ mt: 2 }}
+            >
+              {loading ? 'Resetting...' : 'Reset Password'}
+            </Button>
+          </form>
+        </Paper>
+      </Box>
+    </Container>
+  );
+};
+
+export default ResetPassword;
