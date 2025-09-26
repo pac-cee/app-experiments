@@ -36,3 +36,22 @@ api.interceptors.response.use(
   }
 );
 
+// Auth API
+const authAPI = {
+  register: (data) => api.post('/users/register', data),
+  login: (data) => api.post('/users/login', data),
+  verify: () => api.get('/users/profile'),
+  updateProfile: (data) => api.put('/users/profile', data),
+  
+  // Social login methods
+  loginWithGoogle: async () => {
+    const googleProvider = new window.google.accounts.oauth2.initCodeClient({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      scope: 'email profile',
+      callback: async (response) => {
+        if (response.code) {
+          return api.post('/users/auth/google', { code: response.code });
+        }
+      },
+    });
+    googleProvider.requestCode();
