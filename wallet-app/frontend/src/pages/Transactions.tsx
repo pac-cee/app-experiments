@@ -207,3 +207,22 @@ const Transactions = () => {
         <MenuItem value="income">Income</MenuItem>
         <MenuItem value="expense">Expense</MenuItem>
       </TextField>
+
+      <TextField
+        fullWidth
+        margin="normal"
+        select
+        label="Category"
+        name="category"
+        value={formData.category}
+        onChange={handleChange}
+        required
+      >
+        {categories
+          .filter(cat => cat.type === formData.type)
+          .map(category => (
+            <MenuItem key={category._id} value={category._id}>
+              {category.name}
+            </MenuItem>
+          ))}
+      </TextField>
