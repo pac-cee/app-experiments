@@ -435,3 +435,23 @@ const Settings: React.FC = () => {
                 </ListItemSecondaryAction>
               </ListItem>
               <ListItem>
+                <Button
+                  variant="outlined"
+                  startIcon={<BackupIcon />}
+                  fullWidth
+                  component={motion.button}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Backup Now
+                </Button>
+              </ListItem>
+            </List>
+          </MotionCard>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export default Settings;
