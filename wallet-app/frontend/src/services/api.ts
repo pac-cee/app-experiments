@@ -74,3 +74,22 @@ api.interceptors.response.use(
       localStorage.removeItem('token');
       sessionStorage.removeItem('token');
       
+      // Only redirect if we're not already on the login page
+      if (!window.location.pathname.includes('/login')) {
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+// Types
+interface CategoryData {
+  name: string;
+  type: 'income' | 'expense';
+  color: string;
+}
+
+interface SubcategoryData {
+  name: string;
+  color: string;
