@@ -188,3 +188,11 @@ export const settingsAPI = {
 
 // Accounts API
 export const accountsAPI = {
+  getAll: () => api.get('/accounts'),
+  getById: (id: string) => api.get(`/accounts/${id}`),
+  create: (data: any) => api.post('/accounts', data),
+  update: (id: string, data: any) => api.put(`/accounts/${id}`, data),
+  delete: (id: string) => api.delete(`/accounts/${id}`),
+};
+
+export default api;
