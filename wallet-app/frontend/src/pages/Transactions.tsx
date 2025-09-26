@@ -245,3 +245,22 @@ const Transactions = () => {
       </TextField>
 
       <TextField
+        fullWidth
+        margin="normal"
+        label="Date"
+        name="date"
+        type="date"
+        value={formData.date}
+        onChange={handleChange}
+        required
+      />
+
+      {error && (
+        <Typography color="error" sx={{ mt: 2 }}>
+          {error}
+        </Typography>
+      )}
+    </form>
+  );
+
+  return (
