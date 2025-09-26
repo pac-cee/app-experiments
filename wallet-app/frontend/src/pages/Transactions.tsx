@@ -74,3 +74,22 @@ const Transactions = () => {
     if (transaction) {
       setSelectedTransaction(transaction);
       setFormData({
+        description: transaction.description,
+        amount: transaction.amount.toString(),
+        type: transaction.type,
+        category: typeof transaction.category === 'string' ? transaction.category : transaction.category._id,
+        account: typeof transaction.account === 'string' ? transaction.account : transaction.account._id,
+        date: new Date(transaction.date).toISOString().split('T')[0],
+      });
+    } else {
+      setSelectedTransaction(null);
+      setFormData({
+        description: '',
+        amount: '',
+        type: 'expense',
+        category: '',
+        account: '',
+        date: new Date().toISOString().split('T')[0],
+      });
+    }
+    setOpenDialog(true);
