@@ -321,3 +321,22 @@ const Transactions = () => {
                   <TableCell>{account?.name}</TableCell>
                   <TableCell align="right">
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                      {transaction.type === 'income' ? (
+                        <IncomeIcon sx={{ color: 'success.main', mr: 1 }} fontSize="small" />
+                      ) : (
+                        <ExpenseIcon sx={{ color: 'error.main', mr: 1 }} fontSize="small" />
+                      )}
+                      ${transaction.amount.toFixed(2)}
+                    </Box>
+                  </TableCell>
+                  <TableCell align="right">
+                    <IconButton
+                      size="small"
+                      onClick={() => handleOpenDialog(transaction)}
+                      sx={{ mr: 1 }}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      size="small"
+                      onClick={() => handleDelete(transaction._id)}
