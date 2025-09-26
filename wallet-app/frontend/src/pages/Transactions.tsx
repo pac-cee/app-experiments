@@ -302,3 +302,22 @@ const Transactions = () => {
                 : transaction.category;
               const account = typeof transaction.account === 'string'
                 ? getAccountById(transaction.account)
+                : transaction.account;
+              
+              return (
+                <TableRow key={transaction._id}>
+                  <TableCell>{new Date(transaction.date).toLocaleDateString()}</TableCell>
+                  <TableCell>{transaction.description}</TableCell>
+                  <TableCell>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: 1,
+                      color: category?.color 
+                    }}>
+                      {category?.name}
+                    </Box>
+                  </TableCell>
+                  <TableCell>{account?.name}</TableCell>
+                  <TableCell align="right">
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
