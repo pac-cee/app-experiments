@@ -416,3 +416,22 @@ const Settings: React.FC = () => {
                 </Box>
               </ListItem>
               <Divider />
+              <ListItem>
+                <ListItemText
+                  primary="Auto Backup"
+                  secondary="Automatically backup your data daily"
+                />
+                <ListItemSecondaryAction>
+                  <Switch edge="end" defaultChecked />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="Cloud Sync"
+                  secondary="Sync your data across devices"
+                />
+                <ListItemSecondaryAction>
+                  <Switch edge="end" defaultChecked />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
