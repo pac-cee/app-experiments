@@ -359,3 +359,15 @@ const Transactions = () => {
         <DialogContent>
           {renderTransactionForm()}
         </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={handleSubmit} variant="contained" color="primary">
+            {selectedTransaction ? 'Save Changes' : 'Add Transaction'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
+  );
+};
+
+export default Transactions;
