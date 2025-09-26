@@ -93,3 +93,22 @@ interface CategoryData {
 interface SubcategoryData {
   name: string;
   color: string;
+}
+
+// Auth API
+export const authAPI = {
+  login: (data: { email: string; password: string }) => api.post('/auth/login', data),
+  register: (data: any) => api.post('/auth/register', data),
+  verify: () => api.get('/auth/verify'),
+  updateProfile: (data: any) => api.put('/auth/profile', data),
+  updatePassword: (data: any) => api.put('/auth/password', data),
+  forgotPassword: (data: { email: string }) => api.post('/auth/forgot-password', data),
+  resetPassword: (data: { token: string; password: string }) => api.post('/auth/reset-password', data),
+  
+  // Social login methods
+  loginWithGoogle: async () => {
+    if (!window.google?.accounts?.oauth2) {
+      throw new Error('Google OAuth2 client not loaded');
+    }
+    const googleProvider = window.google.accounts.oauth2.initCodeClient({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID || '',
