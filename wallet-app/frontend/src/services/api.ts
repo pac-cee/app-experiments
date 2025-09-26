@@ -150,3 +150,22 @@ export const categoriesAPI = {
   getById: (id: string) => api.get(`/categories/${id}`),
   create: (data: CategoryData) => api.post('/categories', data),
   update: (id: string, data: Partial<CategoryData>) => api.put(`/categories/${id}`, data),
+  delete: (id: string) => api.delete(`/categories/${id}`),
+  createSubcategory: (categoryId: string, data: SubcategoryData) => 
+    api.post(`/categories/${categoryId}/subcategories`, data),
+  updateSubcategory: (categoryId: string, subcategoryId: string, data: Partial<SubcategoryData>) => 
+    api.put(`/categories/${categoryId}/subcategories/${subcategoryId}`, data),
+  deleteSubcategory: (categoryId: string, subcategoryId: string) => 
+    api.delete(`/categories/${categoryId}/subcategories/${subcategoryId}`),
+};
+
+// Transactions API
+export const transactionsAPI = {
+  getAll: () => api.get('/transactions'),
+  getById: (id: string) => api.get(`/transactions/${id}`),
+  create: (data: any) => api.post('/transactions', data),
+  update: (id: string, data: any) => api.put(`/transactions/${id}`, data),
+  delete: (id: string) => api.delete(`/transactions/${id}`),
+  getReport: (params: any) => api.get('/transactions/report', { params }),
+};
+
