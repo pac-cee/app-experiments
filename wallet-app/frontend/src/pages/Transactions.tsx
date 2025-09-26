@@ -150,3 +150,22 @@ const Transactions = () => {
 
     const account = getAccountById(typeof transaction.account === 'string' ? transaction.account : transaction.account._id);
     if (!account) return;
+
+    const message = `Are you sure you want to delete this transaction?\n\nDescription: ${transaction.description}\nAmount: $${transaction.amount.toFixed(2)}\nAccount: ${account.name}\nDate: ${new Date(transaction.date).toLocaleDateString()}\n\nThis action cannot be undone.`;
+
+    if (window.confirm(message)) {
+      try {
+        await transactionsAPI.delete(id);
+        fetchData();
+      } catch (error) {
+        console.error('Error deleting transaction:', error);
+      }
+    }
+  };
+
+  const getCategoryById = (id: string) => {
+    return categories.find((cat) => cat._id === id);
+  };
+
+  const getAccountById = (id: string) => {
+    return accounts.find((account) => account._id === id);
