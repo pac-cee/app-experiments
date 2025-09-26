@@ -264,3 +264,22 @@ const Transactions = () => {
   );
 
   return (
+    <Box sx={{ p: 3 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Typography variant="h4">Transactions</Typography>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <CreateTestTransactions 
+            categories={categories} 
+            accounts={accounts} 
+            onSuccess={fetchData} 
+          />
+          <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            onClick={() => handleOpenDialog()}
+          >
+            Add Transaction
+          </Button>
+        </Box>
+      </Box>
+
