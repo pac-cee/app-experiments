@@ -55,3 +55,22 @@ api.interceptors.response.use(
   (response: AxiosResponse) => {
     console.log('API Response:', {
       status: response.status,
+      data: response.data,
+      url: response.config.url
+    });
+    return response;
+  },
+  (error) => {
+    console.error('API Error:', {
+      status: error.response?.status,
+      message: error.response?.data?.message || error.message,
+      url: error.config?.url,
+      method: error.config?.method?.toUpperCase(),
+      data: error.config?.data
+    });
+    
+    if (error.response?.status === 401) {
+      // Clear tokens on unauthorized access
+      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
+      
