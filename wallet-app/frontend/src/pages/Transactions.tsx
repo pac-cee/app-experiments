@@ -226,3 +226,22 @@ const Transactions = () => {
             </MenuItem>
           ))}
       </TextField>
+
+      <TextField
+        fullWidth
+        margin="normal"
+        select
+        label="Account"
+        name="account"
+        value={formData.account}
+        onChange={handleChange}
+        required
+      >
+        {accounts.map(account => (
+          <MenuItem key={account._id} value={account._id}>
+            {account.name} (Balance: ${account.balance.toFixed(2)})
+          </MenuItem>
+        ))}
+      </TextField>
+
+      <TextField
