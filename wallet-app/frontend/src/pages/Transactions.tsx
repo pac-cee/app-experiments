@@ -131,3 +131,22 @@ const Transactions = () => {
     }
 
     try {
+      if (selectedTransaction) {
+        await transactionsAPI.update(selectedTransaction._id, formData);
+      } else {
+        await transactionsAPI.create(formData);
+      }
+      handleCloseDialog();
+      fetchData();
+    } catch (error) {
+      console.error('Error saving transaction:', error);
+      setError('Failed to save transaction');
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    const transaction = transactions.find(t => t._id === id);
+    if (!transaction) return;
+
+    const account = getAccountById(typeof transaction.account === 'string' ? transaction.account : transaction.account._id);
+    if (!account) return;
