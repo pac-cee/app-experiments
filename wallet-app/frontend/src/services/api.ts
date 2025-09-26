@@ -131,3 +131,22 @@ export const authAPI = {
   },
 
   loginWithTwitter: async () => {
+    const twitterClientId = process.env.REACT_APP_TWITTER_CLIENT_ID;
+    const redirectUri = `${window.location.origin}/auth/twitter/callback`;
+    const scope = 'tweet.read users.read';
+    
+    window.location.href = `https://twitter.com/i/oauth2/authorize?client_id=${twitterClientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}&response_type=code`;
+  },
+
+  // Handle OAuth callbacks
+  handleGoogleCallback: (code: string) => api.post('/auth/google/callback', { code }),
+  handleGithubCallback: (code: string) => api.post('/auth/github/callback', { code }),
+  handleTwitterCallback: (code: string) => api.post('/auth/twitter/callback', { code }),
+};
+
+// Categories API
+export const categoriesAPI = {
+  getAll: () => api.get('/categories'),
+  getById: (id: string) => api.get(`/categories/${id}`),
+  create: (data: CategoryData) => api.post('/categories', data),
+  update: (id: string, data: Partial<CategoryData>) => api.put(`/categories/${id}`, data),
