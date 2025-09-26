@@ -36,3 +36,22 @@ api.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
     // Log the full request details
+    console.log('API Request:', {
+      method: config.method?.toUpperCase(),
+      url: `${API_URL}${config.url || ''}`,
+      headers: config.headers,
+      data: config.data
+    });
+    return config;
+  },
+  (error) => {
+    console.error('Request interceptor error:', error);
+    return Promise.reject(error);
+  }
+);
+
+// Add response interceptor to handle errors
+api.interceptors.response.use(
+  (response: AxiosResponse) => {
+    console.log('API Response:', {
+      status: response.status,
