@@ -169,3 +169,22 @@ export const transactionsAPI = {
   getReport: (params: any) => api.get('/transactions/report', { params }),
 };
 
+// Reports API
+export const reportsAPI = {
+  generate: (params: any) => api.get('/reports/generate', { params }),
+  export: (params: any) => api.get('/reports/export', { 
+    params,
+    responseType: 'blob'
+  }),
+};
+
+// Settings API
+export const settingsAPI = {
+  getAll: () => api.get('/settings'),
+  update: (data: any) => api.put('/settings', data),
+  updateNotifications: (data: any) => api.put('/settings/notifications', data),
+  updatePreferences: (data: any) => api.put('/settings/preferences', data),
+};
+
+// Accounts API
+export const accountsAPI = {
