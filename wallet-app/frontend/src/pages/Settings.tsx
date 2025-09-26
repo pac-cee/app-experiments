@@ -378,3 +378,22 @@ const Settings: React.FC = () => {
                   value={preferences.currency}
                   onChange={(e) => handlePreferencesUpdate('currency', e.target.value)}
                   fullWidth
+                  sx={{ mt: 2 }}
+                >
+                  <MenuItem value="USD">USD ($)</MenuItem>
+                  <MenuItem value="EUR">EUR (€)</MenuItem>
+                  <MenuItem value="GBP">GBP (£)</MenuItem>
+                </TextField>
+              </ListItem>
+              <ListItem>
+                <TextField
+                  select
+                  label="Theme"
+                  value={preferences.theme}
+                  onChange={(e) => handlePreferencesUpdate('theme', e.target.value)}
+                  fullWidth
+                  sx={{ mt: 2 }}
+                >
+                  <MenuItem value="dark">Dark</MenuItem>
+                  <MenuItem value="light">Light</MenuItem>
+                  <MenuItem value="system">System</MenuItem>
