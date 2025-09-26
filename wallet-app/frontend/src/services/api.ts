@@ -112,3 +112,22 @@ export const authAPI = {
     }
     const googleProvider = window.google.accounts.oauth2.initCodeClient({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID || '',
+      scope: 'email profile',
+      callback: async (response: { code: string }) => {
+        if (response.code) {
+          return api.post('/auth/google/callback', { code: response.code });
+        }
+      },
+    });
+    googleProvider.requestCode();
+  },
+
+  loginWithGithub: async () => {
+    const githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+    const redirectUri = `${window.location.origin}/auth/github/callback`;
+    const scope = 'user:email';
+    
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${githubClientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
+  },
+
+  loginWithTwitter: async () => {
