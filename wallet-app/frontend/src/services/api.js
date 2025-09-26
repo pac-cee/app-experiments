@@ -55,3 +55,22 @@ const authAPI = {
       },
     });
     googleProvider.requestCode();
+  },
+
+  loginWithGithub: async () => {
+    const githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+    const redirectUri = `${window.location.origin}/auth/github/callback`;
+    const scope = 'user:email';
+    
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${githubClientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+  },
+
+  loginWithTwitter: async () => {
+    const twitterClientId = process.env.REACT_APP_TWITTER_CLIENT_ID;
+    const redirectUri = `${window.location.origin}/auth/twitter/callback`;
+    const scope = 'tweet.read users.read';
+    
+    window.location.href = `https://twitter.com/i/oauth2/authorize?client_id=${twitterClientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code`;
+  },
+
+  // Handle OAuth callbacks
