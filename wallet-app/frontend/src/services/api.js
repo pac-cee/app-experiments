@@ -112,3 +112,19 @@ const categoriesAPI = {
 // Reports API
 const reportsAPI = {
   getSummary: (params) => api.get('/reports/summary', { params }),
+  getCategoryReport: (params) => api.get('/reports/categories', { params }),
+  getBudgetReport: (params) => api.get('/reports/budget', { params }),
+  exportReport: (type, params) => api.get('/reports/export', {
+    params: { ...params, type },
+    responseType: 'blob'
+  }),
+};
+
+export {
+  api as default,
+  authAPI,
+  walletsAPI,
+  transactionsAPI,
+  categoriesAPI,
+  reportsAPI,
+};
