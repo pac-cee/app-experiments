@@ -169,3 +169,22 @@ const Transactions = () => {
 
   const getAccountById = (id: string) => {
     return accounts.find((account) => account._id === id);
+  };
+
+  const renderTransactionForm = () => (
+    <form onSubmit={handleSubmit}>
+      <TextField
+        fullWidth
+        margin="normal"
+        label="Description"
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+        required
+      />
+
+      <TextField
+        fullWidth
+        margin="normal"
+        label="Amount"
+        name="amount"
