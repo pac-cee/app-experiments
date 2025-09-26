@@ -188,3 +188,22 @@ const Transactions = () => {
         margin="normal"
         label="Amount"
         name="amount"
+        type="number"
+        value={formData.amount}
+        onChange={handleChange}
+        required
+      />
+
+      <TextField
+        fullWidth
+        margin="normal"
+        select
+        label="Type"
+        name="type"
+        value={formData.type}
+        onChange={handleChange}
+        required
+      >
+        <MenuItem value="income">Income</MenuItem>
+        <MenuItem value="expense">Expense</MenuItem>
+      </TextField>
