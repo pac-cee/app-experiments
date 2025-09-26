@@ -93,3 +93,22 @@ const walletsAPI = {
 const transactionsAPI = {
   getAll: (walletId) => api.get(`/transactions${walletId ? `?wallet=${walletId}` : ''}`),
   getOne: (id) => api.get(`/transactions/${id}`),
+  create: (data) => api.post('/transactions', data),
+  update: (id, data) => api.put(`/transactions/${id}`, data),
+  delete: (id) => api.delete(`/transactions/${id}`),
+  getReport: (params) => api.get('/transactions/report', { params }),
+  getSummary: (params) => api.get('/transactions/summary', { params }),
+};
+
+// Categories API
+const categoriesAPI = {
+  getAll: () => api.get('/categories'),
+  getOne: (id) => api.get(`/categories/${id}`),
+  create: (data) => api.post('/categories', data),
+  update: (id, data) => api.put(`/categories/${id}`, data),
+  delete: (id) => api.delete(`/categories/${id}`),
+};
+
+// Reports API
+const reportsAPI = {
+  getSummary: (params) => api.get('/reports/summary', { params }),
