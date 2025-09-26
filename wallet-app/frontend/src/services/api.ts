@@ -17,3 +17,22 @@ declare global {
     };
   }
 }
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5002/api';
+
+// Create axios instance with default config
+const api = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Add request interceptor to add auth token
+api.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    // Log the full request details
