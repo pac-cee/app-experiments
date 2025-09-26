@@ -112,3 +112,22 @@ const Transactions = () => {
 
     if (!formData.description) {
       setError('Please enter a description');
+      return;
+    }
+
+    if (!formData.amount || isNaN(Number(formData.amount))) {
+      setError('Please enter a valid amount');
+      return;
+    }
+
+    if (!formData.category) {
+      setError('Please select a category');
+      return;
+    }
+
+    if (!formData.account) {
+      setError('Please select an account');
+      return;
+    }
+
+    try {
