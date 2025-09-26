@@ -397,3 +397,22 @@ const Settings: React.FC = () => {
                   <MenuItem value="dark">Dark</MenuItem>
                   <MenuItem value="light">Light</MenuItem>
                   <MenuItem value="system">System</MenuItem>
+                </TextField>
+              </ListItem>
+            </List>
+          </MotionCard>
+
+          {/* Backup & Sync */}
+          <MotionCard
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+          >
+            <List>
+              <ListItem>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <BackupIcon sx={{ mr: 1 }} />
+                  <Typography variant="h6">Backup & Sync</Typography>
+                </Box>
+              </ListItem>
+              <Divider />
