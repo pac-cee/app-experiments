@@ -74,3 +74,22 @@ const authAPI = {
   },
 
   // Handle OAuth callbacks
+  handleGoogleCallback: (code) => api.post('/users/auth/google/callback', { code }),
+  handleGithubCallback: (code) => api.post('/users/auth/github/callback', { code }),
+  handleTwitterCallback: (code) => api.post('/users/auth/twitter/callback', { code }),
+};
+
+// Wallets API
+const walletsAPI = {
+  getAll: () => api.get('/wallets'),
+  getOne: (id) => api.get(`/wallets/${id}`),
+  create: (data) => api.post('/wallets', data),
+  update: (id, data) => api.put(`/wallets/${id}`, data),
+  delete: (id) => api.delete(`/wallets/${id}`),
+  updateBudget: (id, data) => api.put(`/wallets/${id}/budget`, data),
+};
+
+// Transactions API
+const transactionsAPI = {
+  getAll: (walletId) => api.get(`/transactions${walletId ? `?wallet=${walletId}` : ''}`),
+  getOne: (id) => api.get(`/transactions/${id}`),
