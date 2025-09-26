@@ -283,3 +283,22 @@ const Transactions = () => {
         </Box>
       </Box>
 
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Date</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Category</TableCell>
+              <TableCell>Account</TableCell>
+              <TableCell align="right">Amount</TableCell>
+              <TableCell align="right">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {transactions.map((transaction) => {
+              const category = typeof transaction.category === 'string' 
+                ? getCategoryById(transaction.category)
+                : transaction.category;
+              const account = typeof transaction.account === 'string'
+                ? getAccountById(transaction.account)
