@@ -359,3 +359,22 @@ const Settings: React.FC = () => {
               <Divider />
               <ListItem>
                 <TextField
+                  select
+                  label="Language"
+                  value={preferences.language}
+                  onChange={(e) => handlePreferencesUpdate('language', e.target.value)}
+                  fullWidth
+                  sx={{ mt: 2 }}
+                >
+                  <MenuItem value="en">English</MenuItem>
+                  <MenuItem value="es">Spanish</MenuItem>
+                  <MenuItem value="fr">French</MenuItem>
+                </TextField>
+              </ListItem>
+              <ListItem>
+                <TextField
+                  select
+                  label="Currency"
+                  value={preferences.currency}
+                  onChange={(e) => handlePreferencesUpdate('currency', e.target.value)}
+                  fullWidth
