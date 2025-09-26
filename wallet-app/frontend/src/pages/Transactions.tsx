@@ -55,3 +55,22 @@ const Transactions = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
+      const [transactionsRes, categoriesRes, accountsRes] = await Promise.all([
+        transactionsAPI.getAll(),
+        categoriesAPI.getAll(),
+        accountsAPI.getAll(),
+      ]);
+      setTransactions(transactionsRes.data);
+      setCategories(categoriesRes.data);
+      setAccounts(accountsRes.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOpenDialog = (transaction?: Transaction) => {
+    if (transaction) {
+      setSelectedTransaction(transaction);
+      setFormData({
