@@ -55,3 +55,22 @@ export const getTheme = (mode: PaletteMode): Theme => {
           root: {
             borderRadius: 8,
           },
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            borderRadius: 12,
+            boxShadow: mode === 'light' 
+              ? '0 2px 4px rgba(0,0,0,0.1)' 
+              : '0 2px 4px rgba(0,0,0,0.3)',
+          },
+        },
+      },
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            borderRadius: 12,
+          },
+        },
+      },
