@@ -55,3 +55,22 @@ export const getTheme = (mode) => {
             borderRadius: 12,
             boxShadow: mode === 'dark' 
               ? '0 4px 6px rgba(0, 0, 0, 0.3)'
+              : '0 4px 6px rgba(0, 0, 0, 0.1)',
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 8,
+            textTransform: 'none',
+          },
+        },
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 8,
+          },
+        },
+      },
