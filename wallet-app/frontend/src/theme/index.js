@@ -93,3 +93,14 @@ export const getTheme = (mode) => {
         fontSize: '1.5rem',
         fontWeight: 500,
       },
+      h5: {
+        fontSize: '1.25rem',
+        fontWeight: 500,
+      },
+      h6: {
+        fontSize: '1rem',
+        fontWeight: 500,
+      },
+    },
+  });
+};
