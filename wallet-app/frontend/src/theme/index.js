@@ -36,3 +36,22 @@ export const getTheme = (mode) => {
             secondary: {
               main: '#ce93d8',
               light: '#f3e5f5',
+              dark: '#ab47bc',
+            },
+            background: {
+              default: '#121212',
+              paper: '#1e1e1e',
+            },
+            text: {
+              primary: '#ffffff',
+              secondary: 'rgba(255, 255, 255, 0.7)',
+            },
+          }),
+    },
+    components: {
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            borderRadius: 12,
+            boxShadow: mode === 'dark' 
+              ? '0 4px 6px rgba(0, 0, 0, 0.3)'
