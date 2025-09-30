@@ -93,3 +93,22 @@ export const getTheme = (mode: PaletteMode): Theme => {
               mode === 'light' ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)'
             }`,
           },
+        },
+      },
+    },
+    typography: {
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+      ].join(','),
+      h1: {
+        fontSize: '2.5rem',
+        fontWeight: 600,
+      },
+      h2: {
+        fontSize: '2rem',
