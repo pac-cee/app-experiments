@@ -74,3 +74,22 @@ export const getTheme = (mode: PaletteMode): Theme => {
           },
         },
       },
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            '& .MuiOutlinedInput-root': {
+              borderRadius: 8,
+            },
+          },
+        },
+      },
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: mode === 'light' ? '#ffffff' : '#1e1e1e',
+            color: mode === 'light' ? '#000000' : '#ffffff',
+            boxShadow: 'none',
+            borderBottom: `1px solid ${
+              mode === 'light' ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)'
+            }`,
+          },
