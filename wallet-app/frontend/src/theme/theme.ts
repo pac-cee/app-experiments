@@ -74,3 +74,22 @@ export const theme = createTheme({
           fontSize: '0.875rem',
         },
         containedPrimary: {
+          '&:hover': {
+            backgroundColor: '#4f46e5',
+          },
+        },
+        outlinedPrimary: {
+          borderColor: '#6366f1',
+          '&:hover': {
+            borderColor: '#4f46e5',
+            backgroundColor: 'rgba(99, 102, 241, 0.08)',
+          },
+        },
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        variant: 'outlined',
+      },
+      styleOverrides: {
+        root: {
