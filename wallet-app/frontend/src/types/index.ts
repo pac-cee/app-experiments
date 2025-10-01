@@ -74,3 +74,22 @@ export interface Transaction {
 
 export interface TransactionFormData {
   description: string;
+  amount: string;
+  type: 'income' | 'expense';
+  category: string;
+  account: string;
+  date: string;
+  notes?: string;
+}
+
+// Budget types
+export interface Budget {
+  _id: string;
+  category: string | Category;
+  limit: number;
+  spent: number;
+  period: 'monthly' | 'yearly';
+  notifications: boolean;
+  notificationThreshold: number;
+}
+
