@@ -36,3 +36,22 @@ export const formatDate = (
   });
 };
 
+/**
+ * Format a percentage
+ * @param value - The value to format as percentage
+ * @param decimals - Number of decimal places (default: 1)
+ * @returns Formatted percentage string
+ */
+export const formatPercentage = (value: number, decimals: number = 1): string => {
+  return `${value.toFixed(decimals)}%`;
+};
+
+/**
+ * Format a number with specified decimal places
+ * @param value - The value to format
+ * @param decimals - Number of decimal places (default: 2)
+ * @returns Formatted number string
+ */
+export const formatNumber = (value: number, decimals: number = 2): string => {
+  return value.toFixed(decimals);
+};
