@@ -93,3 +93,14 @@ export const formatDuration = (ms: number): string => {
  * @param format - The format to use (default: 'xxx-xxx-xxxx')
  * @returns Formatted phone number string
  */
+export const formatPhoneNumber = (
+  phone: string,
+  format: string = 'xxx-xxx-xxxx'
+): string => {
+  const cleaned = phone.replace(/\D/g, '');
+  const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+  if (match) {
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+  }
+  return phone;
+};
