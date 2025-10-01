@@ -36,3 +36,22 @@ export interface Account {
   updatedAt: string;
 }
 
+export interface AccountFormData {
+  name: string;
+  type: AccountType;
+  balance: string;
+  currency: string;
+  description?: string;
+  accountNumber?: string;
+  bankName?: string;
+  mobileProvider?: string;
+  isDefault?: boolean;
+}
+
+// Category types
+export interface Category {
+  _id: string;
+  name: string;
+  type: 'income' | 'expense';
+  color: string;
+  icon?: string;
