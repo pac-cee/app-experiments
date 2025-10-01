@@ -17,3 +17,16 @@ export const getSocialLoginUrl = (provider: 'google' | 'github' | 'twitter'): st
       return `https://github.com/login/oauth/authorize?` +
         `client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}` +
         `&redirect_uri=${encodeURIComponent(redirectUri)}` +
+        `&scope=user:email`;
+    
+    case 'twitter':
+      return `https://twitter.com/i/oauth2/authorize?` +
+        `client_id=${process.env.REACT_APP_TWITTER_CLIENT_ID}` +
+        `&redirect_uri=${encodeURIComponent(redirectUri)}` +
+        `&response_type=code` +
+        `&scope=tweet.read users.read`;
+    
+    default:
+      throw new Error('Invalid provider');
+  }
+};
