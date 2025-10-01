@@ -93,3 +93,22 @@ export interface Budget {
   notificationThreshold: number;
 }
 
+// Report types
+export interface Report {
+  startDate: string;
+  endDate: string;
+  totalIncome: number;
+  totalExpenses: number;
+  netIncome: number;
+  categoryBreakdown: CategoryBreakdown[];
+  transactions: Transaction[];
+}
+
+export interface CategoryBreakdown {
+  category: Category;
+  amount: number;
+  percentage: number;
+}
+
+// API Response types
+export interface ApiResponse<T> {
