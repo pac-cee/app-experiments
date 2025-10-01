@@ -55,3 +55,22 @@ export const theme = createTheme({
       fontWeight: 600,
     },
     h6: {
+      fontWeight: 600,
+    },
+    button: {
+      textTransform: 'none',
+      fontWeight: 500,
+    },
+  },
+  shape: {
+    borderRadius: 8,
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          padding: '8px 16px',
+          fontSize: '0.875rem',
+        },
+        containedPrimary: {
