@@ -150,3 +150,26 @@ export interface TransactionForm {
   description: string;
   amount: number;
   type: Transaction['type'];
+  category: string;
+  account: string;
+  date: string;
+  notes?: string;
+  attachments?: File[];
+  recurring?: boolean;
+  recurringInterval?: Transaction['recurringInterval'];
+}
+
+export interface BudgetForm {
+  category: string;
+  limit: number;
+  period: Budget['period'];
+  notifications: boolean;
+  notificationThreshold: number;
+}
+
+// Error types
+export interface ApiError {
+  message: string;
+  code?: string;
+  field?: string;
+}
