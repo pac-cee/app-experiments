@@ -131,3 +131,22 @@ export interface LoginForm {
   password: string;
   remember?: boolean;
 }
+
+export interface RegisterForm {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface CategoryForm {
+  name: string;
+  type: Category['type'];
+  color: string;
+  icon?: string;
+}
+
+export interface TransactionForm {
+  description: string;
+  amount: number;
+  type: Transaction['type'];
