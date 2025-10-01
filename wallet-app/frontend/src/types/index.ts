@@ -112,3 +112,22 @@ export interface CategoryBreakdown {
 
 // API Response types
 export interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  message?: string;
+  error?: string;
+}
+
+export interface PaginatedResponse<T> extends ApiResponse<T> {
+  page: number;
+  limit: number;
+  total: number;
+  hasMore: boolean;
+}
+
+// Form types
+export interface LoginForm {
+  email: string;
+  password: string;
+  remember?: boolean;
+}
