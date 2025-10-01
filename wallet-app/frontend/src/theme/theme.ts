@@ -112,3 +112,15 @@ export const theme = createTheme({
           backgroundColor: '#2B2B40',
           backgroundImage: 'none',
         },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#2B2B40',
+          backgroundImage: 'none',
+        },
+      },
+    },
+  },
+});
