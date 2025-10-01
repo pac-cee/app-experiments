@@ -55,3 +55,22 @@ export const formatPercentage = (value: number, decimals: number = 1): string =>
 export const formatNumber = (value: number, decimals: number = 2): string => {
   return value.toFixed(decimals);
 };
+
+/**
+ * Format a file size in bytes to a human-readable string
+ * @param bytes - The size in bytes
+ * @returns Formatted file size string
+ */
+export const formatFileSize = (bytes: number): string => {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`;
+};
+
+/**
+ * Format a duration in milliseconds to a human-readable string
+ * @param ms - Duration in milliseconds
+ * @returns Formatted duration string
+ */
