@@ -93,3 +93,22 @@ export const theme = createTheme({
       },
       styleOverrides: {
         root: {
+          '& .MuiOutlinedInput-root': {
+            borderRadius: 8,
+          },
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none',
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#2B2B40',
+          backgroundImage: 'none',
+        },
