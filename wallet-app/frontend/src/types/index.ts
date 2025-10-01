@@ -55,3 +55,22 @@ export interface Category {
   type: 'income' | 'expense';
   color: string;
   icon?: string;
+}
+
+// Transaction types
+export interface Transaction {
+  _id: string;
+  description: string;
+  amount: number;
+  type: 'income' | 'expense';
+  category: string | Category;
+  account: string | Account;
+  date: string;
+  notes?: string;
+  attachments?: string[];
+  recurring?: boolean;
+  recurringInterval?: 'daily' | 'weekly' | 'monthly' | 'yearly';
+}
+
+export interface TransactionFormData {
+  description: string;
