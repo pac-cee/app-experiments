@@ -131,3 +131,22 @@ git clone https://github.com/pac-cee/wallet-app.git
 cd wallet-app
 ```
 
+### 2. Backend Setup
+```bash
+cd backend
+
+# Install dependencies
+npm install
+
+# Create environment file
+cp .env.example .env
+
+# Required .env configurations
+PORT=5002
+MONGODB_URI=your_mongodb_uri
+JWT_SECRET=your_secure_secret
+NODE_ENV=development
+```
+
+### 3. Frontend Setup
+```bash
