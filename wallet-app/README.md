@@ -112,3 +112,22 @@ Node.js + Express
 ```
 
 ## ⚡ Prerequisites
+
+1. **Required Software**
+   - Node.js (v14 or higher)
+   - MongoDB (v4.4 or higher)
+   - npm or yarn
+
+2. **Development Tools**
+   - VS Code (recommended)
+   - MongoDB Compass (optional)
+   - Postman (API testing)
+
+## 📥 Installation Guide
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/pac-cee/wallet-app.git
+cd wallet-app
+```
+
