@@ -36,3 +36,22 @@ A comprehensive, full-stack personal finance management application with powerfu
   - Color coding for better visualization
   - Category-wise transaction analysis
 
+- 📈 **Analytics & Reports**
+  - Interactive dashboard
+  - Expense patterns visualization
+  - Income vs expense analysis
+  - Category-wise breakdown
+  - Custom date range reports
+
+### Additional Features
+- 🌙 Dark/Light theme support
+- 📱 Responsive design for all devices
+- 🔐 Secure authentication system
+- 🔄 Real-time updates
+- 📤 Data export functionality
+
+## 🚀 Coming Soon
+
+### Planned Features
+- 🏦 **Direct Bank Integration**
+  - Real-time bank account balance sync
