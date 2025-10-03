@@ -17,3 +17,22 @@ A comprehensive, full-stack personal finance management application with powerfu
 ## 🌟 Features
 
 ### Core Features
+- 💳 **Smart Account Management**
+  - Create and manage multiple accounts (bank, cash, mobile money)
+  - Support for multiple currencies
+  - Real-time balance tracking
+  - Account-wise transaction history
+
+- 📊 **Intelligent Transaction Tracking**
+  - Easy income and expense logging
+  - Smart categorization
+  - Detailed transaction history
+  - Quick transaction search and filtering
+  - Test transactions for demo purposes
+
+- 🎯 **Category Management**
+  - Default categories for quick setup
+  - Custom category creation
+  - Color coding for better visualization
+  - Category-wise transaction analysis
+
