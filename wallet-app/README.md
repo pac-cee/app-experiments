@@ -93,3 +93,22 @@ A comprehensive, full-stack personal finance management application with powerfu
 
 ## 🛠 Technical Stack
 
+### Frontend Architecture
+```
+React + TypeScript
+├── Material-UI (UI Components)
+├── Nivo Charts (Data Visualization)
+├── Axios (API Client)
+└── Context API (State Management)
+```
+
+### Backend Architecture
+```
+Node.js + Express
+├── MongoDB (Database)
+├── JWT (Authentication)
+├── Express Validator (Input Validation)
+└── Mongoose (ODM)
+```
+
+## ⚡ Prerequisites
