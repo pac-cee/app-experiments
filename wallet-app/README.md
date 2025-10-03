@@ -55,3 +55,22 @@ A comprehensive, full-stack personal finance management application with powerfu
 ### Planned Features
 - 🏦 **Direct Bank Integration**
   - Real-time bank account balance sync
+  - Automatic transaction import
+  - Support for major banks
+  - Secure bank API integration
+
+- 📱 **Mobile Money Integration**
+  - M-Pesa integration
+  - Automatic balance updates
+  - Transaction history sync
+  - Mobile money transfer tracking
+
+- 💡 **Smart Features**
+  - AI-powered expense predictions
+  - Automated categorization
+  - Smart savings recommendations
+  - Investment tracking
+  - Bill payment reminders
+
+- 🔔 **Enhanced Notifications**
+  - Custom alert thresholds
