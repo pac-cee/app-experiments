@@ -74,3 +74,22 @@ A comprehensive, full-stack personal finance management application with powerfu
 
 - 🔔 **Enhanced Notifications**
   - Custom alert thresholds
+  - Budget overspending warnings
+  - Bill payment reminders
+  - Unusual activity detection
+
+- 📊 **Advanced Analytics**
+  - Predictive analysis
+  - Custom report generation
+  - Financial goal tracking
+  - Investment portfolio analysis
+  - Net worth tracking
+
+- 🤝 **Social Features**
+  - Shared wallets
+  - Group expense tracking
+  - Bill splitting
+  - Family account management
+
+## 🛠 Technical Stack
+
