@@ -150,3 +150,22 @@ NODE_ENV=development
 
 ### 3. Frontend Setup
 ```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Create environment file
+cp .env.example .env
+
+# Required .env configurations
+REACT_APP_API_URL=http://localhost:5002/api
+```
+
+## 🚀 Development Setup
+
+### Starting Development Servers
+
+1. **Backend Server**
+```bash
+cd backend
