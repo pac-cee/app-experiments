@@ -188,3 +188,13 @@ wallet-app/
 │   │   ├── pages/         # Page components
 │   │   ├── contexts/      # React contexts
 │   │   ├── services/     # API services
+│   │   └── utils/        # Helper functions
+│   └── package.json
+│
+├── backend/                 # Node.js backend
+│   ├── controllers/        # Route controllers
+│   ├── models/            # Database models
+│   ├── routes/            # API routes
+│   ├── middleware/        # Custom middleware
+│   └── package.json
+```
