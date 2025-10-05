@@ -36,3 +36,22 @@ func register(w http.ResponseWriter, r *http.Request) {
     json.NewDecoder(r.Body).Decode(&req)
     usersMux.Lock()
     defer usersMux.Unlock()
+    if _, exists := users[req.Email]; exists {
+        http.Error(w, "User exists", http.StatusBadRequest)
+        return
+    }
+    hash, _ := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+    users[req.Email] = &User{Email: req.Email, PasswordHash: string(hash)}
+    fmt.Fprint(w, "Registered")
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+    var req struct {
+        Email    string `json:"email"`
+        Password string `json:"password"`
+        TOTP     string `json:"totp"`
+    }
+    json.NewDecoder(r.Body).Decode(&req)
+    usersMux.Lock()
+    user, exists := users[req.Email]
+    usersMux.Unlock()
