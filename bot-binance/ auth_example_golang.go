@@ -93,3 +93,22 @@ func setupTOTP(w http.ResponseWriter, r *http.Request) {
     user.TOTPSecret = key.Secret()
     usersMux.Unlock()
     json.NewEncoder(w).Encode(map[string]string{"secret": key.Secret(), "url": key.URL()})
+}
+
+func protected(w http.ResponseWriter, r *http.Request) {
+    auth := r.Header.Get("Authorization")
+    if len(auth) < 8 || auth[:7] != "Bearer " {
+        http.Error(w, "Missing token", http.StatusUnauthorized)
+        return
+    }
+    tokenStr := auth[7:]
+    token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
+        return jwtKey, nil
+    })
+    if err != nil || !token.Valid {
+        http.Error(w, "Invalid token", http.StatusUnauthorized)
+        return
+    }
+    fmt.Fprint(w, "Protected content")
+}
+
