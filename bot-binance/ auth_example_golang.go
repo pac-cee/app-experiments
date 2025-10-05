@@ -55,3 +55,22 @@ func login(w http.ResponseWriter, r *http.Request) {
     usersMux.Lock()
     user, exists := users[req.Email]
     usersMux.Unlock()
+    if !exists || bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(req.Password)) != nil {
+        http.Error(w, "Invalid credentials", http.StatusUnauthorized)
+        return
+    }
+    // If user has TOTP enabled, require code
+    if user.TOTPSecret != "" {
+        if !totp.Validate(req.TOTP, user.TOTPSecret) {
+            http.Error(w, "Invalid TOTP code", http.StatusUnauthorized)
+            return
+        }
+    }
+    token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+        "email": req.Email,
+        "exp":   time.Now().Add(time.Hour).Unix(),
+    })
+    tokenString, _ := token.SignedString(jwtKey)
+    json.NewEncoder(w).Encode(map[string]string{"token": tokenString})
+}
+
