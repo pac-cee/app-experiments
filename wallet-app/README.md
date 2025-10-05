@@ -169,3 +169,22 @@ REACT_APP_API_URL=http://localhost:5002/api
 1. **Backend Server**
 ```bash
 cd backend
+npm run dev
+```
+
+2. **Frontend Development**
+```bash
+cd frontend
+npm start
+```
+
+## 📁 Project Structure
+```
+wallet-app/
+├── frontend/                 # React frontend
+│   ├── public/              # Static files
+│   ├── src/
+│   │   ├── components/     # Reusable components
+│   │   ├── pages/         # Page components
+│   │   ├── contexts/      # React contexts
+│   │   ├── services/     # API services
