@@ -74,3 +74,22 @@ func login(w http.ResponseWriter, r *http.Request) {
     json.NewEncoder(w).Encode(map[string]string{"token": tokenString})
 }
 
+func setupTOTP(w http.ResponseWriter, r *http.Request) {
+    // For demo: get email from query param (in production, use JWT auth)
+    email := r.URL.Query().Get("email")
+    usersMux.Lock()
+    user, exists := users[email]
+    usersMux.Unlock()
+    if !exists {
+        http.Error(w, "User not found", http.StatusNotFound)
+        return
+    }
+    secret := totp.GenerateOpts{
+        Issuer:      "DemoApp",
+        AccountName: email,
+    }
+    key, _ := totp.Generate(secret)
+    usersMux.Lock()
+    user.TOTPSecret = key.Secret()
+    usersMux.Unlock()
+    json.NewEncoder(w).Encode(map[string]string{"secret": key.Secret(), "url": key.URL()})
