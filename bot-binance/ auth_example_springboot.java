@@ -55,3 +55,22 @@ public class AuthExampleSpringBoot {
         if (user.totpSecret != null) {
             Totp totpObj = new Totp(user.totpSecret);
             if (!totpObj.verify(totp)) {
+                return Map.of("error", "Invalid TOTP code");
+            }
+        }
+        String token = Jwts.builder()
+                .setSubject(email)
+                .signWith(SignatureAlgorithm.HS256, jwtSecret)
+                .compact();
+        return Map.of("token", token);
+    }
+
+    @PostMapping("/setup-totp")
+    public Map<String, String> setupTotp(@RequestBody Map<String, String> body) {
+        String email = body.get("email");
+        User user = users.get(email);
+        if (user == null) return Map.of("error", "User not found");
+        String secret = Totp.randomBase32Secret();
+        user.totpSecret = secret;
+        String url = "otpauth://totp/DemoApp:" + email + "?secret=" + secret + "&issuer=DemoApp";
+        return Map.of("secret", secret, "url", url);
