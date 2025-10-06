@@ -17,3 +17,22 @@ function getLineSegments(data: any[]) {
       from: data[i - 1],
       to: data[i],
       isUp: data[i].price > data[i - 1].price
+    });
+  }
+  return segments;
+}
+
+export default function AssetChart({ symbol, assetType, range }: AssetChartProps) {
+  const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get(`/api/history?symbol=${symbol}&assetType=${assetType}&range=${range}`)
+      .then(resp => setData(resp.data))
+      .catch(() => setData([]))
+      .finally(() => setLoading(false));
+  }, [symbol, assetType, range]);
+
+  if (loading) return <div>Loading chart...</div>;
+  if (!data.length) return <div>No historical data.</div>;
