@@ -36,3 +36,25 @@ This document explains how to implement secure authentication for a trading and 
    - Require re-authentication or 2FA for sensitive actions (withdrawals, transfers).
 
 ---
+
+## 3. Implementation Steps
+
+### Backend (Node.js/Express/Next.js API)
+
+- Use libraries like `bcrypt` for password hashing.
+- Use `jsonwebtoken` for JWT-based sessions, or `express-session` for cookie sessions.
+- Use `speakeasy` for TOTP 2FA.
+- Store user data in a secure database (PostgreSQL, MongoDB, etc.).
+- Use HTTPS everywhere.
+
+### Example: User Registration (Node.js/Express)
+```js
+const bcrypt = require('bcrypt');
+const User = require('./models/User');
+
+app.post('/api/register', async (req, res) => {
+  const { email, password } = req.body;
+  const hash = await bcrypt.hash(password, 12);
+  await User.create({ email, password: hash });
+  res.status(201).send('Registered');
+});
