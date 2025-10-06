@@ -74,3 +74,19 @@ public class AuthExampleSpringBoot {
         user.totpSecret = secret;
         String url = "otpauth://totp/DemoApp:" + email + "?secret=" + secret + "&issuer=DemoApp";
         return Map.of("secret", secret, "url", url);
+    }
+
+    @GetMapping("/protected")
+    public String protectedEndpoint(@RequestHeader("Authorization") String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return "Missing token";
+        }
+        String token = authHeader.substring(7);
+        try {
+            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+            return "Protected content";
+        } catch (Exception e) {
+            return "Invalid token";
+        }
+    }
+}
