@@ -17,3 +17,22 @@ import java.util.concurrent.ConcurrentHashMap;
 @RequestMapping("/api")
 public class AuthExampleSpringBoot {
     static class User {
+        String email;
+        String passwordHash;
+        String totpSecret;
+        User(String email, String passwordHash) {
+            this.email = email;
+            this.passwordHash = passwordHash;
+        }
+    }
+
+    private Map<String, User> users = new ConcurrentHashMap<>();
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private String jwtSecret = "supersecretkey";
+
+    public static void main(String[] args) {
+        SpringApplication.run(AuthExampleSpringBoot.class, args);
+    }
+
+    @PostMapping("/register")
+    public String register(@RequestBody Map<String, String> body) {
