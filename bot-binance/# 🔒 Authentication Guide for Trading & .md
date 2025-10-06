@@ -17,3 +17,22 @@ This document explains how to implement secure authentication for a trading and 
 1. **User Registration**
    - Collect email, password, and (optionally) phone number.
    - Verify email/phone (send confirmation code).
+   - Store hashed passwords (never plain text).
+
+2. **User Login**
+   - User submits email and password.
+   - Verify credentials.
+   - Issue a secure session (JWT or HTTP-only cookie).
+
+3. **Two-Factor Authentication (2FA)**
+   - After password login, prompt for a 2FA code (TOTP app or SMS).
+   - Only allow access after successful 2FA.
+
+4. **API Key Management (for programmatic trading)**
+   - Allow users to generate/revoke API keys.
+   - Store API keys securely (hashed or encrypted).
+
+5. **Money Transfer Authorization**
+   - Require re-authentication or 2FA for sensitive actions (withdrawals, transfers).
+
+---
