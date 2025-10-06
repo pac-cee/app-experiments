@@ -112,3 +112,11 @@ func protected(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, "Protected content")
 }
 
+func main() {
+    http.HandleFunc("/api/register", register)
+    http.HandleFunc("/api/login", login)
+    http.HandleFunc("/api/setup-totp", setupTOTP)
+    http.HandleFunc("/api/protected", protected)
+    log.Println("Server running on :8080")
+    log.Fatal(http.ListenAndServe(":8080", nil))
+}
