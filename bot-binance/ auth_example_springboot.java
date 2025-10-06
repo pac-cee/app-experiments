@@ -36,3 +36,22 @@ public class AuthExampleSpringBoot {
 
     @PostMapping("/register")
     public String register(@RequestBody Map<String, String> body) {
+        String email = body.get("email");
+        String password = body.get("password");
+        if (users.containsKey(email)) return "User exists";
+        users.put(email, new User(email, encoder.encode(password)));
+        return "Registered";
+    }
+
+    @PostMapping("/login")
+    public Map<String, String> login(@RequestBody Map<String, String> body) {
+        String email = body.get("email");
+        String password = body.get("password");
+        String totp = body.get("totp");
+        User user = users.get(email);
+        if (user == null || !encoder.matches(password, user.passwordHash)) {
+            return Map.of("error", "Invalid credentials");
+        }
+        if (user.totpSecret != null) {
+            Totp totpObj = new Totp(user.totpSecret);
+            if (!totpObj.verify(totp)) {
