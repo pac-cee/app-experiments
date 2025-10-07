@@ -17,3 +17,22 @@ type Asset = {
   name: string;
   assetType: string;
 };
+
+const assets = [
+  { symbol: 'BTCUSDT', name: 'Bitcoin', assetType: 'crypto' },
+  { symbol: 'ETHUSDT', name: 'Ethereum', assetType: 'crypto' },
+  { symbol: 'AAPL', name: 'Apple', assetType: 'stock' },
+  { symbol: 'MSFT', name: 'Microsoft', assetType: 'stock' },
+  { symbol: 'EURUSD', name: 'EUR/USD', assetType: 'forex' },
+];
+
+function assetTypeIcon(type: string) {
+  if (type === 'crypto') return '🪙';
+  if (type === 'stock') return '📈';
+  if (type === 'forex') return '💱';
+  return '';
+}
+
+const ranges = [
+  { label: '24h', value: '24h' },
+  { label: '7d', value: '7d' },
