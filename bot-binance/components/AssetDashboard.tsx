@@ -131,3 +131,22 @@ export default function AssetDashboard() {
       }
       setPrices(prev => ({ ...prev, ...updated }));
       setPriceHistory(prev => {
+        const next = { ...prev };
+        for (const symbol in updated) {
+          if (!next[symbol]) next[symbol] = [];
+          next[symbol] = [...next[symbol].slice(-29), updated[symbol]]; // last 30 points
+        }
+        return next;
+      });
+    };
+    return () => ws.close();
+  }, [assets]);
+
+  // --- Favorite toggle ---
+  function toggleFavorite(symbol: string) {
+    setFavorites((prev) => {
+      let next;
+      if (prev.includes(symbol)) {
+        next = prev.filter(s => s !== symbol);
+      } else {
+        next = [...prev, symbol];
