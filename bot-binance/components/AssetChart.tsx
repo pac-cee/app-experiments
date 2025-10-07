@@ -36,3 +36,22 @@ export default function AssetChart({ symbol, assetType, range }: AssetChartProps
 
   if (loading) return <div>Loading chart...</div>;
   if (!data.length) return <div>No historical data.</div>;
+
+  const segments = getLineSegments(data);
+
+  return (
+    <ResponsiveContainer width="100%" height={300}>
+      {/* Uncomment for candlestick support later */}
+      {/* <ComposedChart ... > ... </ComposedChart> */}
+      <LineChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+        <XAxis dataKey="timestamp" tickFormatter={t => new Date(t).toLocaleString()} minTickGap={30} />
+        <YAxis domain={['auto', 'auto']} />
+        <Tooltip labelFormatter={l => new Date(l).toLocaleString()} />
+        {/* Draw up/down segments with different colors */}
+        {segments.map((seg, i) => (
+          <Line
+            key={i}
+            data={[seg.from, seg.to]}
+            type="monotone"
+            dataKey="price"
+            stroke={seg.isUp ? '#22c55e' : '#ef4444'}
