@@ -112,3 +112,22 @@ export default function AssetDashboard() {
           map[t.symbol] = t;
         }
         setTicker24(map);
+      } catch {}
+    }
+    fetch24hr();
+    const interval = setInterval(fetch24hr, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // WebSocket for all tickers (miniTicker stream)
+  useEffect(() => {
+    if (!assets.length) return;
+    const ws = new window.WebSocket('wss://stream.binance.com:9443/ws/!miniTicker@arr');
+    ws.onmessage = (event: MessageEvent) => {
+      const data = JSON.parse(event.data);
+      const updated: Record<string, number> = {};
+      for (const t of data) {
+        updated[t.s] = parseFloat(t.c);
+      }
+      setPrices(prev => ({ ...prev, ...updated }));
+      setPriceHistory(prev => {
