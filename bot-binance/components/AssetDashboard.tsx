@@ -93,3 +93,22 @@ export default function AssetDashboard() {
             symbol: s.symbol,
             name: `${s.baseAsset}/${s.quoteAsset}`,
             assetType: 'crypto',
+          }));
+        setAssets(symbols);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchAssets();
+  }, []);
+
+  // Fetch 24hr stats for all pairs
+  useEffect(() => {
+    async function fetch24hr() {
+      try {
+        const resp = await axios.get('https://api.binance.com/api/v3/ticker/24hr');
+        const map: Record<string, Ticker24hr> = {};
+        for (const t of resp.data) {
+          map[t.symbol] = t;
+        }
+        setTicker24(map);
