@@ -55,3 +55,23 @@ export default function AssetChart({ symbol, assetType, range }: AssetChartProps
             type="monotone"
             dataKey="price"
             stroke={seg.isUp ? '#22c55e' : '#ef4444'}
+            strokeWidth={2}
+            dot={false}
+            isAnimationActive={false}
+          />
+        ))}
+        {/* Markers for up/down points */}
+        {segments.map((seg, i) => (
+          <ReferenceDot
+            key={i}
+            x={seg.to.timestamp}
+            y={seg.to.price}
+            r={3}
+            fill={seg.isUp ? '#22c55e' : '#ef4444'}
+            stroke="none"
+          />
+        ))}
+      </LineChart>
+    </ResponsiveContainer>
+  );
+}
