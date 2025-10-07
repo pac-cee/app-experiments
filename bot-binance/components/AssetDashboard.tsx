@@ -55,3 +55,22 @@ export default function AssetDashboard() {
   const [search, setSearch] = useState('');
   const [chartType, setChartType] = useState<'line' | 'candle'>('line');
   const [assets, setAssets] = useState<Asset[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [prices, setPrices] = useState<Record<string, number>>({});
+  const [ticker24, setTicker24] = useState<Record<string, Ticker24hr>>({});
+  const [selected, setSelected] = useState<Asset | null>(null);
+  const [range, setRange] = useState<'24h' | '7d' | 'all'>('24h');
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        return JSON.parse(localStorage.getItem('favorites') || '[]');
+      } catch { return []; }
+    }
+    return [];
+  });
+  const [showFavorites, setShowFavorites] = useState(false);
+  const [filterQuote, setFilterQuote] = useState('ALL');
+  const [sortKey, setSortKey] = useState<SortKey>('symbol');
+  const [sortAsc, setSortAsc] = useState(true);
+  const [tab, setTab] = useState<'pairs' | 'coins'>('pairs');
+  const [selectedCoin, setSelectedCoin] = useState<string | null>(null);
