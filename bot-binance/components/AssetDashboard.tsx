@@ -150,3 +150,22 @@ export default function AssetDashboard() {
         next = prev.filter(s => s !== symbol);
       } else {
         next = [...prev, symbol];
+      }
+      localStorage.setItem('favorites', JSON.stringify(next));
+      return next;
+    });
+  }
+
+  // --- Filtering, sorting, virtualization ---
+  let filtered = assets.filter(asset =>
+    asset.name.toLowerCase().includes(search.toLowerCase()) ||
+    asset.symbol.toLowerCase().includes(search.toLowerCase())
+  );
+  if (showFavorites) filtered = filtered.filter(a => favorites.includes(a.symbol));
+  if (filterQuote !== 'ALL') filtered = filtered.filter(a => a.symbol.endsWith(filterQuote));
+  filtered = filtered.sort((a, b) => {
+    if (sortKey === 'symbol') return sortAsc ? a.symbol.localeCompare(b.symbol) : b.symbol.localeCompare(a.symbol);
+    if (sortKey === 'price') return sortAsc ? ((prices[a.symbol] || 0) - (prices[b.symbol] || 0)) : ((prices[b.symbol] || 0) - (prices[a.symbol] || 0));
+    if (sortKey === 'change') return sortAsc
+      ? (parseFloat(ticker24[a.symbol]?.priceChangePercent || '0') - parseFloat(ticker24[b.symbol]?.priceChangePercent || '0'))
+      : (parseFloat(ticker24[b.symbol]?.priceChangePercent || '0') - parseFloat(ticker24[a.symbol]?.priceChangePercent || '0'));
