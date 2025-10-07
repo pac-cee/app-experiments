@@ -74,3 +74,22 @@ export default function AssetDashboard() {
   const [sortAsc, setSortAsc] = useState(true);
   const [tab, setTab] = useState<'pairs' | 'coins'>('pairs');
   const [selectedCoin, setSelectedCoin] = useState<string | null>(null);
+  // For sparklines: map symbol -> price history
+  const [priceHistory, setPriceHistory] = useState<Record<string, number[]>>({});
+  // Coin modal state
+  const [coinModal, setCoinModal] = useState<null | { coin: string, best: { symbol: string, name: string } }>(null);
+  const [coinModalChartType, setCoinModalChartType] = useState<'line' | 'candle'>('line');
+  const [coinModalRange, setCoinModalRange] = useState<'24h' | '7d' | 'all'>('24h');
+
+  // Fetch all Binance spot pairs (exchangeInfo)
+  useEffect(() => {
+    async function fetchAssets() {
+      setLoading(true);
+      try {
+        const resp = await axios.get('https://api.binance.com/api/v3/exchangeInfo');
+        const symbols: Asset[] = resp.data.symbols
+          .filter((s: any) => s.status === 'TRADING' && s.isSpotTradingAllowed)
+          .map((s: any) => ({
+            symbol: s.symbol,
+            name: `${s.baseAsset}/${s.quoteAsset}`,
+            assetType: 'crypto',
