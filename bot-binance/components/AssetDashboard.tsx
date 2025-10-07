@@ -36,3 +36,22 @@ function assetTypeIcon(type: string) {
 const ranges = [
   { label: '24h', value: '24h' },
   { label: '7d', value: '7d' },
+  { label: 'All', value: 'all' },
+];
+
+type Ticker24hr = {
+  symbol: string;
+  price: string;
+  priceChange: string;
+  priceChangePercent: string;
+  highPrice: string;
+  lowPrice: string;
+  lastPrice: string;
+};
+
+type SortKey = 'symbol' | 'price' | 'change';
+
+export default function AssetDashboard() {
+  const [search, setSearch] = useState('');
+  const [chartType, setChartType] = useState<'line' | 'candle'>('line');
+  const [assets, setAssets] = useState<Asset[]>([]);
