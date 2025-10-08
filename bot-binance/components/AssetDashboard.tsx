@@ -245,3 +245,22 @@ export default function AssetDashboard() {
           onValueChange={v => { setTab(v as 'pairs' | 'coins'); setSelectedCoin(null); }}
           tabs={[{ label: 'Pairs', value: 'pairs' }, { label: 'Coins', value: 'coins' }]}
         />
+        {tab === 'pairs' && <>
+          <Input
+            type="text"
+            placeholder="Search assets..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="ml-4"
+          />
+          <Tabs
+            value={chartType}
+            onValueChange={v => setChartType(v as 'line' | 'candle')}
+            tabs={[
+              { label: 'Line', value: 'line' },
+              { label: 'Candle', value: 'candle' }
+            ]}
+            className="ml-auto"
+          />
+        </>}
+      </div>
