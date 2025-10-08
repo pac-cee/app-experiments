@@ -207,3 +207,22 @@ export default function AssetDashboard() {
         style={style}
         className="cursor-pointer hover:bg-muted/50"
         onClick={() => { setSelected(asset); setRange('24h'); }}
+      >
+        <TableCell className="text-2xl" onClick={e => { e.stopPropagation(); toggleFavorite(asset.symbol); }}>
+          <span title={favorites.includes(asset.symbol) ? 'Unfavorite' : 'Favorite'}>
+            {favorites.includes(asset.symbol) ? '★' : '☆'}
+          </span> {assetTypeIcon(asset.assetType)}
+        </TableCell>
+        <TableCell>{asset.name}</TableCell>
+        <TableCell className="font-mono">{asset.symbol}</TableCell>
+        <TableCell className="font-mono">{prices[asset.symbol] ?? '...'}</TableCell>
+        <TableCell>
+          {ticker24[asset.symbol] && (
+            <span className={
+              parseFloat(ticker24[asset.symbol].priceChange) > 0 ? 'text-green-600' : 'text-red-600'
+            }>
+              {parseFloat(ticker24[asset.symbol].priceChange) > 0 ? '+' : ''}
+              {parseFloat(ticker24[asset.symbol].priceChange).toFixed(2)}
+              {' '}({parseFloat(ticker24[asset.symbol].priceChangePercent).toFixed(2)}%)
+            </span>
+          )}
