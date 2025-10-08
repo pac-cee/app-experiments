@@ -264,3 +264,22 @@ export default function AssetDashboard() {
           />
         </>}
       </div>
+      {tab === 'pairs' && <>
+        <div className="mb-2 flex gap-2 flex-wrap items-center">
+          <Button variant={showFavorites ? 'default' : 'outline'} onClick={() => setShowFavorites(f => !f)}>
+            {showFavorites ? 'Show All' : 'Show Favorites'}
+          </Button>
+          <span>Quote:</span>
+          <select className="border rounded px-2 py-1" value={filterQuote} onChange={e => setFilterQuote(e.target.value)}>
+            <option value="ALL">ALL</option>
+            {quoteAssets.map(q => (
+              <option key={q} value={q}>{q}</option>
+            ))}
+          </select>
+          <span>Sort by:</span>
+          <select className="border rounded px-2 py-1" value={sortKey} onChange={e => setSortKey(e.target.value as SortKey)}>
+            <option value="symbol">Symbol</option>
+            <option value="price">Price</option>
+            <option value="change">24h Change</option>
+          </select>
+          <Button variant="outline" onClick={() => setSortAsc(a => !a)}>{sortAsc ? '▲' : '▼'}</Button>
