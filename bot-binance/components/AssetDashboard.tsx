@@ -169,3 +169,22 @@ export default function AssetDashboard() {
     if (sortKey === 'change') return sortAsc
       ? (parseFloat(ticker24[a.symbol]?.priceChangePercent || '0') - parseFloat(ticker24[b.symbol]?.priceChangePercent || '0'))
       : (parseFloat(ticker24[b.symbol]?.priceChangePercent || '0') - parseFloat(ticker24[a.symbol]?.priceChangePercent || '0'));
+    return 0;
+  });
+
+  // --- Unique coins (base assets) ---
+  // --- Coins with their best pair (for price) ---
+  const coins = useMemo(() => {
+    // Map base asset to best pair symbol (prefer USDT, then BUSD, then any)
+    const map: Record<string, { symbol: string, name: string }> = {};
+    for (const asset of assets) {
+      const [base, quote] = asset.name.split('/');
+      if (!map[base]) {
+        map[base] = { symbol: asset.symbol, name: asset.name };
+      }
+      // Prefer USDT
+      if (quote === 'USDT') {
+        map[base] = { symbol: asset.symbol, name: asset.name };
+      } else if (quote === 'BUSD' && !map[base].name.endsWith('USDT')) {
+        map[base] = { symbol: asset.symbol, name: asset.name };
+      }
