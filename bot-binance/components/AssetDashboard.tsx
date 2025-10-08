@@ -226,3 +226,22 @@ export default function AssetDashboard() {
               {' '}({parseFloat(ticker24[asset.symbol].priceChangePercent).toFixed(2)}%)
             </span>
           )}
+        </TableCell>
+        <TableCell>{ticker24[asset.symbol] ? ticker24[asset.symbol].highPrice : '-'}</TableCell>
+        <TableCell>{ticker24[asset.symbol] ? ticker24[asset.symbol].lowPrice : '-'}</TableCell>
+      </TableRow>
+    );
+  };
+
+  // --- Quote asset filter options ---
+  const quoteAssets = Array.from(new Set(assets.map(a => a.symbol.slice(-4)).concat(assets.map(a => a.symbol.slice(-3))))).filter(q => q.match(/^[A-Z]+$/)).sort();
+
+  return (
+    <div className="p-8 bg-background text-foreground min-h-screen">
+      <h1 className="text-3xl font-bold mb-4">Trading Dashboard</h1>
+      <div className="mb-4 flex flex-col md:flex-row gap-4 items-center">
+        <Tabs
+          value={tab}
+          onValueChange={v => { setTab(v as 'pairs' | 'coins'); setSelectedCoin(null); }}
+          tabs={[{ label: 'Pairs', value: 'pairs' }, { label: 'Coins', value: 'coins' }]}
+        />
