@@ -188,3 +188,22 @@ export default function AssetDashboard() {
       } else if (quote === 'BUSD' && !map[base].name.endsWith('USDT')) {
         map[base] = { symbol: asset.symbol, name: asset.name };
       }
+    }
+    return Object.entries(map).sort((a, b) => a[0].localeCompare(b[0]));
+  }, [assets]);
+
+  // --- All pairs for a selected coin ---
+  const pairsForCoin = useMemo(() => {
+    if (!selectedCoin) return [];
+    return assets.filter(a => a.name.startsWith(selectedCoin + '/'));
+  }, [assets, selectedCoin]);
+
+  // --- Virtualized row renderer ---
+  const Row = ({ index, style }: { index: number, style: React.CSSProperties }) => {
+    const asset = filtered[index];
+    return (
+      <TableRow
+        key={asset.symbol}
+        style={style}
+        className="cursor-pointer hover:bg-muted/50"
+        onClick={() => { setSelected(asset); setRange('24h'); }}
