@@ -435,3 +435,22 @@ export default function AssetDashboard() {
               })}
           </div>
         </div>
+        {/* All Coins */}
+        <div className="mb-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {coins.map(([coin, best]) => {
+            const price = prices[best.symbol];
+            const change = ticker24[best.symbol]?.priceChange;
+            const changePct = ticker24[best.symbol]?.priceChangePercent;
+            const history = priceHistory[best.symbol] || [];
+            return (
+              <Card
+                key={coin}
+                className={`p-4 cursor-pointer border-2 ${selectedCoin === coin ? 'border-primary' : 'border-transparent'} hover:border-primary`}
+                onClick={() => {
+                  setSelectedCoin(coin === selectedCoin ? null : coin);
+                  setCoinModal({ coin, best });
+                  setCoinModalChartType('line');
+                  setCoinModalRange('24h');
+                }}
+              >
+                <div className="text-xl font-bold">{coin}</div>
