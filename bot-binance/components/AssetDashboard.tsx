@@ -283,3 +283,22 @@ export default function AssetDashboard() {
             <option value="change">24h Change</option>
           </select>
           <Button variant="outline" onClick={() => setSortAsc(a => !a)}>{sortAsc ? '▲' : '▼'}</Button>
+        </div>
+        <div className="overflow-x-auto">
+          {loading ? (
+            <div className="text-center py-12 text-muted-foreground">Loading all Binance spot pairs...</div>
+          ) : (
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableHeader>Fav</TableHeader>
+                  <TableHeader>Name</TableHeader>
+                  <TableHeader>Symbol</TableHeader>
+                  <TableHeader>Price</TableHeader>
+                  <TableHeader>24h Change</TableHeader>
+                  <TableHeader>High</TableHeader>
+                  <TableHeader>Low</TableHeader>
+                </TableRow>
+              </TableHead>
+              <TableBody style={{ display: 'block', height: '600px', overflow: 'auto' }}>
+                <List
