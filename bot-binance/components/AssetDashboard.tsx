@@ -473,3 +473,22 @@ export default function AssetDashboard() {
                   )}
                 </div>
                 <div className="text-xs text-muted-foreground">{assets.filter(a => a.name.startsWith(coin + '/')).length} pairs</div>
+              </Card>
+            );
+          })}
+        </div>
+        {selectedCoin && (
+          <div className="mt-8">
+            <h2 className="text-2xl font-semibold mb-2">{selectedCoin} pairs</h2>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableHeader>Pair</TableHeader>
+                  <TableHeader>Price</TableHeader>
+                  <TableHeader>24h Change</TableHeader>
+                  <TableHeader>High</TableHeader>
+                  <TableHeader>Low</TableHeader>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {pairsForCoin.map(asset => (
