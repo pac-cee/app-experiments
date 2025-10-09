@@ -321,3 +321,22 @@ export default function AssetDashboard() {
                 value={range}
                 onValueChange={v => setRange(v as '24h' | '7d' | 'all')}
                 tabs={ranges}
+                className="mb-4"
+              />
+              {chartType === 'line' && (
+                <AssetChart symbol={selected.symbol} assetType={selected.assetType} range={range} />
+              )}
+              {chartType === 'candle' && (
+                <CandlestickChart symbol={selected.symbol} assetType={selected.assetType} range={range} />
+              )}
+            </Card>
+          </div>
+        )}
+      </>}
+      {tab === 'coins' && <>
+        {/* Popular Coins */}
+        <div className="mb-6">
+          <div className="text-lg font-bold mb-2 text-primary">Popular Coins</div>
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {["BTC","ETH","BNB","SOL","ADA","XRP","DOGE","TON","AVAX","SHIB"].map((coin) => {
+              const best = coins.find(([c]) => c === coin)?.[1];
