@@ -511,3 +511,22 @@ export default function AssetDashboard() {
                   </TableRow>
                 ))}
               </TableBody>
+            </Table>
+          </div>
+        )}
+      </>}
+      {/* Coin Details Modal */}
+      {coinModal && (
+        <CoinModal
+          open={!!coinModal}
+          onClose={() => setCoinModal(null)}
+          coin={coinModal.coin}
+          pairSymbol={coinModal.best.symbol}
+          pairName={coinModal.best.name}
+          assetType="crypto"
+          price={prices[coinModal.best.symbol]}
+          change={ticker24[coinModal.best.symbol]?.priceChange}
+          changePct={ticker24[coinModal.best.symbol]?.priceChangePercent}
+          chartType={coinModalChartType}
+          setChartType={setCoinModalChartType}
+          range={coinModalRange}
