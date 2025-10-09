@@ -492,3 +492,22 @@ export default function AssetDashboard() {
               </TableHead>
               <TableBody>
                 {pairsForCoin.map(asset => (
+                  <TableRow key={asset.symbol} className="cursor-pointer hover:bg-muted/50" onClick={() => { setSelected(asset); setTab('pairs'); setRange('24h'); }}>
+                    <TableCell>{asset.name}</TableCell>
+                    <TableCell className="font-mono">{prices[asset.symbol] ?? '...'}</TableCell>
+                    <TableCell>
+                      {ticker24[asset.symbol] && (
+                        <span className={
+                          parseFloat(ticker24[asset.symbol].priceChange) > 0 ? 'text-green-600' : 'text-red-600'
+                        }>
+                          {parseFloat(ticker24[asset.symbol].priceChange) > 0 ? '+' : ''}
+                          {parseFloat(ticker24[asset.symbol].priceChange).toFixed(2)}
+                          {' '}({parseFloat(ticker24[asset.symbol].priceChangePercent).toFixed(2)}%)
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell>{ticker24[asset.symbol] ? ticker24[asset.symbol].highPrice : '-'}</TableCell>
+                    <TableCell>{ticker24[asset.symbol] ? ticker24[asset.symbol].lowPrice : '-'}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
