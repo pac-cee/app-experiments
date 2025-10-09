@@ -340,3 +340,22 @@ export default function AssetDashboard() {
           <div className="flex gap-4 overflow-x-auto pb-2">
             {["BTC","ETH","BNB","SOL","ADA","XRP","DOGE","TON","AVAX","SHIB"].map((coin) => {
               const best = coins.find(([c]) => c === coin)?.[1];
+              if (!best) return null;
+              const price = prices[best.symbol];
+              const change = ticker24[best.symbol]?.priceChange;
+              const changePct = ticker24[best.symbol]?.priceChangePercent;
+              const history = priceHistory[best.symbol] || [];
+              return (
+                <Card
+                  key={coin}
+                  className={`min-w-[180px] max-w-[200px] p-4 flex-shrink-0 cursor-pointer border-2 ${selectedCoin === coin ? 'border-primary' : 'border-transparent'} hover:border-primary transition-shadow shadow-lg hover:shadow-xl`}
+                  onClick={() => {
+                    setSelectedCoin(coin === selectedCoin ? null : coin);
+                    setCoinModal({ coin, best });
+                    setCoinModalChartType('line');
+                    setCoinModalRange('24h');
+                  }}
+                >
+                  <div className="text-2xl font-bold mb-1">{coin}</div>
+                  <div className="font-mono text-lg">
+                    {price !== undefined ? price : '...'}
