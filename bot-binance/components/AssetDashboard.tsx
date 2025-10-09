@@ -302,3 +302,22 @@ export default function AssetDashboard() {
               </TableHead>
               <TableBody style={{ display: 'block', height: '600px', overflow: 'auto' }}>
                 <List
+                  height={600}
+                  itemCount={filtered.length}
+                  itemSize={48}
+                  width={1200}
+                >
+                  {Row}
+                </List>
+              </TableBody>
+            </Table>
+          )}
+        </div>
+        {selected && (
+          <div className="mt-8 max-w-3xl mx-auto">
+            <Card className="p-6">
+              <h2 className="text-2xl font-semibold mb-2">{selected.name} ({selected.symbol})</h2>
+              <Tabs
+                value={range}
+                onValueChange={v => setRange(v as '24h' | '7d' | 'all')}
+                tabs={ranges}
