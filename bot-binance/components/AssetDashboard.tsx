@@ -378,3 +378,22 @@ export default function AssetDashboard() {
                   <div className="text-xs text-muted-foreground">{assets.filter(a => a.name.startsWith(coin + '/')).length} pairs</div>
                 </Card>
               );
+            })}
+          </div>
+        </div>
+        {/* Trending Coins */}
+        <div className="mb-6">
+          <div className="text-lg font-bold mb-2 text-accent">Trending Coins</div>
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {[...coins]
+              .sort((a, b) => {
+                const aSym = a[1].symbol;
+                const bSym = b[1].symbol;
+                const aChg = aSym ? parseFloat(ticker24[aSym]?.priceChangePercent || '0') : 0;
+                const bChg = bSym ? parseFloat(ticker24[bSym]?.priceChangePercent || '0') : 0;
+                return bChg - aChg;
+              })
+              .slice(0, 6)
+              .map(([coin, best]) => {
+                const price = prices[best.symbol];
+                const change = ticker24[best.symbol]?.priceChange;
