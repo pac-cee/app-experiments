@@ -416,3 +416,22 @@ export default function AssetDashboard() {
                       <span className="text-xs ml-1 text-muted-foreground">{best.name.split('/')[1]}</span>
                     </div>
                     <div className={
+                      change ? (parseFloat(change) > 0 ? 'text-green-600' : 'text-red-600') : 'text-muted-foreground'
+                    }>
+                      {change ? `${parseFloat(change) > 0 ? '+' : ''}${parseFloat(change).toFixed(2)} (${parseFloat(changePct).toFixed(2)}%)` : '...'}
+                    </div>
+                    <div className="my-2">
+                      {history.length > 1 ? (
+                        <Sparklines data={history} width={80} height={24} margin={4}>
+                          <SparklinesLine color={change && parseFloat(change) > 0 ? '#16a34a' : '#dc2626'} />
+                        </Sparklines>
+                      ) : (
+                        <div className="h-6" />
+                      )}
+                    </div>
+                    <div className="text-xs text-muted-foreground">{assets.filter(a => a.name.startsWith(coin + '/')).length} pairs</div>
+                  </Card>
+                );
+              })}
+          </div>
+        </div>
