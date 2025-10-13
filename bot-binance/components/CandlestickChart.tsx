@@ -55,3 +55,22 @@ export default function CandlestickChart({ symbol, range, assetType }: Candlesti
       }));
       seriesRef.current?.setData(candles);
     }
+    fetchCandles();
+  }, [symbol, range, assetType]);
+
+  // WebSocket for live updates (crypto only)
+  useEffect(() => {
+    if (assetType !== 'crypto') return;
+    const ws = new window.WebSocket(`wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@kline_1h`);
+    ws.onmessage = (event: MessageEvent) => {
+      const data = JSON.parse(event.data);
+      const k = data.k;
+      if (seriesRef.current) {
+        seriesRef.current.update({
+          time: k.t / 1000,
+          open: parseFloat(k.o),
+          high: parseFloat(k.h),
+          low: parseFloat(k.l),
+          close: parseFloat(k.c),
+        });
+      }
