@@ -17,3 +17,22 @@ interface CoinModalProps {
   changePct: string | undefined;
   chartType: 'line' | 'candle';
   setChartType: (v: 'line' | 'candle') => void;
+  range: '24h' | '7d' | 'all';
+  setRange: (v: '24h' | '7d' | 'all') => void;
+}
+
+export function CoinModal({
+  open,
+  onClose,
+  coin,
+  pairSymbol,
+  pairName,
+  assetType,
+  price,
+  change,
+  changePct,
+  chartType,
+  setChartType,
+  range,
+  setRange,
+}: CoinModalProps) {
