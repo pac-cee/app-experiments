@@ -74,3 +74,15 @@ export function CoinModal({
             />
           </div>
           <div className="h-72">
+            {chartType === 'line' && (
+              <AssetChart symbol={pairSymbol} assetType={assetType} range={range} />
+            )}
+            {chartType === 'candle' && (
+              <CandlestickChart symbol={pairSymbol} assetType={assetType} range={range} />
+            )}
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
