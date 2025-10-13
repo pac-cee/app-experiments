@@ -74,3 +74,11 @@ export default function CandlestickChart({ symbol, range, assetType }: Candlesti
           close: parseFloat(k.c),
         });
       }
+    };
+    return () => ws.close();
+  }, [symbol, assetType]);
+
+  return (
+    <div ref={chartContainerRef} style={{ width: '100%', height: 300 }} />
+  );
+}
