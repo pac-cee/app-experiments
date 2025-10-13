@@ -36,3 +36,22 @@ export function CoinModal({
   range,
   setRange,
 }: CoinModalProps) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-background rounded-2xl shadow-2xl max-w-lg w-full relative p-0 md:p-0">
+        <button className="absolute top-4 right-4 text-2xl text-foreground hover:text-primary" onClick={onClose}>
+          &times;
+        </button>
+        <Card className="p-6">
+          <div className="flex items-center gap-4 mb-2">
+            <span className="text-3xl font-bold">{coin}</span>
+            <span className="text-base text-muted-foreground">{pairName}</span>
+          </div>
+          <div className="text-2xl font-mono mb-2">{price !== undefined ? price : '...'}</div>
+          <div className={
+            change ? (parseFloat(change!) > 0 ? 'text-green-600' : 'text-red-600') : 'text-muted-foreground'
+          }>
+            {change ? `${parseFloat(change!) > 0 ? '+' : ''}${parseFloat(change!).toFixed(2)} (${parseFloat(changePct!).toFixed(2)}%)` : '...'}
+          </div>
+          <div className="flex items-center gap-4 mt-4 mb-2">
