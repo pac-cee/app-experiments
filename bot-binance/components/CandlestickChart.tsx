@@ -36,3 +36,22 @@ export default function CandlestickChart({ symbol, range, assetType }: Candlesti
     }
     return () => { chartRef.current?.remove(); };
   }, [symbol, range]);
+
+  useEffect(() => {
+    async function fetchCandles() {
+      let interval = '1h', limit = 24;
+      if (range === '7d') { interval = '1h'; limit = 7 * 24; }
+      if (range === 'all') { interval = '1d'; limit = 365; }
+      let url = assetType === 'crypto'
+        ? `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`
+        : `/api/history?symbol=${symbol}&assetType=${assetType}&range=${range}`;
+      const resp = await axios.get(url);
+      let candles = resp.data.map((k: any) => ({
+        time: assetType === 'crypto' ? (k[0] / 1000) as UTCTimestamp : Math.floor(k.timestamp / 1000),
+        open: parseFloat(assetType === 'crypto' ? k[1] : k.open || k.price),
+        high: parseFloat(assetType === 'crypto' ? k[2] : k.high || k.price),
+        low: parseFloat(assetType === 'crypto' ? k[3] : k.low || k.price),
+        close: parseFloat(assetType === 'crypto' ? k[4] : k.close || k.price),
+      }));
+      seriesRef.current?.setData(candles);
+    }
