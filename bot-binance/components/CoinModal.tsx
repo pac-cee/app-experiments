@@ -55,3 +55,22 @@ export function CoinModal({
             {change ? `${parseFloat(change!) > 0 ? '+' : ''}${parseFloat(change!).toFixed(2)} (${parseFloat(changePct!).toFixed(2)}%)` : '...'}
           </div>
           <div className="flex items-center gap-4 mt-4 mb-2">
+            <Tabs
+              value={chartType}
+              onValueChange={v => setChartType(v as 'line' | 'candle')}
+              tabs={[
+                { label: 'Line', value: 'line' },
+                { label: 'Candle', value: 'candle' }
+              ]}
+            />
+            <Tabs
+              value={range}
+              onValueChange={v => setRange(v as '24h' | '7d' | 'all')}
+              tabs={[
+                { label: '24h', value: '24h' },
+                { label: '7d', value: '7d' },
+                { label: 'All', value: 'all' },
+              ]}
+            />
+          </div>
+          <div className="h-72">
