@@ -530,3 +530,10 @@ export default function AssetDashboard() {
           chartType={coinModalChartType}
           setChartType={setCoinModalChartType}
           range={coinModalRange}
+          setRange={setCoinModalRange}
+        />
+      )}
+    </div>
+  );
+}
+
