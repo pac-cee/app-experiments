@@ -17,3 +17,22 @@ export default function CandlestickChart({ symbol, range, assetType }: Candlesti
   useEffect(() => {
     if (!chartContainerRef.current) return;
     if (chartRef.current) {
+      chartRef.current.remove();
+      chartRef.current = null;
+    }
+    // lightweight-charts v4+ uses createChart and returns an IChartApi
+    chartRef.current = createChart(chartContainerRef.current, {
+      width: chartContainerRef.current.clientWidth,
+      height: 300,
+      layout: { background: 'white' as any, textColor: '#222' },
+      grid: { vertLines: { color: '#eee' }, horzLines: { color: '#eee' } },
+      timeScale: { timeVisible: true, secondsVisible: false },
+    });
+    // Use v4+ API. TypeScript may not know about addCandlestickSeries, so cast as any if needed.
+    if (chartRef.current && typeof (chartRef.current as any).addCandlestickSeries === 'function') {
+      seriesRef.current = (chartRef.current as any).addCandlestickSeries();
+    } else {
+      seriesRef.current = null;
+    }
+    return () => { chartRef.current?.remove(); };
+  }, [symbol, range]);
