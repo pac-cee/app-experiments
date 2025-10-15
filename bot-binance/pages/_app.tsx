@@ -36,3 +36,19 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (theme) localStorage.setItem('theme', theme);
   }, [theme]);
+  useEffect(() => {
+    const stored = localStorage.getItem('theme') as Theme | null;
+    if (stored) setTheme(stored);
+  }, []);
+
+  return (
+    <>
+      <div className="fixed top-4 right-4 z-50 flex gap-2 bg-card/80 rounded-xl shadow p-2">
+        <button className={`button px-3 py-1 ${theme === 'dark' ? 'ring-2 ring-primary' : ''}`} onClick={() => setTheme('dark')}>Dark</button>
+        <button className={`button px-3 py-1 ${theme === 'light' ? 'ring-2 ring-primary' : ''}`} onClick={() => setTheme('light')}>Light</button>
+        <button className={`button px-3 py-1 ${theme === 'system' ? 'ring-2 ring-primary' : ''}`} onClick={() => setTheme('system')}>System</button>
+      </div>
+      <Component {...pageProps} />
+    </>
+  );
+}
