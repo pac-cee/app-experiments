@@ -17,3 +17,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } else if (assetType === 'forex') {
       // Example: fetch from Twelve Data
       // const resp = await axios.get(`https://api.twelvedata.com/price?symbol=${symbol}&apikey=${process.env.TWELVE_DATA_API_KEY}`);
+      // priceData = { price: resp.data.price, symbol };
+      priceData = { price: 0, symbol }; // Placeholder
+    }
+    res.status(200).json(priceData);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch price data' });
+  }
+}
