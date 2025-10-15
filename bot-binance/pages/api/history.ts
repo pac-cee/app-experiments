@@ -55,3 +55,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (range === '24h') data = data.slice(-2); // last 2 days
       if (range === '7d') data = data.slice(-7);
       if (range === 'all') data = data.slice(-365);
+      return res.status(200).json(data);
+    }
+    // fallback
+    const data = generateHistory((range as string) || '24h');
+    return res.status(200).json(data);
+  } catch (e) {
+    // fallback to dummy data
+    const data = generateHistory((range as string) || '24h');
+    return res.status(200).json(data);
+  }
+}
