@@ -17,3 +17,11 @@ export function Tabs({ value, onValueChange, tabs, className, ...props }: TabsPr
           className={cn(
             "px-3 py-1 rounded-md border transition-colors",
             value === tab.value ? "bg-primary text-primary-foreground" : "bg-background text-primary border-primary"
+          )}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  )
+}
