@@ -17,3 +17,22 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     let t = theme;
     if (t === 'system') t = getSystemTheme();
     document.body.classList.remove('dark', 'light');
+    document.body.classList.add(t);
+  }, [theme]);
+
+  // Listen for system changes if theme is 'system'
+  useEffect(() => {
+    if (theme !== 'system') return;
+    const listener = () => {
+      const t = getSystemTheme();
+      document.body.classList.remove('dark', 'light');
+      document.body.classList.add(t);
+    };
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', listener);
+    return () => window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', listener);
+  }, [theme]);
+
+  // Persist theme in localStorage
+  useEffect(() => {
+    if (theme) localStorage.setItem('theme', theme);
+  }, [theme]);
