@@ -17,3 +17,22 @@ A modern, production-ready Binance spot market dashboard with:
 - **Favorites**: Star your favorite pairs for quick access.
 - **Advanced Filters**: Filter by quote asset (e.g. USDT), show only favorites, and sort by price/change.
 - **Dark Mode**: Toggle between light and Binance-style dark mode.
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm (v9+ recommended)
+
+### Installation
+```bash
+npm install
+```
+
+### Running Locally
+```bash
+npm run dev
+```
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
