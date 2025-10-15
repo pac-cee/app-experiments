@@ -17,3 +17,10 @@ export function TableRow({ className, ...props }: React.HTMLAttributes<HTMLTable
   return <tr className={cn("hover:bg-muted/50 transition-colors", className)} {...props} />
 }
 
+export function TableCell({ className, ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) {
+  return <td className={cn("px-4 py-2", className)} {...props} />
+}
+
+export function TableHeader({ className, ...props }: React.ThHTMLAttributes<HTMLTableCellElement>) {
+  return <th className={cn("px-4 py-2 font-semibold", className)} {...props} />
+}
