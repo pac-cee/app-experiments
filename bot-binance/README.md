@@ -36,3 +36,22 @@ npm install
 npm run dev
 ```
 Then open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 🧪 How to Test the Dashboard
+
+1. **Browse All Pairs:**
+   - Use the "Pairs" tab to see all Binance spot pairs, search/filter, and sort.
+2. **Explore Coins:**
+   - Switch to the "Coins" tab to see all coins/tokens, each with live price, 24h change, and a sparkline.
+   - Click any coin to see all its tradable pairs and stats.
+3. **Favorites:**
+   - Star your favorite pairs in the pairs table. Toggle "Show Favorites" to filter.
+4. **Filters and Sorting:**
+   - Filter by quote asset (e.g. USDT), sort by symbol, price, or 24h change.
+5. **Dark Mode:**
+   - Use the toggle in the top right to switch between light and dark themes.
+6. **Live Updates:**
+   - All prices and stats update in real time—no need to refresh!
+
