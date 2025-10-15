@@ -36,3 +36,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }));
       return res.status(200).json(data);
     }
+    if (assetType === 'stock' || assetType === 'forex') {
+      // Alpha Vantage API
+      const key = process.env.ALPHA_VANTAGE_API_KEY;
+      if (!key) throw new Error('Alpha Vantage API key missing');
+      let functionType = assetType === 'stock' ? 'TIME_SERIES_DAILY_ADJUSTED' : 'FX_DAILY';
+      let url = `https://www.alphavantage.co/query?function=${functionType}`;
+      if (assetType === 'stock') url += `&symbol=${symbol}`;
+      if (assetType === 'forex') url += `&from_symbol=${symbol?.toString().slice(0,3)}&to_symbol=${symbol?.toString().slice(3,6)}`;
+      url += `&apikey=${key}`;
+      const resp = await axios.get(url);
+      let timeSeries = assetType === 'stock' ? resp.data['Time Series (Daily)'] : resp.data['Time Series FX (Daily)'];
+      if (!timeSeries) throw new Error('No data');
+      let data = Object.entries(timeSeries).map(([date, v]: any) => ({
+        timestamp: new Date(date).getTime(),
+        price: parseFloat(v['4. close'] || v['4. close'] || v['4. close'])
+      })).sort((a, b) => a.timestamp - b.timestamp);
+      if (range === '24h') data = data.slice(-2); // last 2 days
+      if (range === '7d') data = data.slice(-7);
+      if (range === 'all') data = data.slice(-365);
