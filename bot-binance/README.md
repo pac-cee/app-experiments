@@ -131,3 +131,22 @@ This project integrates with the official Binance API to provide real-time and h
     ```
 - **Backend API routes:**
   - Files: `pages/api/prices.ts`, `pages/api/history.ts`
+  - These files proxy requests to Binance for current prices and historical data.
+
+### WebSocket API Calls (Real-Time Data)
+- **Real-time mini ticker updates:**
+  - File: `components/AssetDashboard.tsx`
+  - Example:
+    ```js
+    new window.WebSocket('wss://stream.binance.com:9443/ws/!miniTicker@arr');
+    ```
+- **Real-time candlestick (kline) updates:**
+  - File: `components/CandlestickChart.tsx`
+  - Example:
+    ```js
+    new window.WebSocket(`wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@kline_1h`);
+    ```
+
+### Where to Add New API Calls
+- **Frontend (React components):**
+  - Add calls directly in components inside the `components/` directory for UI-driven data fetching or WebSocket subscriptions.
