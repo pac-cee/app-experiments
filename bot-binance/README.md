@@ -74,3 +74,22 @@ docker build -t binance-dashboard .
 
 ### Run the Container
 ```bash
+docker run -d -p 3000:3000 --name binance-dashboard binance-dashboard
+```
+
+The dashboard will be available at [http://localhost:3000](http://localhost:3000)
+
+### Docker Commands Reference
+- **Stop the container:**
+  ```bash
+  docker stop binance-dashboard
+  ```
+- **Start an existing container:**
+  ```bash
+  docker start binance-dashboard
+  ```
+- **Remove the container:**
+  ```bash
+  docker rm binance-dashboard
+  ```
+- **View logs:**
