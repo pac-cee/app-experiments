@@ -55,3 +55,22 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 6. **Live Updates:**
    - All prices and stats update in real time—no need to refresh!
 
+---
+
+## 📦 Production Build
+```bash
+npm run build
+npm run start
+```
+
+---
+
+## 🐳 Docker Deployment
+
+### Build the Docker Image
+```bash
+docker build -t binance-dashboard .
+```
+
+### Run the Container
+```bash
