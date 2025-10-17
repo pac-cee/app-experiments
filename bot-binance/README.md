@@ -112,3 +112,22 @@ This project integrates with the official Binance API to provide real-time and h
 
 ### REST API Calls
 - **Fetching all spot pairs:**
+  - File: `components/AssetDashboard.tsx`
+  - Example: 
+    ```js
+    await axios.get('https://api.binance.com/api/v3/exchangeInfo');
+    ```
+- **Fetching 24hr ticker data:**
+  - File: `components/AssetDashboard.tsx`
+  - Example:
+    ```js
+    await axios.get('https://api.binance.com/api/v3/ticker/24hr');
+    ```
+- **Fetching historical candlestick data:**
+  - File: `components/CandlestickChart.tsx`
+  - Example:
+    ```js
+    await axios.get(`https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`);
+    ```
+- **Backend API routes:**
+  - Files: `pages/api/prices.ts`, `pages/api/history.ts`
