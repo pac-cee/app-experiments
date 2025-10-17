@@ -93,3 +93,22 @@ The dashboard will be available at [http://localhost:3000](http://localhost:3000
   docker rm binance-dashboard
   ```
 - **View logs:**
+  ```bash
+  docker logs -f binance-dashboard
+  ```
+
+---
+
+## Folder Structure
+- `pages/` - Next.js pages (frontend & API routes)
+- `components/` - React components
+- `lib/` - Utility code (e.g., API clients)
+
+---
+
+## 🔗 Binance API Integration
+
+This project integrates with the official Binance API to provide real-time and historical trading data. Below is an overview of how API calls are made and where to find or add them in the codebase:
+
+### REST API Calls
+- **Fetching all spot pairs:**
