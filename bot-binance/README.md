@@ -359,3 +359,18 @@ Built-in rate limiting follows Binance API restrictions:
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
+### Development Workflow
+1. Fork the repository
+2. Create your feature branch
+3. Run tests and linting
+4. Submit a pull request
+
+### Code Style
+- Follow TypeScript best practices
+- Use proper ESLint configuration
+- Follow React hooks guidelines
+- Write meaningful comments
+- Include proper type definitions
+
+## 📝 License
+MIT
