@@ -150,3 +150,22 @@ This project integrates with the official Binance API to provide real-time and h
 ### Where to Add New API Calls
 - **Frontend (React components):**
   - Add calls directly in components inside the `components/` directory for UI-driven data fetching or WebSocket subscriptions.
+- **Backend (API routes):**
+  - Add new endpoints in `pages/api/` to proxy or aggregate data from Binance, especially if you want to keep your API keys or logic server-side.
+
+For more details, see:
+- [Binance REST API docs](https://binance-docs.github.io/apidocs/spot/en/)
+- [Binance WebSocket Streams](https://binance-docs.github.io/apidocs/spot/en/#websocket-market-streams)
+
+---
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart LR
+    subgraph Frontend["Frontend Layer"]
+        N[Next.js App] --> U[UI Components]
+        U --> C[Asset Charts]
+        SP[Price Sparklines] --> U
+    end
+    
