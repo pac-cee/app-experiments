@@ -188,3 +188,22 @@ flowchart LR
     REST --> AR
 ```
 
+### Architecture Overview
+- **Frontend Layer**: Next.js app with React components for real-time price displays and charts
+- **Backend Layer**: API routes for data fetching and WebSocket handler for live updates
+- **Data Flow**: 
+  - REST API calls for initial data and historical prices
+  - WebSocket connections for real-time price updates
+  - In-memory cache for optimal performance
+
+## ⚙️ Configuration Options
+
+### Environment Variables
+```env
+# Required
+BINANCE_API_KEY=your_api_key
+BINANCE_API_SECRET=your_api_secret
+
+# Optional
+PRICE_UPDATE_INTERVAL=1000  # Default: 1000ms
+WEBSOCKET_RECONNECT_DELAY=3000  # Default: 3000ms
