@@ -17,3 +17,22 @@ body {
 .dark body {
   background-color: #111827;
   color: #e5e7eb;
+}
+
+/* Card, Table, Button blue/dark/light polish */
+.card, .dark .card, .light .card {
+  background: #1e293b;
+  color: #e5e7eb;
+  border-radius: 1rem;
+  border: 1px solid #334155;
+  box-shadow: 0 2px 16px 0 rgba(37,99,235,0.04);
+}
+.light .card {
+  background: #f3f4f6;
+  color: #1e293b;
+  border: 1px solid #e5e7eb;
+}
+.table, .dark .table, .light .table {
+  background: transparent;
+  color: inherit;
+}
