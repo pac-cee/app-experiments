@@ -245,3 +245,22 @@ const CACHE_CONFIG = {
     ttl: 60,  // Time-to-live in seconds
     checkPeriod: 120  // Cleanup interval
   },
+  pairs: {
+    ttl: 3600,  // 1 hour
+    checkPeriod: 7200
+  }
+};
+```
+
+### Rate Limiting
+Built-in rate limiting follows Binance API restrictions:
+- REST API: 1200 requests per minute
+- WebSocket: 5 connections per IP
+- Order rate: 50 orders per 10 seconds
+
+## 🚀 Performance Optimization
+
+### Browser Performance
+1. **Memory Management**
+   - Unsubscribe from unused WebSocket streams
+   - Cleanup chart instances when switching pairs
