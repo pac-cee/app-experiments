@@ -207,3 +207,22 @@ BINANCE_API_SECRET=your_api_secret
 # Optional
 PRICE_UPDATE_INTERVAL=1000  # Default: 1000ms
 WEBSOCKET_RECONNECT_DELAY=3000  # Default: 3000ms
+CACHE_DURATION=60  # Default: 60 seconds
+MAX_PAIRS_PER_REQUEST=100  # Default: 100
+```
+
+### WebSocket Configuration
+```typescript
+const wsConfig = {
+  reconnectAttempts: 5,
+  reconnectDelay: 3000,
+  pingInterval: 30000,
+  pongTimeout: 1000
+};
+```
+
+### Chart Configuration
+```typescript
+const chartConfig = {
+  theme: 'dark',  // 'dark' | 'light'
+  candlestickColors: {
