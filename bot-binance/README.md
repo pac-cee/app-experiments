@@ -283,3 +283,22 @@ Built-in rate limiting follows Binance API restrictions:
    - Use proper cache invalidation
 
 2. **WebSocket Management**
+   - Implement connection pooling
+   - Handle reconnections gracefully
+   - Monitor connection health
+
+## 🔍 Troubleshooting
+
+### Common Issues
+
+1. **WebSocket Connection Issues**
+   ```
+   Error: WebSocket connection failed
+   ```
+   - Check network connectivity
+   - Verify WebSocket endpoint is accessible
+   - Ensure proper API key permissions
+
+2. **Rate Limit Exceeded**
+   ```
+   Error: APIError: Too many requests
