@@ -264,3 +264,22 @@ Built-in rate limiting follows Binance API restrictions:
 1. **Memory Management**
    - Unsubscribe from unused WebSocket streams
    - Cleanup chart instances when switching pairs
+   - Use virtualized lists for large datasets
+
+2. **Network Optimization**
+   - Batch API requests where possible
+   - Use compression for API responses
+   - Implement proper WebSocket reconnection strategy
+
+3. **Rendering Performance**
+   - Implement proper React memo and useMemo
+   - Use Web Workers for heavy calculations
+   - Optimize chart redraws
+
+### Server Performance
+1. **Caching Strategy**
+   - In-memory cache for frequent data
+   - Implement stale-while-revalidate pattern
+   - Use proper cache invalidation
+
+2. **WebSocket Management**
