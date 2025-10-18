@@ -169,3 +169,22 @@ flowchart LR
         SP[Price Sparklines] --> U
     end
     
+    subgraph Backend["Backend Layer"]
+        AR[API Routes] --> WH[WebSocket Handler]
+        DB[(Price Cache)]
+    end
+    
+    subgraph Binance["Binance API"]
+        REST[REST API] 
+        WS[WebSocket API]
+    end
+
+    U --> AR
+    AR --> DB
+    AR --> REST
+    WH --> WS
+    WS --> WH
+    WH --> U
+    REST --> AR
+```
+
