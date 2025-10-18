@@ -340,3 +340,22 @@ Built-in rate limiting follows Binance API restrictions:
 6. Enable gzip compression
 7. Set up health check endpoints
 8. Configure proper logging
+
+### Monitoring
+- Track WebSocket connection status
+- Monitor memory usage
+- Track API response times
+- Set up error alerting
+- Monitor cache hit rates
+
+### Security
+- Use proper CORS configuration
+- Implement rate limiting
+- Secure WebSocket connections
+- Validate API inputs
+- Use proper error handling
+
+## 🤝 Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
