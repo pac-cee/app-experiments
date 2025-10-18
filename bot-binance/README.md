@@ -302,3 +302,22 @@ Built-in rate limiting follows Binance API restrictions:
 2. **Rate Limit Exceeded**
    ```
    Error: APIError: Too many requests
+   ```
+   - Implement proper request throttling
+   - Use bulk endpoints where possible
+   - Check your API key rate limits
+
+3. **Chart Rendering Issues**
+   - Clear browser cache
+   - Update chart library version
+   - Check console for JavaScript errors
+
+### Debugging Tools
+
+1. **Network Monitoring**
+   - Use browser DevTools Network tab
+   - Monitor WebSocket frames
+   - Check API response times
+
+2. **Performance Profiling**
+   - React DevTools Profiler
