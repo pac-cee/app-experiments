@@ -226,3 +226,22 @@ const wsConfig = {
 const chartConfig = {
   theme: 'dark',  // 'dark' | 'light'
   candlestickColors: {
+    up: '#26a69a',
+    down: '#ef5350',
+    unchanged: '#b6b6b6'
+  },
+  intervals: ['1m', '5m', '15m', '1h', '4h', '1d']
+};
+```
+
+## 🔧 Advanced Configuration
+
+### Cache Settings
+The dashboard uses in-memory caching for optimal performance. Configure cache behavior in `lib/utils.ts`:
+
+```typescript
+const CACHE_CONFIG = {
+  prices: {
+    ttl: 60,  // Time-to-live in seconds
+    checkPeriod: 120  // Cleanup interval
+  },
