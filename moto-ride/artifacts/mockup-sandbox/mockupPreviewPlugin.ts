@@ -93,3 +93,22 @@ export function mockupPreviewPlugin(): Plugin {
       if (newSource !== currentSource) {
         currentSource = newSource;
         const generatedModuleAbsPath = getGeneratedModuleAbsPath();
+        mkdirSync(path.dirname(generatedModuleAbsPath), { recursive: true });
+        writeFileSync(generatedModuleAbsPath, currentSource);
+        changed = true;
+      }
+    } finally {
+      refreshInFlight = false;
+    }
+
+    if (refreshQueued) {
+      refreshQueued = false;
+      const followUp = await refresh();
+      return changed || followUp;
+    }
+
+    return changed;
+  }
+
+  async function onFileAddedOrRemoved(): Promise<void> {
+    await refresh();
