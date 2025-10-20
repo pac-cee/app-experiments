@@ -131,3 +131,22 @@ export function mockupPreviewPlugin(): Plugin {
 
       const mockupsAbsDir = getMockupsAbsDir();
       mkdirSync(mockupsAbsDir, { recursive: true });
+
+      watcher = chokidar.watch(mockupsAbsDir, {
+        ignoreInitial: true,
+        awaitWriteFinish: {
+          stabilityThreshold: 100,
+          pollInterval: 50,
+        },
+      });
+
+      watcher.on("add", (file) => {
+        if (
+          isMockupFile(file) &&
+          isPreviewTarget(path.relative(mockupsAbsDir, file))
+        ) {
+          void onFileAddedOrRemoved();
+        }
+      });
+
+      watcher.on("unlink", (file) => {
