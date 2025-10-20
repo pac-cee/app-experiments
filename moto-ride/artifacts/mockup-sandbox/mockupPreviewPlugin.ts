@@ -17,3 +17,22 @@ export function mockupPreviewPlugin(): Plugin {
   let root = "";
   let currentSource = "";
   let watcher: FSWatcher | null = null;
+
+  function getMockupsAbsDir(): string {
+    return path.join(root, MOCKUPS_DIR);
+  }
+
+  function getGeneratedModuleAbsPath(): string {
+    return path.join(root, GENERATED_MODULE);
+  }
+
+  function isMockupFile(absolutePath: string): boolean {
+    const rel = path.relative(getMockupsAbsDir(), absolutePath);
+    return (
+      !rel.startsWith("..") && !path.isAbsolute(rel) && rel.endsWith(".tsx")
+    );
+  }
+
+  function isPreviewTarget(relativeToMockups: string): boolean {
+    return relativeToMockups
+      .split(path.sep)
