@@ -74,3 +74,22 @@ export function mockupPreviewPlugin(): Plugin {
       pathname.includes("/components/mockups/") ||
       pathname.includes("/.generated/mockup-components")
     );
+  }
+
+  let refreshInFlight = false;
+  let refreshQueued = false;
+
+  async function refresh(): Promise<boolean> {
+    if (refreshInFlight) {
+      refreshQueued = true;
+      return false;
+    }
+
+    refreshInFlight = true;
+    let changed = false;
+    try {
+      const components = await discoverComponents();
+      const newSource = generateSource(components);
+      if (newSource !== currentSource) {
+        currentSource = newSource;
+        const generatedModuleAbsPath = getGeneratedModuleAbsPath();
