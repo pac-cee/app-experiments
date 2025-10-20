@@ -112,3 +112,22 @@ export function mockupPreviewPlugin(): Plugin {
 
   async function onFileAddedOrRemoved(): Promise<void> {
     await refresh();
+  }
+
+  return {
+    name: "mockup-preview",
+    enforce: "pre",
+
+    configResolved(config) {
+      root = config.root;
+    },
+
+    async buildStart() {
+      await refresh();
+    },
+
+    async configureServer(viteServer) {
+      await refresh();
+
+      const mockupsAbsDir = getMockupsAbsDir();
+      mkdirSync(mockupsAbsDir, { recursive: true });
