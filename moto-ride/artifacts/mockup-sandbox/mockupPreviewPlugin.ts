@@ -36,3 +36,22 @@ export function mockupPreviewPlugin(): Plugin {
   function isPreviewTarget(relativeToMockups: string): boolean {
     return relativeToMockups
       .split(path.sep)
+      .every((segment) => !segment.startsWith("_"));
+  }
+
+  async function discoverComponents(): Promise<Array<DiscoveredComponent>> {
+    const files = await glob(`${MOCKUPS_DIR}/**/*.tsx`, {
+      cwd: root,
+      ignore: ["**/_*/**", "**/_*.tsx"],
+    });
+
+    return files.map((f) => ({
+      globKey: "./" + f.slice("src/".length),
+      importPath: path.posix.relative("src/.generated", f),
+    }));
+  }
+
+  function generateSource(components: Array<DiscoveredComponent>): string {
+    const entries = components
+      .map(
+        (c) =>
