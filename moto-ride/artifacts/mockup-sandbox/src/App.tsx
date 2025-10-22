@@ -36,3 +36,22 @@ function PreviewRenderer({
     setError(null);
 
     async function loadComponent(): Promise<void> {
+      const key = `./components/mockups/${componentPath}.tsx`;
+      const loader = modules[key];
+      if (!loader) {
+        setError(`No component found at ${componentPath}.tsx`);
+        return;
+      }
+
+      try {
+        const mod = await loader();
+        if (cancelled) {
+          return;
+        }
+        const name = componentPath.split("/").pop()!;
+        const comp = _resolveComponent(mod, name);
+        if (!comp) {
+          setError(
+            `No exported React component found in ${componentPath}.tsx\n\nMake sure the file has at least one exported function component.`,
+          );
+          return;
