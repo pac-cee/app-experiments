@@ -55,3 +55,22 @@ function PreviewRenderer({
             `No exported React component found in ${componentPath}.tsx\n\nMake sure the file has at least one exported function component.`,
           );
           return;
+        }
+        setComponent(() => comp);
+      } catch (e) {
+        if (cancelled) {
+          return;
+        }
+
+        const message = e instanceof Error ? e.message : String(e);
+        setError(`Failed to load preview.\n${message}`);
+      }
+    }
+
+    void loadComponent();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [componentPath, modules]);
+
