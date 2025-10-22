@@ -74,3 +74,22 @@ function PreviewRenderer({
     };
   }, [componentPath, modules]);
 
+  if (error) {
+    return (
+      <pre style={{ color: "red", padding: "2rem", fontFamily: "system-ui" }}>
+        {error}
+      </pre>
+    );
+  }
+
+  if (!Component) return null;
+
+  return <Component />;
+}
+
+function getBasePath(): string {
+  return import.meta.env.BASE_URL.replace(/\/$/, "");
+}
+
+function getPreviewExamplePath(): string {
+  const basePath = getBasePath();
