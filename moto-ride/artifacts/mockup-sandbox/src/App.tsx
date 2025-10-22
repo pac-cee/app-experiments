@@ -131,3 +131,16 @@ function getPreviewPath(): string | null {
 function App() {
   const previewPath = getPreviewPath();
 
+  if (previewPath) {
+    return (
+      <PreviewRenderer
+        componentPath={previewPath}
+        modules={discoveredModules}
+      />
+    );
+  }
+
+  return <Gallery />;
+}
+
+export default App;
