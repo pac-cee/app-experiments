@@ -169,3 +169,12 @@ export function mockupPreviewPlugin(): Plugin {
 
         next();
       });
+    },
+
+    async closeWatcher() {
+      if (watcher) {
+        await watcher.close();
+      }
+    },
+  };
+}
