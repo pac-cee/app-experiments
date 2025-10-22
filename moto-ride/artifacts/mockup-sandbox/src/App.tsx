@@ -112,3 +112,22 @@ function Gallery() {
             {getPreviewExamplePath()}
           </code>
         </p>
+      </div>
+    </div>
+  );
+}
+
+function getPreviewPath(): string | null {
+  const basePath = getBasePath();
+  const { pathname } = window.location;
+  const local =
+    basePath && pathname.startsWith(basePath)
+      ? pathname.slice(basePath.length) || "/"
+      : pathname;
+  const match = local.match(/^\/preview\/(.+)$/);
+  return match ? match[1] : null;
+}
+
+function App() {
+  const previewPath = getPreviewPath();
+
