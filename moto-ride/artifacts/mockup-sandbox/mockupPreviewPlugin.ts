@@ -150,3 +150,22 @@ export function mockupPreviewPlugin(): Plugin {
       });
 
       watcher.on("unlink", (file) => {
+        if (isMockupFile(file)) {
+          void onFileAddedOrRemoved();
+        }
+      });
+
+      viteServer.middlewares.use((req, res, next) => {
+        const requestUrl = new URL(req.url ?? "/", "http://127.0.0.1");
+        const pathname = requestUrl.pathname;
+        const originalEnd = res.end.bind(res);
+
+        res.end = ((...args: Parameters<typeof originalEnd>) => {
+          if (res.statusCode === 404 && shouldAutoRescan(pathname)) {
+            void refresh();
+          }
+          return originalEnd(...args);
+        }) as typeof res.end;
+
+        next();
+      });
