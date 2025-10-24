@@ -36,3 +36,22 @@ function Calendar({
       )}
       captionLayout={captionLayout}
       formatters={{
+        formatMonthDropdown: (date) =>
+          date.toLocaleString("default", { month: "short" }),
+        ...formatters,
+      }}
+      classNames={{
+        root: cn("w-fit", defaultClassNames.root),
+        months: cn(
+          "relative flex flex-col gap-4 md:flex-row",
+          defaultClassNames.months
+        ),
+        month: cn("flex w-full flex-col gap-4", defaultClassNames.month),
+        nav: cn(
+          "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
+          defaultClassNames.nav
+        ),
+        button_previous: cn(
+          buttonVariants({ variant: buttonVariant }),
+          "h-[--cell-size] w-[--cell-size] select-none p-0 aria-disabled:opacity-50",
+          defaultClassNames.button_previous
