@@ -112,3 +112,9 @@ export {
   DialogOverlay,
   DialogTrigger,
   DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+}
