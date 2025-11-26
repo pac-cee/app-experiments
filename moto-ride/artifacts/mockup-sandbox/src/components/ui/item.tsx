@@ -36,3 +36,22 @@ const itemVariants = cva(
     variants: {
       variant: {
         default: "bg-transparent",
+        outline: "border-border",
+        muted: "bg-muted/50",
+      },
+      size: {
+        default: "gap-4 p-4 ",
+        sm: "gap-2.5 px-4 py-3",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+function Item({
+  className,
+  variant = "default",
+  size = "default",
