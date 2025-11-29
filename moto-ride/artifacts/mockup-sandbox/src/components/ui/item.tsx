@@ -131,3 +131,22 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
 
 function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
+    <p
+      data-slot="item-description"
+      className={cn(
+        "text-muted-foreground line-clamp-2 text-balance text-sm font-normal leading-normal",
+        "[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function ItemActions({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="item-actions"
+      className={cn("flex items-center gap-2", className)}
+      {...props}
+    />
