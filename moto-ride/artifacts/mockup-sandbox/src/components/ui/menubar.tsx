@@ -245,3 +245,10 @@ export {
   MenubarCheckboxItem,
   MenubarRadioGroup,
   MenubarRadioItem,
+  MenubarPortal,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarGroup,
+  MenubarSub,
+  MenubarShortcut,
+}
