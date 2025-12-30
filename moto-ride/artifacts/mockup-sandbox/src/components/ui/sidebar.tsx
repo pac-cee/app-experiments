@@ -530,3 +530,22 @@ function SidebarMenuButton({
         align="center"
         hidden={state !== "collapsed" || isMobile}
         {...tooltip}
+      />
+    </Tooltip>
+  )
+}
+
+function SidebarMenuAction({
+  className,
+  asChild = false,
+  showOnHover = false,
+  ...props
+}: React.ComponentProps<"button"> & {
+  asChild?: boolean
+  showOnHover?: boolean
+}) {
+  const Comp = asChild ? Slot : "button"
+
+  return (
+    <Comp
+      data-slot="sidebar-menu-action"
