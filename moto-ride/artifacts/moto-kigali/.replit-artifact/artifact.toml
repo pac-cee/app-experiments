@@ -17,3 +17,11 @@ localPort = 22247
 
 [services.development]
 run = "pnpm --filter @workspace/moto-kigali run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/moto-kigali", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/moto-kigali", "run", "serve" ]
+
+[services.env]
+PORT = "22247"
+BASE_PATH = "/"
