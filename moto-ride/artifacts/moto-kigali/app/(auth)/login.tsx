@@ -74,3 +74,22 @@ export default function LoginScreen() {
               <TextInput
                 style={[styles.input, { color: colors.foreground, fontFamily: "Inter_400Regular" }]}
                 placeholder="+250 788 000 000"
+                placeholderTextColor={colors.mutedForeground}
+                value={phone}
+                onChangeText={setPhone}
+                keyboardType="phone-pad"
+                autoComplete="tel"
+              />
+            </View>
+          </View>
+
+          <View style={styles.fieldGroup}>
+            <Text style={[styles.label, { color: colors.foreground }]}>Password</Text>
+            <View style={[styles.inputRow, { backgroundColor: colors.input, borderColor: colors.border }]}>
+              <Feather name="lock" size={18} color={colors.mutedForeground} />
+              <TextInput
+                style={[styles.input, { color: colors.foreground, fontFamily: "Inter_400Regular" }]}
+                placeholder="Enter password"
+                placeholderTextColor={colors.mutedForeground}
+                value={password}
+                onChangeText={setPassword}
