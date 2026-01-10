@@ -93,3 +93,22 @@ export default function LoginScreen() {
                 placeholderTextColor={colors.mutedForeground}
                 value={password}
                 onChangeText={setPassword}
+                secureTextEntry={!showPw}
+                autoComplete="password"
+              />
+              <TouchableOpacity onPress={() => setShowPw((s) => !s)}>
+                <Feather name={showPw ? "eye-off" : "eye"} size={18} color={colors.mutedForeground} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {error ? (
+            <View style={[styles.errorBox, { backgroundColor: "#FEF2F2", borderColor: "#FCA5A5" }]}>
+              <Feather name="alert-circle" size={14} color={colors.destructive} />
+              <Text style={[styles.errorText, { color: colors.destructive }]}>{error}</Text>
+            </View>
+          ) : null}
+
+          <TouchableOpacity
+            style={[styles.btn, { backgroundColor: colors.primary, opacity: loading ? 0.7 : 1 }]}
+            onPress={handleLogin}
