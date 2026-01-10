@@ -112,3 +112,22 @@ export default function LoginScreen() {
           <TouchableOpacity
             style={[styles.btn, { backgroundColor: colors.primary, opacity: loading ? 0.7 : 1 }]}
             onPress={handleLogin}
+            disabled={loading}
+            activeOpacity={0.85}
+          >
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={styles.btnText}>Sign In</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.footer}>
+          <Text style={[styles.footerText, { color: colors.mutedForeground }]}>Don't have an account? </Text>
+          <TouchableOpacity onPress={() => router.replace("/(auth)/signup")}>
+            <Text style={[styles.footerLink, { color: colors.primary }]}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
