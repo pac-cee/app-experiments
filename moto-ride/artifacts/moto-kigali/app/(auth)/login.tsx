@@ -131,3 +131,22 @@ export default function LoginScreen() {
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flexGrow: 1, paddingHorizontal: 24 },
+  back: { marginBottom: 32 },
+  title: { fontSize: 28, fontFamily: "Inter_700Bold", marginBottom: 6 },
+  subtitle: { fontSize: 15, fontFamily: "Inter_400Regular", marginBottom: 32 },
+  form: { gap: 20 },
+  fieldGroup: { gap: 8 },
+  label: { fontSize: 14, fontFamily: "Inter_600SemiBold" },
+  inputRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    paddingHorizontal: 14,
+    paddingVertical: 14,
