@@ -36,3 +36,22 @@ export default function LoginScreen() {
     if (!phone.trim() || !password.trim()) {
       setError("Please fill in all fields.");
       return;
+    }
+    setError("");
+    setLoading(true);
+    const result = await login({ phone: phone.trim(), password });
+    setLoading(false);
+    if (result.success && result.user) {
+      await setUser(result.user);
+      if (result.user.role === "rider") {
+        router.replace("/(rider)/home");
+      } else {
+        router.replace("/(tabs)/");
+      }
+    } else {
+      setError(result.message ?? "Login failed.");
+    }
+  };
+
+  return (
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1, backgroundColor: colors.background }}>
