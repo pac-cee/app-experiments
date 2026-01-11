@@ -74,3 +74,22 @@ export default function RiderPendingScreen() {
                     <Feather name="check" size={13} color={colors.success} />
                   ) : (
                     <Feather name="clock" size={13} color={colors.mutedForeground} />
+                  )}
+                </View>
+                <Text style={[styles.checkLabel, { color: item.done ? colors.foreground : colors.mutedForeground }]}>
+                  {item.label}
+                </Text>
+                <Text style={[styles.checkStatus, { color: item.done ? colors.success : colors.secondary }]}>
+                  {item.done ? "Done" : "Pending"}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        <View style={[styles.infoBox, { backgroundColor: colors.primary + "10", borderColor: colors.primary + "25" }]}>
+          <Feather name="bell" size={16} color={colors.primary} />
+          <Text style={[styles.infoText, { color: colors.primary }]}>
+            You'll receive an SMS notification once your account is approved.
+          </Text>
+        </View>
