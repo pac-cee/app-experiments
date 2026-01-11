@@ -150,3 +150,22 @@ export default function OtpScreen() {
         ) : (
           <TouchableOpacity onPress={() => setResendTimer(30)}>
             <Text style={[styles.resendLink, { color: colors.primary }]}>Resend code</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, paddingHorizontal: 24 },
+  back: { marginBottom: 32 },
+  iconWrap: { alignItems: "center", marginBottom: 24 },
+  iconCircle: { width: 72, height: 72, borderRadius: 36, alignItems: "center", justifyContent: "center" },
+  title: { fontSize: 28, fontFamily: "Inter_700Bold", textAlign: "center", marginBottom: 10 },
+  subtitle: { fontSize: 15, fontFamily: "Inter_400Regular", textAlign: "center", lineHeight: 22, marginBottom: 6 },
+  hint: { fontSize: 13, fontFamily: "Inter_500Medium", textAlign: "center", marginBottom: 32 },
+  codeRow: { flexDirection: "row", justifyContent: "center", gap: 12, marginBottom: 24 },
+  codeInput: {
+    width: 62,
+    height: 68,
