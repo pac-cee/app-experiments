@@ -36,3 +36,22 @@ export default function RiderPendingScreen() {
         Animated.timing(pulseAnim, { toValue: 1.12, duration: 900, useNativeDriver: true }),
         Animated.timing(pulseAnim, { toValue: 1, duration: 900, useNativeDriver: true }),
       ])
+    ).start();
+  }, []);
+
+  const handleSimulateApproval = async () => {
+    if (!user) return;
+    await setUser({ ...user, status: "approved" });
+    router.replace("/(rider)/home");
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    router.replace("/(auth)/welcome");
+  };
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background, paddingTop: topPad, paddingBottom: bottomPad }]}>
+      <View style={styles.body}>
+        <Animated.View style={[styles.iconWrap, { transform: [{ scale: pulseAnim }] }]}>
+          <View style={[styles.iconCircle, { backgroundColor: colors.secondary + "20" }]}>
