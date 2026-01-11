@@ -93,3 +93,22 @@ export default function OtpScreen() {
 
       <View style={styles.iconWrap}>
         <View style={[styles.iconCircle, { backgroundColor: colors.primary + "18" }]}>
+          <Feather name="message-circle" size={32} color={colors.primary} />
+        </View>
+      </View>
+
+      <Text style={[styles.title, { color: colors.foreground }]}>Enter code</Text>
+      <Text style={[styles.subtitle, { color: colors.mutedForeground }]}>
+        We sent a 4-digit code to{"\n"}
+        <Text style={{ fontFamily: "Inter_600SemiBold", color: colors.foreground }}>{params.phone}</Text>
+      </Text>
+      <Text style={[styles.hint, { color: colors.secondary }]}>Hint: use 1234 for testing</Text>
+
+      <View style={styles.codeRow}>
+        {code.map((digit, idx) => (
+          <TextInput
+            key={idx}
+            ref={(r) => { inputRefs.current[idx] = r; }}
+            style={[
+              styles.codeInput,
+              {
