@@ -55,3 +55,22 @@ export default function OtpScreen() {
 
   const handleKeyPress = (e: any, idx: number) => {
     if (e.nativeEvent.key === "Backspace" && !code[idx] && idx > 0) {
+      inputRefs.current[idx - 1]?.focus();
+    }
+  };
+
+  const handleVerify = async () => {
+    const fullCode = code.join("");
+    if (fullCode.length < 4) { setError("Enter the 4-digit code."); return; }
+    setError("");
+    setLoading(true);
+    const verifyResult = await verifyOtp(params.phone, fullCode);
+    if (!verifyResult.success) {
+      setLoading(false);
+      setError(verifyResult.message ?? "Invalid code.");
+      return;
+    }
+    const signupResult = await signup({
+      name: params.name,
+      phone: params.phone,
+      email: params.email,
