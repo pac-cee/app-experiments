@@ -112,3 +112,22 @@ export default function OtpScreen() {
             style={[
               styles.codeInput,
               {
+                backgroundColor: colors.input,
+                borderColor: digit ? colors.primary : colors.border,
+                color: colors.foreground,
+                fontFamily: "Inter_700Bold",
+              },
+            ]}
+            value={digit}
+            onChangeText={(v) => handleChange(v, idx)}
+            onKeyPress={(e) => handleKeyPress(e, idx)}
+            keyboardType="number-pad"
+            maxLength={4}
+            selectTextOnFocus
+          />
+        ))}
+      </View>
+
+      {error ? (
+        <View style={[styles.errorBox, { backgroundColor: "#FEF2F2", borderColor: "#FCA5A5" }]}>
+          <Feather name="alert-circle" size={14} color={colors.destructive} />
