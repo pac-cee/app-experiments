@@ -55,3 +55,22 @@ export default function RiderPendingScreen() {
       <View style={styles.body}>
         <Animated.View style={[styles.iconWrap, { transform: [{ scale: pulseAnim }] }]}>
           <View style={[styles.iconCircle, { backgroundColor: colors.secondary + "20" }]}>
+            <MaterialCommunityIcons name="clock-outline" size={48} color={colors.secondary} />
+          </View>
+        </Animated.View>
+
+        <Text style={[styles.title, { color: colors.foreground }]}>Application Under Review</Text>
+        <Text style={[styles.subtitle, { color: colors.mutedForeground }]}>
+          Our team is verifying your details. This usually takes up to 24 hours.
+        </Text>
+
+        <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.cardTitle, { color: colors.foreground }]}>Verification Progress</Text>
+          <View style={styles.checklist}>
+            {CHECKLIST.map((item, i) => (
+              <View key={i} style={styles.checkItem}>
+                <View style={[styles.checkCircle, { backgroundColor: item.done ? colors.success + "20" : colors.muted }]}>
+                  {item.done ? (
+                    <Feather name="check" size={13} color={colors.success} />
+                  ) : (
+                    <Feather name="clock" size={13} color={colors.mutedForeground} />
