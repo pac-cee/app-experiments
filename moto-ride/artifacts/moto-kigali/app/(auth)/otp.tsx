@@ -74,3 +74,22 @@ export default function OtpScreen() {
       name: params.name,
       phone: params.phone,
       email: params.email,
+      password: params.password,
+    });
+    setLoading(false);
+    if (signupResult.success && signupResult.user) {
+      await setUser(signupResult.user);
+      router.replace("/(auth)/role-select");
+    } else {
+      setError("Account creation failed. Please try again.");
+    }
+  };
+
+  return (
+    <View style={[styles.container, { backgroundColor: colors.background, paddingTop: topPad + 20 }]}>
+      <TouchableOpacity onPress={() => router.back()} style={styles.back}>
+        <Feather name="arrow-left" size={22} color={colors.foreground} />
+      </TouchableOpacity>
+
+      <View style={styles.iconWrap}>
+        <View style={[styles.iconCircle, { backgroundColor: colors.primary + "18" }]}>
