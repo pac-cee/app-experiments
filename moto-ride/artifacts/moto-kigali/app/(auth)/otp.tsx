@@ -36,3 +36,22 @@ export default function OtpScreen() {
       return () => clearTimeout(t);
     }
   }, [resendTimer]);
+
+  const handleChange = (val: string, idx: number) => {
+    if (val.length > 1) {
+      const chars = val.slice(0, 4).split("");
+      const next = [...code];
+      chars.forEach((c, i) => { if (idx + i < 4) next[idx + i] = c; });
+      setCode(next);
+      const nextIdx = Math.min(idx + chars.length, 3);
+      inputRefs.current[nextIdx]?.focus();
+      return;
+    }
+    const next = [...code];
+    next[idx] = val;
+    setCode(next);
+    if (val && idx < 3) inputRefs.current[idx + 1]?.focus();
+  };
+
+  const handleKeyPress = (e: any, idx: number) => {
+    if (e.nativeEvent.key === "Backspace" && !code[idx] && idx > 0) {
