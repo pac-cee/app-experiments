@@ -93,3 +93,22 @@ export default function RiderPendingScreen() {
             You'll receive an SMS notification once your account is approved.
           </Text>
         </View>
+      </View>
+
+      <View style={styles.actions}>
+        <TouchableOpacity
+          style={[styles.demoBtn, { backgroundColor: colors.success, borderColor: colors.success }]}
+          onPress={handleSimulateApproval}
+          activeOpacity={0.85}
+        >
+          <Feather name="zap" size={18} color="#fff" />
+          <Text style={styles.demoBtnText}>Simulate Approval (Demo)</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={handleLogout} style={styles.logoutBtn}>
+          <Feather name="log-out" size={15} color={colors.mutedForeground} />
+          <Text style={[styles.logoutText, { color: colors.mutedForeground }]}>Sign out</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
