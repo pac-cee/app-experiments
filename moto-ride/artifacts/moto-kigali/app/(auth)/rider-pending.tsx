@@ -112,3 +112,22 @@ export default function RiderPendingScreen() {
       </View>
     </View>
   );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1, paddingHorizontal: 24 },
+  body: { flex: 1, alignItems: "center", justifyContent: "center", gap: 20 },
+  iconWrap: { marginBottom: 8 },
+  iconCircle: { width: 96, height: 96, borderRadius: 48, alignItems: "center", justifyContent: "center" },
+  title: { fontSize: 24, fontFamily: "Inter_700Bold", textAlign: "center" },
+  subtitle: { fontSize: 15, fontFamily: "Inter_400Regular", textAlign: "center", lineHeight: 22 },
+  card: {
+    width: "100%",
+    borderRadius: 16,
+    borderWidth: 1,
+    padding: 16,
+    gap: 12,
+  },
+  cardTitle: { fontSize: 15, fontFamily: "Inter_600SemiBold" },
+  checklist: { gap: 12 },
+  checkItem: { flexDirection: "row", alignItems: "center", gap: 12 },
