@@ -93,3 +93,22 @@ export default function RiderRegisterScreen() {
 
       <ScrollView
         style={{ flex: 1 }}
+        contentContainerStyle={[styles.content, { paddingBottom: bottomPad + 20 }]}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={[styles.infoBox, { backgroundColor: colors.primary + "12", borderColor: colors.primary + "30" }]}>
+          <Feather name="info" size={16} color={colors.primary} />
+          <Text style={[styles.infoText, { color: colors.primary }]}>
+            Your application will be reviewed within 24 hours. You'll need to provide a few documents to get verified.
+          </Text>
+        </View>
+
+        <Text style={[styles.sectionLabel, { color: colors.mutedForeground }]}>PERSONAL INFO</Text>
+
+        <View style={styles.fieldGroup}>
+          <Text style={[styles.label, { color: colors.foreground }]}>National ID Number</Text>
+          <TextInput
+            style={[styles.input, { backgroundColor: colors.input, borderColor: errors.nationalId ? colors.destructive : colors.border, color: colors.foreground, fontFamily: "Inter_400Regular" }]}
+            placeholder="e.g. 1 1990 7 0012345 1 23"
+            placeholderTextColor={colors.mutedForeground}
