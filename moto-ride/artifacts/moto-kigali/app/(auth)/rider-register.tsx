@@ -207,3 +207,22 @@ export default function RiderRegisterScreen() {
               ) : (
                 <Feather name="upload" size={18} color={colors.mutedForeground} />
               )}
+            </TouchableOpacity>
+          );
+        })}
+
+        <TouchableOpacity
+          style={[styles.submitBtn, { backgroundColor: colors.primary, opacity: loading ? 0.7 : 1 }]}
+          onPress={handleSubmit}
+          disabled={loading}
+          activeOpacity={0.85}
+        >
+          {loading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <>
+              <Feather name="send" size={18} color="#fff" />
+              <Text style={styles.submitBtnText}>Submit Application</Text>
+            </>
+          )}
+        </TouchableOpacity>
