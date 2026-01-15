@@ -55,3 +55,22 @@ export default function RiderRegisterScreen() {
   };
 
   const simulateDocUpload = (key: string) => {
+    setUploadedDocs((prev) => ({ ...prev, [key]: true }));
+  };
+
+  const handleSubmit = async () => {
+    if (!validate() || !user) return;
+    setLoading(true);
+    await riderRegister({
+      userId: user.id,
+      nationalId: nationalId.trim(),
+      homeAddress: homeAddress.trim(),
+      vehicleType,
+      plate: plate.trim().toUpperCase(),
+    });
+    await setUser({
+      ...user,
+      role: "rider",
+      status: "pending",
+      nationalId: nationalId.trim(),
+      homeAddress: homeAddress.trim(),
