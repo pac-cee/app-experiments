@@ -264,3 +264,22 @@ const styles = StyleSheet.create({
   fieldGroup: { gap: 6 },
   label: { fontSize: 14, fontFamily: "Inter_500Medium" },
   input: {
+    height: 50,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    paddingHorizontal: 14,
+    fontSize: 15,
+  },
+  errorText: { fontSize: 12, fontFamily: "Inter_400Regular" },
+  vehicleRow: { flexDirection: "row", gap: 10 },
+  vehicleOption: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: 12,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    gap: 6,
+  },
+  vehicleLabel: { fontSize: 12, fontFamily: "Inter_500Medium", textAlign: "center" },
+  docItem: {
+    flexDirection: "row",
