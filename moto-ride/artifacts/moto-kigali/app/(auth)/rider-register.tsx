@@ -131,3 +131,22 @@ export default function RiderRegisterScreen() {
           />
           {errors.homeAddress && <Text style={[styles.errorText, { color: colors.destructive }]}>{errors.homeAddress}</Text>}
         </View>
+
+        <Text style={[styles.sectionLabel, { color: colors.mutedForeground }]}>VEHICLE INFO</Text>
+
+        <View style={styles.fieldGroup}>
+          <Text style={[styles.label, { color: colors.foreground }]}>Vehicle Type</Text>
+          <View style={styles.vehicleRow}>
+            {VEHICLE_OPTIONS.map((opt) => (
+              <TouchableOpacity
+                key={opt.type}
+                style={[
+                  styles.vehicleOption,
+                  {
+                    backgroundColor: vehicleType === opt.type ? colors.primary : colors.card,
+                    borderColor: vehicleType === opt.type ? colors.primary : colors.border,
+                  },
+                ]}
+                onPress={() => setVehicleType(opt.type)}
+                activeOpacity={0.8}
+              >
