@@ -169,3 +169,22 @@ export default function RiderRegisterScreen() {
             style={[styles.input, { backgroundColor: colors.input, borderColor: errors.plate ? colors.destructive : colors.border, color: colors.foreground, fontFamily: "Inter_700Bold", letterSpacing: 2 }]}
             placeholder="e.g. RAD 234B"
             placeholderTextColor={colors.mutedForeground}
+            value={plate}
+            onChangeText={setPlate}
+            autoCapitalize="characters"
+          />
+          {errors.plate && <Text style={[styles.errorText, { color: colors.destructive }]}>{errors.plate}</Text>}
+        </View>
+
+        <Text style={[styles.sectionLabel, { color: colors.mutedForeground }]}>DOCUMENTS</Text>
+
+        {DOC_ITEMS.map((doc) => {
+          const uploaded = uploadedDocs[doc.key];
+          return (
+            <TouchableOpacity
+              key={doc.key}
+              style={[
+                styles.docItem,
+                {
+                  backgroundColor: colors.card,
+                  borderColor: uploaded ? colors.success : colors.border,
