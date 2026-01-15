@@ -188,3 +188,22 @@ export default function RiderRegisterScreen() {
                 {
                   backgroundColor: colors.card,
                   borderColor: uploaded ? colors.success : colors.border,
+                },
+              ]}
+              onPress={() => simulateDocUpload(doc.key)}
+              activeOpacity={0.8}
+            >
+              <View style={[styles.docIcon, { backgroundColor: uploaded ? colors.success + "18" : colors.muted }]}>
+                <Feather name={doc.icon} size={18} color={uploaded ? colors.success : colors.mutedForeground} />
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={[styles.docLabel, { color: colors.foreground }]}>{doc.label}</Text>
+                <Text style={[styles.docStatus, { color: uploaded ? colors.success : colors.mutedForeground }]}>
+                  {uploaded ? "Uploaded" : "Tap to upload photo"}
+                </Text>
+              </View>
+              {uploaded ? (
+                <Feather name="check-circle" size={20} color={colors.success} />
+              ) : (
+                <Feather name="upload" size={18} color={colors.mutedForeground} />
+              )}
