@@ -112,3 +112,22 @@ export default function RiderRegisterScreen() {
             style={[styles.input, { backgroundColor: colors.input, borderColor: errors.nationalId ? colors.destructive : colors.border, color: colors.foreground, fontFamily: "Inter_400Regular" }]}
             placeholder="e.g. 1 1990 7 0012345 1 23"
             placeholderTextColor={colors.mutedForeground}
+            value={nationalId}
+            onChangeText={setNationalId}
+            keyboardType="default"
+            autoCapitalize="none"
+          />
+          {errors.nationalId && <Text style={[styles.errorText, { color: colors.destructive }]}>{errors.nationalId}</Text>}
+        </View>
+
+        <View style={styles.fieldGroup}>
+          <Text style={[styles.label, { color: colors.foreground }]}>Home Address</Text>
+          <TextInput
+            style={[styles.input, { backgroundColor: colors.input, borderColor: errors.homeAddress ? colors.destructive : colors.border, color: colors.foreground, fontFamily: "Inter_400Regular" }]}
+            placeholder="e.g. Kimironko, Gasabo District"
+            placeholderTextColor={colors.mutedForeground}
+            value={homeAddress}
+            onChangeText={setHomeAddress}
+          />
+          {errors.homeAddress && <Text style={[styles.errorText, { color: colors.destructive }]}>{errors.homeAddress}</Text>}
+        </View>
