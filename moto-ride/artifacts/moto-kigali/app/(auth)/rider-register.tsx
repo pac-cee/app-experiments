@@ -245,3 +245,22 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: 17, fontFamily: "Inter_600SemiBold" },
   content: { paddingHorizontal: 20, paddingTop: 20, gap: 12 },
   infoBox: {
+    flexDirection: "row",
+    gap: 10,
+    padding: 14,
+    borderRadius: 12,
+    borderWidth: 1,
+    marginBottom: 8,
+  },
+  infoText: { flex: 1, fontSize: 13, fontFamily: "Inter_400Regular", lineHeight: 18 },
+  sectionLabel: {
+    fontSize: 11,
+    fontFamily: "Inter_600SemiBold",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    marginTop: 8,
+    marginBottom: 4,
+  },
+  fieldGroup: { gap: 6 },
+  label: { fontSize: 14, fontFamily: "Inter_500Medium" },
+  input: {
