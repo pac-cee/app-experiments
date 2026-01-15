@@ -74,3 +74,22 @@ export default function RiderRegisterScreen() {
       status: "pending",
       nationalId: nationalId.trim(),
       homeAddress: homeAddress.trim(),
+      vehicleType,
+      plate: plate.trim().toUpperCase(),
+    });
+    setLoading(false);
+    router.replace("/(auth)/rider-pending");
+  };
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, borderBottomColor: colors.border }]}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+          <Feather name="arrow-left" size={22} color={colors.foreground} />
+        </TouchableOpacity>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>Rider Registration</Text>
+        <View style={{ width: 36 }} />
+      </View>
+
+      <ScrollView
+        style={{ flex: 1 }}
