@@ -150,3 +150,22 @@ export default function RiderRegisterScreen() {
                 onPress={() => setVehicleType(opt.type)}
                 activeOpacity={0.8}
               >
+                <MaterialCommunityIcons
+                  name={opt.icon as any}
+                  size={22}
+                  color={vehicleType === opt.type ? "#fff" : colors.mutedForeground}
+                />
+                <Text style={[styles.vehicleLabel, { color: vehicleType === opt.type ? "#fff" : colors.foreground }]}>
+                  {opt.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.fieldGroup}>
+          <Text style={[styles.label, { color: colors.foreground }]}>License Plate</Text>
+          <TextInput
+            style={[styles.input, { backgroundColor: colors.input, borderColor: errors.plate ? colors.destructive : colors.border, color: colors.foreground, fontFamily: "Inter_700Bold", letterSpacing: 2 }]}
+            placeholder="e.g. RAD 234B"
+            placeholderTextColor={colors.mutedForeground}
