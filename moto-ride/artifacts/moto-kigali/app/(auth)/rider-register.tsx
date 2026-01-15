@@ -36,3 +36,22 @@ export default function RiderRegisterScreen() {
   const insets = useSafeAreaInsets();
   const topPad = Platform.OS === "web" ? 67 : insets.top;
   const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
+
+  const [nationalId, setNationalId] = useState("");
+  const [homeAddress, setHomeAddress] = useState("");
+  const [plate, setPlate] = useState("");
+  const [vehicleType, setVehicleType] = useState<VehicleType>("moto");
+  const [uploadedDocs, setUploadedDocs] = useState<Record<string, boolean>>({});
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = () => {
+    const e: Record<string, string> = {};
+    if (!nationalId.trim()) e.nationalId = "National ID is required";
+    if (!homeAddress.trim()) e.homeAddress = "Home address is required";
+    if (!plate.trim()) e.plate = "License plate is required";
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const simulateDocUpload = (key: string) => {
