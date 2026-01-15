@@ -226,3 +226,22 @@ export default function RiderRegisterScreen() {
             </>
           )}
         </TouchableOpacity>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingBottom: 14,
+    borderBottomWidth: 1,
+  },
+  backBtn: { padding: 4 },
+  headerTitle: { fontSize: 17, fontFamily: "Inter_600SemiBold" },
+  content: { paddingHorizontal: 20, paddingTop: 20, gap: 12 },
+  infoBox: {
