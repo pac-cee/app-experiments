@@ -36,3 +36,22 @@ export default function RoleSelectScreen() {
       router.replace("/(auth)/rider-register");
     }
   };
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background, paddingTop: topPad, paddingBottom: bottomPad }]}>
+      <View style={styles.top}>
+        <View style={[styles.logoCircle, { backgroundColor: colors.primary + "15" }]}>
+          <MaterialCommunityIcons name="motorbike" size={38} color={colors.primary} />
+        </View>
+        <Text style={[styles.title, { color: colors.foreground }]}>How will you use MotoLink?</Text>
+        <Text style={[styles.subtitle, { color: colors.mutedForeground }]}>
+          Choose your role to get the best experience
+        </Text>
+      </View>
+
+      <View style={styles.cards}>
+        <TouchableOpacity
+          style={[
+            styles.card,
+            {
+              backgroundColor: colors.card,
