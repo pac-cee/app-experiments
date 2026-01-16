@@ -302,3 +302,9 @@ const styles = StyleSheet.create({
     marginTop: 8,
     elevation: 3,
     shadowColor: "#1565C0",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+  },
+  submitBtnText: { fontSize: 17, fontFamily: "Inter_700Bold", color: "#fff" },
+});
