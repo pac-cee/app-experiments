@@ -55,3 +55,22 @@ export default function RoleSelectScreen() {
             styles.card,
             {
               backgroundColor: colors.card,
+              borderColor: selected === "customer" ? colors.primary : colors.border,
+              borderWidth: selected === "customer" ? 2.5 : 1.5,
+            },
+          ]}
+          onPress={() => setSelected("customer")}
+          activeOpacity={0.85}
+        >
+          <View style={[styles.cardIcon, { backgroundColor: colors.primary + "15" }]}>
+            <Feather name="user" size={32} color={colors.primary} />
+          </View>
+          <Text style={[styles.cardTitle, { color: colors.foreground }]}>Customer</Text>
+          <Text style={[styles.cardDesc, { color: colors.mutedForeground }]}>
+            Book moto-taxis and rides across Kigali at negotiated prices
+          </Text>
+          <View style={styles.cardFeatures}>
+            {["Find nearby riders", "Negotiate prices", "Live tracking"].map((f) => (
+              <View key={f} style={styles.featureRow}>
+                <Feather name="check" size={13} color={colors.success} />
+                <Text style={[styles.featureText, { color: colors.mutedForeground }]}>{f}</Text>
