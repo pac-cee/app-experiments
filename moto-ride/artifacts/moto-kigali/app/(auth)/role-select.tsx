@@ -93,3 +93,22 @@ export default function RoleSelectScreen() {
               borderWidth: selected === "rider" ? 2.5 : 1.5,
             },
           ]}
+          onPress={() => setSelected("rider")}
+          activeOpacity={0.85}
+        >
+          <View style={[styles.cardIcon, { backgroundColor: colors.secondary + "15" }]}>
+            <MaterialCommunityIcons name="motorbike" size={32} color={colors.secondary} />
+          </View>
+          <Text style={[styles.cardTitle, { color: colors.foreground }]}>Rider</Text>
+          <Text style={[styles.cardDesc, { color: colors.mutedForeground }]}>
+            Earn money by giving rides to customers in your area
+          </Text>
+          <View style={styles.cardFeatures}>
+            {["See customer requests", "Agree your own price", "Track earnings"].map((f) => (
+              <View key={f} style={styles.featureRow}>
+                <Feather name="check" size={13} color={colors.success} />
+                <Text style={[styles.featureText, { color: colors.mutedForeground }]}>{f}</Text>
+              </View>
+            ))}
+          </View>
+          {selected === "rider" && (
