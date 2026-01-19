@@ -112,3 +112,22 @@ export default function RoleSelectScreen() {
             ))}
           </View>
           {selected === "rider" && (
+            <View style={[styles.selectedBadge, { backgroundColor: colors.secondary }]}>
+              <Feather name="check" size={12} color="#fff" />
+            </View>
+          )}
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
+        style={[
+          styles.btn,
+          {
+            backgroundColor: selected ? colors.primary : colors.muted,
+            opacity: loading ? 0.7 : 1,
+          },
+        ]}
+        onPress={handleContinue}
+        disabled={!selected || loading}
+        activeOpacity={0.85}
+      >
