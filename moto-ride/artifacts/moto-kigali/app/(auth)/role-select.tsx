@@ -74,3 +74,22 @@ export default function RoleSelectScreen() {
               <View key={f} style={styles.featureRow}>
                 <Feather name="check" size={13} color={colors.success} />
                 <Text style={[styles.featureText, { color: colors.mutedForeground }]}>{f}</Text>
+              </View>
+            ))}
+          </View>
+          {selected === "customer" && (
+            <View style={[styles.selectedBadge, { backgroundColor: colors.primary }]}>
+              <Feather name="check" size={12} color="#fff" />
+            </View>
+          )}
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.card,
+            {
+              backgroundColor: colors.card,
+              borderColor: selected === "rider" ? colors.secondary : colors.border,
+              borderWidth: selected === "rider" ? 2.5 : 1.5,
+            },
+          ]}
