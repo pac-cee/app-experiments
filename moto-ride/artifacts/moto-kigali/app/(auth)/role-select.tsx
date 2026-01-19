@@ -131,3 +131,22 @@ export default function RoleSelectScreen() {
         disabled={!selected || loading}
         activeOpacity={0.85}
       >
+        {loading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={[styles.btnText, { color: selected ? "#fff" : colors.mutedForeground }]}>
+            {selected === "rider" ? "Continue to Registration" : "Get Started"}
+          </Text>
+        )}
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1, paddingHorizontal: 20 },
+  top: { alignItems: "center", paddingTop: 24, paddingBottom: 28, gap: 10 },
+  logoCircle: { width: 76, height: 76, borderRadius: 38, alignItems: "center", justifyContent: "center", marginBottom: 8 },
+  title: { fontSize: 24, fontFamily: "Inter_700Bold", textAlign: "center" },
+  subtitle: { fontSize: 14, fontFamily: "Inter_400Regular", textAlign: "center" },
+  cards: { flexDirection: "row", gap: 12, marginBottom: 24 },
