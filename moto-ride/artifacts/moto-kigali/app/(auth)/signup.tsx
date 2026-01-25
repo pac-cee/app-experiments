@@ -55,3 +55,22 @@ export default function SignupScreen() {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1, backgroundColor: colors.background }}>
+      <ScrollView
+        contentContainerStyle={[styles.container, { paddingTop: topPad + 20, paddingBottom: bottomPad + 20 }]}
+        keyboardShouldPersistTaps="handled"
+      >
+        <TouchableOpacity onPress={() => router.back()} style={styles.back}>
+          <Feather name="arrow-left" size={22} color={colors.foreground} />
+        </TouchableOpacity>
+
+        <Text style={[styles.title, { color: colors.foreground }]}>Create account</Text>
+        <Text style={[styles.subtitle, { color: colors.mutedForeground }]}>Join thousands of riders in Kigali</Text>
+
+        <View style={styles.form}>
+          {[
+            { key: "name", value: name, set: setName, placeholder: "Jean Pierre Mugisha", icon: "user", label: "Full Name", keyboard: "default" as const },
+            { key: "phone", value: phone, set: setPhone, placeholder: "+250 788 000 000", icon: "phone", label: "Phone Number", keyboard: "phone-pad" as const },
+            { key: "email", value: email, set: setEmail, placeholder: "you@email.com", icon: "mail", label: "Email", keyboard: "email-address" as const },
+          ].map(({ key, value, set, placeholder, icon, label, keyboard }) => (
+            <View key={key} style={styles.fieldGroup}>
+              <Text style={[styles.label, { color: colors.foreground }]}>{label}</Text>
