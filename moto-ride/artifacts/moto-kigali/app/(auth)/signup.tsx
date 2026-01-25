@@ -36,3 +36,22 @@ export default function SignupScreen() {
     if (!name.trim() || !phone.trim() || !email.trim() || !password.trim()) {
       setError("Please fill in all fields.");
       return;
+    }
+    if (phone.replace(/\D/g, "").length < 9) {
+      setError("Please enter a valid phone number.");
+      return;
+    }
+    setError("");
+    setLoading(true);
+    const result = await sendOtp(phone);
+    setLoading(false);
+    if (result.success) {
+      router.push({
+        pathname: "/(auth)/otp",
+        params: { phone, name, email, password },
+      });
+    }
+  };
+
+  return (
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1, backgroundColor: colors.background }}>
