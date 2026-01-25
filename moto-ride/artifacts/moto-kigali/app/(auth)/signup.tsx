@@ -74,3 +74,22 @@ export default function SignupScreen() {
           ].map(({ key, value, set, placeholder, icon, label, keyboard }) => (
             <View key={key} style={styles.fieldGroup}>
               <Text style={[styles.label, { color: colors.foreground }]}>{label}</Text>
+              <View style={[styles.inputRow, { backgroundColor: colors.input, borderColor: colors.border }]}>
+                <Feather name={icon as any} size={18} color={colors.mutedForeground} />
+                <TextInput
+                  style={[styles.input, { color: colors.foreground, fontFamily: "Inter_400Regular" }]}
+                  placeholder={placeholder}
+                  placeholderTextColor={colors.mutedForeground}
+                  value={value}
+                  onChangeText={set}
+                  keyboardType={keyboard}
+                  autoCapitalize={key === "name" ? "words" : "none"}
+                />
+              </View>
+            </View>
+          ))}
+
+          <View style={styles.fieldGroup}>
+            <Text style={[styles.label, { color: colors.foreground }]}>Password</Text>
+            <View style={[styles.inputRow, { backgroundColor: colors.input, borderColor: colors.border }]}>
+              <Feather name="lock" size={18} color={colors.mutedForeground} />
