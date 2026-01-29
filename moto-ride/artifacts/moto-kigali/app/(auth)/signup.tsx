@@ -131,3 +131,22 @@ export default function SignupScreen() {
         <View style={styles.footer}>
           <Text style={[styles.footerText, { color: colors.mutedForeground }]}>Already have an account? </Text>
           <TouchableOpacity onPress={() => router.replace("/(auth)/login")}>
+            <Text style={[styles.footerLink, { color: colors.primary }]}>Sign in</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flexGrow: 1, paddingHorizontal: 24 },
+  back: { marginBottom: 32 },
+  title: { fontSize: 28, fontFamily: "Inter_700Bold", marginBottom: 6 },
+  subtitle: { fontSize: 15, fontFamily: "Inter_400Regular", marginBottom: 32 },
+  form: { gap: 18 },
+  fieldGroup: { gap: 8 },
+  label: { fontSize: 14, fontFamily: "Inter_600SemiBold" },
+  inputRow: {
+    flexDirection: "row",
+    alignItems: "center",
