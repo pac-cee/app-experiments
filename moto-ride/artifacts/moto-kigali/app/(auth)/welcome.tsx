@@ -36,3 +36,22 @@ export default function WelcomeScreen() {
               </View>
               <Text style={styles.featureText}>{text}</Text>
             </View>
+          ))}
+        </View>
+
+        <View style={styles.buttons}>
+          <TouchableOpacity
+            style={[styles.btn, styles.btnPrimary]}
+            onPress={() => router.push("/(auth)/signup")}
+            activeOpacity={0.85}
+          >
+            <Text style={styles.btnPrimaryText}>Get Started</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.btn, styles.btnSecondary]}
+            onPress={() => router.push("/(auth)/login")}
+            activeOpacity={0.85}
+          >
+            <Text style={styles.btnSecondaryText}>I have an account</Text>
+          </TouchableOpacity>
+        </View>
