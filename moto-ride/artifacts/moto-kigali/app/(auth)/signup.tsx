@@ -169,3 +169,10 @@ const styles = StyleSheet.create({
     shadowColor: "#1565C0",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.3,
+    shadowRadius: 6,
+  },
+  btnText: { fontSize: 17, fontFamily: "Inter_700Bold", color: "#fff" },
+  footer: { flexDirection: "row", justifyContent: "center", marginTop: 32 },
+  footerText: { fontSize: 14, fontFamily: "Inter_400Regular" },
+  footerLink: { fontSize: 14, fontFamily: "Inter_600SemiBold" },
+});
