@@ -17,3 +17,22 @@ export default function WelcomeScreen() {
     <LinearGradient colors={["#0D47A1", "#1565C0", "#1976D2"]} style={styles.container}>
       <View style={[styles.content, { paddingTop: topPad + 40, paddingBottom: bottomPad + 20 }]}>
         <View style={styles.logoSection}>
+          <View style={styles.logoCircle}>
+            <MaterialCommunityIcons name="motorbike" size={52} color="#1565C0" />
+          </View>
+          <Text style={styles.appName}>MotoLink</Text>
+          <Text style={styles.tagline}>Your ride, your price.{"\n"}Anywhere in Kigali.</Text>
+        </View>
+
+        <View style={styles.features}>
+          {[
+            { icon: "map-marker-radius", text: "Real-time riders near you" },
+            { icon: "handshake", text: "Negotiate your price directly" },
+            { icon: "shield-check", text: "Verified riders only" },
+          ].map(({ icon, text }) => (
+            <View key={text} style={styles.featureRow}>
+              <View style={styles.featureIcon}>
+                <MaterialCommunityIcons name={icon as any} size={20} color="#1565C0" />
+              </View>
+              <Text style={styles.featureText}>{text}</Text>
+            </View>
