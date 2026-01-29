@@ -93,3 +93,22 @@ export default function SignupScreen() {
             <Text style={[styles.label, { color: colors.foreground }]}>Password</Text>
             <View style={[styles.inputRow, { backgroundColor: colors.input, borderColor: colors.border }]}>
               <Feather name="lock" size={18} color={colors.mutedForeground} />
+              <TextInput
+                style={[styles.input, { color: colors.foreground, fontFamily: "Inter_400Regular" }]}
+                placeholder="Create a password"
+                placeholderTextColor={colors.mutedForeground}
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!showPw}
+              />
+              <TouchableOpacity onPress={() => setShowPw((s) => !s)}>
+                <Feather name={showPw ? "eye-off" : "eye"} size={18} color={colors.mutedForeground} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {error ? (
+            <View style={[styles.errorBox, { backgroundColor: "#FEF2F2", borderColor: "#FCA5A5" }]}>
+              <Feather name="alert-circle" size={14} color={colors.destructive} />
+              <Text style={[styles.errorText, { color: colors.destructive }]}>{error}</Text>
+            </View>
