@@ -55,3 +55,22 @@ export default function WelcomeScreen() {
             <Text style={styles.btnSecondaryText}>I have an account</Text>
           </TouchableOpacity>
         </View>
+      </View>
+    </LinearGradient>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  content: {
+    flex: 1,
+    paddingHorizontal: 28,
+    justifyContent: "space-between",
+  },
+  logoSection: {
+    alignItems: "center",
+    gap: 16,
+  },
+  logoCircle: {
+    width: 100,
+    height: 100,
