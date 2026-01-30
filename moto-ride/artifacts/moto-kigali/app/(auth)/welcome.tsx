@@ -74,3 +74,22 @@ const styles = StyleSheet.create({
   logoCircle: {
     width: 100,
     height: 100,
+    borderRadius: 50,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+  },
+  appName: {
+    fontSize: 40,
+    fontFamily: "Inter_700Bold",
+    color: "#fff",
+    letterSpacing: 1,
+  },
+  tagline: {
+    fontSize: 18,
+    fontFamily: "Inter_400Regular",
