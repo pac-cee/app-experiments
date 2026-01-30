@@ -112,3 +112,22 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 19,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  featureText: {
+    fontSize: 15,
+    fontFamily: "Inter_500Medium",
+    color: "#fff",
+    flex: 1,
+  },
+  buttons: { gap: 12 },
+  btn: {
+    height: 54,
+    borderRadius: 27,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  btnPrimary: {
+    backgroundColor: "#fff",
