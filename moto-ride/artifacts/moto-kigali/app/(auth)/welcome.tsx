@@ -131,3 +131,24 @@ const styles = StyleSheet.create({
   },
   btnPrimary: {
     backgroundColor: "#fff",
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+  },
+  btnPrimaryText: {
+    fontSize: 17,
+    fontFamily: "Inter_700Bold",
+    color: "#1565C0",
+  },
+  btnSecondary: {
+    borderWidth: 2,
+    borderColor: "rgba(255,255,255,0.6)",
+  },
+  btnSecondaryText: {
+    fontSize: 16,
+    fontFamily: "Inter_600SemiBold",
+    color: "#fff",
+  },
+});
