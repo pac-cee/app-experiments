@@ -93,3 +93,22 @@ const styles = StyleSheet.create({
   tagline: {
     fontSize: 18,
     fontFamily: "Inter_400Regular",
+    color: "rgba(255,255,255,0.85)",
+    textAlign: "center",
+    lineHeight: 26,
+  },
+  features: {
+    gap: 14,
+    backgroundColor: "rgba(255,255,255,0.1)",
+    borderRadius: 18,
+    padding: 20,
+  },
+  featureRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 14,
+  },
+  featureIcon: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
