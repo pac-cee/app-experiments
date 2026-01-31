@@ -74,3 +74,22 @@ function ClassicTabLayout() {
         }}
       />
       <Tabs.Screen
+        name="jobs"
+        options={{
+          title: "Jobs",
+          tabBarIcon: ({ color }) =>
+            isIOS ? (
+              <SymbolView name="list.bullet" tintColor={color} size={24} />
+            ) : (
+              <Feather name="briefcase" size={22} color={color} />
+            ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color }) =>
+            isIOS ? (
+              <SymbolView name="person" tintColor={color} size={24} />
+            ) : (
