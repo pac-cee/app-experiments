@@ -55,3 +55,22 @@ function ClassicTabLayout() {
         },
         tabBarBackground: () =>
           isIOS ? (
+            <BlurView intensity={100} tint={isDark ? "dark" : "light"} style={StyleSheet.absoluteFill} />
+          ) : isWeb ? (
+            <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.card }]} />
+          ) : null,
+      }}
+    >
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color }) =>
+            isIOS ? (
+              <SymbolView name="map" tintColor={color} size={24} />
+            ) : (
+              <MaterialCommunityIcons name="motorbike" size={22} color={color} />
+            ),
+        }}
+      />
+      <Tabs.Screen
