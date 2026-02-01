@@ -36,3 +36,22 @@ function RequestCard({ req, onPress }: { req: CustomerRequest; onPress: () => vo
       <View style={styles.cardTop}>
         <View style={[styles.avatar, { backgroundColor: colors.primary }]}>
           <Text style={styles.avatarText}>{initials}</Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <View style={styles.nameRow}>
+            <Text style={[styles.customerName, { color: colors.foreground }]}>{req.customer.name}</Text>
+            <View style={styles.ratingBadge}>
+              <Feather name="star" size={11} color="#F59E0B" />
+              <Text style={[styles.ratingText, { color: colors.mutedForeground }]}>{req.customer.rating.toFixed(1)}</Text>
+            </View>
+          </View>
+          <Text style={[styles.timeAgo, { color: colors.mutedForeground }]}>{formatRequestTime(req.requestedAt)}</Text>
+        </View>
+        <View style={[styles.distBadge, { backgroundColor: colors.secondary + "18" }]}>
+          <Text style={[styles.distText, { color: colors.secondary }]}>{req.distanceFromRider.toFixed(1)} km</Text>
+        </View>
+      </View>
+
+      <View style={[styles.routeRow, { borderTopColor: colors.border }]}>
+        <View style={styles.routePin}>
+          <View style={[styles.pinDot, { backgroundColor: colors.primary }]} />
