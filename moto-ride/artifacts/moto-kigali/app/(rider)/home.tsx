@@ -55,3 +55,22 @@ function RequestCard({ req, onPress }: { req: CustomerRequest; onPress: () => vo
       <View style={[styles.routeRow, { borderTopColor: colors.border }]}>
         <View style={styles.routePin}>
           <View style={[styles.pinDot, { backgroundColor: colors.primary }]} />
+          <View style={[styles.pinLine, { backgroundColor: colors.border }]} />
+          <View style={[styles.pinDot, { backgroundColor: colors.secondary }]} />
+        </View>
+        <View style={{ flex: 1, gap: 14 }}>
+          <Text style={[styles.locText, { color: colors.foreground }]} numberOfLines={1}>{req.pickup.name}</Text>
+          <Text style={[styles.locText, { color: colors.foreground }]} numberOfLines={1}>{req.destination.name}</Text>
+        </View>
+        <TouchableOpacity
+          style={[styles.viewBtn, { backgroundColor: colors.primary }]}
+          onPress={onPress}
+          activeOpacity={0.85}
+        >
+          <Text style={styles.viewBtnText}>View</Text>
+        </TouchableOpacity>
+      </View>
+    </TouchableOpacity>
+  );
+}
+
