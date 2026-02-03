@@ -93,3 +93,22 @@ export default function RiderHomeScreen() {
   useEffect(() => {
     if (hasIncoming) {
       Animated.loop(
+        Animated.sequence([
+          Animated.timing(bellAnim, { toValue: 1, duration: 150, useNativeDriver: true }),
+          Animated.timing(bellAnim, { toValue: -1, duration: 150, useNativeDriver: true }),
+          Animated.timing(bellAnim, { toValue: 1, duration: 150, useNativeDriver: true }),
+          Animated.timing(bellAnim, { toValue: 0, duration: 150, useNativeDriver: true }),
+          Animated.delay(2000),
+        ])
+      ).start();
+    } else {
+      bellAnim.setValue(0);
+    }
+  }, [hasIncoming]);
+
+  const load = useCallback(async () => {
+    if (!user) return;
+    const data = await getCustomerRequests(user.id);
+    setRequests(data);
+    setLoading(false);
+    setRefreshing(false);
