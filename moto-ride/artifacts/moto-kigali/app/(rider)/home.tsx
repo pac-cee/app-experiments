@@ -74,3 +74,22 @@ function RequestCard({ req, onPress }: { req: CustomerRequest; onPress: () => vo
   );
 }
 
+export default function RiderHomeScreen() {
+  const colors = useColors();
+  const router = useRouter();
+  const { user } = useAuth();
+  const { isOnline, setIsOnline, setPendingCustomer, activeJob } = useRider();
+  const { incomingRequest, updateStatus } = useBroker();
+  const insets = useSafeAreaInsets();
+  const topPad = Platform.OS === "web" ? 67 : insets.top;
+
+  const [requests, setRequests] = useState<CustomerRequest[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const bellAnim = useRef(new Animated.Value(0)).current;
+
+  const hasIncoming = !!incomingRequest;
+
+  useEffect(() => {
+    if (hasIncoming) {
+      Animated.loop(
