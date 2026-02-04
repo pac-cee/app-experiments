@@ -112,3 +112,22 @@ export default function RiderHomeScreen() {
     setRequests(data);
     setLoading(false);
     setRefreshing(false);
+  }, [user]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const handleViewRequest = (req: CustomerRequest) => {
+    setPendingCustomer(req);
+    router.push("/rider-booking/customer-detail");
+  };
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+    load();
+  };
+
+  const handleAcceptBrokerRequest = (req: BrokerRequest) => {
+    updateStatus(req.id, "accepted");
+    const customerRequest: CustomerRequest = {
+      id: req.id,
+      customer: {
