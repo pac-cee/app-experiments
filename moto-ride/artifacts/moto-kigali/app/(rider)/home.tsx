@@ -131,3 +131,22 @@ export default function RiderHomeScreen() {
     const customerRequest: CustomerRequest = {
       id: req.id,
       customer: {
+        id: req.customerId,
+        name: req.customerName,
+        phone: req.customerPhone,
+        rating: req.customerRating,
+        rides: req.customerRides,
+      },
+      pickup: req.pickup,
+      destination: req.destination,
+      vehicleType: req.vehicleType,
+      distanceFromRider: 1.2,
+      requestedAt: req.sentAt,
+      status: "accepted",
+    };
+    setPendingCustomer(customerRequest);
+    router.push("/rider-booking/customer-detail");
+  };
+
+  const handleDeclineBrokerRequest = (req: BrokerRequest) => {
+    updateStatus(req.id, "declined");
