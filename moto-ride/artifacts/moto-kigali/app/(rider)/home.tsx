@@ -188,3 +188,22 @@ export default function RiderHomeScreen() {
         </View>
         <View style={styles.headerRight}>
           {hasIncoming && (
+            <Animated.View
+              style={{
+                transform: [{
+                  rotate: bellAnim.interpolate({ inputRange: [-1, 0, 1], outputRange: ["-15deg", "0deg", "15deg"] }),
+                }],
+              }}
+            >
+              <View style={styles.bellWrap}>
+                <Feather name="bell" size={22} color={colors.secondary} />
+                <View style={[styles.bellBadge, { backgroundColor: colors.secondary }]}>
+                  <Text style={styles.bellBadgeText}>!</Text>
+                </View>
+              </View>
+            </Animated.View>
+          )}
+          <View style={styles.onlineToggle}>
+            <Text style={[styles.onlineLabel, { color: isOnline ? colors.success : colors.mutedForeground }]}>
+              {isOnline ? "Online" : "Offline"}
+            </Text>
