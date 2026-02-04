@@ -150,3 +150,22 @@ export default function RiderHomeScreen() {
 
   const handleDeclineBrokerRequest = (req: BrokerRequest) => {
     updateStatus(req.id, "declined");
+  };
+
+  if (activeJob && activeJob.status !== "completed") {
+    return (
+      <View style={[styles.screen, { backgroundColor: colors.background }]}>
+        <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+          <Text style={[styles.headerTitle, { color: colors.foreground }]}>Active Ride</Text>
+        </View>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24, gap: 16 }}>
+          <View style={[styles.activeJobCard, { backgroundColor: colors.card, borderColor: colors.secondary }]}>
+            <MaterialCommunityIcons name="motorbike" size={36} color={colors.secondary} />
+            <Text style={[styles.activeJobTitle, { color: colors.foreground }]}>You have an active ride</Text>
+            <Text style={[styles.activeJobSub, { color: colors.mutedForeground }]}>
+              {activeJob.pickup.name} → {activeJob.destination.name}
+            </Text>
+          </View>
+          <TouchableOpacity
+            style={[styles.resumeBtn, { backgroundColor: colors.secondary }]}
+            onPress={() => router.push("/rider-booking/active-ride")}
