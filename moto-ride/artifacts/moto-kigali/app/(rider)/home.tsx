@@ -169,3 +169,22 @@ export default function RiderHomeScreen() {
           <TouchableOpacity
             style={[styles.resumeBtn, { backgroundColor: colors.secondary }]}
             onPress={() => router.push("/rider-booking/active-ride")}
+            activeOpacity={0.85}
+          >
+            <Feather name="navigation" size={18} color="#fff" />
+            <Text style={styles.resumeBtnText}>Resume Active Ride</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+        <View>
+          <Text style={[styles.greeting, { color: colors.mutedForeground }]}>Welcome back,</Text>
+          <Text style={[styles.headerTitle, { color: colors.foreground }]}>{user?.name?.split(" ")[0] ?? "Rider"}</Text>
+        </View>
+        <View style={styles.headerRight}>
+          {hasIncoming && (
