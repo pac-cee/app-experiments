@@ -245,3 +245,22 @@ export default function RiderHomeScreen() {
             <Text style={styles.goOnlineBtnText}>Go Online</Text>
           </TouchableOpacity>
         </View>
+      ) : loading ? (
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <ActivityIndicator size="large" color={colors.primary} />
+        </View>
+      ) : (
+        <FlatList
+          data={requests}
+          keyExtractor={(r) => r.id}
+          contentContainerStyle={styles.list}
+          showsVerticalScrollIndicator={false}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor={colors.primary} />}
+          ListHeaderComponent={
+            <View style={styles.listHeader}>
+              <Text style={[styles.listTitle, { color: colors.foreground }]}>
+                {requests.length} Request{requests.length !== 1 ? "s" : ""} Nearby
+              </Text>
+              <TouchableOpacity onPress={handleRefresh}>
+                <Feather name="refresh-cw" size={16} color={colors.mutedForeground} />
+              </TouchableOpacity>
