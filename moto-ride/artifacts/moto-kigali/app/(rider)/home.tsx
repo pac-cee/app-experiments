@@ -207,3 +207,22 @@ export default function RiderHomeScreen() {
             <Text style={[styles.onlineLabel, { color: isOnline ? colors.success : colors.mutedForeground }]}>
               {isOnline ? "Online" : "Offline"}
             </Text>
+            <Switch
+              value={isOnline}
+              onValueChange={setIsOnline}
+              trackColor={{ false: colors.muted, true: colors.success + "60" }}
+              thumbColor={isOnline ? colors.success : colors.mutedForeground}
+            />
+          </View>
+        </View>
+      </View>
+
+      <View style={{ height: 220 }}>
+        <MockMap
+          pickup={requests[0]?.pickup ?? KIGALI_LOCATIONS[0]}
+          destination={requests[1]?.pickup ?? KIGALI_LOCATIONS[3]}
+          height={220}
+        />
+        <View style={[styles.mapOverlay, { backgroundColor: isOnline ? colors.success : "#EF4444" }]}>
+          <View style={[styles.mapOverlayDot, { backgroundColor: "#fff" }]} />
+          <Text style={styles.mapOverlayText}>{isOnline ? "Receiving requests" : "You're offline"}</Text>
