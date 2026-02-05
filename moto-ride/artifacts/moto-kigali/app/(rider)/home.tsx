@@ -226,3 +226,22 @@ export default function RiderHomeScreen() {
         <View style={[styles.mapOverlay, { backgroundColor: isOnline ? colors.success : "#EF4444" }]}>
           <View style={[styles.mapOverlayDot, { backgroundColor: "#fff" }]} />
           <Text style={styles.mapOverlayText}>{isOnline ? "Receiving requests" : "You're offline"}</Text>
+        </View>
+      </View>
+
+      {!isOnline ? (
+        <View style={styles.offlineBody}>
+          <MaterialCommunityIcons name="wifi-off" size={56} color={colors.mutedForeground} />
+          <Text style={[styles.offlineTitle, { color: colors.foreground }]}>You're offline</Text>
+          <Text style={[styles.offlineSub, { color: colors.mutedForeground }]}>
+            Go online to start receiving ride requests from customers.
+          </Text>
+          <TouchableOpacity
+            style={[styles.goOnlineBtn, { backgroundColor: colors.success }]}
+            onPress={() => setIsOnline(true)}
+            activeOpacity={0.85}
+          >
+            <Feather name="zap" size={18} color="#fff" />
+            <Text style={styles.goOnlineBtnText}>Go Online</Text>
+          </TouchableOpacity>
+        </View>
