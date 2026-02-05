@@ -264,3 +264,22 @@ export default function RiderHomeScreen() {
               <TouchableOpacity onPress={handleRefresh}>
                 <Feather name="refresh-cw" size={16} color={colors.mutedForeground} />
               </TouchableOpacity>
+            </View>
+          }
+          ListEmptyComponent={
+            <View style={styles.emptyState}>
+              <Feather name="inbox" size={36} color={colors.mutedForeground} />
+              <Text style={[styles.emptyText, { color: colors.mutedForeground }]}>No requests yet. Check back soon.</Text>
+            </View>
+          }
+          renderItem={({ item }) => (
+            <RequestCard req={item} onPress={() => handleViewRequest(item)} />
+          )}
+        />
+      )}
+
+      <RideRequestSheet
+        request={incomingRequest}
+        onAccept={handleAcceptBrokerRequest}
+        onDecline={handleDeclineBrokerRequest}
+      />
