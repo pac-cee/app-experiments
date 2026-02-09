@@ -283,3 +283,22 @@ export default function RiderHomeScreen() {
         onAccept={handleAcceptBrokerRequest}
         onDecline={handleDeclineBrokerRequest}
       />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingBottom: 14,
+    borderBottomWidth: 1,
+  },
+  greeting: { fontSize: 12, fontFamily: "Inter_400Regular" },
+  headerTitle: { fontSize: 20, fontFamily: "Inter_700Bold" },
+  headerRight: { flexDirection: "row", alignItems: "center", gap: 14 },
+  bellWrap: { position: "relative" },
+  bellBadge: {
