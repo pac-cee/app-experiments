@@ -36,3 +36,22 @@ function JobCard({ job }: { job: JobRecord }) {
     <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
       <View style={styles.cardTop}>
         <View style={[styles.avatar, { backgroundColor: job.status === "completed" ? colors.success : colors.muted }]}>
+          <Text style={styles.avatarText}>{initials}</Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={[styles.customerName, { color: colors.foreground }]}>{job.customer.name}</Text>
+          <Text style={[styles.dateText, { color: colors.mutedForeground }]}>{dateStr} at {timeStr}</Text>
+        </View>
+        <View style={{ alignItems: "flex-end", gap: 4 }}>
+          <Text style={[styles.price, { color: job.status === "completed" ? colors.success : colors.mutedForeground }]}>
+            {job.status === "completed" ? `+${job.price.toLocaleString()} RWF` : "Cancelled"}
+          </Text>
+          {job.rating && <StarRow rating={job.rating} />}
+        </View>
+      </View>
+
+      <View style={[styles.routeRow, { borderTopColor: colors.border }]}>
+        <View style={styles.routePin}>
+          <View style={[styles.pinDot, { backgroundColor: colors.primary }]} />
+          <View style={[styles.pinLine, { backgroundColor: colors.border }]} />
+          <View style={[styles.pinDot, { backgroundColor: colors.secondary }]} />
