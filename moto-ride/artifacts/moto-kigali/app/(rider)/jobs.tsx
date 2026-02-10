@@ -55,3 +55,22 @@ function JobCard({ job }: { job: JobRecord }) {
           <View style={[styles.pinDot, { backgroundColor: colors.primary }]} />
           <View style={[styles.pinLine, { backgroundColor: colors.border }]} />
           <View style={[styles.pinDot, { backgroundColor: colors.secondary }]} />
+        </View>
+        <View style={{ flex: 1, gap: 10 }}>
+          <Text style={[styles.locText, { color: colors.mutedForeground }]} numberOfLines={1}>{job.pickup.name}</Text>
+          <Text style={[styles.locText, { color: colors.mutedForeground }]} numberOfLines={1}>{job.destination.name}</Text>
+        </View>
+        <View style={[styles.statusBadge, {
+          backgroundColor: job.status === "completed" ? colors.success + "15" : colors.muted,
+        }]}>
+          <Text style={[styles.statusText, { color: job.status === "completed" ? colors.success : colors.mutedForeground }]}>
+            {job.status === "completed" ? "Completed" : "Cancelled"}
+          </Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+export default function JobsScreen() {
+  const colors = useColors();
