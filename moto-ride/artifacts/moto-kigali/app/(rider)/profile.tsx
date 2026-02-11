@@ -55,3 +55,22 @@ export default function RiderProfileScreen() {
   const { user, logout } = useAuth();
   const { isOnline, setIsOnline } = useRider();
   const insets = useSafeAreaInsets();
+  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const bottomPad = Platform.OS === "web" ? 84 : insets.bottom + 64;
+
+  const [jobs, setJobs] = useState<JobRecord[]>([]);
+
+  useEffect(() => {
+    if (user) getJobHistory(user.id).then(setJobs);
+  }, [user]);
+
+  const completed = jobs.filter((j) => j.status === "completed");
+  const totalEarnings = completed.reduce((sum, j) => sum + j.price, 0);
+  const todayEarnings = completed
+    .filter((j) => new Date(j.date).toDateString() === new Date().toDateString())
+    .reduce((sum, j) => sum + j.price, 0);
+  const avgRating = completed.filter((j) => j.rating).reduce((sum, j, _, arr) => sum + (j.rating ?? 0) / arr.length, 0);
+
+  const handleLogout = () => {
+    Alert.alert("Sign out", "Are you sure you want to sign out?", [
+      { text: "Cancel", style: "cancel" },
