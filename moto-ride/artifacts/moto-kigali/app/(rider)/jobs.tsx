@@ -93,3 +93,22 @@ export default function JobsScreen() {
   const completed = jobs.filter((j) => j.status === "completed");
   const totalEarnings = completed.reduce((sum, j) => sum + j.price, 0);
   const avgRating = completed.filter((j) => j.rating).reduce((sum, j, _, arr) => sum + (j.rating ?? 0) / arr.length, 0);
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>Job History</Text>
+      </View>
+
+      {loading ? (
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <ActivityIndicator size="large" color={colors.primary} />
+        </View>
+      ) : (
+        <FlatList
+          data={jobs}
+          keyExtractor={(j) => j.id}
+          contentContainerStyle={[styles.list, { paddingBottom: bottomPad }]}
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            <View style={[styles.statsRow, { marginBottom: 16 }]}>
