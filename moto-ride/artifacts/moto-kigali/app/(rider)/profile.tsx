@@ -36,3 +36,22 @@ function MenuItem({ icon, label, sublabel, onPress, danger = false, rightNode }:
       style={[styles.menuItem, { borderBottomColor: colors.border }]}
       onPress={onPress}
       activeOpacity={0.7}
+    >
+      <View style={[styles.menuIcon, { backgroundColor: danger ? "#FEE2E2" : colors.muted }]}>
+        <Feather name={icon as any} size={18} color={danger ? colors.destructive : colors.foreground} />
+      </View>
+      <View style={{ flex: 1 }}>
+        <Text style={[styles.menuLabel, { color: danger ? colors.destructive : colors.foreground }]}>{label}</Text>
+        {sublabel && <Text style={[styles.menuSub, { color: colors.mutedForeground }]}>{sublabel}</Text>}
+      </View>
+      {rightNode ?? <Feather name="chevron-right" size={18} color={colors.mutedForeground} />}
+    </TouchableOpacity>
+  );
+}
+
+export default function RiderProfileScreen() {
+  const colors = useColors();
+  const router = useRouter();
+  const { user, logout } = useAuth();
+  const { isOnline, setIsOnline } = useRider();
+  const insets = useSafeAreaInsets();
