@@ -93,3 +93,22 @@ export default function RiderProfileScreen() {
         <Text style={[styles.headerTitle, { color: colors.foreground }]}>My Profile</Text>
       </View>
 
+      <ScrollView contentContainerStyle={[styles.content, { paddingBottom: bottomPad }]} showsVerticalScrollIndicator={false}>
+        <View style={[styles.profileCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Avatar name={user.name} size={72} />
+          <View style={{ alignItems: "center", gap: 4 }}>
+            <Text style={[styles.userName, { color: colors.foreground }]}>{user.name}</Text>
+            <Text style={[styles.userPhone, { color: colors.mutedForeground }]}>{user.phone}</Text>
+            <View style={[styles.verifiedBadge, { backgroundColor: colors.success + "20" }]}>
+              <Feather name="shield" size={12} color={colors.success} />
+              <Text style={[styles.verifiedText, { color: colors.success }]}>Verified Rider</Text>
+            </View>
+          </View>
+          {user.plate && (
+            <View style={[styles.plateBadge, { backgroundColor: colors.foreground }]}>
+              <Text style={[styles.plateText, { color: colors.background }]}>{user.plate}</Text>
+            </View>
+          )}
+        </View>
+
+        <View style={styles.statsGrid}>
