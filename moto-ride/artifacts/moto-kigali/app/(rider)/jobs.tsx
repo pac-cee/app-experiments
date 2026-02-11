@@ -74,3 +74,22 @@ function JobCard({ job }: { job: JobRecord }) {
 
 export default function JobsScreen() {
   const colors = useColors();
+  const { user } = useAuth();
+  const insets = useSafeAreaInsets();
+  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const bottomPad = Platform.OS === "web" ? 84 : insets.bottom + 64;
+
+  const [jobs, setJobs] = useState<JobRecord[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!user) return;
+    getJobHistory(user.id).then((data) => {
+      setJobs(data);
+      setLoading(false);
+    });
+  }, [user]);
+
+  const completed = jobs.filter((j) => j.status === "completed");
+  const totalEarnings = completed.reduce((sum, j) => sum + j.price, 0);
+  const avgRating = completed.filter((j) => j.rating).reduce((sum, j, _, arr) => sum + (j.rating ?? 0) / arr.length, 0);
