@@ -150,3 +150,22 @@ export default function JobsScreen() {
 }
 
 const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    paddingHorizontal: 20,
+    paddingBottom: 14,
+    borderBottomWidth: 1,
+  },
+  headerTitle: { fontSize: 20, fontFamily: "Inter_700Bold" },
+  list: { padding: 16, gap: 12 },
+  statsRow: { flexDirection: "row", gap: 10 },
+  statCard: {
+    flex: 1,
+    alignItems: "center",
+    padding: 14,
+    borderRadius: 14,
+    borderWidth: 1,
+    gap: 4,
+  },
+  statValue: { fontSize: 18, fontFamily: "Inter_700Bold" },
+  statLabel: { fontSize: 11, fontFamily: "Inter_400Regular" },
