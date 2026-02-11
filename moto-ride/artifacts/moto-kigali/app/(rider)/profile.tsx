@@ -112,3 +112,22 @@ export default function RiderProfileScreen() {
         </View>
 
         <View style={styles.statsGrid}>
+          <View style={[styles.statCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+            <Feather name="sun" size={20} color={colors.secondary} />
+            <Text style={[styles.statValue, { color: colors.foreground }]}>{todayEarnings.toLocaleString()}</Text>
+            <Text style={[styles.statLabel, { color: colors.mutedForeground }]}>Today (RWF)</Text>
+          </View>
+          <View style={[styles.statCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+            <Feather name="trending-up" size={20} color={colors.success} />
+            <Text style={[styles.statValue, { color: colors.foreground }]}>{totalEarnings.toLocaleString()}</Text>
+            <Text style={[styles.statLabel, { color: colors.mutedForeground }]}>Total (RWF)</Text>
+          </View>
+          <View style={[styles.statCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+            <Feather name="briefcase" size={20} color={colors.primary} />
+            <Text style={[styles.statValue, { color: colors.foreground }]}>{completed.length}</Text>
+            <Text style={[styles.statLabel, { color: colors.mutedForeground }]}>Rides</Text>
+          </View>
+          <View style={[styles.statCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+            <Feather name="star" size={20} color="#F59E0B" />
+            <Text style={[styles.statValue, { color: colors.foreground }]}>{avgRating > 0 ? avgRating.toFixed(1) : "—"}</Text>
+            <Text style={[styles.statLabel, { color: colors.mutedForeground }]}>Rating</Text>
