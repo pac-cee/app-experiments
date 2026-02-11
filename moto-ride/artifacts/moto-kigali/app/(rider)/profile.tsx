@@ -74,3 +74,22 @@ export default function RiderProfileScreen() {
   const handleLogout = () => {
     Alert.alert("Sign out", "Are you sure you want to sign out?", [
       { text: "Cancel", style: "cancel" },
+      {
+        text: "Sign out",
+        style: "destructive",
+        onPress: async () => {
+          await logout();
+          router.replace("/(auth)/welcome");
+        },
+      },
+    ]);
+  };
+
+  if (!user) return null;
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>My Profile</Text>
+      </View>
+
