@@ -188,3 +188,12 @@ const styles = StyleSheet.create({
   starRow: { flexDirection: "row", gap: 2 },
   routeRow: { flexDirection: "row", alignItems: "center", gap: 12, padding: 14, borderTopWidth: 1 },
   routePin: { alignItems: "center" },
+  pinDot: { width: 7, height: 7, borderRadius: 3.5 },
+  pinLine: { width: 1.5, height: 18 },
+  locText: { fontSize: 12, fontFamily: "Inter_400Regular" },
+  statusBadge: { paddingHorizontal: 10, paddingVertical: 5, borderRadius: 10 },
+  statusText: { fontSize: 12, fontFamily: "Inter_600SemiBold" },
+  emptyState: { alignItems: "center", paddingTop: 60, gap: 12 },
+  emptyTitle: { fontSize: 18, fontFamily: "Inter_700Bold" },
+  emptySub: { fontSize: 14, fontFamily: "Inter_400Regular", textAlign: "center" },
+});
