@@ -131,3 +131,22 @@ export default function JobsScreen() {
                 </Text>
                 <Text style={[styles.statLabel, { color: colors.mutedForeground }]}>Avg Rating</Text>
               </View>
+            </View>
+          }
+          ListEmptyComponent={
+            <View style={styles.emptyState}>
+              <Feather name="briefcase" size={40} color={colors.mutedForeground} />
+              <Text style={[styles.emptyTitle, { color: colors.foreground }]}>No jobs yet</Text>
+              <Text style={[styles.emptySub, { color: colors.mutedForeground }]}>
+                Complete your first ride to see your history here.
+              </Text>
+            </View>
+          }
+          renderItem={({ item }) => <JobCard job={item} />}
+        />
+      )}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
