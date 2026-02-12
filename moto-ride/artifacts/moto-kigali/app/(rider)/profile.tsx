@@ -169,3 +169,22 @@ export default function RiderProfileScreen() {
           <Text style={[styles.sectionTitle, { color: colors.mutedForeground }]}>SUPPORT</Text>
           <MenuItem icon="help-circle" label="Help & Support" onPress={() => {}} />
           <MenuItem icon="file-text" label="Terms of Service" onPress={() => {}} />
+          <MenuItem icon="shield" label="Privacy Policy" onPress={() => {}} />
+        </View>
+
+        <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.sectionTitle, { color: colors.mutedForeground }]}>SESSION</Text>
+          <MenuItem icon="log-out" label="Sign Out" onPress={handleLogout} danger />
+        </View>
+
+        <Text style={[styles.version, { color: colors.mutedForeground }]}>MotoLink Rider v1.0.0</Text>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: { paddingHorizontal: 20, paddingBottom: 14, borderBottomWidth: 1 },
+  headerTitle: { fontSize: 20, fontFamily: "Inter_700Bold" },
+  content: { padding: 16, gap: 16 },
