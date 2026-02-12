@@ -131,3 +131,22 @@ export default function RiderProfileScreen() {
             <Feather name="star" size={20} color="#F59E0B" />
             <Text style={[styles.statValue, { color: colors.foreground }]}>{avgRating > 0 ? avgRating.toFixed(1) : "—"}</Text>
             <Text style={[styles.statLabel, { color: colors.mutedForeground }]}>Rating</Text>
+          </View>
+        </View>
+
+        <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.sectionTitle, { color: colors.mutedForeground }]}>ACCOUNT</Text>
+          <MenuItem icon="user" label="Personal Info" sublabel={user.email ?? user.phone} onPress={() => {}} />
+          <MenuItem icon="map-pin" label="Home Address" sublabel={user.homeAddress ?? "Not set"} onPress={() => {}} />
+          <MenuItem
+            icon="power"
+            label="Status"
+            sublabel={isOnline ? "Online — receiving requests" : "Offline"}
+            onPress={() => setIsOnline(!isOnline)}
+            rightNode={
+              <View style={[styles.onlinePill, { backgroundColor: isOnline ? colors.success + "20" : colors.muted }]}>
+                <View style={[styles.onlineDot, { backgroundColor: isOnline ? colors.success : colors.mutedForeground }]} />
+                <Text style={[styles.onlinePillText, { color: isOnline ? colors.success : colors.mutedForeground }]}>
+                  {isOnline ? "Online" : "Offline"}
+                </Text>
+              </View>
