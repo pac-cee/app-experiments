@@ -150,3 +150,22 @@ export default function RiderProfileScreen() {
                   {isOnline ? "Online" : "Offline"}
                 </Text>
               </View>
+            }
+          />
+        </View>
+
+        <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.sectionTitle, { color: colors.mutedForeground }]}>VEHICLE</Text>
+          <MenuItem
+            icon="truck"
+            label="Vehicle Type"
+            sublabel={user.vehicleType ? user.vehicleType.charAt(0).toUpperCase() + user.vehicleType.slice(1) : "Not set"}
+            onPress={() => {}}
+          />
+          <MenuItem icon="credit-card" label="License Plate" sublabel={user.plate ?? "Not set"} onPress={() => {}} />
+        </View>
+
+        <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.sectionTitle, { color: colors.mutedForeground }]}>SUPPORT</Text>
+          <MenuItem icon="help-circle" label="Help & Support" onPress={() => {}} />
+          <MenuItem icon="file-text" label="Terms of Service" onPress={() => {}} />
