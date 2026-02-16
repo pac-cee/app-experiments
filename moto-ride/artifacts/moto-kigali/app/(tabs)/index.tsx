@@ -36,3 +36,22 @@ export default function HomeScreen() {
     pendingRider, setPendingRider,
   } = useRide();
 
+  const [stage, setStage] = useState<Stage>("idle");
+  const [focusField, setFocusField] = useState<"pickup" | "destination" | null>(null);
+  const [riders, setRiders] = useState<Rider[]>([]);
+  const [loadingRiders, setLoadingRiders] = useState(false);
+  const [selectedRiderId, setSelectedRiderId] = useState<string | null>(null);
+
+  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
+
+  const defaultPickup = KIGALI_LOCATIONS[0];
+
+  useEffect(() => {
+    if (!pendingPickup) setPendingPickup(defaultPickup);
+  }, []);
+
+  const onDestinationSet = (loc: typeof KIGALI_LOCATIONS[0]) => {
+    setPendingDestination(loc);
+    setStage("vehicle_select");
+  };
