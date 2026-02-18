@@ -74,3 +74,22 @@ export default function HomeScreen() {
   const resetBooking = () => {
     setPendingPickup(defaultPickup);
     setPendingDestination(null);
+    setPendingVehicle(null);
+    setPendingRider(null);
+    setStage("idle");
+    setRiders([]);
+    setSelectedRiderId(null);
+  };
+
+  const firstName = user?.name?.split(" ")[0] ?? "there";
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.mapHeader, { paddingTop: topPad }]}>
+        <Text style={[styles.greeting, { color: "#fff" }]}>Hi, {firstName} 👋</Text>
+        <Text style={[styles.greetingSub, { color: "rgba(255,255,255,0.8)" }]}>Where are you going?</Text>
+      </View>
+
+      <View style={{ flex: 1 }}>
+        <MockMap
+          riders={stage === "riders_visible" ? riders : []}
