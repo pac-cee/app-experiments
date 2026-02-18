@@ -55,3 +55,22 @@ export default function HomeScreen() {
     setPendingDestination(loc);
     setStage("vehicle_select");
   };
+
+  const onVehicleSelect = async (v: VehicleType) => {
+    setPendingVehicle(v);
+    setStage("riders_visible");
+    setLoadingRiders(true);
+    const result = await getNearbyRiders(v);
+    setRiders(result);
+    setLoadingRiders(false);
+  };
+
+  const onRiderPress = (rider: Rider) => {
+    setSelectedRiderId(rider.id);
+    setPendingRider(rider);
+    router.push("/booking/rider-detail");
+  };
+
+  const resetBooking = () => {
+    setPendingPickup(defaultPickup);
+    setPendingDestination(null);
