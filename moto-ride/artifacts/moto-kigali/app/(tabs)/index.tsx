@@ -150,3 +150,22 @@ export default function HomeScreen() {
                 focusField={focusField}
                 onFocusChange={setFocusField}
               />
+
+              {stage !== "idle" && (
+                <View style={styles.section}>
+                  <Text style={[styles.sectionLabel, { color: colors.foreground }]}>Vehicle type</Text>
+                  <VehicleSelector selected={pendingVehicle} onSelect={onVehicleSelect} />
+                </View>
+              )}
+
+              {stage === "riders_visible" && (
+                <View style={styles.riderStatus}>
+                  {loadingRiders ? (
+                    <ActivityIndicator color={colors.primary} />
+                  ) : (
+                    <>
+                      <View style={[styles.riderStatusDot, { backgroundColor: colors.success }]} />
+                      <Text style={[styles.riderStatusText, { color: colors.foreground }]}>
+                        {riders.length} riders nearby — tap a pin on the map
+                      </Text>
+                    </>
