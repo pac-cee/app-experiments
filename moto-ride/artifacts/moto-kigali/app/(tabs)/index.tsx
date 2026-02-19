@@ -131,3 +131,22 @@ export default function HomeScreen() {
               destination={pendingDestination}
               onPickupChange={setPendingPickup}
               onDestinationChange={onDestinationSet}
+              focusField={focusField}
+              onFocusChange={setFocusField}
+            />
+          </View>
+        ) : (
+          <ScrollView
+            horizontal={false}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+          >
+            <View style={styles.panelContent}>
+              <LocationInput
+                pickup={pendingPickup}
+                destination={pendingDestination}
+                onPickupChange={setPendingPickup}
+                onDestinationChange={onDestinationSet}
+                focusField={focusField}
+                onFocusChange={setFocusField}
+              />
