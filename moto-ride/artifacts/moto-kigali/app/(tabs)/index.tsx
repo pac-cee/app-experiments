@@ -169,3 +169,22 @@ export default function HomeScreen() {
                         {riders.length} riders nearby — tap a pin on the map
                       </Text>
                     </>
+                  )}
+                </View>
+              )}
+
+              {stage !== "idle" && (
+                <TouchableOpacity onPress={resetBooking} style={styles.resetBtn}>
+                  <Feather name="x" size={14} color={colors.mutedForeground} />
+                  <Text style={[styles.resetText, { color: colors.mutedForeground }]}>Start over</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          </ScrollView>
+        )}
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
