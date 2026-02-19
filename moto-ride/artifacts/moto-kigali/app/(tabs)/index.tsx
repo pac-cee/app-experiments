@@ -188,3 +188,22 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  mapHeader: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    paddingHorizontal: 20,
+    paddingBottom: 12,
+    backgroundColor: "rgba(21,101,192,0.92)",
+  },
+  greeting: { fontSize: 18, fontFamily: "Inter_700Bold" },
+  greetingSub: { fontSize: 13, fontFamily: "Inter_400Regular" },
+  activeRideBanner: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 10,
