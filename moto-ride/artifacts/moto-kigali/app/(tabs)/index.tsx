@@ -112,3 +112,22 @@ export default function HomeScreen() {
           <Text style={styles.activeRideText}>Active ride — tap to track</Text>
           <Feather name="chevron-right" size={18} color="#fff" />
         </TouchableOpacity>
+      )}
+
+      <View
+        style={[
+          styles.panel,
+          {
+            backgroundColor: colors.card,
+            paddingBottom: bottomPad + 72,
+            borderTopColor: colors.border,
+          },
+        ]}
+      >
+        {focusField ? (
+          <View style={styles.panelContent}>
+            <LocationInput
+              pickup={pendingPickup}
+              destination={pendingDestination}
+              onPickupChange={setPendingPickup}
+              onDestinationChange={onDestinationSet}
