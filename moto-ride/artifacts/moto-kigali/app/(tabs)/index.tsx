@@ -93,3 +93,22 @@ export default function HomeScreen() {
       <View style={{ flex: 1 }}>
         <MockMap
           riders={stage === "riders_visible" ? riders : []}
+          selectedVehicle={pendingVehicle}
+          pickup={pendingPickup}
+          destination={pendingDestination}
+          onRiderPress={onRiderPress}
+          selectedRiderId={selectedRiderId}
+          height={undefined}
+        />
+      </View>
+
+      {activeRide && (
+        <TouchableOpacity
+          style={[styles.activeRideBanner, { backgroundColor: colors.success }]}
+          onPress={() => router.push("/booking/tracking")}
+          activeOpacity={0.85}
+        >
+          <MaterialCommunityIcons name="motorbike" size={20} color="#fff" />
+          <Text style={styles.activeRideText}>Active ride — tap to track</Text>
+          <Feather name="chevron-right" size={18} color="#fff" />
+        </TouchableOpacity>
