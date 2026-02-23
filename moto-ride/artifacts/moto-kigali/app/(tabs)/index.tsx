@@ -226,3 +226,22 @@ const styles = StyleSheet.create({
     maxHeight: 420,
   },
   panelContent: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    gap: 16,
+  },
+  section: { gap: 10 },
+  sectionLabel: { fontSize: 14, fontFamily: "Inter_600SemiBold" },
+  riderStatus: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderRadius: 12,
+    backgroundColor: "rgba(46,125,50,0.08)",
+  },
+  riderStatusDot: { width: 8, height: 8, borderRadius: 4 },
+  riderStatusText: { fontSize: 14, fontFamily: "Inter_500Medium", flex: 1 },
+  resetBtn: {
+    flexDirection: "row",
