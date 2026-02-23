@@ -245,3 +245,10 @@ const styles = StyleSheet.create({
   riderStatusText: { fontSize: 14, fontFamily: "Inter_500Medium", flex: 1 },
   resetBtn: {
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    paddingVertical: 8,
+  },
+  resetText: { fontSize: 13, fontFamily: "Inter_400Regular" },
+});
