@@ -55,3 +55,22 @@ export default function ProfileScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { user, logout } = useAuth();
+
+  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
+
+  const handleLogout = () => {
+    if (Platform.OS === "web") {
+      logout().then(() => router.replace("/(auth)/welcome"));
+    } else {
+      Alert.alert("Sign Out", "Are you sure you want to sign out?", [
+        { text: "Cancel", style: "cancel" },
+        { text: "Sign Out", style: "destructive", onPress: () => logout().then(() => router.replace("/(auth)/welcome")) },
+      ]);
+    }
+  };
+
+  if (!user) return null;
+
+  return (
