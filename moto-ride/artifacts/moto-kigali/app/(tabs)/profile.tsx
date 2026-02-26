@@ -93,3 +93,22 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.infoRow}>
               <Feather name="mail" size={13} color={colors.mutedForeground} />
+              <Text style={[styles.infoText, { color: colors.mutedForeground }]} numberOfLines={1}>{user.email}</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.statsRow]}>
+          {[
+            { label: "Total Rides", value: "4", icon: "navigation" },
+            { label: "Avg Rating", value: "4.8", icon: "star" },
+            { label: "Member Since", value: "May 2025", icon: "calendar" },
+          ].map(({ label, value, icon }) => (
+            <View key={label} style={[styles.statCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+              <Feather name={icon as any} size={18} color={colors.primary} />
+              <Text style={[styles.statValue, { color: colors.foreground }]}>{value}</Text>
+              <Text style={[styles.statLabel, { color: colors.mutedForeground }]}>{label}</Text>
+            </View>
+          ))}
+        </View>
+
