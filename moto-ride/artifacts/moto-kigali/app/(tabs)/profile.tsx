@@ -112,3 +112,22 @@ export default function ProfileScreen() {
           ))}
         </View>
 
+        <View style={[styles.menuCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.menuSection, { color: colors.mutedForeground }]}>Account</Text>
+          <MenuItem icon="edit-2" label="Edit Profile" sublabel="Update name, photo, email" onPress={() => {}} />
+          <MenuItem icon="bell" label="Notifications" sublabel="Manage alerts" onPress={() => {}} />
+          <MenuItem icon="shield" label="Safety" sublabel="Emergency contacts" onPress={() => {}} />
+        </View>
+
+        <View style={[styles.menuCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.menuSection, { color: colors.mutedForeground }]}>Support</Text>
+          <MenuItem icon="help-circle" label="Help & FAQ" onPress={() => {}} />
+          <MenuItem icon="message-square" label="Contact Support" onPress={() => {}} />
+        </View>
+
+        <View style={[styles.menuCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <MenuItem icon="log-out" label="Sign Out" onPress={handleLogout} danger />
+        </View>
+
+        <Text style={[styles.version, { color: colors.mutedForeground }]}>MotoLink v1.0 · Kigali, Rwanda</Text>
+      </ScrollView>
