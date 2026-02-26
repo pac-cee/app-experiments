@@ -131,3 +131,22 @@ export default function ProfileScreen() {
 
         <Text style={[styles.version, { color: colors.mutedForeground }]}>MotoLink v1.0 · Kigali, Rwanda</Text>
       </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    paddingHorizontal: 20,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+  },
+  headerTitle: { fontSize: 24, fontFamily: "Inter_700Bold" },
+  content: { paddingHorizontal: 16, paddingTop: 16, gap: 16 },
+  profileCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16,
+    padding: 16,
+    borderRadius: 16,
