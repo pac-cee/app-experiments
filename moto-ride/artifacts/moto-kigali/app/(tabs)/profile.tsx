@@ -74,3 +74,22 @@ export default function ProfileScreen() {
   if (!user) return null;
 
   return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>Profile</Text>
+      </View>
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[styles.content, { paddingBottom: bottomPad + 80 }]}
+      >
+        <View style={[styles.profileCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Avatar name={user.name} />
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.userName, { color: colors.foreground }]}>{user.name}</Text>
+            <View style={styles.infoRow}>
+              <Feather name="phone" size={13} color={colors.mutedForeground} />
+              <Text style={[styles.infoText, { color: colors.mutedForeground }]}>{user.phone}</Text>
+            </View>
+            <View style={styles.infoRow}>
+              <Feather name="mail" size={13} color={colors.mutedForeground} />
