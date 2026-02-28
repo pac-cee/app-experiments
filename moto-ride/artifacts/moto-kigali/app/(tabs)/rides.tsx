@@ -36,3 +36,22 @@ function RideCard({ ride }: { ride: RideRecord }) {
               <Text style={[styles.statusText, { color: isCompleted ? "#166534" : "#991B1B" }]}>
                 {isCompleted ? "Completed" : "Cancelled"}
               </Text>
+            </View>
+          </View>
+          <Text style={[styles.dateText, { color: colors.mutedForeground }]}>{dateStr} · {timeStr}</Text>
+        </View>
+      </View>
+
+      <View style={[styles.routeSection, { borderTopColor: colors.border }]}>
+        <View style={styles.routeRow}>
+          <View style={[styles.dot, { backgroundColor: colors.success }]} />
+          <Text style={[styles.routeText, { color: colors.foreground }]} numberOfLines={1}>{ride.pickup.name}</Text>
+        </View>
+        <View style={[styles.routeLine, { borderColor: colors.border }]} />
+        <View style={styles.routeRow}>
+          <Feather name="map-pin" size={12} color={colors.secondary} />
+          <Text style={[styles.routeText, { color: colors.foreground }]} numberOfLines={1}>{ride.destination.name}</Text>
+        </View>
+      </View>
+
+      <View style={[styles.cardBottom, { borderTopColor: colors.border }]}>
