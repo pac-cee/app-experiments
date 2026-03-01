@@ -55,3 +55,22 @@ function RideCard({ ride }: { ride: RideRecord }) {
       </View>
 
       <View style={[styles.cardBottom, { borderTopColor: colors.border }]}>
+        <View style={styles.priceRow}>
+          <Feather name="dollar-sign" size={14} color={colors.mutedForeground} />
+          <Text style={[styles.price, { color: colors.foreground }]}>{ride.price.toLocaleString()} RWF</Text>
+        </View>
+        {ride.rating !== undefined && (
+          <StarRating value={ride.rating} size={14} readonly />
+        )}
+      </View>
+    </View>
+  );
+}
+
+export default function RidesScreen() {
+  const colors = useColors();
+  const insets = useSafeAreaInsets();
+  const { user } = useAuth();
+  const [rides, setRides] = useState<RideRecord[]>([]);
+  const [loading, setLoading] = useState(true);
+
