@@ -74,3 +74,22 @@ export default function RidesScreen() {
   const [rides, setRides] = useState<RideRecord[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
+
+  useEffect(() => {
+    if (user) {
+      getRideHistory(user.id).then((data) => {
+        setRides(data);
+        setLoading(false);
+      });
+    }
+  }, [user]);
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>My Rides</Text>
+        <Text style={[styles.headerSub, { color: colors.mutedForeground }]}>{rides.length} trips</Text>
+      </View>
+
