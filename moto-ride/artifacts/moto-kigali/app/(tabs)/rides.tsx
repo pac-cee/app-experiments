@@ -93,3 +93,22 @@ export default function RidesScreen() {
         <Text style={[styles.headerSub, { color: colors.mutedForeground }]}>{rides.length} trips</Text>
       </View>
 
+      {loading ? (
+        <View style={styles.center}>
+          <ActivityIndicator size="large" color={colors.primary} />
+        </View>
+      ) : rides.length === 0 ? (
+        <View style={styles.center}>
+          <Feather name="clock" size={48} color={colors.border} />
+          <Text style={[styles.emptyTitle, { color: colors.foreground }]}>No rides yet</Text>
+          <Text style={[styles.emptyText, { color: colors.mutedForeground }]}>Your completed trips will appear here</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={rides}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <RideCard ride={item} />}
+          contentContainerStyle={[styles.list, { paddingBottom: bottomPad + 80 }]}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
+        />
