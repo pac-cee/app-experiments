@@ -112,3 +112,22 @@ export default function RidesScreen() {
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         />
+      )}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    paddingHorizontal: 20,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+  },
+  headerTitle: { fontSize: 24, fontFamily: "Inter_700Bold", marginBottom: 2 },
+  headerSub: { fontSize: 13, fontFamily: "Inter_400Regular" },
