@@ -36,3 +36,22 @@ export default function PriceConfirmScreen() {
     if (!numPrice || numPrice < 100) {
       setError("Please enter a valid price (min 100 RWF).");
       return;
+    }
+    if (!pendingPickup || !pendingDestination || !pendingRider) {
+      setError("Missing booking details. Please start over.");
+      return;
+    }
+    setError("");
+    setLoading(true);
+    const result = await confirmBooking({
+      riderId: pendingRider.id,
+      pickup: pendingPickup,
+      destination: pendingDestination,
+      price: numPrice,
+    });
+    setLoading(false);
+    if (result.success) {
+      setActiveRide({
+        bookingId: result.bookingId,
+        pickup: pendingPickup,
+        destination: pendingDestination,
