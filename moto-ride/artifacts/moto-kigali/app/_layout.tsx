@@ -55,3 +55,22 @@ function RootLayoutNav() {
       <Stack.Screen
         name="rider-booking/active-ride"
         options={{ headerShown: false, gestureEnabled: false }}
+      />
+      <Stack.Screen
+        name="rider-booking/rating"
+        options={{ presentation: "modal", headerShown: false }}
+      />
+    </Stack>
+  );
+}
+
+export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+  });
+
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
