@@ -36,3 +36,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   link: {
+    marginTop: 15,
+    paddingVertical: 15,
+  },
+  linkText: {
+    fontSize: 14,
+  },
+});
