@@ -36,3 +36,22 @@ function RootLayoutNav() {
         name="booking/waiting"
         options={{ headerShown: false, gestureEnabled: false }}
       />
+      <Stack.Screen
+        name="booking/tracking"
+        options={{ headerShown: false, gestureEnabled: false }}
+      />
+      <Stack.Screen
+        name="booking/rating"
+        options={{ presentation: "modal", headerShown: false }}
+      />
+      <Stack.Screen
+        name="rider-booking/customer-detail"
+        options={{ presentation: "modal", headerShown: false }}
+      />
+      <Stack.Screen
+        name="rider-booking/price-accept"
+        options={{ presentation: "modal", headerShown: false }}
+      />
+      <Stack.Screen
+        name="rider-booking/active-ride"
+        options={{ headerShown: false, gestureEnabled: false }}
