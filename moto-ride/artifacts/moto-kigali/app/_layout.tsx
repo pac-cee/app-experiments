@@ -93,3 +93,12 @@ export default function RootLayout() {
                       <RootLayoutNav />
                     </KeyboardProvider>
                   </GestureHandlerRootView>
+                </RiderProvider>
+              </RideProvider>
+            </BrokerProvider>
+          </AuthProvider>
+        </QueryClientProvider>
+      </ErrorBoundary>
+    </SafeAreaProvider>
+  );
+}
