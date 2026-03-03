@@ -17,3 +17,22 @@ SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient();
 
+function RootLayoutNav() {
+  return (
+    <Stack screenOptions={{ headerBackTitle: "Back", headerShadowVisible: false }}>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)" options={{ headerShown: false, animation: "fade" }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="(rider)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="booking/rider-detail"
+        options={{ presentation: "modal", headerShown: false }}
+      />
+      <Stack.Screen
+        name="booking/price-confirm"
+        options={{ presentation: "modal", headerShown: false }}
+      />
+      <Stack.Screen
+        name="booking/waiting"
+        options={{ headerShown: false, gestureEnabled: false }}
+      />
