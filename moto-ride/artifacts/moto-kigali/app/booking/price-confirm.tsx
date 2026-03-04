@@ -55,3 +55,22 @@ export default function PriceConfirmScreen() {
         bookingId: result.bookingId,
         pickup: pendingPickup,
         destination: pendingDestination,
+        rider: pendingRider,
+        price: numPrice,
+        status: "rider_en_route",
+        agreedAt: new Date().toISOString(),
+      });
+      clearPending();
+      router.replace("/booking/tracking");
+    } else {
+      setError("Booking failed. Please try again.");
+    }
+  };
+
+  return (
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1, backgroundColor: colors.background }}>
+      <ScrollView
+        contentContainerStyle={[styles.container, { paddingTop: topPad, paddingBottom: bottomPad + 20 }]}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={[styles.header, { borderBottomColor: colors.border }]}>
