@@ -93,3 +93,22 @@ export default function PriceConfirmScreen() {
                 <Text style={[styles.riderName, { color: colors.foreground }]}>{pendingRider.name}</Text>
                 <Text style={[styles.riderPlate, { color: colors.mutedForeground }]}>{pendingRider.plate}</Text>
               </View>
+              <View style={[styles.ratingBadge, { backgroundColor: "#FEF3C7" }]}>
+                <Feather name="star" size={12} color="#D97706" />
+                <Text style={[styles.ratingText, { color: "#92400E" }]}>{pendingRider.rating.toFixed(1)}</Text>
+              </View>
+            </View>
+          )}
+
+          {pendingPickup && pendingDestination && (
+            <View style={[styles.routeCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+              <Text style={[styles.routeLabel, { color: colors.mutedForeground }]}>Route</Text>
+              <View style={styles.routeRow}>
+                <View style={[styles.routeDot, { backgroundColor: colors.success }]} />
+                <Text style={[styles.routeText, { color: colors.foreground }]}>{pendingPickup.name}</Text>
+              </View>
+              <View style={[styles.routeConnector, { borderColor: colors.border }]} />
+              <View style={styles.routeRow}>
+                <Feather name="map-pin" size={12} color={colors.secondary} />
+                <Text style={[styles.routeText, { color: colors.foreground }]}>{pendingDestination.name}</Text>
+              </View>
