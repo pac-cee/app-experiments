@@ -131,3 +131,22 @@ export default function PriceConfirmScreen() {
                 autoFocus
               />
             </View>
+
+            <View style={styles.suggestRow}>
+              {[500, 1000, 1500, 2000, 3000].map((amt) => (
+                <TouchableOpacity
+                  key={amt}
+                  style={[styles.suggestChip, { backgroundColor: price === String(amt) ? colors.primary : colors.muted, borderColor: price === String(amt) ? colors.primary : colors.border }]}
+                  onPress={() => setPrice(String(amt))}
+                >
+                  <Text style={[styles.suggestText, { color: price === String(amt) ? "#fff" : colors.mutedForeground }]}>
+                    {amt >= 1000 ? `${amt / 1000}k` : amt}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+
+          {error ? (
+            <View style={[styles.errorBox, { backgroundColor: "#FEF2F2", borderColor: "#FCA5A5" }]}>
+              <Feather name="alert-circle" size={14} color={colors.destructive} />
