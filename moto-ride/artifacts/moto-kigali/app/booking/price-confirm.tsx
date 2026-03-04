@@ -112,3 +112,22 @@ export default function PriceConfirmScreen() {
                 <Feather name="map-pin" size={12} color={colors.secondary} />
                 <Text style={[styles.routeText, { color: colors.foreground }]}>{pendingDestination.name}</Text>
               </View>
+            </View>
+          )}
+
+          <View>
+            <Text style={[styles.priceLabel, { color: colors.foreground }]}>Agreed Price (RWF)</Text>
+            <Text style={[styles.priceHint, { color: colors.mutedForeground }]}>Enter the amount you negotiated with the rider</Text>
+            <View style={[styles.priceInputWrap, { backgroundColor: colors.input, borderColor: price ? colors.primary : colors.border }]}>
+              <Text style={[styles.currency, { color: colors.mutedForeground }]}>RWF</Text>
+              <TextInput
+                style={[styles.priceInput, { color: colors.foreground, fontFamily: "Inter_700Bold" }]}
+                placeholder="0"
+                placeholderTextColor={colors.mutedForeground}
+                value={price}
+                onChangeText={(t) => setPrice(t.replace(/\D/g, ""))}
+                keyboardType="numeric"
+                maxLength={7}
+                autoFocus
+              />
+            </View>
