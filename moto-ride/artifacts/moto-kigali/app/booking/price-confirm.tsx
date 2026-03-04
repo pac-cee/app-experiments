@@ -74,3 +74,22 @@ export default function PriceConfirmScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <View style={[styles.header, { borderBottomColor: colors.border }]}>
+          <TouchableOpacity onPress={() => router.back()} style={styles.closeBtn}>
+            <Feather name="x" size={22} color={colors.foreground} />
+          </TouchableOpacity>
+          <Text style={[styles.headerTitle, { color: colors.foreground }]}>Confirm Booking</Text>
+          <View style={{ width: 36 }} />
+        </View>
+
+        <View style={styles.content}>
+          {pendingRider && (
+            <View style={[styles.riderSummary, { backgroundColor: colors.card, borderColor: colors.border }]}>
+              <View style={[styles.riderAvatar, { backgroundColor: colors.primary }]}>
+                <Text style={styles.riderAvatarText}>
+                  {pendingRider.name.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase()}
+                </Text>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={[styles.riderName, { color: colors.foreground }]}>{pendingRider.name}</Text>
+                <Text style={[styles.riderPlate, { color: colors.mutedForeground }]}>{pendingRider.plate}</Text>
+              </View>
