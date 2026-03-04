@@ -150,3 +150,22 @@ export default function PriceConfirmScreen() {
           {error ? (
             <View style={[styles.errorBox, { backgroundColor: "#FEF2F2", borderColor: "#FCA5A5" }]}>
               <Feather name="alert-circle" size={14} color={colors.destructive} />
+              <Text style={[{ fontSize: 13, fontFamily: "Inter_400Regular", color: colors.destructive, flex: 1 }]}>{error}</Text>
+            </View>
+          ) : null}
+
+          <TouchableOpacity
+            style={[styles.confirmBtn, { backgroundColor: colors.primary, opacity: loading ? 0.7 : 1 }]}
+            onPress={handleConfirm}
+            disabled={loading}
+            activeOpacity={0.85}
+          >
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <>
+                <Feather name="check-circle" size={20} color="#fff" />
+                <Text style={styles.confirmBtnText}>Confirm Booking</Text>
+              </>
+            )}
+          </TouchableOpacity>
