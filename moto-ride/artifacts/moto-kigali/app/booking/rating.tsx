@@ -55,3 +55,22 @@ export default function RatingScreen() {
   const handleSkip = () => {
     setActiveRide(null);
     router.replace("/(tabs)/");
+  };
+
+  React.useEffect(() => {
+    if (!activeRide) router.replace("/(tabs)/");
+  }, [activeRide]);
+
+  if (!activeRide) return null;
+
+  if (submitted) {
+    return (
+      <View style={[styles.screen, { backgroundColor: colors.background, alignItems: "center", justifyContent: "center", paddingTop: topPad }]}>
+        <View style={[styles.successCircle, { backgroundColor: colors.success + "18" }]}>
+          <Feather name="check-circle" size={56} color={colors.success} />
+        </View>
+        <Text style={[styles.successTitle, { color: colors.foreground }]}>Thank you!</Text>
+        <Text style={[styles.successText, { color: colors.mutedForeground }]}>Your feedback helps the community</Text>
+      </View>
+    );
+  }
