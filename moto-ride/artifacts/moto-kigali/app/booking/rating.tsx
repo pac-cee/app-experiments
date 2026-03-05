@@ -36,3 +36,22 @@ export default function RatingScreen() {
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const handleSubmit = async () => {
+    if (rating === 0) return;
+    setLoading(true);
+    const fullComment = [selectedTags.join(", "), comment].filter(Boolean).join(" · ");
+    await rateRide(activeRide?.bookingId ?? "", rating, fullComment);
+    setLoading(false);
+    setSubmitted(true);
+    setTimeout(() => {
+      setActiveRide(null);
+      router.replace("/(tabs)/");
+    }, 1800);
+  };
+
+  const handleSkip = () => {
+    setActiveRide(null);
+    router.replace("/(tabs)/");
