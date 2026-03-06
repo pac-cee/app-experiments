@@ -150,3 +150,22 @@ export default function RatingScreen() {
               style={[styles.commentInput, { backgroundColor: colors.input, borderColor: colors.border, color: colors.foreground, fontFamily: "Inter_400Regular" }]}
               placeholder="Add a comment (optional)..."
               placeholderTextColor={colors.mutedForeground}
+              value={comment}
+              onChangeText={setComment}
+              multiline
+              numberOfLines={3}
+            />
+          </>
+        )}
+
+        <TouchableOpacity
+          style={[
+            styles.submitBtn,
+            {
+              backgroundColor: rating > 0 ? colors.primary : colors.muted,
+              opacity: loading ? 0.7 : 1,
+            },
+          ]}
+          onPress={handleSubmit}
+          disabled={rating === 0 || loading}
+          activeOpacity={0.85}
