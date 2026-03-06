@@ -131,3 +131,22 @@ export default function RatingScreen() {
                       key={tag}
                       onPress={() => toggleTag(tag)}
                       style={[
+                        styles.tag,
+                        {
+                          backgroundColor: isSelected ? colors.primary : colors.muted,
+                          borderColor: isSelected ? colors.primary : colors.border,
+                        },
+                      ]}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={[styles.tagText, { color: isSelected ? "#fff" : colors.mutedForeground }]}>{tag}</Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            </View>
+
+            <TextInput
+              style={[styles.commentInput, { backgroundColor: colors.input, borderColor: colors.border, color: colors.foreground, fontFamily: "Inter_400Regular" }]}
+              placeholder="Add a comment (optional)..."
+              placeholderTextColor={colors.mutedForeground}
