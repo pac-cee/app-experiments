@@ -169,3 +169,22 @@ export default function RatingScreen() {
           onPress={handleSubmit}
           disabled={rating === 0 || loading}
           activeOpacity={0.85}
+        >
+          {loading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text style={[styles.submitBtnText, { color: rating > 0 ? "#fff" : colors.mutedForeground }]}>
+              Submit Rating
+            </Text>
+          )}
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
