@@ -93,3 +93,22 @@ export default function RatingScreen() {
         <View style={styles.rideComplete}>
           <View style={[styles.checkCircle, { backgroundColor: colors.success + "15" }]}>
             <Feather name="check" size={28} color={colors.success} />
+          </View>
+          <Text style={[styles.completeTitle, { color: colors.foreground }]}>Ride Completed!</Text>
+          <Text style={[styles.completePrice, { color: colors.success }]}>{activeRide.price.toLocaleString()} RWF</Text>
+          <Text style={[styles.completeRoute, { color: colors.mutedForeground }]}>
+            {activeRide.pickup.name} → {activeRide.destination.name}
+          </Text>
+        </View>
+
+        <View style={[styles.riderCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <View style={[styles.riderAvatar, { backgroundColor: colors.primary }]}>
+            <Text style={styles.riderAvatarText}>{riderInitials}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.riderName, { color: colors.foreground }]}>{activeRide.rider.name}</Text>
+            <Text style={[styles.riderPlate, { color: colors.mutedForeground }]}>{activeRide.rider.plate}</Text>
+          </View>
+        </View>
+
+        <View style={styles.ratingSection}>
