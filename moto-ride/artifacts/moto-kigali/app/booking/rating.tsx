@@ -112,3 +112,22 @@ export default function RatingScreen() {
         </View>
 
         <View style={styles.ratingSection}>
+          <Text style={[styles.ratingPrompt, { color: colors.foreground }]}>How was your experience?</Text>
+          <StarRating value={rating} onChange={setRating} size={44} />
+          {rating > 0 && (
+            <Text style={[styles.ratingLabel, { color: colors.primary }]}>{ratingLabels[rating]}</Text>
+          )}
+        </View>
+
+        {rating > 0 && (
+          <>
+            <View style={styles.tagsSection}>
+              <Text style={[styles.tagsLabel, { color: colors.mutedForeground }]}>Quick feedback</Text>
+              <View style={styles.tagsRow}>
+                {QUICK_COMMENTS.map((tag) => {
+                  const isSelected = selectedTags.includes(tag);
+                  return (
+                    <TouchableOpacity
+                      key={tag}
+                      onPress={() => toggleTag(tag)}
+                      style={[
