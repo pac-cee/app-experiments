@@ -74,3 +74,22 @@ export default function RiderDetailScreen() {
       customerPhone: user?.phone ?? "+250788000001",
       customerRating: 4.8,
       customerRides: 14,
+      pickup: pendingPickup,
+      destination: pendingDestination,
+      vehicleType: pendingVehicle ?? "moto",
+    });
+    router.push(`/booking/waiting?requestId=${requestId}`);
+  };
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, borderBottomColor: colors.border }]}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.closeBtn}>
+          <Feather name="x" size={22} color={colors.foreground} />
+        </TouchableOpacity>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>Rider Info</Text>
+        <View style={{ width: 36 }} />
+      </View>
+
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: bottomPad + 20 }]}>
+        <View style={[styles.profileSection, { backgroundColor: colors.card, borderColor: colors.border }]}>
