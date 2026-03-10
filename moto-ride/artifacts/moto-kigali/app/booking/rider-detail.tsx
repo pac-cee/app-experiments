@@ -55,3 +55,22 @@ export default function RiderDetailScreen() {
     }
   }, []);
 
+  if (!pendingRider) return null;
+
+  const rider = pendingRider;
+
+  const handleCall = () => Linking.openURL(`tel:${rider.phone}`);
+  const handleSms = () => {
+    const msg = encodeURIComponent("Hi, I'd like to book a ride with you via MotoLink.");
+    Linking.openURL(`sms:${rider.phone}?body=${msg}`);
+  };
+
+  const handleSendRequest = () => {
+    if (!pendingPickup || !pendingDestination) return;
+    const requestId = addRequest({
+      rider,
+      customerId: user?.id ?? "cust_anon",
+      customerName: user?.name ?? "Customer",
+      customerPhone: user?.phone ?? "+250788000001",
+      customerRating: 4.8,
+      customerRides: 14,
