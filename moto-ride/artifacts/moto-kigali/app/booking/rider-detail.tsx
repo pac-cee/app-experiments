@@ -36,3 +36,22 @@ function Avatar({ name, size = 80 }: { name: string; size?: number }) {
 }
 
 export default function RiderDetailScreen() {
+  const colors = useColors();
+  const router = useRouter();
+  const insets = useSafeAreaInsets();
+  const { user } = useAuth();
+  const { pendingRider, pendingPickup, pendingDestination, pendingVehicle, setPendingRider, setPendingPickup, setPendingDestination } = useRide();
+  const { addRequest } = useBroker();
+
+  const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
+  const topPad = Platform.OS === "web" ? 16 : insets.top + 8;
+
+  // Seed mock data if context was lost (e.g. on reload)
+  React.useEffect(() => {
+    if (!pendingRider) {
+      setPendingRider(MOCK_RIDERS[0]);
+      if (!pendingPickup) setPendingPickup(KIGALI_LOCATIONS[0]);
+      if (!pendingDestination) setPendingDestination(KIGALI_LOCATIONS[3]);
+    }
+  }, []);
+
