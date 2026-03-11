@@ -112,3 +112,22 @@ export default function RiderDetailScreen() {
               {rider.verified && (
                 <View style={styles.verifiedRow}>
                   <Feather name="shield" size={12} color={colors.success} />
+                  <Text style={[styles.verifiedText, { color: colors.success }]}>Verified Rider</Text>
+                </View>
+              )}
+            </View>
+          </View>
+
+          <View style={[styles.detailRow, { borderTopColor: colors.border }]}>
+            <View style={styles.detailItem}>
+              <Text style={[styles.detailLabel, { color: colors.mutedForeground }]}>Plate</Text>
+              <Text style={[styles.detailValue, { color: colors.foreground }]}>{rider.plate}</Text>
+            </View>
+            <View style={[styles.detailDivider, { backgroundColor: colors.border }]} />
+            <View style={styles.detailItem}>
+              <Text style={[styles.detailLabel, { color: colors.mutedForeground }]}>Vehicle</Text>
+              <View style={styles.vehicleRow}>
+                <VehicleIcon vehicle={rider.vehicle} color={colors.primary} />
+                <Text style={[styles.detailValue, { color: colors.foreground }]}>
+                  {rider.vehicle === "moto" ? "Moto" : rider.vehicle === "cab" ? "Cab" : "Truck"}
+                </Text>
