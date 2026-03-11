@@ -93,3 +93,22 @@ export default function RiderDetailScreen() {
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: bottomPad + 20 }]}>
         <View style={[styles.profileSection, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <View style={styles.profileTop}>
+            <View style={{ position: "relative" }}>
+              <Avatar name={rider.name} size={80} />
+              {rider.verified && (
+                <View style={[styles.verifiedBadge, { backgroundColor: colors.success }]}>
+                  <Feather name="check" size={10} color="#fff" />
+                </View>
+              )}
+            </View>
+            <View style={styles.profileInfo}>
+              <Text style={[styles.riderName, { color: colors.foreground }]}>{rider.name}</Text>
+              <View style={styles.ratingRow}>
+                <StarRating value={Math.round(rider.rating)} size={16} readonly />
+                <Text style={[styles.ratingNum, { color: colors.foreground }]}>{rider.rating.toFixed(1)}</Text>
+                <Text style={[styles.ratingCount, { color: colors.mutedForeground }]}>({rider.rides} rides)</Text>
+              </View>
+              {rider.verified && (
+                <View style={styles.verifiedRow}>
+                  <Feather name="shield" size={12} color={colors.success} />
