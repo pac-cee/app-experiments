@@ -169,3 +169,22 @@ export default function RiderDetailScreen() {
             activeOpacity={0.85}
           >
             <Feather name="phone" size={22} color="#fff" />
+            <Text style={styles.contactBtnText}>Call Rider</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.contactBtn, styles.smsBtn, { backgroundColor: colors.card, borderColor: colors.border }]}
+            onPress={handleSms}
+            activeOpacity={0.85}
+          >
+            <Feather name="message-square" size={22} color={colors.foreground} />
+            <Text style={[styles.smsBtnText, { color: colors.foreground }]}>Send SMS</Text>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity
+          style={[styles.agreeBtn, { backgroundColor: colors.card, borderColor: colors.border }]}
+          onPress={() => router.push("/booking/price-confirm")}
+          activeOpacity={0.85}
+        >
+          <Feather name="check-circle" size={20} color={colors.foreground} />
+          <Text style={[styles.agreeBtnText, { color: colors.foreground }]}>We already agreed a price</Text>
