@@ -150,3 +150,22 @@ export default function RiderDetailScreen() {
             <Feather name="send" size={18} color="#fff" />
           </View>
           <View style={{ flex: 1 }}>
+            <Text style={styles.sendRequestTitle}>Send In-App Request</Text>
+            <Text style={styles.sendRequestSub}>Notify {rider.name.split(" ")[0]} directly</Text>
+          </View>
+          <Feather name="chevron-right" size={18} color="rgba(255,255,255,0.7)" />
+        </TouchableOpacity>
+
+        <View style={[styles.dividerRow, { gap: 10, alignItems: "center" }]}>
+          <View style={[styles.dividerLine, { backgroundColor: colors.border }]} />
+          <Text style={[styles.dividerText, { color: colors.mutedForeground }]}>or contact directly</Text>
+          <View style={[styles.dividerLine, { backgroundColor: colors.border }]} />
+        </View>
+
+        <View style={styles.contactButtons}>
+          <TouchableOpacity
+            style={[styles.contactBtn, styles.callBtn, { backgroundColor: colors.success }]}
+            onPress={handleCall}
+            activeOpacity={0.85}
+          >
+            <Feather name="phone" size={22} color="#fff" />
