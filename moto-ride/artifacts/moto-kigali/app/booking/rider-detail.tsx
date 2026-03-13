@@ -131,3 +131,22 @@ export default function RiderDetailScreen() {
                 <Text style={[styles.detailValue, { color: colors.foreground }]}>
                   {rider.vehicle === "moto" ? "Moto" : rider.vehicle === "cab" ? "Cab" : "Truck"}
                 </Text>
+              </View>
+            </View>
+            <View style={[styles.detailDivider, { backgroundColor: colors.border }]} />
+            <View style={styles.detailItem}>
+              <Text style={[styles.detailLabel, { color: colors.mutedForeground }]}>Total Rides</Text>
+              <Text style={[styles.detailValue, { color: colors.foreground }]}>{rider.rides}</Text>
+            </View>
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={[styles.sendRequestBtn, { backgroundColor: colors.primary }]}
+          onPress={handleSendRequest}
+          activeOpacity={0.85}
+        >
+          <View style={[styles.sendRequestIcon, { backgroundColor: "rgba(255,255,255,0.2)" }]}>
+            <Feather name="send" size={18} color="#fff" />
+          </View>
+          <View style={{ flex: 1 }}>
