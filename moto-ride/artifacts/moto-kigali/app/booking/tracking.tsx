@@ -17,3 +17,22 @@ import { useColors } from "@/hooks/useColors";
 import { useRide } from "@/context/RideContext";
 import { calcDistanceKm } from "@/lib/rideService";
 import { RideStatus } from "@/lib/mockData";
+
+const STEP_SPEED = 0.00015;
+
+function StatusBadge({ status }: { status: RideStatus }) {
+  const colors = useColors();
+  const config: Record<string, { label: string; color: string; bg: string }> = {
+    rider_en_route: { label: "Rider En Route", color: "#1565C0", bg: "#E3F2FD" },
+    arrived: { label: "Rider Arrived!", color: "#2E7D32", bg: "#E8F5E9" },
+    in_transit: { label: "Ride in Progress", color: "#E65100", bg: "#FFF3E0" },
+    completed: { label: "Ride Completed", color: "#1B5E20", bg: "#E8F5E9" },
+  };
+  const c = config[status] ?? { label: status, color: colors.primary, bg: colors.muted };
+  return (
+    <View style={[styles.statusBadge, { backgroundColor: c.bg }]}>
+      <View style={[styles.statusDot, { backgroundColor: c.color }]} />
+      <Text style={[styles.statusText, { color: c.color }]}>{c.label}</Text>
+    </View>
+  );
+}
