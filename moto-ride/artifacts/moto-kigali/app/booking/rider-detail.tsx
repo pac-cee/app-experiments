@@ -264,3 +264,22 @@ const styles = StyleSheet.create({
   dividerText: { fontSize: 12, fontFamily: "Inter_400Regular" },
   contactButtons: { flexDirection: "row", gap: 12 },
   contactBtn: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    height: 54,
+    borderRadius: 14,
+  },
+  callBtn: {
+    elevation: 3,
+    shadowColor: "#2E7D32",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
+  smsBtn: { borderWidth: 1.5 },
+  contactBtnText: { fontSize: 16, fontFamily: "Inter_700Bold", color: "#fff" },
+  smsBtnText: { fontSize: 16, fontFamily: "Inter_700Bold" },
+  agreeBtn: {
