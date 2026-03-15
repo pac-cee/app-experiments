@@ -283,3 +283,13 @@ const styles = StyleSheet.create({
   contactBtnText: { fontSize: 16, fontFamily: "Inter_700Bold", color: "#fff" },
   smsBtnText: { fontSize: 16, fontFamily: "Inter_700Bold" },
   agreeBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    height: 54,
+    paddingHorizontal: 18,
+    borderRadius: 14,
+    borderWidth: 1.5,
+  },
+  agreeBtnText: { flex: 1, fontSize: 15, fontFamily: "Inter_600SemiBold" },
+});
