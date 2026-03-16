@@ -55,3 +55,22 @@ export default function TrackingScreen() {
   const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
 
   useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, { toValue: 1.08, duration: 700, useNativeDriver: true }),
+        Animated.timing(pulseAnim, { toValue: 1, duration: 700, useNativeDriver: true }),
+      ])
+    ).start();
+  }, []);
+
+  // Apply pending status changes outside of state updater functions
+  useEffect(() => {
+    if (pendingStatus) {
+      updateStatus(pendingStatus);
+      setPendingStatus(null);
+    }
+  }, [pendingStatus]);
+
+  useEffect(() => {
+    if (!activeRide) return;
+    if (activeRide.status === "completed") return;
