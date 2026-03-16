@@ -36,3 +36,22 @@ function StatusBadge({ status }: { status: RideStatus }) {
     </View>
   );
 }
+
+export default function TrackingScreen() {
+  const colors = useColors();
+  const router = useRouter();
+  const insets = useSafeAreaInsets();
+  const { activeRide, updateStatus, setActiveRide } = useRide();
+
+  const [riderPos, setRiderPos] = useState(
+    activeRide ? { lat: activeRide.rider.lat, lng: activeRide.rider.lng } : null
+  );
+  const [etaSeconds, setEtaSeconds] = useState<number | null>(null);
+  const [transitSeconds, setTransitSeconds] = useState(0);
+  const [pendingStatus, setPendingStatus] = useState<RideStatus | null>(null);
+  const pulseAnim = useRef(new Animated.Value(1)).current;
+
+  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
+
+  useEffect(() => {
