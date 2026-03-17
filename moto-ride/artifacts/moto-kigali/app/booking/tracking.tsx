@@ -112,3 +112,22 @@ export default function TrackingScreen() {
       });
     }, 500);
 
+    return () => clearInterval(interval);
+  }, [activeRide?.status]);
+
+  if (!activeRide) {
+    return (
+      <View style={[styles.screen, { backgroundColor: colors.background, alignItems: "center", justifyContent: "center" }]}>
+        <Text style={{ color: colors.mutedForeground, fontFamily: "Inter_400Regular" }}>No active ride</Text>
+        <TouchableOpacity onPress={() => router.replace("/(tabs)/")} style={[styles.btn, { backgroundColor: colors.primary, marginTop: 16 }]}>
+          <Text style={styles.btnText}>Go Home</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  const formatEta = () => {
+    if (etaSeconds === null) return "Calculating...";
+    if (etaSeconds < 60) return "< 1 min";
+    return `${Math.round(etaSeconds / 60)} min`;
+  };
