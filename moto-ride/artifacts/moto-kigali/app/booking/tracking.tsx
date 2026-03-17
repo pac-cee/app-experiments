@@ -74,3 +74,22 @@ export default function TrackingScreen() {
   useEffect(() => {
     if (!activeRide) return;
     if (activeRide.status === "completed") return;
+    if (activeRide.status === "in_transit") {
+      const t = setInterval(() => {
+        setTransitSeconds((s) => {
+          if (s >= 28) {
+            clearInterval(t);
+            setPendingStatus("completed");
+            return s;
+          }
+          return s + 1;
+        });
+      }, 1000);
+      return () => clearInterval(t);
+    }
+    if (activeRide.status !== "rider_en_route") return;
+
+    const interval = setInterval(() => {
+      setRiderPos((prev) => {
+        if (!prev || !activeRide.pickup) return prev;
+        const targetLat = activeRide.pickup.lat;
