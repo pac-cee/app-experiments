@@ -93,3 +93,22 @@ export default function TrackingScreen() {
       setRiderPos((prev) => {
         if (!prev || !activeRide.pickup) return prev;
         const targetLat = activeRide.pickup.lat;
+        const targetLng = activeRide.pickup.lng;
+        const dLat = targetLat - prev.lat;
+        const dLng = targetLng - prev.lng;
+        const dist = Math.sqrt(dLat * dLat + dLng * dLng);
+        if (dist < 0.0003) {
+          clearInterval(interval);
+          setPendingStatus("arrived");
+          return { lat: targetLat, lng: targetLng };
+        }
+        const step = Math.min(STEP_SPEED, dist);
+        const ratio = step / dist;
+        const newLat = prev.lat + dLat * ratio;
+        const newLng = prev.lng + dLng * ratio;
+        const distKm = calcDistanceKm(newLat, newLng, targetLat, targetLng);
+        setEtaSeconds(Math.round((distKm / 30) * 3600));
+        return { lat: newLat, lng: newLng };
+      });
+    }, 500);
+
