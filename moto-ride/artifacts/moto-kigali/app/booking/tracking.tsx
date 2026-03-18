@@ -150,3 +150,22 @@ export default function TrackingScreen() {
   const statusLabels: Record<string, string> = {
     rider_en_route: "Your rider is on the way",
     arrived: "Your rider has arrived!",
+    in_transit: "You're on your way!",
+    completed: "You've arrived!",
+  };
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>{statusLabels[activeRide.status] ?? "Tracking"}</Text>
+        <StatusBadge status={activeRide.status} />
+      </View>
+
+      <View style={{ flex: 1 }}>
+        <MockMap
+          pickup={activeRide.pickup}
+          destination={activeRide.destination}
+          trackedRider={activeRide.status === "rider_en_route" ? riderPos ?? undefined : undefined}
+          height={undefined}
+        />
+      </View>
