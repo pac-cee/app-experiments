@@ -131,3 +131,22 @@ export default function TrackingScreen() {
     if (etaSeconds < 60) return "< 1 min";
     return `${Math.round(etaSeconds / 60)} min`;
   };
+
+  const formatTransit = () => {
+    const pct = Math.min((transitSeconds / 28) * 100, 100);
+    return pct;
+  };
+
+  const handleStartRide = () => updateStatus("in_transit");
+
+  const handleEndRide = () => {
+    updateStatus("completed");
+  };
+
+  const handleRideComplete = () => {
+    router.replace("/booking/rating");
+  };
+
+  const statusLabels: Record<string, string> = {
+    rider_en_route: "Your rider is on the way",
+    arrived: "Your rider has arrived!",
