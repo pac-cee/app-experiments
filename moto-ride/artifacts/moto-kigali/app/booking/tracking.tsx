@@ -169,3 +169,22 @@ export default function TrackingScreen() {
           height={undefined}
         />
       </View>
+
+      <View style={[styles.panel, { backgroundColor: colors.card, paddingBottom: bottomPad + 16, borderTopColor: colors.border }]}>
+        <View style={[styles.riderRow, { borderBottomColor: colors.border }]}>
+          <View style={[styles.riderAvatar, { backgroundColor: colors.primary }]}>
+            <Text style={styles.riderAvatarText}>
+              {activeRide.rider.name.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase()}
+            </Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.riderName, { color: colors.foreground }]}>{activeRide.rider.name}</Text>
+            <Text style={[styles.riderPlate, { color: colors.mutedForeground }]}>{activeRide.rider.plate}</Text>
+          </View>
+          <View style={styles.riderActions}>
+            <TouchableOpacity
+              style={[styles.actionBtn, { backgroundColor: colors.success + "18" }]}
+              onPress={() => Linking.openURL(`tel:${activeRide.rider.phone}`)}
+            >
+              <Feather name="phone" size={18} color={colors.success} />
+            </TouchableOpacity>
