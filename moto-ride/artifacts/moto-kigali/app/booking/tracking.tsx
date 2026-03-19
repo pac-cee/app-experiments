@@ -188,3 +188,22 @@ export default function TrackingScreen() {
             >
               <Feather name="phone" size={18} color={colors.success} />
             </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.actionBtn, { backgroundColor: colors.primary + "18" }]}
+              onPress={() => Linking.openURL(`sms:${activeRide.rider.phone}`)}
+            >
+              <Feather name="message-square" size={18} color={colors.primary} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.infoRow}>
+          {activeRide.status === "rider_en_route" && (
+            <>
+              <View style={styles.infoItem}>
+                <Feather name="clock" size={16} color={colors.primary} />
+                <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>ETA</Text>
+                <Text style={[styles.infoValue, { color: colors.foreground }]}>{formatEta()}</Text>
+              </View>
+              <View style={[styles.infoDivider, { backgroundColor: colors.border }]} />
+            </>
