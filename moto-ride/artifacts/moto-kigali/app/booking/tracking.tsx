@@ -226,3 +226,22 @@ export default function TrackingScreen() {
             <View style={[styles.progressTrack, { backgroundColor: colors.muted }]}>
               <Animated.View style={[styles.progressFill, { width: `${formatTransit()}%` as any, backgroundColor: colors.primary }]} />
             </View>
+            <Text style={[styles.progressText, { color: colors.mutedForeground }]}>Ride in progress...</Text>
+          </View>
+        )}
+
+        {activeRide.status === "arrived" && (
+          <TouchableOpacity
+            style={[styles.actionBig, { backgroundColor: colors.success }]}
+            onPress={handleStartRide}
+            activeOpacity={0.85}
+          >
+            <MaterialCommunityIcons name="motorbike" size={22} color="#fff" />
+            <Text style={styles.actionBigText}>Start Ride</Text>
+          </TouchableOpacity>
+        )}
+
+        {activeRide.status === "in_transit" && (
+          <TouchableOpacity
+            style={[styles.actionBig, { backgroundColor: colors.secondary }]}
+            onPress={handleEndRide}
