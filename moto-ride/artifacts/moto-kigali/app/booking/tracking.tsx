@@ -264,3 +264,22 @@ export default function TrackingScreen() {
         )}
       </View>
     </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    paddingHorizontal: 20,
+    paddingBottom: 14,
+    borderBottomWidth: 1,
+    gap: 8,
+  },
+  headerTitle: { fontSize: 20, fontFamily: "Inter_700Bold" },
+  statusBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    alignSelf: "flex-start",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
