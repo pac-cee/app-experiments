@@ -207,3 +207,22 @@ export default function TrackingScreen() {
               </View>
               <View style={[styles.infoDivider, { backgroundColor: colors.border }]} />
             </>
+          )}
+          <View style={styles.infoItem}>
+            <Feather name="map-pin" size={16} color={colors.secondary} />
+            <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>To</Text>
+            <Text style={[styles.infoValue, { color: colors.foreground }]} numberOfLines={1}>{activeRide.destination.name}</Text>
+          </View>
+          <View style={[styles.infoDivider, { backgroundColor: colors.border }]} />
+          <View style={styles.infoItem}>
+            <Feather name="dollar-sign" size={16} color={colors.success} />
+            <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Price</Text>
+            <Text style={[styles.infoValue, { color: colors.foreground }]}>{activeRide.price.toLocaleString()} RWF</Text>
+          </View>
+        </View>
+
+        {activeRide.status === "in_transit" && (
+          <View style={styles.progressSection}>
+            <View style={[styles.progressTrack, { backgroundColor: colors.muted }]}>
+              <Animated.View style={[styles.progressFill, { width: `${formatTransit()}%` as any, backgroundColor: colors.primary }]} />
+            </View>
