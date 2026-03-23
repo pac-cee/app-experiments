@@ -245,3 +245,22 @@ export default function TrackingScreen() {
           <TouchableOpacity
             style={[styles.actionBig, { backgroundColor: colors.secondary }]}
             onPress={handleEndRide}
+            activeOpacity={0.85}
+          >
+            <Feather name="check-circle" size={20} color="#fff" />
+            <Text style={styles.actionBigText}>End Ride</Text>
+          </TouchableOpacity>
+        )}
+
+        {activeRide.status === "completed" && (
+          <TouchableOpacity
+            style={[styles.actionBig, { backgroundColor: colors.primary }]}
+            onPress={handleRideComplete}
+            activeOpacity={0.85}
+          >
+            <Feather name="star" size={20} color="#fff" />
+            <Text style={styles.actionBigText}>Rate Your Ride</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </View>
