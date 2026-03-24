@@ -17,3 +17,22 @@ import { useBroker } from "@/context/BrokerContext";
 type Phase = "sending" | "waiting" | "viewed" | "accepted" | "declined" | "timeout" | "cancelled";
 
 const DOT_COUNT = 3;
+
+function PulsingDots({ color }: { color: string }) {
+  const anims = Array.from({ length: DOT_COUNT }, () => useRef(new Animated.Value(0)).current);
+
+  useEffect(() => {
+    const animations = anims.map((anim, i) =>
+      Animated.loop(
+        Animated.sequence([
+          Animated.delay(i * 200),
+          Animated.timing(anim, { toValue: 1, duration: 400, useNativeDriver: true }),
+          Animated.timing(anim, { toValue: 0, duration: 400, useNativeDriver: true }),
+          Animated.delay((DOT_COUNT - i - 1) * 200),
+        ])
+      )
+    );
+    animations.forEach((a) => a.start());
+    return () => animations.forEach((a) => a.stop());
+  }, []);
+
