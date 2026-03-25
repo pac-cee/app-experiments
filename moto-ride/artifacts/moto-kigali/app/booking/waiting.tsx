@@ -93,3 +93,22 @@ export default function WaitingScreen() {
         setTimeout(() => {
           router.replace("/booking/price-confirm");
         }, 2200);
+      } else if (req.status === "declined") {
+        setPhase("declined");
+        clearInterval(interval);
+      } else if (req.status === "timeout") {
+        setPhase("timeout");
+        clearInterval(interval);
+      } else if (req.status === "cancelled") {
+        setPhase("cancelled");
+        clearInterval(interval);
+      }
+    }, 300);
+    return () => clearInterval(interval);
+  }, [requestId, phase]);
+
+  const handleCancel = () => {
+    if (requestId) cancelRequest(requestId);
+    router.back();
+  };
+
