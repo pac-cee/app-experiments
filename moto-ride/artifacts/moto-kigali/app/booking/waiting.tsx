@@ -74,3 +74,22 @@ export default function WaitingScreen() {
     ).start();
   }, []);
 
+  useEffect(() => {
+    if (!requestId) return;
+    const interval = setInterval(() => {
+      const req = getRequest(requestId);
+      if (!req) return;
+      setRiderName(req.rider.name.split(" ")[0]);
+
+      if (req.status === phase) return;
+
+      if (req.status === "sending") setPhase("sending");
+      else if (req.status === "pending") setPhase("waiting");
+      else if (req.status === "viewed") setPhase("viewed");
+      else if (req.status === "accepted") {
+        setPhase("accepted");
+        clearInterval(interval);
+        Animated.spring(successScale, { toValue: 1, useNativeDriver: true, tension: 70, friction: 6 }).start();
+        setTimeout(() => {
+          router.replace("/booking/price-confirm");
+        }, 2200);
