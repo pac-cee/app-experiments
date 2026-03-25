@@ -55,3 +55,22 @@ export default function WaitingScreen() {
   const colors = useColors();
   const router = useRouter();
   const { requestId } = useLocalSearchParams<{ requestId: string }>();
+  const { getRequest, cancelRequest } = useBroker();
+  const insets = useSafeAreaInsets();
+  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
+
+  const [phase, setPhase] = useState<Phase>("sending");
+  const [riderName, setRiderName] = useState("");
+  const successScale = useRef(new Animated.Value(0)).current;
+  const ringAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(ringAnim, { toValue: 1.15, duration: 1000, useNativeDriver: true }),
+        Animated.timing(ringAnim, { toValue: 1, duration: 1000, useNativeDriver: true }),
+      ])
+    ).start();
+  }, []);
+
