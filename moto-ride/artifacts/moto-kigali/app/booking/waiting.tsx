@@ -36,3 +36,22 @@ function PulsingDots({ color }: { color: string }) {
     return () => animations.forEach((a) => a.stop());
   }, []);
 
+  return (
+    <View style={styles.dotsRow}>
+      {anims.map((anim, i) => (
+        <Animated.View
+          key={i}
+          style={[
+            styles.dot,
+            { backgroundColor: color, opacity: anim, transform: [{ scale: anim.interpolate({ inputRange: [0, 1], outputRange: [0.8, 1.2] }) }] },
+          ]}
+        />
+      ))}
+    </View>
+  );
+}
+
+export default function WaitingScreen() {
+  const colors = useColors();
+  const router = useRouter();
+  const { requestId } = useLocalSearchParams<{ requestId: string }>();
