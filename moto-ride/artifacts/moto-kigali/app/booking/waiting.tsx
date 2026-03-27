@@ -188,3 +188,22 @@ export default function WaitingScreen() {
               style={[
                 styles.ring,
                 { borderColor: cfg.iconColor + "30", transform: [{ scale: isLoading ? ringAnim : 1 }] },
+              ]}
+            />
+            <View style={[styles.iconCircle, { backgroundColor: cfg.bg }]}>
+              <Feather name={cfg.icon as any} size={40} color={cfg.iconColor} />
+            </View>
+          </View>
+        )}
+
+        <Text style={[styles.title, { color: colors.foreground }]}>{cfg.title}</Text>
+        <Text style={[styles.subtitle, { color: colors.mutedForeground }]}>{cfg.subtitle}</Text>
+
+        {isLoading && <PulsingDots color={cfg.iconColor} />}
+
+        {isLoading && (
+          <View style={[styles.riderCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+            <View style={[styles.riderAvatar, { backgroundColor: colors.primary }]}>
+              <MaterialCommunityIcons name="motorbike" size={22} color="#fff" />
+            </View>
+            <View style={{ flex: 1 }}>
