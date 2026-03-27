@@ -112,3 +112,22 @@ export default function WaitingScreen() {
     router.back();
   };
 
+  const handleRetry = () => {
+    router.back();
+  };
+
+  const phaseConfig: Record<Phase, { title: string; subtitle: string; icon: string; iconColor: string; bg: string }> = {
+    sending: {
+      title: "Sending request...",
+      subtitle: "Connecting you with your rider",
+      icon: "send",
+      iconColor: colors.primary,
+      bg: colors.primary + "18",
+    },
+    waiting: {
+      title: `Waiting for ${riderName || "rider"}`,
+      subtitle: "Your rider has received your request",
+      icon: "clock",
+      iconColor: colors.secondary,
+      bg: colors.secondary + "18",
+    },
