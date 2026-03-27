@@ -207,3 +207,22 @@ export default function WaitingScreen() {
               <MaterialCommunityIcons name="motorbike" size={22} color="#fff" />
             </View>
             <View style={{ flex: 1 }}>
+              <Text style={[styles.riderName, { color: colors.foreground }]}>{riderName || "Your Rider"}</Text>
+              <View style={[styles.statusPill, { backgroundColor: colors.secondary + "18" }]}>
+                <View style={[styles.statusDot, { backgroundColor: colors.secondary }]} />
+                <Text style={[styles.statusPillText, { color: colors.secondary }]}>Request sent</Text>
+              </View>
+            </View>
+          </View>
+        )}
+
+        {isError && (
+          <TouchableOpacity
+            style={[styles.retryBtn, { backgroundColor: colors.primary }]}
+            onPress={handleRetry}
+            activeOpacity={0.85}
+          >
+            <Feather name="refresh-cw" size={18} color="#fff" />
+            <Text style={styles.retryBtnText}>Try Another Rider</Text>
+          </TouchableOpacity>
+        )}
