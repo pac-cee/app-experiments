@@ -150,3 +150,22 @@ export default function WaitingScreen() {
       subtitle: `${riderName || "The rider"} is unavailable right now. Try another rider.`,
       icon: "x-circle",
       iconColor: colors.destructive,
+      bg: "#FEE2E2",
+    },
+    timeout: {
+      title: "No response",
+      subtitle: "The rider didn't respond in time. Please try another rider.",
+      icon: "clock",
+      iconColor: colors.destructive,
+      bg: "#FEE2E2",
+    },
+    cancelled: {
+      title: "Request cancelled",
+      subtitle: "You cancelled the request.",
+      icon: "x",
+      iconColor: colors.mutedForeground,
+      bg: colors.muted,
+    },
+  };
+
+  const cfg = phaseConfig[phase];
