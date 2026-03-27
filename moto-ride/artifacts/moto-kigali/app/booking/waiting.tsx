@@ -131,3 +131,22 @@ export default function WaitingScreen() {
       iconColor: colors.secondary,
       bg: colors.secondary + "18",
     },
+    viewed: {
+      title: `${riderName || "Rider"} is reviewing`,
+      subtitle: "They're checking your route details",
+      icon: "eye",
+      iconColor: colors.primary,
+      bg: colors.primary + "18",
+    },
+    accepted: {
+      title: `${riderName || "Rider"} accepted!`,
+      subtitle: "Confirming your booking...",
+      icon: "check-circle",
+      iconColor: colors.success,
+      bg: colors.success + "18",
+    },
+    declined: {
+      title: "Request declined",
+      subtitle: `${riderName || "The rider"} is unavailable right now. Try another rider.`,
+      icon: "x-circle",
+      iconColor: colors.destructive,
