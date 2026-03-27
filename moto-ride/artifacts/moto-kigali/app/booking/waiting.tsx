@@ -169,3 +169,22 @@ export default function WaitingScreen() {
   };
 
   const cfg = phaseConfig[phase];
+  const isError = phase === "declined" || phase === "timeout" || phase === "cancelled";
+  const isSuccess = phase === "accepted";
+  const isLoading = !isError && !isSuccess;
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background, paddingTop: topPad, paddingBottom: bottomPad }]}>
+      <View style={styles.body}>
+        {isSuccess ? (
+          <Animated.View style={[styles.successWrap, { transform: [{ scale: successScale }] }]}>
+            <View style={[styles.successCircle, { backgroundColor: colors.success + "20" }]}>
+              <Feather name="check-circle" size={64} color={colors.success} />
+            </View>
+          </Animated.View>
+        ) : (
+          <View style={styles.iconSection}>
+            <Animated.View
+              style={[
+                styles.ring,
+                { borderColor: cfg.iconColor + "30", transform: [{ scale: isLoading ? ringAnim : 1 }] },
