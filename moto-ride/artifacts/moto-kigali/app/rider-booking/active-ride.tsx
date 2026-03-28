@@ -93,3 +93,22 @@ export default function ActiveRideScreen() {
 
   const handleAction = () => {
     if (cfg.nextStatus) {
+      updateJobStatus(cfg.nextStatus);
+      setTransitProgress(0);
+    } else {
+      router.replace("/rider-booking/rating");
+    }
+  };
+
+  const customerInitials = activeJob.customer.name
+    .split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+
+  const mapPickup = activeJob.status === "en_route_pickup"
+    ? activeJob.pickup
+    : activeJob.pickup;
+
+  const mapDest = activeJob.status === "in_progress" || activeJob.status === "completed"
+    ? activeJob.destination
+    : activeJob.pickup;
+
+  return (
