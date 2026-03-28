@@ -169,3 +169,22 @@ export default function ActiveRideScreen() {
           <View style={[styles.infoDivider, { backgroundColor: colors.border }]} />
           <View style={styles.infoItem}>
             <Feather name="dollar-sign" size={14} color={colors.success} />
+            <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Earn</Text>
+            <Text style={[styles.infoValue, { color: colors.success }]}>{activeJob.price.toLocaleString()} RWF</Text>
+          </View>
+        </View>
+
+        {activeJob.status === "in_progress" && (
+          <View style={styles.progressSection}>
+            <View style={[styles.progressTrack, { backgroundColor: colors.muted }]}>
+              <View style={[styles.progressFill, { width: `${Math.min(transitProgress, 100)}%` as any, backgroundColor: colors.secondary }]} />
+            </View>
+            <Text style={[styles.progressText, { color: colors.mutedForeground }]}>Ride in progress...</Text>
+          </View>
+        )}
+
+        <TouchableOpacity
+          style={[styles.actionBtn, {
+            backgroundColor: activeJob.status === "completed" ? colors.primary : cfg.nextStatus === "at_pickup" ? colors.primary : cfg.nextStatus === "in_progress" ? colors.success : colors.secondary,
+          }]}
+          onPress={handleAction}
