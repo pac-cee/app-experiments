@@ -188,3 +188,22 @@ export default function ActiveRideScreen() {
             backgroundColor: activeJob.status === "completed" ? colors.primary : cfg.nextStatus === "at_pickup" ? colors.primary : cfg.nextStatus === "in_progress" ? colors.success : colors.secondary,
           }]}
           onPress={handleAction}
+          activeOpacity={0.85}
+        >
+          <Feather name={activeJob.status === "completed" ? "star" : activeJob.status === "at_pickup" ? "play" : activeJob.status === "in_progress" ? "check-circle" : "navigation"} size={20} color="#fff" />
+          <Text style={styles.actionBtnText}>{cfg.action}</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    paddingHorizontal: 20,
+    paddingBottom: 14,
+    borderBottomWidth: 1,
+    gap: 8,
+  },
+  headerTitle: { fontSize: 20, fontFamily: "Inter_700Bold" },
