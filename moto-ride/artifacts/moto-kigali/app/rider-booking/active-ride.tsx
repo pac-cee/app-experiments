@@ -131,3 +131,22 @@ export default function ActiveRideScreen() {
 
       <View style={[styles.panel, { backgroundColor: colors.card, paddingBottom: bottomPad + 16, borderTopColor: colors.border }]}>
         <View style={[styles.customerRow, { borderBottomColor: colors.border }]}>
+          <View style={[styles.customerAvatar, { backgroundColor: colors.primary }]}>
+            <Text style={styles.customerAvatarText}>{customerInitials}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.customerName, { color: colors.foreground }]}>{activeJob.customer.name}</Text>
+            <Text style={[styles.customerPhone, { color: colors.mutedForeground }]}>{activeJob.customer.phone}</Text>
+          </View>
+          <View style={styles.contactBtns}>
+            <TouchableOpacity
+              style={[styles.contactBtn, { backgroundColor: colors.success + "18" }]}
+              onPress={() => Linking.openURL(`tel:${activeJob.customer.phone}`)}
+            >
+              <Feather name="phone" size={18} color={colors.success} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.contactBtn, { backgroundColor: colors.primary + "18" }]}
+              onPress={() => Linking.openURL(`sms:${activeJob.customer.phone}`)}
+            >
+              <Feather name="message-square" size={18} color={colors.primary} />
