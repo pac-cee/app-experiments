@@ -264,3 +264,23 @@ const styles = StyleSheet.create({
   riderName: { fontSize: 16, fontFamily: "Inter_600SemiBold", marginBottom: 6 },
   statusPill: { flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12, alignSelf: "flex-start" },
   statusDot: { width: 6, height: 6, borderRadius: 3 },
+  statusPillText: { fontSize: 12, fontFamily: "Inter_600SemiBold" },
+  retryBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    paddingHorizontal: 28,
+    paddingVertical: 14,
+    borderRadius: 14,
+    marginTop: 8,
+  },
+  retryBtnText: { fontSize: 16, fontFamily: "Inter_700Bold", color: "#fff" },
+  cancelBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    paddingVertical: 14,
+  },
+  cancelText: { fontSize: 14, fontFamily: "Inter_500Medium" },
+});
