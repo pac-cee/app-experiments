@@ -55,3 +55,22 @@ export default function ActiveRideScreen() {
   const topPad = Platform.OS === "web" ? 67 : insets.top;
   const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
 
+  const pulseAnim = useRef(new Animated.Value(1)).current;
+  const [transitProgress, setTransitProgress] = useState(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, { toValue: 1.08, duration: 800, useNativeDriver: true }),
+        Animated.timing(pulseAnim, { toValue: 1, duration: 800, useNativeDriver: true }),
+      ])
+    ).start();
+  }, []);
+
+  useEffect(() => {
+    if (!activeJob || activeJob.status !== "in_progress") return;
+    const t = setInterval(() => {
+      setTransitProgress((p) => {
+        if (p >= 100) { clearInterval(t); return 100; }
+        return p + (100 / 30);
+      });
