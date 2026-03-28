@@ -74,3 +74,22 @@ export default function ActiveRideScreen() {
         if (p >= 100) { clearInterval(t); return 100; }
         return p + (100 / 30);
       });
+    }, 1000);
+    return () => clearInterval(t);
+  }, [activeJob?.status]);
+
+  if (!activeJob) {
+    return (
+      <View style={[styles.screen, { backgroundColor: colors.background, alignItems: "center", justifyContent: "center" }]}>
+        <Text style={{ color: colors.mutedForeground, fontFamily: "Inter_400Regular" }}>No active job</Text>
+        <TouchableOpacity onPress={() => router.replace("/(rider)/home")} style={[styles.btn, { backgroundColor: colors.secondary, marginTop: 16 }]}>
+          <Text style={styles.btnText}>Go Home</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  const cfg = STATUS_CONFIG[activeJob.status];
+
+  const handleAction = () => {
+    if (cfg.nextStatus) {
