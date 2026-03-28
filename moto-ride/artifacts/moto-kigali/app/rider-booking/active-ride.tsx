@@ -264,3 +264,9 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
+    shadowRadius: 5,
+  },
+  actionBtnText: { fontSize: 17, fontFamily: "Inter_700Bold", color: "#fff" },
+  btn: { paddingHorizontal: 24, paddingVertical: 12, borderRadius: 12 },
+  btnText: { fontSize: 16, fontFamily: "Inter_600SemiBold", color: "#fff" },
+});
