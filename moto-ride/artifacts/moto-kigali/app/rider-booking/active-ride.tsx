@@ -36,3 +36,22 @@ const STATUS_CONFIG: Record<JobStatus, { label: string; color: string; bg: strin
     color: "#E65100",
     bg: "#FFF3E0",
     action: "End Ride",
+    nextStatus: "completed",
+  },
+  completed: {
+    label: "Ride Completed",
+    color: "#1B5E20",
+    bg: "#E8F5E9",
+    action: "Rate Customer",
+    nextStatus: null,
+  },
+};
+
+export default function ActiveRideScreen() {
+  const colors = useColors();
+  const router = useRouter();
+  const { activeJob, updateJobStatus, setActiveJob } = useRider();
+  const insets = useSafeAreaInsets();
+  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const bottomPad = Platform.OS === "web" ? 34 : insets.bottom;
+
