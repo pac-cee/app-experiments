@@ -150,3 +150,22 @@ export default function ActiveRideScreen() {
               onPress={() => Linking.openURL(`sms:${activeJob.customer.phone}`)}
             >
               <Feather name="message-square" size={18} color={colors.primary} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.infoRow}>
+          <View style={styles.infoItem}>
+            <Feather name="map-pin" size={14} color={colors.primary} />
+            <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Pickup</Text>
+            <Text style={[styles.infoValue, { color: colors.foreground }]} numberOfLines={1}>{activeJob.pickup.name}</Text>
+          </View>
+          <View style={[styles.infoDivider, { backgroundColor: colors.border }]} />
+          <View style={styles.infoItem}>
+            <Feather name="flag" size={14} color={colors.secondary} />
+            <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Drop-off</Text>
+            <Text style={[styles.infoValue, { color: colors.foreground }]} numberOfLines={1}>{activeJob.destination.name}</Text>
+          </View>
+          <View style={[styles.infoDivider, { backgroundColor: colors.border }]} />
+          <View style={styles.infoItem}>
+            <Feather name="dollar-sign" size={14} color={colors.success} />
