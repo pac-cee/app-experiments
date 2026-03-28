@@ -226,3 +226,22 @@ export default function WaitingScreen() {
             <Text style={styles.retryBtnText}>Try Another Rider</Text>
           </TouchableOpacity>
         )}
+      </View>
+
+      {isLoading && (
+        <TouchableOpacity style={styles.cancelBtn} onPress={handleCancel} activeOpacity={0.7}>
+          <Feather name="x" size={16} color={colors.mutedForeground} />
+          <Text style={[styles.cancelText, { color: colors.mutedForeground }]}>Cancel Request</Text>
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1, paddingHorizontal: 24 },
+  body: { flex: 1, alignItems: "center", justifyContent: "center", gap: 20 },
+  iconSection: { position: "relative", alignItems: "center", justifyContent: "center", width: 120, height: 120 },
+  ring: { position: "absolute", width: 110, height: 110, borderRadius: 55, borderWidth: 2 },
+  iconCircle: { width: 90, height: 90, borderRadius: 45, alignItems: "center", justifyContent: "center" },
+  successWrap: {},
