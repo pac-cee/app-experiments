@@ -112,3 +112,22 @@ export default function ActiveRideScreen() {
     : activeJob.pickup;
 
   return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>Active Ride</Text>
+        <View style={[styles.statusBadge, { backgroundColor: cfg.bg }]}>
+          <View style={[styles.statusDot, { backgroundColor: cfg.color }]} />
+          <Text style={[styles.statusText, { color: cfg.color }]}>{cfg.label}</Text>
+        </View>
+      </View>
+
+      <View style={{ flex: 1 }}>
+        <MockMap
+          pickup={mapPickup}
+          destination={mapDest}
+          height={undefined}
+        />
+      </View>
+
+      <View style={[styles.panel, { backgroundColor: colors.card, paddingBottom: bottomPad + 16, borderTopColor: colors.border }]}>
+        <View style={[styles.customerRow, { borderBottomColor: colors.border }]}>
