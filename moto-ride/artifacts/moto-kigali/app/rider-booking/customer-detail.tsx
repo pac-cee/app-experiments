@@ -55,3 +55,22 @@ export default function CustomerDetailScreen() {
         <View style={{ width: 36 }} />
       </View>
 
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={[styles.content, { paddingBottom: bottomPad + 20 }]} showsVerticalScrollIndicator={false}>
+        <View style={{ height: 200, borderRadius: 16, overflow: "hidden", marginBottom: 16 }}>
+          <MockMap pickup={req.pickup} destination={req.destination} height={200} />
+        </View>
+
+        <View style={[styles.customerCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <View style={[styles.avatar, { backgroundColor: colors.primary }]}>
+            <Text style={styles.avatarText}>{initials}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.customerName, { color: colors.foreground }]}>{req.customer.name}</Text>
+            <StarRow rating={req.customer.rating} />
+            <Text style={[styles.statsText, { color: colors.mutedForeground }]}>
+              {req.customer.rating.toFixed(1)} rating · {req.customer.rides} rides
+            </Text>
+          </View>
+          <View style={styles.actions}>
+            <TouchableOpacity
+              style={[styles.actionBtn, { backgroundColor: colors.success + "18" }]}
