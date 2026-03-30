@@ -93,3 +93,22 @@ export default function CustomerDetailScreen() {
             <View style={styles.routePin}>
               <View style={[styles.pinDot, { backgroundColor: colors.primary }]} />
               <View style={[styles.pinLine, { backgroundColor: colors.border }]} />
+              <View style={[styles.pinDot, { backgroundColor: colors.secondary }]} />
+            </View>
+            <View style={{ flex: 1, gap: 20 }}>
+              <View>
+                <Text style={[styles.routeLocLabel, { color: colors.mutedForeground }]}>PICKUP</Text>
+                <Text style={[styles.routeLocName, { color: colors.foreground }]}>{req.pickup.name}</Text>
+                <Text style={[styles.routeLocAddr, { color: colors.mutedForeground }]}>{req.pickup.address}</Text>
+              </View>
+              <View>
+                <Text style={[styles.routeLocLabel, { color: colors.mutedForeground }]}>DESTINATION</Text>
+                <Text style={[styles.routeLocName, { color: colors.foreground }]}>{req.destination.name}</Text>
+                <Text style={[styles.routeLocAddr, { color: colors.mutedForeground }]}>{req.destination.address}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.infoRow, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <View style={styles.infoItem}>
