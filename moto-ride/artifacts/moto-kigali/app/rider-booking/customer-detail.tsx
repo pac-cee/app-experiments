@@ -150,3 +150,22 @@ export default function CustomerDetailScreen() {
           <Text style={styles.agreeBtnText}>We Agreed a Price</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity onPress={() => router.back()} style={styles.declineBtn}>
+          <Text style={[styles.declineText, { color: colors.mutedForeground }]}>Not interested</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingBottom: 14,
+    borderBottomWidth: 1,
+  },
+  backBtn: { padding: 4 },
