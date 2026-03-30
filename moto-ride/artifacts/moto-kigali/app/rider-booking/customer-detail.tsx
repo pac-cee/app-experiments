@@ -131,3 +131,22 @@ export default function CustomerDetailScreen() {
             <Text style={[styles.infoValue, { color: colors.foreground }]} numberOfLines={1}>
               {req.vehicleType.charAt(0).toUpperCase() + req.vehicleType.slice(1)}
             </Text>
+          </View>
+        </View>
+
+        <View style={[styles.negotiateBox, { backgroundColor: colors.secondary + "10", borderColor: colors.secondary + "30" }]}>
+          <Feather name="info" size={16} color={colors.secondary} />
+          <Text style={[styles.negotiateText, { color: colors.secondary }]}>
+            Call or message the customer to negotiate a fare, then confirm the agreed price below.
+          </Text>
+        </View>
+
+        <TouchableOpacity
+          style={[styles.agreeBtn, { backgroundColor: colors.secondary }]}
+          onPress={handleAgreePrice}
+          activeOpacity={0.85}
+        >
+          <Feather name="check-circle" size={20} color="#fff" />
+          <Text style={styles.agreeBtnText}>We Agreed a Price</Text>
+        </TouchableOpacity>
+
