@@ -36,3 +36,22 @@ export default function CustomerDetailScreen() {
   if (!pendingCustomer) {
     router.back();
     return null;
+  }
+
+  const req = pendingCustomer;
+  const initials = req.customer.name.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+
+  const handleAgreePrice = () => {
+    router.push("/rider-booking/price-accept");
+  };
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+          <Feather name="x" size={22} color={colors.foreground} />
+        </TouchableOpacity>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>Customer Request</Text>
+        <View style={{ width: 36 }} />
+      </View>
+
