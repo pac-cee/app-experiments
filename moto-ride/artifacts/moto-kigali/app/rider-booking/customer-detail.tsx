@@ -74,3 +74,22 @@ export default function CustomerDetailScreen() {
           <View style={styles.actions}>
             <TouchableOpacity
               style={[styles.actionBtn, { backgroundColor: colors.success + "18" }]}
+              onPress={() => Linking.openURL(`tel:${req.customer.phone}`)}
+            >
+              <Feather name="phone" size={18} color={colors.success} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.actionBtn, { backgroundColor: colors.primary + "18" }]}
+              onPress={() => Linking.openURL(`sms:${req.customer.phone}`)}
+            >
+              <Feather name="message-square" size={18} color={colors.primary} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={[styles.routeCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.sectionLabel, { color: colors.mutedForeground }]}>ROUTE</Text>
+          <View style={styles.routeRow}>
+            <View style={styles.routePin}>
+              <View style={[styles.pinDot, { backgroundColor: colors.primary }]} />
+              <View style={[styles.pinLine, { backgroundColor: colors.border }]} />
