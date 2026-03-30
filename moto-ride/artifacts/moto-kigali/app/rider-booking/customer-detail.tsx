@@ -112,3 +112,22 @@ export default function CustomerDetailScreen() {
 
         <View style={[styles.infoRow, { backgroundColor: colors.card, borderColor: colors.border }]}>
           <View style={styles.infoItem}>
+            <Feather name="navigation" size={16} color={colors.primary} />
+            <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Distance</Text>
+            <Text style={[styles.infoValue, { color: colors.foreground }]}>{req.distanceFromRider.toFixed(1)} km</Text>
+          </View>
+          <View style={[styles.infoDivider, { backgroundColor: colors.border }]} />
+          <View style={styles.infoItem}>
+            <Feather name="clock" size={16} color={colors.secondary} />
+            <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Requested</Text>
+            <Text style={[styles.infoValue, { color: colors.foreground }]}>
+              {Math.round((Date.now() - new Date(req.requestedAt).getTime()) / 60000)} min ago
+            </Text>
+          </View>
+          <View style={[styles.infoDivider, { backgroundColor: colors.border }]} />
+          <View style={styles.infoItem}>
+            <Feather name="truck" size={16} color={colors.success} />
+            <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>Vehicle</Text>
+            <Text style={[styles.infoValue, { color: colors.foreground }]} numberOfLines={1}>
+              {req.vehicleType.charAt(0).toUpperCase() + req.vehicleType.slice(1)}
+            </Text>
