@@ -74,3 +74,22 @@ export default function PriceAcceptScreen() {
     <View style={[styles.screen, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+          <Feather name="arrow-left" size={22} color={colors.foreground} />
+        </TouchableOpacity>
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>Confirm Agreed Price</Text>
+        <View style={{ width: 36 }} />
+      </View>
+
+      <View style={[styles.content, { paddingBottom: bottomPad + 20 }]}>
+        <View style={[styles.summaryCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <View style={[styles.summaryRow, { borderBottomColor: colors.border }]}>
+            <Feather name="user" size={16} color={colors.mutedForeground} />
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.summaryLabel, { color: colors.mutedForeground }]}>Customer</Text>
+              <Text style={[styles.summaryValue, { color: colors.foreground }]}>{req.customer.name}</Text>
+            </View>
+          </View>
+          <View style={[styles.summaryRow, { borderBottomColor: colors.border }]}>
+            <Feather name="map-pin" size={16} color={colors.primary} />
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.summaryLabel, { color: colors.mutedForeground }]}>From</Text>
