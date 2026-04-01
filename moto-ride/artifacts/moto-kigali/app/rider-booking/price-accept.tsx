@@ -55,3 +55,22 @@ export default function PriceAcceptScreen() {
     if (result.success) {
       const job: ActiveJob = {
         jobId: result.jobId,
+        customer: req.customer,
+        pickup: req.pickup,
+        destination: req.destination,
+        price,
+        status: "en_route_pickup",
+        acceptedAt: new Date().toISOString(),
+      };
+      setActiveJob(job);
+      setPendingCustomer(null);
+      router.replace("/rider-booking/active-ride");
+    } else {
+      setError("Failed to accept job. Please try again.");
+    }
+  };
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { paddingTop: topPad, backgroundColor: colors.card, borderBottomColor: colors.border }]}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
