@@ -93,3 +93,22 @@ export default function PriceAcceptScreen() {
             <Feather name="map-pin" size={16} color={colors.primary} />
             <View style={{ flex: 1 }}>
               <Text style={[styles.summaryLabel, { color: colors.mutedForeground }]}>From</Text>
+              <Text style={[styles.summaryValue, { color: colors.foreground }]}>{req.pickup.name}</Text>
+            </View>
+          </View>
+          <View style={styles.summaryRow}>
+            <Feather name="flag" size={16} color={colors.secondary} />
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.summaryLabel, { color: colors.mutedForeground }]}>To</Text>
+              <Text style={[styles.summaryValue, { color: colors.foreground }]}>{req.destination.name}</Text>
+            </View>
+          </View>
+        </View>
+
+        <Text style={[styles.pricePrompt, { color: colors.foreground }]}>Enter the price you agreed on</Text>
+
+        <View style={[styles.inputWrap, { backgroundColor: colors.input, borderColor: price > 0 ? colors.secondary : colors.border }]}>
+          <Text style={[styles.currency, { color: colors.mutedForeground }]}>RWF</Text>
+          <TextInput
+            style={[styles.priceInput, { color: colors.foreground, fontFamily: "Inter_700Bold" }]}
+            value={priceText}
