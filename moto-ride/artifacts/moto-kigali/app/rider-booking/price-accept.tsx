@@ -36,3 +36,22 @@ export default function PriceAcceptScreen() {
   }, [pendingCustomer]);
 
   if (!pendingCustomer) return null;
+
+  const req = pendingCustomer;
+  const price = parseInt(priceText.replace(/[^0-9]/g, ""), 10) || 0;
+
+  const handleConfirm = async () => {
+    if (price < 100) { setError("Enter the agreed price (min 100 RWF)"); return; }
+    setError("");
+    setLoading(true);
+    const result = await acceptJob({
+      requestId: req.id,
+      customerId: req.customer.id,
+      pickup: req.pickup,
+      destination: req.destination,
+      price,
+    });
+    setLoading(false);
+    if (result.success) {
+      const job: ActiveJob = {
+        jobId: result.jobId,
