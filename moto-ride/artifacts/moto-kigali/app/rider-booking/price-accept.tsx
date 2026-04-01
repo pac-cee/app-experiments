@@ -112,3 +112,22 @@ export default function PriceAcceptScreen() {
           <TextInput
             style={[styles.priceInput, { color: colors.foreground, fontFamily: "Inter_700Bold" }]}
             value={priceText}
+            onChangeText={(v) => { setPriceText(v.replace(/[^0-9]/g, "")); setError(""); }}
+            keyboardType="number-pad"
+            placeholder="0"
+            placeholderTextColor={colors.mutedForeground}
+          />
+        </View>
+
+        <View style={styles.quickRow}>
+          {QUICK_PRICES.map((p) => (
+            <TouchableOpacity
+              key={p}
+              style={[styles.quickChip, {
+                backgroundColor: price === p ? colors.secondary : colors.card,
+                borderColor: price === p ? colors.secondary : colors.border,
+              }]}
+              onPress={() => { setPriceText(String(p)); setError(""); }}
+            >
+              <Text style={[styles.quickChipText, { color: price === p ? "#fff" : colors.foreground }]}>
+                {p >= 1000 ? `${p / 1000}k` : p}
