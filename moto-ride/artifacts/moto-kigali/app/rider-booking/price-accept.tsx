@@ -169,3 +169,22 @@ export default function PriceAcceptScreen() {
                 Accept Job — {price > 0 ? `${price.toLocaleString()} RWF` : "Enter price"}
               </Text>
             </>
+          )}
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingBottom: 14,
+    borderBottomWidth: 1,
+  },
+  backBtn: { padding: 4 },
+  headerTitle: { fontSize: 17, fontFamily: "Inter_600SemiBold" },
