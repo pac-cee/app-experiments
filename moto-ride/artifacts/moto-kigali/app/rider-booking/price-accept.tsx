@@ -131,3 +131,22 @@ export default function PriceAcceptScreen() {
             >
               <Text style={[styles.quickChipText, { color: price === p ? "#fff" : colors.foreground }]}>
                 {p >= 1000 ? `${p / 1000}k` : p}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        {error ? (
+          <View style={[styles.errorBox, { backgroundColor: "#FEF2F2", borderColor: "#FCA5A5" }]}>
+            <Feather name="alert-circle" size={14} color={colors.destructive} />
+            <Text style={{ fontSize: 13, fontFamily: "Inter_400Regular", color: colors.destructive, flex: 1 }}>{error}</Text>
+          </View>
+        ) : null}
+
+        {price > 0 && (
+          <View style={[styles.earningsBox, { backgroundColor: colors.success + "12", borderColor: colors.success + "30" }]}>
+            <Feather name="trending-up" size={16} color={colors.success} />
+            <Text style={[styles.earningsText, { color: colors.success }]}>
+              You'll earn <Text style={{ fontFamily: "Inter_700Bold" }}>{price.toLocaleString()} RWF</Text> for this ride
+            </Text>
+          </View>
