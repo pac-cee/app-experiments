@@ -150,3 +150,22 @@ export default function PriceAcceptScreen() {
               You'll earn <Text style={{ fontFamily: "Inter_700Bold" }}>{price.toLocaleString()} RWF</Text> for this ride
             </Text>
           </View>
+        )}
+
+        <View style={{ flex: 1 }} />
+
+        <TouchableOpacity
+          style={[styles.confirmBtn, { backgroundColor: price > 0 ? colors.secondary : colors.muted, opacity: loading ? 0.7 : 1 }]}
+          onPress={handleConfirm}
+          disabled={price === 0 || loading}
+          activeOpacity={0.85}
+        >
+          {loading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <>
+              <Feather name="check-circle" size={20} color={price > 0 ? "#fff" : colors.mutedForeground} />
+              <Text style={[styles.confirmBtnText, { color: price > 0 ? "#fff" : colors.mutedForeground }]}>
+                Accept Job — {price > 0 ? `${price.toLocaleString()} RWF` : "Enter price"}
+              </Text>
+            </>
