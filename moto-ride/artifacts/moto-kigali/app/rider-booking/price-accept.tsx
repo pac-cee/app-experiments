@@ -245,3 +245,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     elevation: 3,
     shadowColor: "#FF6F00",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+  },
+  confirmBtnText: { fontSize: 17, fontFamily: "Inter_700Bold" },
+});
