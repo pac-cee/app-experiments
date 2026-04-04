@@ -36,3 +36,22 @@ export default function RiderRatingScreen() {
     setSelectedTags((prev) => prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]);
   };
 
+  const handleSubmit = async () => {
+    if (rating === 0 || !activeJob) return;
+    setLoading(true);
+    const fullComment = [selectedTags.join(", "), comment].filter(Boolean).join(" · ");
+    await rateCustomer(activeJob.jobId, rating, fullComment);
+    setLoading(false);
+    setSubmitted(true);
+    setTimeout(() => {
+      setActiveJob(null);
+      router.replace("/(rider)/home");
+    }, 1800);
+  };
+
+  const handleSkip = () => {
+    setActiveJob(null);
+    router.replace("/(rider)/home");
+  };
+
+  useEffect(() => {
