@@ -55,3 +55,22 @@ export default function RiderRatingScreen() {
   };
 
   useEffect(() => {
+    if (!activeJob) router.replace("/(rider)/home");
+  }, [activeJob]);
+
+  if (!activeJob) return null;
+
+  if (submitted) {
+    return (
+      <View style={[styles.screen, { backgroundColor: colors.background, alignItems: "center", justifyContent: "center", paddingTop: topPad }]}>
+        <View style={[styles.successCircle, { backgroundColor: colors.success + "18" }]}>
+          <Feather name="check-circle" size={56} color={colors.success} />
+        </View>
+        <Text style={[styles.successTitle, { color: colors.foreground }]}>Thanks!</Text>
+        <Text style={[styles.successSub, { color: colors.mutedForeground }]}>Feedback submitted</Text>
+      </View>
+    );
+  }
+
+  const ratingLabels = ["", "Poor", "Fair", "Good", "Very Good", "Excellent"];
+  const customerInitials = activeJob.customer.name.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase();
