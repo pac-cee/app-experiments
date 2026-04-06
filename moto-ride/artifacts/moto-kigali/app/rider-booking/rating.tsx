@@ -93,3 +93,22 @@ export default function RiderRatingScreen() {
           <Text style={[styles.completeTitle, { color: colors.foreground }]}>Ride Done!</Text>
           <Text style={[styles.earnings, { color: colors.success }]}>+{activeJob.price.toLocaleString()} RWF earned</Text>
           <Text style={[styles.route, { color: colors.mutedForeground }]}>
+            {activeJob.pickup.name} → {activeJob.destination.name}
+          </Text>
+        </View>
+
+        <View style={[styles.customerCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <View style={[styles.avatar, { backgroundColor: colors.secondary }]}>
+            <Text style={styles.avatarText}>{customerInitials}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.customerName, { color: colors.foreground }]}>{activeJob.customer.name}</Text>
+            <Text style={[styles.customerSub, { color: colors.mutedForeground }]}>{activeJob.customer.rides} rides · {activeJob.customer.rating.toFixed(1)} ★</Text>
+          </View>
+        </View>
+
+        <View style={styles.ratingSection}>
+          <Text style={[styles.ratingPrompt, { color: colors.foreground }]}>How was the customer?</Text>
+          <StarRating value={rating} onChange={setRating} size={44} color="#FF6F00" />
+          {rating > 0 && (
+            <Text style={[styles.ratingLabel, { color: colors.secondary }]}>{ratingLabels[rating]}</Text>
