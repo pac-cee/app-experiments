@@ -112,3 +112,22 @@ export default function RiderRatingScreen() {
           <StarRating value={rating} onChange={setRating} size={44} color="#FF6F00" />
           {rating > 0 && (
             <Text style={[styles.ratingLabel, { color: colors.secondary }]}>{ratingLabels[rating]}</Text>
+          )}
+        </View>
+
+        {rating > 0 && (
+          <>
+            <View style={styles.tagsSection}>
+              <Text style={[styles.tagsLabel, { color: colors.mutedForeground }]}>Quick feedback</Text>
+              <View style={styles.tagsRow}>
+                {QUICK_TAGS.map((tag) => {
+                  const isSelected = selectedTags.includes(tag);
+                  return (
+                    <TouchableOpacity
+                      key={tag}
+                      onPress={() => toggleTag(tag)}
+                      style={[styles.tag, {
+                        backgroundColor: isSelected ? colors.secondary : colors.muted,
+                        borderColor: isSelected ? colors.secondary : colors.border,
+                      }]}
+                      activeOpacity={0.7}
