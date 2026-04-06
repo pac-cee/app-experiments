@@ -74,3 +74,22 @@ export default function RiderRatingScreen() {
 
   const ratingLabels = ["", "Poor", "Fair", "Good", "Very Good", "Excellent"];
   const customerInitials = activeJob.customer.name.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+
+  return (
+    <View style={[styles.screen, { backgroundColor: colors.background, paddingTop: topPad }]}>
+      <View style={[styles.header, { borderBottomColor: colors.border }]}>
+        <View style={{ width: 36 }} />
+        <Text style={[styles.headerTitle, { color: colors.foreground }]}>Rate Customer</Text>
+        <TouchableOpacity onPress={handleSkip}>
+          <Text style={[styles.skipText, { color: colors.mutedForeground }]}>Skip</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={[styles.content, { paddingBottom: bottomPad + 20 }]}>
+        <View style={styles.rideComplete}>
+          <View style={[styles.checkCircle, { backgroundColor: colors.success + "15" }]}>
+            <Feather name="check" size={28} color={colors.success} />
+          </View>
+          <Text style={[styles.completeTitle, { color: colors.foreground }]}>Ride Done!</Text>
+          <Text style={[styles.earnings, { color: colors.success }]}>+{activeJob.price.toLocaleString()} RWF earned</Text>
+          <Text style={[styles.route, { color: colors.mutedForeground }]}>
