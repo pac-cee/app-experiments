@@ -150,3 +150,22 @@ export default function RiderRatingScreen() {
             />
           </>
         )}
+
+        <TouchableOpacity
+          style={[styles.submitBtn, { backgroundColor: rating > 0 ? colors.secondary : colors.muted, opacity: loading ? 0.7 : 1 }]}
+          onPress={handleSubmit}
+          disabled={rating === 0 || loading}
+          activeOpacity={0.85}
+        >
+          {loading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text style={[styles.submitBtnText, { color: rating > 0 ? "#fff" : colors.mutedForeground }]}>
+              Submit Rating
+            </Text>
+          )}
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
