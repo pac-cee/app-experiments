@@ -169,3 +169,22 @@ export default function RiderRatingScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, paddingBottom: 14, borderBottomWidth: 1 },
+  headerTitle: { fontSize: 17, fontFamily: "Inter_600SemiBold" },
+  skipText: { fontSize: 14, fontFamily: "Inter_500Medium" },
+  content: { flex: 1, paddingHorizontal: 20, paddingTop: 20, gap: 18 },
+  rideComplete: { alignItems: "center", gap: 6 },
+  checkCircle: { width: 64, height: 64, borderRadius: 32, alignItems: "center", justifyContent: "center", marginBottom: 4 },
+  completeTitle: { fontSize: 22, fontFamily: "Inter_700Bold" },
+  earnings: { fontSize: 24, fontFamily: "Inter_700Bold" },
+  route: { fontSize: 13, fontFamily: "Inter_400Regular", textAlign: "center" },
+  customerCard: { flexDirection: "row", alignItems: "center", gap: 14, padding: 14, borderRadius: 14, borderWidth: 1 },
+  avatar: { width: 46, height: 46, borderRadius: 23, alignItems: "center", justifyContent: "center" },
+  avatarText: { fontSize: 16, fontFamily: "Inter_700Bold", color: "#fff" },
+  customerName: { fontSize: 15, fontFamily: "Inter_600SemiBold" },
+  customerSub: { fontSize: 12, fontFamily: "Inter_400Regular", marginTop: 2 },
+  ratingSection: { alignItems: "center", gap: 12 },
+  ratingPrompt: { fontSize: 16, fontFamily: "Inter_600SemiBold" },
