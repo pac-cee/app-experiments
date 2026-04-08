@@ -55,3 +55,22 @@ export function LocationInput({ pickup, destination, onPickupChange, onDestinati
         <View style={[styles.divider, { backgroundColor: colors.border }]} />
         <View style={styles.inputRow}>
           <Feather name="map-pin" size={14} color={colors.secondary} />
+          <TextInput
+            style={[styles.input, { color: colors.foreground, fontFamily: "Inter_400Regular" }]}
+            placeholder="Where to?"
+            placeholderTextColor={colors.mutedForeground}
+            value={destText}
+            onChangeText={(t) => { setDestText(t); onFocusChange?.("destination"); }}
+            onFocus={() => onFocusChange?.("destination")}
+            returnKeyType="done"
+            onSubmitEditing={() => onFocusChange?.(null)}
+          />
+        </View>
+      </View>
+
+      {focusField && (
+        <View style={[styles.suggestions, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          {suggestions.map((loc) => (
+            <TouchableOpacity
+              key={loc.id}
+              onPress={() => selectLocation(loc)}
