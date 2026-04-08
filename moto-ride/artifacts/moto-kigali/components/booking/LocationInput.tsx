@@ -36,3 +36,22 @@ export function LocationInput({ pickup, destination, onPickupChange, onDestinati
 
   return (
     <View>
+      <View style={[styles.inputBox, { backgroundColor: colors.card, borderColor: colors.border }]}>
+        <View style={styles.inputRow}>
+          <View style={[styles.dot, { backgroundColor: colors.success }]} />
+          <TextInput
+            style={[styles.input, { color: colors.foreground, fontFamily: "Inter_400Regular" }]}
+            placeholder="Pickup location"
+            placeholderTextColor={colors.mutedForeground}
+            value={pickupText}
+            onChangeText={(t) => { setPickupText(t); onFocusChange?.("pickup"); }}
+            onFocus={() => onFocusChange?.("pickup")}
+            returnKeyType="next"
+          />
+          {pickup && focusField !== "pickup" && (
+            <Feather name="check-circle" size={16} color={colors.success} />
+          )}
+        </View>
+        <View style={[styles.divider, { backgroundColor: colors.border }]} />
+        <View style={styles.inputRow}>
+          <Feather name="map-pin" size={14} color={colors.secondary} />
