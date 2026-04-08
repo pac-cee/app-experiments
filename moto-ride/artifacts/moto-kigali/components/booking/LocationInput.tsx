@@ -17,3 +17,22 @@ export function LocationInput({ pickup, destination, onPickupChange, onDestinati
   const colors = useColors();
   const [pickupText, setPickupText] = useState(pickup?.name ?? "");
   const [destText, setDestText] = useState(destination?.name ?? "");
+
+  const activeText = focusField === "pickup" ? pickupText : destText;
+  const suggestions = activeText.length > 0
+    ? KIGALI_LOCATIONS.filter((l) => l.name.toLowerCase().includes(activeText.toLowerCase())).slice(0, 6)
+    : KIGALI_LOCATIONS.slice(0, 6);
+
+  const selectLocation = (loc: Location) => {
+    if (focusField === "pickup") {
+      setPickupText(loc.name);
+      onPickupChange(loc);
+    } else {
+      setDestText(loc.name);
+      onDestinationChange(loc);
+    }
+    onFocusChange?.(null);
+  };
+
+  return (
+    <View>
