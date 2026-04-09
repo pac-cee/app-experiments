@@ -93,3 +93,22 @@ export function LocationInput({ pickup, destination, onPickupChange, onDestinati
 const styles = StyleSheet.create({
   inputBox: {
     borderRadius: 14,
+    borderWidth: 1,
+    overflow: "hidden",
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+  },
+  inputRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    gap: 10,
+  },
+  dot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
