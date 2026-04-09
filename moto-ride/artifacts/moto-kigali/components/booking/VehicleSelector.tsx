@@ -36,3 +36,22 @@ export function VehicleSelector({ selected, onSelect }: Props) {
             activeOpacity={0.8}
             style={[
               styles.card,
+              {
+                backgroundColor: isSelected ? colors.primary : colors.card,
+                borderColor: isSelected ? colors.primary : colors.border,
+              },
+            ]}
+          >
+            <VehicleIcon type={type} color={isSelected ? "#fff" : colors.primary} />
+            <Text style={[styles.label, { color: isSelected ? "#fff" : colors.foreground }]}>{label}</Text>
+            <Text style={[styles.desc, { color: isSelected ? "rgba(255,255,255,0.75)" : colors.mutedForeground }]}>{desc}</Text>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
