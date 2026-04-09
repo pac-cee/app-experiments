@@ -74,3 +74,22 @@ export function LocationInput({ pickup, destination, onPickupChange, onDestinati
             <TouchableOpacity
               key={loc.id}
               onPress={() => selectLocation(loc)}
+              style={[styles.suggestion, { borderBottomColor: colors.border }]}
+              activeOpacity={0.7}
+            >
+              <Feather name="map-pin" size={14} color={colors.mutedForeground} style={{ marginTop: 2 }} />
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 14, fontFamily: "Inter_500Medium", color: colors.foreground }}>{loc.name}</Text>
+                <Text style={{ fontSize: 12, fontFamily: "Inter_400Regular", color: colors.mutedForeground }}>{loc.address}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  inputBox: {
+    borderRadius: 14,
