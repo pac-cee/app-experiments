@@ -17,3 +17,22 @@ function VehicleIcon({ type, color }: { type: VehicleType; color: string }) {
   return <Feather name="truck" size={24} color={color} />;
 }
 
+interface Props {
+  selected: VehicleType | null;
+  onSelect: (v: VehicleType) => void;
+}
+
+export function VehicleSelector({ selected, onSelect }: Props) {
+  const colors = useColors();
+
+  return (
+    <View style={styles.row}>
+      {VEHICLES.map(({ type, label, desc }) => {
+        const isSelected = selected === type;
+        return (
+          <TouchableOpacity
+            key={type}
+            onPress={() => onSelect(type)}
+            activeOpacity={0.8}
+            style={[
+              styles.card,
