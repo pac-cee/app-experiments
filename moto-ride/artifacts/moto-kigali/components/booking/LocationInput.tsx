@@ -112,3 +112,22 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
+  },
+  input: {
+    flex: 1,
+    fontSize: 15,
+    padding: 0,
+  },
+  divider: {
+    height: 1,
+    marginLeft: 38,
+  },
+  suggestions: {
+    marginTop: 4,
+    borderRadius: 14,
+    borderWidth: 1,
+    overflow: "hidden",
+    elevation: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
