@@ -74,3 +74,10 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 13,
     fontFamily: "Inter_600SemiBold",
+  },
+  desc: {
+    fontSize: 10,
+    fontFamily: "Inter_400Regular",
+    textAlign: "center",
+  },
+});
