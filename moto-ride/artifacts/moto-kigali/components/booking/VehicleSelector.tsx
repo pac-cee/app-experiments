@@ -55,3 +55,22 @@ export function VehicleSelector({ selected, onSelect }: Props) {
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
+    gap: 10,
+  },
+  card: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 6,
+    borderRadius: 14,
+    borderWidth: 1.5,
+    gap: 4,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.06,
+    shadowRadius: 3,
+  },
+  label: {
+    fontSize: 13,
+    fontFamily: "Inter_600SemiBold",
