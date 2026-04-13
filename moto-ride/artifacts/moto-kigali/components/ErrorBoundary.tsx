@@ -36,3 +36,19 @@ export class ErrorBoundary extends Component<
   }
 
   resetError = (): void => {
+    this.setState({ error: null });
+  };
+
+  render() {
+    const { FallbackComponent } = this.props;
+
+    return this.state.error && FallbackComponent ? (
+      <FallbackComponent
+        error={this.state.error}
+        resetError={this.resetError}
+      />
+    ) : (
+      this.props.children
+    );
+  }
+}
