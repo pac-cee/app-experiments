@@ -36,3 +36,22 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
 
   const formatErrorDetails = (): string => {
     let details = `Error: ${error.message}\n\n`;
+    if (error.stack) {
+      details += `Stack Trace:\n${error.stack}`;
+    }
+    return details;
+  };
+
+  const monoFont = Platform.select({
+    ios: "Menlo",
+    android: "monospace",
+    default: "monospace",
+  });
+
+  return (
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      {__DEV__ ? (
+        <Pressable
+          onPress={() => setIsModalVisible(true)}
+          accessibilityLabel="View error details"
+          accessibilityRole="button"
