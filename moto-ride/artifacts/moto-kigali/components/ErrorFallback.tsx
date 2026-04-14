@@ -93,3 +93,22 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
               styles.buttonText,
               { color: colors.primaryForeground },
             ]}
+          >
+            Try Again
+          </Text>
+        </Pressable>
+      </View>
+
+      {__DEV__ ? (
+        <Modal
+          visible={isModalVisible}
+          animationType="slide"
+          transparent={true}
+          onRequestClose={() => setIsModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View
+              style={[
+                styles.modalContainer,
+                { backgroundColor: colors.background },
+              ]}
