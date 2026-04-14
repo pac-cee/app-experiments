@@ -112,3 +112,22 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
                 styles.modalContainer,
                 { backgroundColor: colors.background },
               ]}
+            >
+              <View
+                style={[
+                  styles.modalHeader,
+                  { borderBottomColor: colors.border },
+                ]}
+              >
+                <Text style={[styles.modalTitle, { color: colors.foreground }]}>
+                  Error Details
+                </Text>
+                <Pressable
+                  onPress={() => setIsModalVisible(false)}
+                  accessibilityLabel="Close error details"
+                  accessibilityRole="button"
+                  style={({ pressed }) => [
+                    styles.closeButton,
+                    { opacity: pressed ? 0.6 : 1 },
+                  ]}
+                >
