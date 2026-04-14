@@ -74,3 +74,22 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
         </Text>
 
         <Text style={[styles.message, { color: colors.mutedForeground }]}>
+          Please reload the app to continue.
+        </Text>
+
+        <Pressable
+          onPress={handleRestart}
+          style={({ pressed }) => [
+            styles.button,
+            {
+              backgroundColor: colors.primary,
+              opacity: pressed ? 0.9 : 1,
+              transform: [{ scale: pressed ? 0.98 : 1 }],
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.buttonText,
+              { color: colors.primaryForeground },
+            ]}
