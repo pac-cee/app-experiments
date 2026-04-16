@@ -169,3 +169,22 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
       ) : null}
     </View>
   );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 24,
+  },
+  content: {
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 16,
+    width: "100%",
+    maxWidth: 600,
+  },
+  title: {
