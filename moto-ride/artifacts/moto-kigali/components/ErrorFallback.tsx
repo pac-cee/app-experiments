@@ -150,3 +150,22 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
                   ]}
                 >
                   <Text
+                    style={[
+                      styles.errorText,
+                      {
+                        color: colors.foreground,
+                        fontFamily: monoFont,
+                      },
+                    ]}
+                    selectable
+                  >
+                    {formatErrorDetails()}
+                  </Text>
+                </View>
+              </ScrollView>
+            </View>
+          </View>
+        </Modal>
+      ) : null}
+    </View>
+  );
