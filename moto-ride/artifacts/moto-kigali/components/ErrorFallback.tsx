@@ -264,3 +264,15 @@ const styles = StyleSheet.create({
   modalScrollContent: {
     padding: 16,
   },
+  errorContainer: {
+    width: "100%",
+    borderRadius: 8,
+    overflow: "hidden",
+    padding: 16,
+  },
+  errorText: {
+    fontSize: 12,
+    lineHeight: 18,
+    width: "100%",
+  },
+});
