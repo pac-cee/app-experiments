@@ -188,3 +188,22 @@ const styles = StyleSheet.create({
     maxWidth: 600,
   },
   title: {
+    fontSize: 28,
+    fontWeight: "700",
+    textAlign: "center",
+    lineHeight: 40,
+  },
+  message: {
+    fontSize: 16,
+    textAlign: "center",
+    lineHeight: 24,
+  },
+  topButton: {
+    position: "absolute",
+    right: 16,
+    width: 44,
+    height: 44,
+    borderRadius: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
