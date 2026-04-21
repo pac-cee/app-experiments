@@ -17,3 +17,13 @@ export function KeyboardAwareScrollViewCompat({
         {children}
       </ScrollView>
     );
+  }
+  return (
+    <KeyboardAwareScrollView
+      keyboardShouldPersistTaps={keyboardShouldPersistTaps}
+      {...props}
+    >
+      {children}
+    </KeyboardAwareScrollView>
+  );
+}
