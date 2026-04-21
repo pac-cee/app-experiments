@@ -17,3 +17,22 @@ function projectToPercent(lat: number, lng: number) {
 function PulsingDot({ color }: { color: string }) {
   const anim = useRef(new Animated.Value(1)).current;
   useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(anim, { toValue: 1.6, duration: 900, useNativeDriver: true }),
+        Animated.timing(anim, { toValue: 1, duration: 900, useNativeDriver: true }),
+      ])
+    ).start();
+  }, []);
+  return (
+    <View style={{ width: 20, height: 20, alignItems: "center", justifyContent: "center" }}>
+      <Animated.View style={{ position: "absolute", width: 20, height: 20, borderRadius: 10, backgroundColor: color, opacity: 0.3, transform: [{ scale: anim }] }} />
+      <View style={{ width: 12, height: 12, borderRadius: 6, backgroundColor: color, borderWidth: 2, borderColor: "#fff" }} />
+    </View>
+  );
+}
+
+function VehicleIcon({ vehicle, color, size = 16 }: { vehicle: VehicleType; color: string; size?: number }) {
+  if (vehicle === "moto") return <MaterialCommunityIcons name="motorbike" size={size} color={color} />;
+  if (vehicle === "cab") return <MaterialCommunityIcons name="car" size={size} color={color} />;
+  return <Feather name="truck" size={size} color={color} />;
