@@ -93,3 +93,22 @@ export function MockMap({
             onPress={() => onRiderPress?.(rider)}
             style={[
               styles.riderPin,
+              {
+                left: `${pos.x}%` as any,
+                top: `${pos.y}%` as any,
+                backgroundColor: isSelected ? colors.secondary : colors.primary,
+                transform: [{ translateX: -18 }, { translateY: -18 }, { scale: isSelected ? 1.2 : 1 }],
+                borderColor: isSelected ? "#FF6F00" : "#fff",
+              },
+            ]}
+            activeOpacity={0.8}
+          >
+            <VehicleIcon vehicle={rider.vehicle} color="#fff" size={14} />
+          </TouchableOpacity>
+        );
+      })}
+
+      {pickup && (() => {
+        const pos = projectToPercent(pickup.lat, pickup.lng);
+        return (
+          <View style={[styles.locationPin, { left: `${pos.x}%` as any, top: `${pos.y}%` as any, transform: [{ translateX: -10 }, { translateY: -22 }] }]}>
