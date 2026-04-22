@@ -36,3 +36,22 @@ function VehicleIcon({ vehicle, color, size = 16 }: { vehicle: VehicleType; colo
   if (vehicle === "moto") return <MaterialCommunityIcons name="motorbike" size={size} color={color} />;
   if (vehicle === "cab") return <MaterialCommunityIcons name="car" size={size} color={color} />;
   return <Feather name="truck" size={size} color={color} />;
+}
+
+interface MockMapProps {
+  riders?: Rider[];
+  selectedVehicle?: VehicleType | null;
+  pickup?: Location | null;
+  destination?: Location | null;
+  trackedRider?: { lat: number; lng: number } | null;
+  onRiderPress?: (rider: Rider) => void;
+  selectedRiderId?: string | null;
+  height?: number;
+}
+
+export function MockMap({
+  riders = [],
+  selectedVehicle,
+  pickup,
+  destination,
+  trackedRider,
