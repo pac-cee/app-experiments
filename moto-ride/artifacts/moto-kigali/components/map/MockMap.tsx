@@ -74,3 +74,22 @@ export function MockMap({
         <Line x1="195" y1="0" x2="195" y2="300" stroke={colors.mapRoad} strokeWidth="5" opacity="0.9" />
         <Line x1="0" y1="200" x2="390" y2="180" stroke={colors.mapRoad} strokeWidth="4" opacity="0.7" />
         <Line x1="80" y1="0" x2="120" y2="300" stroke={colors.mapRoad} strokeWidth="3" opacity="0.6" />
+        <Line x1="300" y1="0" x2="280" y2="300" stroke={colors.mapRoad} strokeWidth="3" opacity="0.6" />
+        <Line x1="0" y1="80" x2="390" y2="60" stroke={colors.mapRoad} strokeWidth="3" opacity="0.5" />
+        <Line x1="0" y1="260" x2="390" y2="240" stroke={colors.mapRoad} strokeWidth="2.5" opacity="0.5" />
+        <SvgText x="90" y="60" fill="#5A7A56" fontSize="9" fontWeight="bold" opacity="0.7">Gisozi</SvgText>
+        <SvgText x="220" y="50" fill="#5A7A56" fontSize="9" fontWeight="bold" opacity="0.7">Kimironko</SvgText>
+        <SvgText x="55" y="215" fill="#5A7A56" fontSize="9" fontWeight="bold" opacity="0.7">Nyamirambo</SvgText>
+        <SvgText x="295" y="210" fill="#5A7A56" fontSize="9" fontWeight="bold" opacity="0.7">Kicukiro</SvgText>
+        <SvgText x="145" y="130" fill="#4A8CB4" fontSize="8" opacity="0.8">Nyabarongo</SvgText>
+      </Svg>
+
+      {riders.map((rider) => {
+        const pos = projectToPercent(rider.lat, rider.lng);
+        const isSelected = rider.id === selectedRiderId;
+        return (
+          <TouchableOpacity
+            key={rider.id}
+            onPress={() => onRiderPress?.(rider)}
+            style={[
+              styles.riderPin,
