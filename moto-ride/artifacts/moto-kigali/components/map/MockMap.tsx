@@ -55,3 +55,22 @@ export function MockMap({
   pickup,
   destination,
   trackedRider,
+  onRiderPress,
+  selectedRiderId,
+  height = 300,
+}: MockMapProps) {
+  const colors = useColors();
+
+  return (
+    <View style={[styles.container, { height, backgroundColor: colors.mapBg }]}>
+      <Svg width="100%" height="100%" style={StyleSheet.absoluteFill} viewBox="0 0 390 300">
+        <Rect x="0" y="0" width="390" height="300" fill={colors.mapBg} />
+        <Rect x="60" y="20" width="120" height="80" rx="8" fill="#C8DEC4" opacity="0.6" />
+        <Rect x="220" y="60" width="100" height="60" rx="8" fill="#C8DEC4" opacity="0.5" />
+        <Rect x="80" y="180" width="140" height="90" rx="8" fill="#C8DEC4" opacity="0.6" />
+        <Rect x="290" y="170" width="80" height="100" rx="8" fill="#C8DEC4" opacity="0.4" />
+        <Rect x="155" y="100" width="40" height="30" rx="4" fill={colors.mapWater} opacity="0.7" />
+        <Line x1="0" y1="140" x2="390" y2="140" stroke={colors.mapRoad} strokeWidth="6" opacity="0.9" />
+        <Line x1="195" y1="0" x2="195" y2="300" stroke={colors.mapRoad} strokeWidth="5" opacity="0.9" />
+        <Line x1="0" y1="200" x2="390" y2="180" stroke={colors.mapRoad} strokeWidth="4" opacity="0.7" />
+        <Line x1="80" y1="0" x2="120" y2="300" stroke={colors.mapRoad} strokeWidth="3" opacity="0.6" />
