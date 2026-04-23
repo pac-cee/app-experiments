@@ -131,3 +131,22 @@ export function MockMap({
       {trackedRider && (() => {
         const pos = projectToPercent(trackedRider.lat, trackedRider.lng);
         return (
+          <View style={[styles.locationPin, { left: `${pos.x}%` as any, top: `${pos.y}%` as any, transform: [{ translateX: -14 }, { translateY: -14 }] }]}>
+            <View style={{ width: 28, height: 28, borderRadius: 14, backgroundColor: colors.primary, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: "#fff" }}>
+              <MaterialCommunityIcons name="motorbike" size={16} color="#fff" />
+            </View>
+          </View>
+        );
+      })()}
+
+      {!pickup && !destination && riders.length === 0 && (
+        <View style={styles.centerDot}>
+          <PulsingDot color={colors.primary} />
+        </View>
+      )}
+
+      <View style={[styles.badge, { backgroundColor: colors.card }]}>
+        <Text style={{ fontSize: 11, color: colors.mutedForeground, fontFamily: "Inter_400Regular" }}>Kigali, Rwanda</Text>
+      </View>
+    </View>
+  );
