@@ -169,3 +169,25 @@ const styles = StyleSheet.create({
     elevation: 4,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  locationPin: {
+    position: "absolute",
+  },
+  centerDot: {
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    transform: [{ translateX: -10 }, { translateY: -10 }],
+  },
+  badge: {
+    position: "absolute",
+    bottom: 8,
+    right: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    opacity: 0.9,
+  },
+});
