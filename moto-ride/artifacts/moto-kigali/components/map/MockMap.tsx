@@ -112,3 +112,22 @@ export function MockMap({
         const pos = projectToPercent(pickup.lat, pickup.lng);
         return (
           <View style={[styles.locationPin, { left: `${pos.x}%` as any, top: `${pos.y}%` as any, transform: [{ translateX: -10 }, { translateY: -22 }] }]}>
+            <PulsingDot color={colors.success} />
+          </View>
+        );
+      })()}
+
+      {destination && (() => {
+        const pos = projectToPercent(destination.lat, destination.lng);
+        return (
+          <View style={[styles.locationPin, { left: `${pos.x}%` as any, top: `${pos.y}%` as any, transform: [{ translateX: -10 }, { translateY: -22 }] }]}>
+            <View style={{ alignItems: "center" }}>
+              <Feather name="map-pin" size={22} color={colors.secondary} />
+            </View>
+          </View>
+        );
+      })()}
+
+      {trackedRider && (() => {
+        const pos = projectToPercent(trackedRider.lat, trackedRider.lng);
+        return (
