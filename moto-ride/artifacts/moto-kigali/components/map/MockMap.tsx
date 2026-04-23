@@ -150,3 +150,22 @@ export function MockMap({
       </View>
     </View>
   );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    overflow: "hidden",
+    position: "relative",
+  },
+  riderPin: {
+    position: "absolute",
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 2,
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
