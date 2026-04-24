@@ -36,3 +36,22 @@ export function RideRequestSheet({ request, onAccept, onDecline }: Props) {
       setTimeLeft(30);
       Animated.spring(slideAnim, {
         toValue: 0,
+        useNativeDriver: true,
+        tension: 80,
+        friction: 10,
+      }).start();
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(pulseAnim, { toValue: 1.04, duration: 600, useNativeDriver: true }),
+          Animated.timing(pulseAnim, { toValue: 1, duration: 600, useNativeDriver: true }),
+        ])
+      ).start();
+    } else if (!request || (request.status !== "pending" && request.status !== "viewed")) {
+      Animated.timing(slideAnim, {
+        toValue: SHEET_HEIGHT + 20,
+        duration: 250,
+        useNativeDriver: true,
+      }).start(() => {
+        if (!request) setCurrentRequest(null);
+      });
+    }
