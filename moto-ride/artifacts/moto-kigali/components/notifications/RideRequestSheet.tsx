@@ -74,3 +74,22 @@ export function RideRequestSheet({ request, onAccept, onDecline }: Props) {
       useNativeDriver: true,
     }).start();
   };
+
+  if (!currentRequest) return null;
+
+  const req = currentRequest;
+  const initials = req.customerName.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+  const timerColor = timeLeft <= 10 ? "#EF4444" : timeLeft <= 20 ? colors.secondary : colors.success;
+  const bottomPad = Platform.OS === "web" ? 90 : insets.bottom + 72;
+
+  return (
+    <Animated.View
+      style={[
+        styles.sheet,
+        {
+          backgroundColor: colors.card,
+          paddingBottom: bottomPad,
+          transform: [{ translateY: slideAnim }],
+          shadowColor: "#000",
+        },
+      ]}
