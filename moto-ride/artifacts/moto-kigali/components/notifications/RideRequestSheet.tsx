@@ -55,3 +55,22 @@ export function RideRequestSheet({ request, onAccept, onDecline }: Props) {
         if (!request) setCurrentRequest(null);
       });
     }
+  }, [request?.id, request?.status]);
+
+  useEffect(() => {
+    if (!currentRequest) return;
+    if (timeLeft <= 0) {
+      dismiss();
+      return;
+    }
+    const t = setTimeout(() => setTimeLeft((n) => n - 1), 1000);
+    return () => clearTimeout(t);
+  }, [timeLeft, currentRequest]);
+
+  const dismiss = () => {
+    Animated.timing(slideAnim, {
+      toValue: SHEET_HEIGHT + 20,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+  };
