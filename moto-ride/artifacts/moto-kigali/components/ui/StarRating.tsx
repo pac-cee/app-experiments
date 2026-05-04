@@ -17,3 +17,22 @@ export function StarRating({ value, onChange, size = 28, readonly = false }: Pro
       {[1, 2, 3, 4, 5].map((star) => (
         <TouchableOpacity
           key={star}
+          onPress={() => !readonly && onChange?.(star)}
+          disabled={readonly}
+          activeOpacity={0.7}
+          style={{ padding: 4 }}
+        >
+          <Feather
+            name="star"
+            size={size}
+            color={star <= value ? "#F59E0B" : colors.border}
+            style={star <= value ? styles.filled : {}}
+          />
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  row: {
