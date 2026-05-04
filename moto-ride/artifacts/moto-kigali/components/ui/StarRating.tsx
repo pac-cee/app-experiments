@@ -36,3 +36,12 @@ export function StarRating({ value, onChange, size = 28, readonly = false }: Pro
 
 const styles = StyleSheet.create({
   row: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  filled: {
+    textShadowColor: "rgba(245,158,11,0.3)",
+    textShadowRadius: 4,
+    textShadowOffset: { width: 0, height: 0 },
+  },
+});
