@@ -245,3 +245,10 @@ const styles = StyleSheet.create({
     height: 52,
     borderRadius: 14,
     elevation: 4,
+    shadowColor: "#2E7D32",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+  },
+  acceptBtnText: { fontSize: 16, fontFamily: "Inter_700Bold", color: "#fff" },
+});
