@@ -17,3 +17,17 @@ const colors = {
     accent: "#FF6F00",
     accentForeground: "#FFFFFF",
     destructive: "#C62828",
+    destructiveForeground: "#FFFFFF",
+    border: "#E2E8F0",
+    input: "#F1F5F9",
+    mapBg: "#DAE8D5",
+    mapRoad: "#FFFFFF",
+    mapWater: "#AECDE0",
+    riderPin: "#1565C0",
+    customerPin: "#2E7D32",
+    destinationPin: "#FF6F00",
+  },
+  radius: 14,
+};
+
+export default colors;
