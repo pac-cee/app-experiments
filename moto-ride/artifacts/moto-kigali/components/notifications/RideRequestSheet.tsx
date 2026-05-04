@@ -150,3 +150,22 @@ export function RideRequestSheet({ request, onAccept, onDecline }: Props) {
         >
           <Feather name="x" size={20} color={colors.destructive} />
           <Text style={[styles.declineBtnText, { color: colors.destructive }]}>Decline</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.acceptBtn, { backgroundColor: colors.success }]}
+          onPress={() => onAccept(req)}
+          activeOpacity={0.85}
+        >
+          <Feather name="check" size={20} color="#fff" />
+          <Text style={styles.acceptBtnText}>Accept</Text>
+        </TouchableOpacity>
+      </View>
+    </Animated.View>
+  );
+}
+
+const styles = StyleSheet.create({
+  sheet: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
