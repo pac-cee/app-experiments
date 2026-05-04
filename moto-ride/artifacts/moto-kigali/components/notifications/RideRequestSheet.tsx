@@ -93,3 +93,22 @@ export function RideRequestSheet({ request, onAccept, onDecline }: Props) {
           shadowColor: "#000",
         },
       ]}
+    >
+      <View style={[styles.handle, { backgroundColor: colors.border }]} />
+
+      <View style={[styles.alertBadge, { backgroundColor: "#FF6F00" }]}>
+        <Feather name="bell" size={13} color="#fff" />
+        <Text style={styles.alertText}>New Ride Request!</Text>
+      </View>
+
+      <View style={styles.customerRow}>
+        <Animated.View style={[styles.avatarWrap, { transform: [{ scale: pulseAnim }] }]}>
+          <View style={[styles.avatar, { backgroundColor: colors.primary }]}>
+            <Text style={styles.avatarText}>{initials}</Text>
+          </View>
+          <View style={[styles.onlineDot, { backgroundColor: colors.success, borderColor: colors.card }]} />
+        </Animated.View>
+        <View style={{ flex: 1 }}>
+          <Text style={[styles.customerName, { color: colors.foreground }]}>{req.customerName}</Text>
+          <View style={styles.ratingRow}>
+            <Feather name="star" size={12} color="#F59E0B" />
