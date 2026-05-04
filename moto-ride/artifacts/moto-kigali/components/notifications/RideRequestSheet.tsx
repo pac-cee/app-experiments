@@ -112,3 +112,22 @@ export function RideRequestSheet({ request, onAccept, onDecline }: Props) {
           <Text style={[styles.customerName, { color: colors.foreground }]}>{req.customerName}</Text>
           <View style={styles.ratingRow}>
             <Feather name="star" size={12} color="#F59E0B" />
+            <Text style={[styles.ratingText, { color: colors.mutedForeground }]}>
+              {req.customerRating.toFixed(1)} · {req.customerRides} rides
+            </Text>
+          </View>
+        </View>
+        <View style={[styles.timerCircle, { borderColor: timerColor }]}>
+          <Text style={[styles.timerText, { color: timerColor }]}>{timeLeft}s</Text>
+        </View>
+      </View>
+
+      <View style={[styles.routeCard, { backgroundColor: colors.muted, borderColor: colors.border }]}>
+        <View style={styles.routeRow}>
+          <View style={styles.routePin}>
+            <View style={[styles.pinDot, { backgroundColor: colors.primary }]} />
+            <View style={[styles.pinLine, { backgroundColor: colors.border }]} />
+            <View style={[styles.pinDot, { backgroundColor: colors.secondary }]} />
+          </View>
+          <View style={{ flex: 1, gap: 12 }}>
+            <View>
