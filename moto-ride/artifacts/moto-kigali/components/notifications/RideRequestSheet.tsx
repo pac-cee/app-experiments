@@ -131,3 +131,22 @@ export function RideRequestSheet({ request, onAccept, onDecline }: Props) {
           </View>
           <View style={{ flex: 1, gap: 12 }}>
             <View>
+              <Text style={[styles.routeLabel, { color: colors.mutedForeground }]}>PICKUP</Text>
+              <Text style={[styles.routeLoc, { color: colors.foreground }]} numberOfLines={1}>{req.pickup.name}</Text>
+            </View>
+            <View>
+              <Text style={[styles.routeLabel, { color: colors.mutedForeground }]}>DROP-OFF</Text>
+              <Text style={[styles.routeLoc, { color: colors.foreground }]} numberOfLines={1}>{req.destination.name}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.actionRow}>
+        <TouchableOpacity
+          style={[styles.declineBtn, { borderColor: colors.border, backgroundColor: colors.background }]}
+          onPress={() => onDecline(req)}
+          activeOpacity={0.8}
+        >
+          <Feather name="x" size={20} color={colors.destructive} />
+          <Text style={[styles.declineBtnText, { color: colors.destructive }]}>Decline</Text>
