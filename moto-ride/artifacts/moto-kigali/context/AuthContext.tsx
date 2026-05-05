@@ -36,3 +36,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(u));
     } else {
       await AsyncStorage.removeItem(STORAGE_KEY);
+    }
+  };
+
+  const logout = async () => {
+    await setUser(null);
+  };
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.light.background }}>
+        <ActivityIndicator size="large" color={colors.light.primary} />
+      </View>
+    );
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, setUser, logout, isLoading }}>
+      {children}
+    </AuthContext.Provider>
