@@ -55,3 +55,22 @@ export function BrokerProvider({ children }: { children: React.ReactNode }) {
       sentAt: new Date().toISOString(),
       status: "sending",
     };
+    setRequests((prev) => [newReq, ...prev]);
+
+    const t1 = setTimeout(() => updateStatus(id, "pending"), 1200);
+    const t2 = setTimeout(() => updateStatus(id, "viewed"), 3500);
+    const t3 = setTimeout(() => {
+      setRequests((prev) => {
+        const r = prev.find((x) => x.id === id);
+        if (r && (r.status === "pending" || r.status === "viewed")) {
+          return prev.map((x) => (x.id === id ? { ...x, status: "accepted" } : x));
+        }
+        return prev;
+      });
+    }, 7000);
+    const t4 = setTimeout(() => {
+      setRequests((prev) => {
+        const r = prev.find((x) => x.id === id);
+        if (r && r.status === "pending") {
+          return prev.map((x) => (x.id === id ? { ...x, status: "timeout" } : x));
+        }
