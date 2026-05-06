@@ -17,3 +17,22 @@ export interface BrokerRequest {
 }
 
 interface BrokerContextType {
+  requests: BrokerRequest[];
+  addRequest: (params: {
+    rider: Rider;
+    customerId: string;
+    customerName: string;
+    customerPhone: string;
+    customerRating: number;
+    customerRides: number;
+    pickup: Location;
+    destination: Location;
+    vehicleType: VehicleType;
+  }) => string;
+  cancelRequest: (id: string) => void;
+  updateStatus: (id: string, status: BrokerRequest["status"]) => void;
+  getRequest: (id: string) => BrokerRequest | undefined;
+  incomingRequest: BrokerRequest | null;
+}
+
+const BrokerContext = createContext<BrokerContextType>(null!);
