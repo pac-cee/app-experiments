@@ -36,3 +36,22 @@ interface BrokerContextType {
 }
 
 const BrokerContext = createContext<BrokerContextType>(null!);
+
+export function BrokerProvider({ children }: { children: React.ReactNode }) {
+  const [requests, setRequests] = useState<BrokerRequest[]>([]);
+  const timersRef = useRef<Map<string, ReturnType<typeof setTimeout>[]>>(new Map());
+
+  const updateStatus = useCallback((id: string, status: BrokerRequest["status"]) => {
+    setRequests((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, status } : r))
+    );
+  }, []);
+
+  const addRequest = useCallback((params: Omit<BrokerRequest, "id" | "sentAt" | "status">) => {
+    const id = `req_${Date.now()}`;
+    const newReq: BrokerRequest = {
+      ...params,
+      id,
+      sentAt: new Date().toISOString(),
+      status: "sending",
+    };
