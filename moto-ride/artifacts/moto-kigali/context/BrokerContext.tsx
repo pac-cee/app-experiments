@@ -93,3 +93,16 @@ export function BrokerProvider({ children }: { children: React.ReactNode }) {
     (id: string) => requests.find((r) => r.id === id),
     [requests]
   );
+
+  const incomingRequest = requests.find((r) => r.status === "pending" || r.status === "viewed") ?? null;
+
+  return (
+    <BrokerContext.Provider value={{ requests, addRequest, cancelRequest, updateStatus, getRequest, incomingRequest }}>
+      {children}
+    </BrokerContext.Provider>
+  );
+}
+
+export function useBroker() {
+  return useContext(BrokerContext);
+}
