@@ -74,3 +74,22 @@ export function BrokerProvider({ children }: { children: React.ReactNode }) {
         if (r && r.status === "pending") {
           return prev.map((x) => (x.id === id ? { ...x, status: "timeout" } : x));
         }
+        return prev;
+      });
+    }, 60000);
+
+    timersRef.current.set(id, [t1, t2, t3, t4]);
+    return id;
+  }, [updateStatus]);
+
+  const cancelRequest = useCallback((id: string) => {
+    updateStatus(id, "cancelled");
+    const timers = timersRef.current.get(id);
+    timers?.forEach(clearTimeout);
+    timersRef.current.delete(id);
+  }, [updateStatus]);
+
+  const getRequest = useCallback(
+    (id: string) => requests.find((r) => r.id === id),
+    [requests]
+  );
