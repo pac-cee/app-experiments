@@ -17,3 +17,22 @@ interface RideContextType {
   updateStatus: (status: RideStatus) => void;
   pendingPickup: Location | null;
   setPendingPickup: (loc: Location | null) => void;
+  pendingDestination: Location | null;
+  setPendingDestination: (loc: Location | null) => void;
+  pendingVehicle: VehicleType | null;
+  setPendingVehicle: (v: VehicleType | null) => void;
+  pendingRider: Rider | null;
+  setPendingRider: (r: Rider | null) => void;
+  clearPending: () => void;
+}
+
+const RideContext = createContext<RideContextType>(null!);
+
+export function RideProvider({ children }: { children: React.ReactNode }) {
+  const [activeRide, setActiveRide] = useState<ActiveRide | null>(null);
+  const [pendingPickup, setPendingPickup] = useState<Location | null>(null);
+  const [pendingDestination, setPendingDestination] = useState<Location | null>(null);
+  const [pendingVehicle, setPendingVehicle] = useState<VehicleType | null>(null);
+  const [pendingRider, setPendingRider] = useState<Rider | null>(null);
+
+  const updateStatus = (status: RideStatus) => {
