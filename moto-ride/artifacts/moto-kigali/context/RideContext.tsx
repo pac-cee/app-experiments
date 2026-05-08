@@ -36,3 +36,22 @@ export function RideProvider({ children }: { children: React.ReactNode }) {
   const [pendingRider, setPendingRider] = useState<Rider | null>(null);
 
   const updateStatus = (status: RideStatus) => {
+    setActiveRide((prev) => (prev ? { ...prev, status } : null));
+  };
+
+  const clearPending = () => {
+    setPendingPickup(null);
+    setPendingDestination(null);
+    setPendingVehicle(null);
+    setPendingRider(null);
+  };
+
+  return (
+    <RideContext.Provider
+      value={{
+        activeRide, setActiveRide, updateStatus,
+        pendingPickup, setPendingPickup,
+        pendingDestination, setPendingDestination,
+        pendingVehicle, setPendingVehicle,
+        pendingRider, setPendingRider,
+        clearPending,
