@@ -17,3 +17,22 @@ export interface RiderRegisterParams {
   vehicleType: VehicleType;
   plate: string;
 }
+
+export interface LoginParams {
+  phone: string;
+  password: string;
+}
+
+export async function sendOtp(_phone: string): Promise<{ success: boolean }> {
+  await delay(800);
+  return { success: true };
+}
+
+export async function verifyOtp(_phone: string, code: string): Promise<{ success: boolean; message?: string }> {
+  await delay(800);
+  if (code === OTP_CODE) return { success: true };
+  return { success: false, message: "Invalid code. Try 1234 for testing." };
+}
+
+export async function signup(params: SignupParams): Promise<{ success: boolean; user?: User; message?: string }> {
+  await delay(1000);
