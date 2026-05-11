@@ -55,3 +55,13 @@ export function RideProvider({ children }: { children: React.ReactNode }) {
         pendingVehicle, setPendingVehicle,
         pendingRider, setPendingRider,
         clearPending,
+      }}
+    >
+      {children}
+    </RideContext.Provider>
+  );
+}
+
+export function useRide() {
+  return useContext(RideContext);
+}
