@@ -36,3 +36,22 @@ export async function verifyOtp(_phone: string, code: string): Promise<{ success
 
 export async function signup(params: SignupParams): Promise<{ success: boolean; user?: User; message?: string }> {
   await delay(1000);
+  const user: User = {
+    id: "u_" + Date.now(),
+    name: params.name,
+    phone: params.phone,
+    email: params.email,
+    role: params.role,
+    status: "active",
+  };
+  return { success: true, user };
+}
+
+export async function riderRegister(params: RiderRegisterParams): Promise<{ success: boolean; message?: string }> {
+  await delay(1200);
+  return { success: true };
+}
+
+const MOCK_ACCOUNTS: Record<string, { password: string; user: User }> = {
+  "+250788000001": {
+    password: "customer123",
