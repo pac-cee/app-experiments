@@ -36,3 +36,15 @@ export function RiderProvider({ children }: { children: React.ReactNode }) {
     <RiderContext.Provider
       value={{
         isOnline, setIsOnline,
+        activeJob, setActiveJob, updateJobStatus,
+        pendingCustomer, setPendingCustomer,
+      }}
+    >
+      {children}
+    </RiderContext.Provider>
+  );
+}
+
+export function useRider() {
+  return useContext(RiderContext);
+}
