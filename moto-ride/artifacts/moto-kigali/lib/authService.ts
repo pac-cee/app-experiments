@@ -74,3 +74,20 @@ const MOCK_ACCOUNTS: Record<string, { password: string; user: User }> = {
       role: "rider",
       status: "approved",
       plate: "RAD 234B",
+      vehicleType: "moto",
+    },
+  },
+};
+
+export async function login(params: LoginParams): Promise<{ success: boolean; user?: User; message?: string }> {
+  await delay(1000);
+  const account = MOCK_ACCOUNTS[params.phone.trim()];
+  if (account && account.password === params.password) {
+    return { success: true, user: account.user };
+  }
+  return { success: false, message: "Invalid phone or password." };
+}
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
