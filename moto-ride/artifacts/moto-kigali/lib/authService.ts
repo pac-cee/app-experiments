@@ -55,3 +55,22 @@ export async function riderRegister(params: RiderRegisterParams): Promise<{ succ
 const MOCK_ACCOUNTS: Record<string, { password: string; user: User }> = {
   "+250788000001": {
     password: "customer123",
+    user: {
+      id: "u_customer",
+      name: "Amina Uwase",
+      phone: "+250788000001",
+      email: "amina@example.com",
+      role: "customer",
+      status: "active",
+    },
+  },
+  "+250788000002": {
+    password: "rider123",
+    user: {
+      id: "u_rider",
+      name: "Jean Pierre Mugisha",
+      phone: "+250788000002",
+      email: "jp@example.com",
+      role: "rider",
+      status: "approved",
+      plate: "RAD 234B",
