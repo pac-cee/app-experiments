@@ -207,3 +207,22 @@ export const MOCK_RIDE_HISTORY: RideRecord[] = [
     id: "ride3",
     date: "2025-05-12T09:45:00Z",
     pickup: KIGALI_LOCATIONS[2],
+    destination: KIGALI_LOCATIONS[0],
+    rider: MOCK_RIDERS[2],
+    price: 1500,
+    status: "completed",
+    rating: 5,
+  },
+  {
+    id: "ride4",
+    date: "2025-05-10T17:00:00Z",
+    pickup: KIGALI_LOCATIONS[8],
+    destination: KIGALI_LOCATIONS[6],
+    rider: MOCK_RIDERS[7],
+    price: 3500,
+    status: "cancelled",
+  },
+];
+
+export const MOCK_JOB_HISTORY: JobRecord[] = [
+  {
