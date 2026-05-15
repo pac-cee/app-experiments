@@ -55,3 +55,22 @@ export interface CustomerRequest {
   status: "pending" | "accepted" | "rejected";
 }
 
+export interface RideRecord {
+  id: string;
+  date: string;
+  pickup: Location;
+  destination: Location;
+  rider: Rider;
+  price: number;
+  status: "completed" | "cancelled";
+  rating?: number;
+}
+
+export interface JobRecord {
+  id: string;
+  date: string;
+  customer: CustomerInfo;
+  pickup: Location;
+  destination: Location;
+  price: number;
+  status: "completed" | "cancelled";
