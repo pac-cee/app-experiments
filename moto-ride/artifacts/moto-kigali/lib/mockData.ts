@@ -150,3 +150,22 @@ export const MOCK_CUSTOMER_REQUESTS: CustomerRequest[] = [
     requestedAt: new Date(Date.now() - 12 * 60000).toISOString(),
     status: "pending",
   },
+  {
+    id: "req4",
+    customer: { id: "c4", name: "Bruno Habimana", phone: "+250788004004", rating: 4.5, rides: 8 },
+    pickup: KIGALI_LOCATIONS[11],
+    destination: KIGALI_LOCATIONS[4],
+    vehicleType: "moto",
+    distanceFromRider: 3.0,
+    requestedAt: new Date(Date.now() - 18 * 60000).toISOString(),
+    status: "pending",
+  },
+];
+
+export const MOCK_USER: User = {
+  id: "u1",
+  name: "Amina Uwase",
+  phone: "+250788000001",
+  email: "amina@example.com",
+  role: "customer",
+  status: "active",
