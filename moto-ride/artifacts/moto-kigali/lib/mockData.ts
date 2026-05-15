@@ -226,3 +226,22 @@ export const MOCK_RIDE_HISTORY: RideRecord[] = [
 
 export const MOCK_JOB_HISTORY: JobRecord[] = [
   {
+    id: "job1",
+    date: "2025-05-17T09:00:00Z",
+    customer: { id: "c1", name: "Amina Uwase", phone: "+250788001001", rating: 4.9, rides: 34 },
+    pickup: KIGALI_LOCATIONS[0],
+    destination: KIGALI_LOCATIONS[3],
+    price: 2000,
+    status: "completed",
+    rating: 5,
+  },
+  {
+    id: "job2",
+    date: "2025-05-16T11:30:00Z",
+    customer: { id: "c5", name: "Olivier Niyonzima", phone: "+250788005005", rating: 4.6, rides: 22 },
+    pickup: KIGALI_LOCATIONS[8],
+    destination: KIGALI_LOCATIONS[1],
+    price: 3000,
+    status: "completed",
+    rating: 4,
+  },
