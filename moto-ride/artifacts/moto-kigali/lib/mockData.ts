@@ -74,3 +74,22 @@ export interface JobRecord {
   destination: Location;
   price: number;
   status: "completed" | "cancelled";
+  rating?: number;
+}
+
+export interface User {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  photo?: string;
+  role?: UserRole;
+  status?: UserStatus;
+  nationalId?: string;
+  homeAddress?: string;
+  vehicleType?: VehicleType;
+  plate?: string;
+}
+
+export const KIGALI_LOCATIONS: Location[] = [
+  { id: "l1", name: "Kigali CBD", address: "KN 4 Ave, Nyarugenge", lat: -1.9441, lng: 30.0619 },
