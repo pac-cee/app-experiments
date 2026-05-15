@@ -17,3 +17,23 @@ export async function acceptJob(params: {
 }
 
 export async function getJobHistory(_riderId: string): Promise<JobRecord[]> {
+  await delay(600);
+  return MOCK_JOB_HISTORY;
+}
+
+export async function rateCustomer(jobId: string, rating: number, _comment?: string): Promise<{ success: boolean }> {
+  await delay(500);
+  console.log(`Rated customer for job ${jobId}: ${rating} stars`);
+  return { success: true };
+}
+
+export function formatRequestTime(isoString: string): string {
+  const diff = Math.floor((Date.now() - new Date(isoString).getTime()) / 60000);
+  if (diff < 1) return "just now";
+  if (diff === 1) return "1 min ago";
+  return `${diff} min ago`;
+}
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
