@@ -112,3 +112,22 @@ export const MOCK_RIDERS: Rider[] = [
   { id: "r1", name: "Jean Pierre Mugisha", phone: "+250788123456", rating: 4.8, rides: 234, plate: "RAD 234B", vehicle: "moto", lat: -1.9480, lng: 30.0650, verified: true },
   { id: "r2", name: "Claude Hakizimana", phone: "+250788234567", rating: 4.6, rides: 156, plate: "RAC 567A", vehicle: "cab", lat: -1.9380, lng: 30.0750, verified: true },
   { id: "r3", name: "Diane Uwimana", phone: "+250788345678", rating: 4.9, rides: 312, plate: "RAB 891C", vehicle: "moto", lat: -1.9550, lng: 30.0590, verified: true },
+  { id: "r4", name: "Eric Nshimiyimana", phone: "+250788456789", rating: 4.5, rides: 89, plate: "RAD 112D", vehicle: "moto", lat: -1.9420, lng: 30.0700, verified: true },
+  { id: "r5", name: "Francine Mukamana", phone: "+250788567890", rating: 4.7, rides: 198, plate: "RAE 445B", vehicle: "cab", lat: -1.9610, lng: 30.0680, verified: true },
+  { id: "r6", name: "Patrick Habimana", phone: "+250788678901", rating: 4.3, rides: 67, plate: "RAF 778A", vehicle: "truck", lat: -1.9500, lng: 30.0800, verified: true },
+  { id: "r7", name: "Solange Ingabire", phone: "+250788789012", rating: 4.8, rides: 276, plate: "RAG 334C", vehicle: "moto", lat: -1.9350, lng: 30.0630, verified: true },
+  { id: "r8", name: "Thierry Ndayishimiye", phone: "+250788890123", rating: 4.6, rides: 143, plate: "RAB 556D", vehicle: "cab", lat: -1.9680, lng: 30.0720, verified: true },
+];
+
+export const MOCK_CUSTOMER_REQUESTS: CustomerRequest[] = [
+  {
+    id: "req1",
+    customer: { id: "c1", name: "Amina Uwase", phone: "+250788001001", rating: 4.9, rides: 34 },
+    pickup: KIGALI_LOCATIONS[0],
+    destination: KIGALI_LOCATIONS[3],
+    vehicleType: "moto",
+    distanceFromRider: 0.8,
+    requestedAt: new Date(Date.now() - 3 * 60000).toISOString(),
+    status: "pending",
+  },
+  {
