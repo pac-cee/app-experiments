@@ -36,3 +36,11 @@ export function calcDistanceKm(lat1: number, lng1: number, lat2: number, lng2: n
     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
+
+function deg2rad(deg: number) {
+  return deg * (Math.PI / 180);
+}
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
