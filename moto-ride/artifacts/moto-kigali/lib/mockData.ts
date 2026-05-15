@@ -36,3 +36,22 @@ export interface Rider {
   verified: boolean;
 }
 
+export interface CustomerInfo {
+  id: string;
+  name: string;
+  phone: string;
+  rating: number;
+  rides: number;
+}
+
+export interface CustomerRequest {
+  id: string;
+  customer: CustomerInfo;
+  pickup: Location;
+  destination: Location;
+  vehicleType: VehicleType;
+  distanceFromRider: number;
+  requestedAt: string;
+  status: "pending" | "accepted" | "rejected";
+}
+
