@@ -17,3 +17,22 @@ export type JobStatus = "en_route_pickup" | "at_pickup" | "in_progress" | "compl
 export interface Location {
   id: string;
   name: string;
+  address: string;
+  lat: number;
+  lng: number;
+}
+
+export interface Rider {
+  id: string;
+  name: string;
+  phone: string;
+  rating: number;
+  rides: number;
+  plate: string;
+  vehicle: VehicleType;
+  lat: number;
+  lng: number;
+  photo?: string;
+  verified: boolean;
+}
+
