@@ -169,3 +169,22 @@ export const MOCK_USER: User = {
   email: "amina@example.com",
   role: "customer",
   status: "active",
+};
+
+export const MOCK_RIDER_USER: User = {
+  id: "u2",
+  name: "Jean Pierre Mugisha",
+  phone: "+250788000002",
+  email: "jp@example.com",
+  role: "rider",
+  status: "approved",
+  plate: "RAD 234B",
+  vehicleType: "moto",
+};
+
+export const MOCK_RIDE_HISTORY: RideRecord[] = [
+  {
+    id: "ride1",
+    date: "2025-05-17T08:30:00Z",
+    pickup: KIGALI_LOCATIONS[0],
+    destination: KIGALI_LOCATIONS[3],
