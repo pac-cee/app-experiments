@@ -112,3 +112,22 @@ function clearMetroCache() {
   console.log("Cache cleared");
 }
 
+async function checkMetroHealth() {
+  try {
+    const response = await fetch("http://localhost:8081/status", {
+      signal: AbortSignal.timeout(5000),
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
+function getExpoPublicReplId() {
+  return process.env.REPL_ID || process.env.EXPO_PUBLIC_REPL_ID;
+}
+
+async function startMetro(expoPublicDomain, expoPublicReplId) {
+  const isRunning = await checkMetroHealth();
+  if (isRunning) {
+    console.log("Metro already running");
