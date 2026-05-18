@@ -74,3 +74,22 @@ function getDeploymentDomain() {
 }
 
 function prepareDirectories(timestamp) {
+  console.log("Preparing build directories...");
+
+  const staticBuild = path.join(projectRoot, "static-build");
+  if (fs.existsSync(staticBuild)) {
+    fs.rmSync(staticBuild, { recursive: true });
+  }
+
+  const dirs = [
+    path.join(staticBuild, timestamp, "_expo", "static", "js", "ios"),
+    path.join(staticBuild, timestamp, "_expo", "static", "js", "android"),
+    path.join(staticBuild, "ios"),
+    path.join(staticBuild, "android"),
+  ];
+
+  for (const dir of dirs) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
+  console.log("Build:", timestamp);
