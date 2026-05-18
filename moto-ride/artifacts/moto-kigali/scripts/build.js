@@ -93,3 +93,22 @@ function prepareDirectories(timestamp) {
   }
 
   console.log("Build:", timestamp);
+}
+
+function clearMetroCache() {
+  console.log("Clearing Metro cache...");
+
+  const cacheDirs = [
+    path.join(projectRoot, ".metro-cache"),
+    path.join(projectRoot, "node_modules/.cache/metro"),
+  ];
+
+  for (const dir of cacheDirs) {
+    if (fs.existsSync(dir)) {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  }
+
+  console.log("Cache cleared");
+}
+
