@@ -17,3 +17,22 @@ function findWorkspaceRoot(startDir) {
     dir = path.dirname(dir);
   }
   throw new Error("Could not find workspace root (no pnpm-workspace.yaml found)");
+}
+
+const workspaceRoot = findWorkspaceRoot(projectRoot);
+const basePath = (process.env.BASE_PATH || "/").replace(/\/+$/, "");
+
+function exitWithError(message) {
+  console.error(message);
+  if (metroProcess) {
+    metroProcess.kill();
+  }
+  process.exit(1);
+}
+
+function setupSignalHandlers() {
+  const cleanup = () => {
+    if (metroProcess) {
+      console.log("Cleaning up Metro process...");
+      metroProcess.kill();
+    }
