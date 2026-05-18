@@ -36,3 +36,22 @@ function setupSignalHandlers() {
       console.log("Cleaning up Metro process...");
       metroProcess.kill();
     }
+    process.exit(0);
+  };
+
+  process.on("SIGINT", cleanup);
+  process.on("SIGTERM", cleanup);
+  process.on("SIGHUP", cleanup);
+}
+
+function stripProtocol(domain) {
+  let urlString = domain.trim();
+
+  if (!/^https?:\/\//i.test(urlString)) {
+    urlString = `https://${urlString}`;
+  }
+
+  return new URL(urlString).host;
+}
+
+function getDeploymentDomain() {
