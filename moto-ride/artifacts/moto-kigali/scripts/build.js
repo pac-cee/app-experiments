@@ -131,3 +131,22 @@ async function startMetro(expoPublicDomain, expoPublicReplId) {
   const isRunning = await checkMetroHealth();
   if (isRunning) {
     console.log("Metro already running");
+    return;
+  }
+
+  console.log("Starting Metro...");
+  console.log(`Setting EXPO_PUBLIC_DOMAIN=${expoPublicDomain}`);
+  const env = {
+    ...process.env,
+    EXPO_PUBLIC_DOMAIN: expoPublicDomain,
+    EXPO_PUBLIC_REPL_ID: expoPublicReplId,
+  };
+
+  if (expoPublicReplId) {
+    console.log(`Setting EXPO_PUBLIC_REPL_ID=${expoPublicReplId}`);
+  }
+
+  metroProcess = spawn(
+    "pnpm",
+    [
+      "exec",
