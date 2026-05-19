@@ -150,3 +150,22 @@ async function startMetro(expoPublicDomain, expoPublicReplId) {
     "pnpm",
     [
       "exec",
+      "expo",
+      "start",
+      "--no-dev",
+      "--minify",
+      "--localhost",
+    ],
+    {
+      stdio: ["ignore", "pipe", "pipe"],
+      detached: false,
+      cwd: projectRoot,
+      env,
+    },
+  );
+
+  if (metroProcess.stdout) {
+    metroProcess.stdout.on("data", (data) => {
+      const output = data.toString().trim();
+      if (output) console.log(`[Metro] ${output}`);
+    });
