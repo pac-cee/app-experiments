@@ -169,3 +169,22 @@ async function startMetro(expoPublicDomain, expoPublicReplId) {
       const output = data.toString().trim();
       if (output) console.log(`[Metro] ${output}`);
     });
+  }
+  if (metroProcess.stderr) {
+    metroProcess.stderr.on("data", (data) => {
+      const output = data.toString().trim();
+      if (output) console.error(`[Metro Error] ${output}`);
+    });
+  }
+
+  for (let i = 0; i < 60; i++) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const healthy = await checkMetroHealth();
+    if (healthy) {
+      console.log("Metro ready");
+      return;
+    }
+  }
+
+  console.error("Metro timeout");
