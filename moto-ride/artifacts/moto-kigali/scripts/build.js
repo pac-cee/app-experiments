@@ -188,3 +188,22 @@ async function startMetro(expoPublicDomain, expoPublicReplId) {
   }
 
   console.error("Metro timeout");
+  process.exit(1);
+}
+
+async function downloadFile(url, outputPath) {
+  const controller = new AbortController();
+  const fiveMinMS = 5 * 60 * 1_000;
+  const timeoutId = setTimeout(() => controller.abort(), fiveMinMS);
+
+  try {
+    console.log(`Downloading: ${url}`);
+    const response = await fetch(url, { signal: controller.signal });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const file = fs.createWriteStream(outputPath);
+    await pipeline(Readable.fromWeb(response.body), file);
+
