@@ -207,3 +207,22 @@ async function downloadFile(url, outputPath) {
     const file = fs.createWriteStream(outputPath);
     await pipeline(Readable.fromWeb(response.body), file);
 
+    const fileSize = fs.statSync(outputPath).size;
+
+    if (fileSize === 0) {
+      fs.unlinkSync(outputPath);
+      throw new Error("Downloaded file is empty");
+    }
+  } catch (error) {
+    if (fs.existsSync(outputPath)) {
+      fs.unlinkSync(outputPath);
+    }
+
+    if (error.name === "AbortError") {
+      throw new Error(`Download timeout after 5m: ${url}`);
+    }
+    throw error;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
