@@ -340,3 +340,22 @@ function extractAssets(timestamp) {
         const asset = {
           url: path.posix.join("/", decodedPath, filename),
           originalPath: originalPath,
+          filename: filename,
+          relativePath: decodedPath,
+          hash: match[2],
+          platforms: new Set(),
+        };
+
+        assetsMap.set(key, asset);
+      }
+      assetsMap.get(key).platforms.add(platform);
+    }
+  };
+
+  extractFromBundle(bundles.ios, "ios");
+  extractFromBundle(bundles.android, "android");
+
+  return Array.from(assetsMap.values());
+}
+
+async function downloadAssets(assets, timestamp) {
