@@ -245,3 +245,22 @@ async function downloadBundle(platform, timestamp) {
     "js",
     platform,
     "bundle.js",
+  );
+
+  console.log(`Fetching ${platform} bundle...`);
+  await downloadFile(url.toString(), output);
+  console.log(`${platform} bundle ready`);
+}
+
+async function downloadManifest(platform) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 300_000);
+
+  try {
+    console.log(`Fetching ${platform} manifest...`);
+    const response = await fetch("http://localhost:8081/manifest", {
+      headers: { "expo-platform": platform },
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
