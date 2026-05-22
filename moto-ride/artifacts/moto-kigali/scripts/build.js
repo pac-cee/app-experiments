@@ -321,3 +321,22 @@ function extractAssets(timestamp) {
   const assetPattern =
     /httpServerLocation:"([^"]+)"[^}]*hash:"([^"]+)"[^}]*name:"([^"]+)"[^}]*type:"([^"]+)"/g;
 
+  const extractFromBundle = (bundle, platform) => {
+    for (const match of bundle.matchAll(assetPattern)) {
+      const originalPath = match[1];
+      const filename = match[3] + "." + match[4];
+
+      const tempUrl = new URL(`http://localhost:8081${originalPath}`);
+      const unstablePath = tempUrl.searchParams.get("unstable_path");
+
+      if (!unstablePath) {
+        throw new Error(`Asset missing unstable_path: ${originalPath}`);
+      }
+
+      const decodedPath = decodeURIComponent(unstablePath);
+      const key = path.posix.join(decodedPath, filename);
+
+      if (!assetsMap.has(key)) {
+        const asset = {
+          url: path.posix.join("/", decodedPath, filename),
+          originalPath: originalPath,
