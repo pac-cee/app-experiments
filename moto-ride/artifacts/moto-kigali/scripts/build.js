@@ -359,3 +359,22 @@ function extractAssets(timestamp) {
 }
 
 async function downloadAssets(assets, timestamp) {
+  if (assets.length === 0) {
+    return 0;
+  }
+
+  console.log("Copying assets...");
+  let successCount = 0;
+  const failures = [];
+
+  const downloadPromises = assets.map(async (asset) => {
+    const tempUrl = new URL(`http://localhost:8081${asset.originalPath}`);
+    const unstablePath = tempUrl.searchParams.get("unstable_path");
+
+    if (!unstablePath) {
+      throw new Error(`Asset missing unstable_path: ${asset.originalPath}`);
+    }
+
+    const decodedPath = decodeURIComponent(unstablePath);
+
+    const outputDir = path.join(
