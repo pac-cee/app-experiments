@@ -378,3 +378,22 @@ async function downloadAssets(assets, timestamp) {
     const decodedPath = decodeURIComponent(unstablePath);
 
     const outputDir = path.join(
+      projectRoot,
+      "static-build",
+      timestamp,
+      "_expo",
+      "static",
+      "js",
+      asset.relativePath,
+    );
+    fs.mkdirSync(outputDir, { recursive: true });
+    const output = path.join(outputDir, asset.filename);
+
+    try {
+      const candidates = [
+        path.join(projectRoot, decodedPath, asset.filename),
+        path.join(workspaceRoot, decodedPath, asset.filename),
+      ];
+      const found = candidates.find((p) => fs.existsSync(p));
+      if (!found) {
+        throw new Error(`Asset not found on disk: ${asset.filename}`);
