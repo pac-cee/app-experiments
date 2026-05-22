@@ -302,3 +302,22 @@ async function downloadBundlesAndManifests(timestamp) {
   } catch (error) {
     exitWithError(`Download failed: ${error.message}`);
   }
+}
+
+function extractAssets(timestamp) {
+  const staticBuild = path.join(projectRoot, "static-build");
+  const bundles = {
+    ios: fs.readFileSync(
+      path.join(staticBuild, timestamp, "_expo", "static", "js", "ios", "bundle.js"),
+      "utf-8",
+    ),
+    android: fs.readFileSync(
+      path.join(staticBuild, timestamp, "_expo", "static", "js", "android", "bundle.js"),
+      "utf-8",
+    ),
+  };
+
+  const assetsMap = new Map();
+  const assetPattern =
+    /httpServerLocation:"([^"]+)"[^}]*hash:"([^"]+)"[^}]*name:"([^"]+)"[^}]*type:"([^"]+)"/g;
+
