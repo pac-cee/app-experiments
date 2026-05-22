@@ -264,3 +264,22 @@ async function downloadManifest(platform) {
     });
 
     if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const manifest = await response.json();
+    console.log(`${platform} manifest ready`);
+    return manifest;
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw new Error(
+        `Manifest download timeout after 5m for platform: ${platform}`,
+      );
+    }
+    throw error;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+async function downloadBundlesAndManifests(timestamp) {
