@@ -226,3 +226,22 @@ async function downloadFile(url, outputPath) {
     clearTimeout(timeoutId);
   }
 }
+
+async function downloadBundle(platform, timestamp) {
+  const entryPath = path.resolve(projectRoot, "node_modules", "expo-router", "entry");
+  const bundlePath = path.relative(workspaceRoot, entryPath);
+  const url = new URL(`http://localhost:8081/${bundlePath}.bundle`);
+  url.searchParams.set("platform", platform);
+  url.searchParams.set("dev", "false");
+  url.searchParams.set("hot", "false");
+  url.searchParams.set("lazy", "false");
+  url.searchParams.set("minify", "true");
+
+  const output = path.join(
+    "static-build",
+    timestamp,
+    "_expo",
+    "static",
+    "js",
+    platform,
+    "bundle.js",
