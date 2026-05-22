@@ -397,3 +397,22 @@ async function downloadAssets(assets, timestamp) {
       const found = candidates.find((p) => fs.existsSync(p));
       if (!found) {
         throw new Error(`Asset not found on disk: ${asset.filename}`);
+      }
+      fs.copyFileSync(found, output);
+      successCount++;
+    } catch (error) {
+      failures.push({
+        filename: asset.filename,
+        error: error.message,
+        url: asset.originalPath,
+      });
+    }
+  });
+
+  await Promise.all(downloadPromises);
+
+  if (failures.length > 0) {
+    const errorMsg =
+      `Failed to download ${failures.length} asset(s):\n` +
+      failures
+        .map((f) => `  - ${f.filename}: ${f.error} (${f.url})`)
