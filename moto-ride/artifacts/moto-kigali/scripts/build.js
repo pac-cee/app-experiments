@@ -416,3 +416,22 @@ async function downloadAssets(assets, timestamp) {
       `Failed to download ${failures.length} asset(s):\n` +
       failures
         .map((f) => `  - ${f.filename}: ${f.error} (${f.url})`)
+        .join("\n");
+    exitWithError(errorMsg);
+  }
+
+  console.log(`Copied ${successCount} assets`);
+  return successCount;
+}
+
+function updateBundleUrls(timestamp, baseUrl) {
+  const updateForPlatform = (platform) => {
+    const bundlePath = path.join(
+      projectRoot,
+      "static-build",
+      timestamp,
+      "_expo",
+      "static",
+      "js",
+      platform,
+      "bundle.js",
