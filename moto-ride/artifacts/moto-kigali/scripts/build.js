@@ -283,3 +283,22 @@ async function downloadManifest(platform) {
 }
 
 async function downloadBundlesAndManifests(timestamp) {
+  console.log("Downloading bundles and manifests...");
+  console.log("This may take several minutes for production builds...");
+
+  try {
+    // Bundles are sequential — Metro can't handle both platforms simultaneously
+    // without stalling. Manifests are cheap and run in parallel after.
+    await downloadBundle("ios", timestamp);
+    await downloadBundle("android", timestamp);
+
+    const [iosManifest, androidManifest] = await Promise.all([
+      downloadManifest("ios"),
+      downloadManifest("android"),
+    ]);
+
+    console.log("All downloads completed successfully");
+    return { ios: iosManifest, android: androidManifest };
+  } catch (error) {
+    exitWithError(`Download failed: ${error.message}`);
+  }
