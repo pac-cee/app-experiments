@@ -473,3 +473,22 @@ function updateManifests(manifests, timestamp, baseUrl, assetsByHash) {
     manifest.launchAsset.key = `bundle-${timestamp}`;
     manifest.createdAt = new Date(
       Number(timestamp.split("-")[0]),
+    ).toISOString();
+    manifest.extra.expoClient.hostUri =
+      baseUrl.replace("https://", "") + "/" + platform;
+    manifest.extra.expoGo.debuggerHost =
+      baseUrl.replace("https://", "") + "/" + platform;
+    manifest.extra.expoGo.packagerOpts.dev = false;
+
+    if (manifest.assets && manifest.assets.length > 0) {
+      manifest.assets.forEach((asset) => {
+        if (!asset.url) return;
+
+        const hash = asset.hash;
+        if (!hash) return;
+
+        const assetInfo = assetsByHash.get(hash);
+        if (!assetInfo) return;
+
+        asset.url = `${baseUrl}${basePath}/${timestamp}/_expo/static/js/${assetInfo.relativePath}/${assetInfo.filename}`;
+      });
