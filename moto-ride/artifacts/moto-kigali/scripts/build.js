@@ -435,3 +435,22 @@ function updateBundleUrls(timestamp, baseUrl) {
       "js",
       platform,
       "bundle.js",
+    );
+    let bundle = fs.readFileSync(bundlePath, "utf-8");
+
+    bundle = bundle.replace(
+      /httpServerLocation:"(\/[^"]+)"/g,
+      (_match, capturedPath) => {
+        const tempUrl = new URL(`http://localhost:8081${capturedPath}`);
+        const unstablePath = tempUrl.searchParams.get("unstable_path");
+
+        if (!unstablePath) {
+          throw new Error(
+            `Asset missing unstable_path in bundle: ${capturedPath}`,
+          );
+        }
+
+        const decodedPath = decodeURIComponent(unstablePath);
+        return `httpServerLocation:"${baseUrl}${basePath}/${timestamp}/_expo/static/js/${decodedPath}"`;
+      },
+    );
