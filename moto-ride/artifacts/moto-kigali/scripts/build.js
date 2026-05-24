@@ -454,3 +454,22 @@ function updateBundleUrls(timestamp, baseUrl) {
         return `httpServerLocation:"${baseUrl}${basePath}/${timestamp}/_expo/static/js/${decodedPath}"`;
       },
     );
+
+    fs.writeFileSync(bundlePath, bundle);
+  };
+
+  updateForPlatform("ios");
+  updateForPlatform("android");
+  console.log("Updated bundle URLs");
+}
+
+function updateManifests(manifests, timestamp, baseUrl, assetsByHash) {
+  const updateForPlatform = (platform, manifest) => {
+    if (!manifest.launchAsset || !manifest.extra) {
+      exitWithError(`Malformed manifest for ${platform}`);
+    }
+
+    manifest.launchAsset.url = `${baseUrl}${basePath}/${timestamp}/_expo/static/js/${platform}/bundle.js`;
+    manifest.launchAsset.key = `bundle-${timestamp}`;
+    manifest.createdAt = new Date(
+      Number(timestamp.split("-")[0]),
