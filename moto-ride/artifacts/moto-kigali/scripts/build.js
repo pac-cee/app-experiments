@@ -492,3 +492,22 @@ function updateManifests(manifests, timestamp, baseUrl, assetsByHash) {
 
         asset.url = `${baseUrl}${basePath}/${timestamp}/_expo/static/js/${assetInfo.relativePath}/${assetInfo.filename}`;
       });
+    }
+
+    fs.writeFileSync(
+      path.join(projectRoot, "static-build", platform, "manifest.json"),
+      JSON.stringify(manifest, null, 2),
+    );
+  };
+
+  updateForPlatform("ios", manifests.ios);
+  updateForPlatform("android", manifests.android);
+  console.log("Manifests updated");
+}
+
+async function main() {
+  console.log("Building static Expo Go deployment...");
+
+  setupSignalHandlers();
+
+  const domain = getDeploymentDomain();
