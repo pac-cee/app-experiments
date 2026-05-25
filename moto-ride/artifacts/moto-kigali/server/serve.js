@@ -36,3 +36,22 @@ const MIME_TYPES = {
 };
 
 function getAppName() {
+  try {
+    const appJsonPath = path.resolve(__dirname, "..", "app.json");
+    const appJson = JSON.parse(fs.readFileSync(appJsonPath, "utf-8"));
+    return appJson.expo?.name || "App Landing Page";
+  } catch {
+    return "App Landing Page";
+  }
+}
+
+function serveManifest(platform, res) {
+  const manifestPath = path.join(STATIC_ROOT, platform, "manifest.json");
+
+  if (!fs.existsSync(manifestPath)) {
+    res.writeHead(404, { "content-type": "application/json" });
+    res.end(
+      JSON.stringify({ error: `Manifest not found for platform: ${platform}` }),
+    );
+    return;
+  }
