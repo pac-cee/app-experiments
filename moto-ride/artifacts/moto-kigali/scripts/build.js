@@ -511,3 +511,22 @@ async function main() {
   setupSignalHandlers();
 
   const domain = getDeploymentDomain();
+  const expoPublicReplId = getExpoPublicReplId();
+  const baseUrl = `https://${domain}`;
+  const timestamp = `${Date.now()}-${process.pid}`;
+
+  prepareDirectories(timestamp);
+  clearMetroCache();
+
+  await startMetro(domain, expoPublicReplId);
+
+  const downloadTimeout = 600000;
+  const downloadPromise = downloadBundlesAndManifests(timestamp);
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(() => {
+      reject(
+        new Error(
+          `Overall download timeout after ${downloadTimeout / 1000} seconds. ` +
+            "Metro may be struggling to generate bundles. Check Metro logs above.",
+        ),
+      );
