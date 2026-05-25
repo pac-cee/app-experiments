@@ -530,3 +530,22 @@ async function main() {
             "Metro may be struggling to generate bundles. Check Metro logs above.",
         ),
       );
+    }, downloadTimeout);
+  });
+
+  const manifests = await Promise.race([downloadPromise, timeoutPromise]);
+
+  console.log("Processing assets...");
+  const assets = extractAssets(timestamp);
+  console.log("Found", assets.length, "unique asset(s)");
+
+  const assetsByHash = new Map();
+  for (const asset of assets) {
+    assetsByHash.set(asset.hash, {
+      relativePath: asset.relativePath,
+      filename: asset.filename,
+    });
+  }
+
+  const assetCount = await downloadAssets(assets, timestamp);
+
