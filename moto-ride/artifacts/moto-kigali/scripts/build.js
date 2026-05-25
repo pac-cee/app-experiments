@@ -549,3 +549,25 @@ async function main() {
 
   const assetCount = await downloadAssets(assets, timestamp);
 
+  if (assetCount > 0) {
+    updateBundleUrls(timestamp, baseUrl);
+  }
+
+  console.log("Updating manifests and creating landing page...");
+  updateManifests(manifests, timestamp, baseUrl, assetsByHash);
+
+  console.log("Build complete! Deploy to:", baseUrl);
+
+  if (metroProcess) {
+    metroProcess.kill();
+  }
+  process.exit(0);
+}
+
+main().catch((error) => {
+  console.error("Build failed:", error.message);
+  if (metroProcess) {
+    metroProcess.kill();
+  }
+  process.exit(1);
+});
