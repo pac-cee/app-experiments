@@ -93,3 +93,22 @@ function serveStaticFile(urlPath, res) {
 
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
     res.writeHead(404);
+    res.end("Not Found");
+    return;
+  }
+
+  const ext = path.extname(filePath).toLowerCase();
+  const contentType = MIME_TYPES[ext] || "application/octet-stream";
+  const content = fs.readFileSync(filePath);
+  res.writeHead(200, { "content-type": contentType });
+  res.end(content);
+}
+
+const landingPageTemplate = fs.readFileSync(TEMPLATE_PATH, "utf-8");
+const appName = getAppName();
+
+const server = http.createServer((req, res) => {
+  const url = new URL(req.url || "/", `http://${req.headers.host}`);
+  let pathname = url.pathname;
+
+  if (basePath && pathname.startsWith(basePath)) {
