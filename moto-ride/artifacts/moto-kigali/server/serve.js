@@ -112,3 +112,24 @@ const server = http.createServer((req, res) => {
   let pathname = url.pathname;
 
   if (basePath && pathname.startsWith(basePath)) {
+    pathname = pathname.slice(basePath.length) || "/";
+  }
+
+  if (pathname === "/" || pathname === "/manifest") {
+    const platform = req.headers["expo-platform"];
+    if (platform === "ios" || platform === "android") {
+      return serveManifest(platform, res);
+    }
+
+    if (pathname === "/") {
+      return serveLandingPage(req, res, landingPageTemplate, appName);
+    }
+  }
+
+  serveStaticFile(pathname, res);
+});
+
+const port = parseInt(process.env.PORT || "3000", 10);
+server.listen(port, "0.0.0.0", () => {
+  console.log(`Serving static Expo build on port ${port}`);
+});
