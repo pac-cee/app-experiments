@@ -416,3 +416,22 @@
         if (isIOS) {
           playStoreBtn.className = "store-link";
           storeButtonsContainer.appendChild(playStoreBtn);
+        } else if (isAndroid) {
+          appStoreBtn.className = "store-link";
+          storeButtonsContainer.insertBefore(playStoreBtn, appStoreBtn);
+        }
+
+        const qrCode = new QRCodeStyling({
+          width: 400,
+          height: 400,
+          data: deepLink,
+          dotsOptions: {
+            color: "#333333",
+            type: "rounded",
+          },
+          backgroundOptions: {
+            color: "#ffffff",
+          },
+          cornersSquareOptions: {
+            type: "extra-rounded",
+          },
