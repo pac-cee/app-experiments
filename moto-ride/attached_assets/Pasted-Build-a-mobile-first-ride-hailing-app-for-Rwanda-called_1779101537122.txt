@@ -1,0 +1,19 @@
+Build a mobile-first ride-hailing app for Rwanda called MotoLink (or placeholder name). The app has two sides: Customer and Rider. There is no price suggestion from the platform — pricing is always negotiated directly between customer and rider, reflecting Rwanda's bargaining culture. Once both parties agree on a price verbally (via call/text), they each enter the agreed amount in the app to confirm the booking.
+
+CUSTOMER SIDE
+Onboarding:
+
+Sign up: full name, phone number (OTP verification), email, password
+Login: credentials stored after first login (persistent session, no repeated logins)
+
+Home / Booking Flow:
+
+On app open, show a map with available bikes/vehicles nearby
+Customer sets pickup (current location via GPS or manual pin) and destination — like Uber's input UI
+Vehicle type selector: Moto (motorcycle), Cab (car), Pickup Truck (cargo)
+After selecting vehicle type, show available riders on the map as pins
+Tapping a rider pin shows: rider name, photo, vehicle plate, rating, and a Call / SMS button
+Customer contacts rider directly to negotiate price
+After verbal agreement, customer enters the agreed price in the app to confirm the booking
+Once confirmed: live tracking of the rider's distance and ETA to the customer
+After ride: customer can rate the rider
