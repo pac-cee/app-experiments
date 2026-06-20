@@ -17,3 +17,22 @@ Customer contacts rider directly to negotiate price
 After verbal agreement, customer enters the agreed price in the app to confirm the booking
 Once confirmed: live tracking of the rider's distance and ETA to the customer
 After ride: customer can rate the rider
+
+
+RIDER SIDE
+Registration (admin-assisted or self-registration):
+
+Full name, phone number (OTP), national ID number, home address
+Vehicle type, license plate number
+Document uploads: national ID photo, vehicle registration, driver's license
+Account pending approval state before going live
+
+Rider Home / Job Flow:
+
+Rider sees a map showing customers who have reached out (only those who contacted them)
+Customer card shows: name, pickup location, destination, distance from rider
+Rider can tap a customer to see route preview to their pickup point
+After call/negotiation, rider enters the agreed price in the app to confirm acceptance
+Only confirmed/mutually agreed rides are shown as active bookings
+Rider can rate the customer after the ride
+
