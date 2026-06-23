@@ -36,3 +36,23 @@ After call/negotiation, rider enters the agreed price in the app to confirm acce
 Only confirmed/mutually agreed rides are shown as active bookings
 Rider can rate the customer after the ride
 
+
+SHARED / SYSTEM FEATURES
+
+Real-time map with live location updates (mock data ready for real WebSocket/API swap)
+In-app call and SMS deep links (tel: and sms: links)
+Ride status flow: Searching → Contacted → Price Agreed → Rider En Route → Arrived → In Transit → Completed
+Push notifications: new customer request, ride confirmed, rider arrived
+Ratings and reviews (both directions: customer rates rider, rider rates customer)
+Ride history for both sides
+Basic profile management (photo, name, phone)
+
+
+TECHNICAL REQUIREMENTS
+
+Use mock data throughout but architect all API calls cleanly (service layer / repository pattern) so real backend endpoints can be swapped in with minimal changes
+Map: mock location data simulating Kigali, Rwanda coordinates
+Auth: mock OTP flow with a hardcoded code (e.g. 1234) for testing
+State management: clean separation of UI state and data state
+Design: clean, intuitive, extremely easy to use for non-technical users in Rwanda; minimal text, icon-driven where possible, works well on low-end Android devices
+Language: English UI (Kinyarwanda-ready string structure for future localization)
