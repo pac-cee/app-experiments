@@ -150,3 +150,22 @@ function truncate(text: string, maxLength = 300): string {
 
 function buildErrorMessage(response: Response, data: unknown): string {
   const prefix = `HTTP ${response.status} ${response.statusText}`;
+
+  if (typeof data === "string") {
+    const text = data.trim();
+    return text ? `${prefix}: ${truncate(text)}` : prefix;
+  }
+
+  const title = getStringField(data, "title");
+  const detail = getStringField(data, "detail");
+  const message =
+    getStringField(data, "message") ??
+    getStringField(data, "error_description") ??
+    getStringField(data, "error");
+
+  if (title && detail) return `${prefix}: ${title} — ${detail}`;
+  if (detail) return `${prefix}: ${detail}`;
+  if (message) return `${prefix}: ${message}`;
+  if (title) return `${prefix}: ${title}`;
+
+  return prefix;
