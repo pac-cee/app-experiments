@@ -207,3 +207,22 @@ export class ResponseParseError extends Error {
   readonly response: Response;
   readonly method: string;
   readonly url: string;
+  readonly rawBody: string;
+  readonly cause: unknown;
+
+  constructor(
+    response: Response,
+    rawBody: string,
+    cause: unknown,
+    requestInfo: { method: string; url: string },
+  ) {
+    super(
+      `Failed to parse response from ${requestInfo.method} ${response.url || requestInfo.url} ` +
+        `(${response.status} ${response.statusText}) as JSON`,
+    );
+    Object.setPrototypeOf(this, new.target.prototype);
+
+    this.status = response.status;
+    this.statusText = response.statusText;
+    this.headers = response.headers;
+    this.response = response;
