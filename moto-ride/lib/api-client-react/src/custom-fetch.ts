@@ -93,3 +93,22 @@ function mergeHeaders(...sources: Array<HeadersInit | undefined>): Headers {
 
 function getMediaType(headers: Headers): string | null {
   const value = headers.get("content-type");
+  return value ? value.split(";", 1)[0].trim().toLowerCase() : null;
+}
+
+function isJsonMediaType(mediaType: string | null): boolean {
+  return mediaType === "application/json" || Boolean(mediaType?.endsWith("+json"));
+}
+
+function isTextMediaType(mediaType: string | null): boolean {
+  return Boolean(
+    mediaType &&
+      (mediaType.startsWith("text/") ||
+        mediaType === "application/xml" ||
+        mediaType === "text/xml" ||
+        mediaType.endsWith("+xml") ||
+        mediaType === "application/x-www-form-urlencoded"),
+  );
+}
+
+// Use strict equality: in browsers, `response.body` is `null` when the
