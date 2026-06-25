@@ -55,3 +55,22 @@ function resolveMethod(input: RequestInfo | URL, explicitMethod?: string): strin
 }
 
 // Use loose check for URL — some runtimes (e.g. React Native) polyfill URL
+// differently, so `instanceof URL` can fail.
+function isUrl(input: RequestInfo | URL): input is URL {
+  return typeof URL !== "undefined" && input instanceof URL;
+}
+
+function applyBaseUrl(input: RequestInfo | URL): RequestInfo | URL {
+  if (!_baseUrl) return input;
+  const url = resolveUrl(input);
+  // Only prepend to relative paths (starting with /)
+  if (!url.startsWith("/")) return input;
+
+  const absolute = `${_baseUrl}${url}`;
+  if (typeof input === "string") return absolute;
+  if (isUrl(input)) return new URL(absolute);
+  return new Request(absolute, input as Request);
+}
+
+function resolveUrl(input: RequestInfo | URL): string {
+  if (typeof input === "string") return input;
