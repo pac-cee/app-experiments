@@ -226,3 +226,22 @@ export class ResponseParseError extends Error {
     this.statusText = response.statusText;
     this.headers = response.headers;
     this.response = response;
+    this.method = requestInfo.method;
+    this.url = response.url || requestInfo.url;
+    this.rawBody = rawBody;
+    this.cause = cause;
+  }
+}
+
+async function parseJsonBody(
+  response: Response,
+  requestInfo: { method: string; url: string },
+): Promise<unknown> {
+  const raw = await response.text();
+  const normalized = stripBom(raw);
+
+  if (normalized.trim() === "") {
+    return null;
+  }
+
+  try {
