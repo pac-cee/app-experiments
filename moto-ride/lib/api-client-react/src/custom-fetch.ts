@@ -36,3 +36,22 @@ export function setBaseUrl(url: string | null): void {
  *
  * Useful for Expo bundles making token-gated API calls.
  * Pass `null` to clear the getter.
+ *
+ * NOTE: This function should never be used in web applications where session
+ * token cookies are automatically associated with API calls by the browser.
+ */
+export function setAuthTokenGetter(getter: AuthTokenGetter | null): void {
+  _authTokenGetter = getter;
+}
+
+function isRequest(input: RequestInfo | URL): input is Request {
+  return typeof Request !== "undefined" && input instanceof Request;
+}
+
+function resolveMethod(input: RequestInfo | URL, explicitMethod?: string): string {
+  if (explicitMethod) return explicitMethod.toUpperCase();
+  if (isRequest(input)) return input.method.toUpperCase();
+  return "GET";
+}
+
+// Use loose check for URL — some runtimes (e.g. React Native) polyfill URL
