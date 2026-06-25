@@ -188,3 +188,22 @@ export class ApiError<T = unknown> extends Error {
   ) {
     super(buildErrorMessage(response, data));
     Object.setPrototypeOf(this, new.target.prototype);
+
+    this.status = response.status;
+    this.statusText = response.statusText;
+    this.data = data;
+    this.headers = response.headers;
+    this.response = response;
+    this.method = requestInfo.method;
+    this.url = response.url || requestInfo.url;
+  }
+}
+
+export class ResponseParseError extends Error {
+  readonly name = "ResponseParseError";
+  readonly status: number;
+  readonly statusText: string;
+  readonly headers: Headers;
+  readonly response: Response;
+  readonly method: string;
+  readonly url: string;
