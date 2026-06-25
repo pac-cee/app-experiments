@@ -169,3 +169,22 @@ function buildErrorMessage(response: Response, data: unknown): string {
   if (title) return `${prefix}: ${title}`;
 
   return prefix;
+}
+
+export class ApiError<T = unknown> extends Error {
+  readonly name = "ApiError";
+  readonly status: number;
+  readonly statusText: string;
+  readonly data: T | null;
+  readonly headers: Headers;
+  readonly response: Response;
+  readonly method: string;
+  readonly url: string;
+
+  constructor(
+    response: Response,
+    data: T | null,
+    requestInfo: { method: string; url: string },
+  ) {
+    super(buildErrorMessage(response, data));
+    Object.setPrototypeOf(this, new.target.prototype);
