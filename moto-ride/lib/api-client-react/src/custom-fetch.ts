@@ -74,3 +74,22 @@ function applyBaseUrl(input: RequestInfo | URL): RequestInfo | URL {
 
 function resolveUrl(input: RequestInfo | URL): string {
   if (typeof input === "string") return input;
+  if (isUrl(input)) return input.toString();
+  return input.url;
+}
+
+function mergeHeaders(...sources: Array<HeadersInit | undefined>): Headers {
+  const headers = new Headers();
+
+  for (const source of sources) {
+    if (!source) continue;
+    new Headers(source).forEach((value, key) => {
+      headers.set(key, value);
+    });
+  }
+
+  return headers;
+}
+
+function getMediaType(headers: Headers): string | null {
+  const value = headers.get("content-type");
