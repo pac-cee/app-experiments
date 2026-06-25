@@ -131,3 +131,22 @@ function stripBom(text: string): string {
 
 function looksLikeJson(text: string): boolean {
   const trimmed = text.trimStart();
+  return trimmed.startsWith("{") || trimmed.startsWith("[");
+}
+
+function getStringField(value: unknown, key: string): string | undefined {
+  if (!value || typeof value !== "object") return undefined;
+
+  const candidate = (value as Record<string, unknown>)[key];
+  if (typeof candidate !== "string") return undefined;
+
+  const trimmed = candidate.trim();
+  return trimmed === "" ? undefined : trimmed;
+}
+
+function truncate(text: string, maxLength = 300): string {
+  return text.length > maxLength ? `${text.slice(0, maxLength - 1)}…` : text;
+}
+
+function buildErrorMessage(response: Response, data: unknown): string {
+  const prefix = `HTTP ${response.status} ${response.statusText}`;
