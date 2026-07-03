@@ -245,3 +245,22 @@ async function parseJsonBody(
   }
 
   try {
+    return JSON.parse(normalized);
+  } catch (cause) {
+    throw new ResponseParseError(response, raw, cause, requestInfo);
+  }
+}
+
+async function parseErrorBody(response: Response, method: string): Promise<unknown> {
+  if (hasNoBody(response, method)) {
+    return null;
+  }
+
+  const mediaType = getMediaType(response.headers);
+
+  // Fall back to text when blob() is unavailable (e.g. some React Native builds).
+  if (mediaType && !isJsonMediaType(mediaType) && !isTextMediaType(mediaType)) {
+    return typeof response.blob === "function" ? response.blob() : response.text();
+  }
+
+  const raw = await response.text();
