@@ -283,3 +283,22 @@ async function parseErrorBody(response: Response, method: string): Promise<unkno
 }
 
 function inferResponseType(response: Response): "json" | "text" | "blob" {
+  const mediaType = getMediaType(response.headers);
+
+  if (isJsonMediaType(mediaType)) return "json";
+  if (isTextMediaType(mediaType) || mediaType == null) return "text";
+  return "blob";
+}
+
+async function parseSuccessBody(
+  response: Response,
+  responseType: "json" | "text" | "blob" | "auto",
+  requestInfo: { method: string; url: string },
+): Promise<unknown> {
+  if (hasNoBody(response, requestInfo.method)) {
+    return null;
+  }
+
+  const effectiveType =
+    responseType === "auto" ? inferResponseType(response) : responseType;
+
