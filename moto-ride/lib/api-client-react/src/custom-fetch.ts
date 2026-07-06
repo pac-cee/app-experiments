@@ -264,3 +264,22 @@ async function parseErrorBody(response: Response, method: string): Promise<unkno
   }
 
   const raw = await response.text();
+  const normalized = stripBom(raw);
+  const trimmed = normalized.trim();
+
+  if (trimmed === "") {
+    return null;
+  }
+
+  if (isJsonMediaType(mediaType) || looksLikeJson(normalized)) {
+    try {
+      return JSON.parse(normalized);
+    } catch {
+      return raw;
+    }
+  }
+
+  return raw;
+}
+
+function inferResponseType(response: Response): "json" | "text" | "blob" {
