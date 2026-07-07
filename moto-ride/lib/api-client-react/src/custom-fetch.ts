@@ -321,3 +321,22 @@ async function parseSuccessBody(
       return response.blob();
   }
 }
+
+export async function customFetch<T = unknown>(
+  input: RequestInfo | URL,
+  options: CustomFetchOptions = {},
+): Promise<T> {
+  input = applyBaseUrl(input);
+  const { responseType = "auto", headers: headersInit, ...init } = options;
+
+  const method = resolveMethod(input, init.method);
+
+  if (init.body != null && (method === "GET" || method === "HEAD")) {
+    throw new TypeError(`customFetch: ${method} requests cannot have a body.`);
+  }
+
+  const headers = mergeHeaders(isRequest(input) ? input.headers : undefined, headersInit);
+
+  if (
+    typeof init.body === "string" &&
+    !headers.has("content-type") &&
