@@ -340,3 +340,22 @@ export async function customFetch<T = unknown>(
   if (
     typeof init.body === "string" &&
     !headers.has("content-type") &&
+    looksLikeJson(init.body)
+  ) {
+    headers.set("content-type", "application/json");
+  }
+
+  if (responseType === "json" && !headers.has("accept")) {
+    headers.set("accept", DEFAULT_JSON_ACCEPT);
+  }
+
+  // Attach bearer token when an auth getter is configured and no
+  // Authorization header has been explicitly provided.
+  if (_authTokenGetter && !headers.has("authorization")) {
+    const token = await _authTokenGetter();
+    if (token) {
+      headers.set("authorization", `Bearer ${token}`);
+    }
+  }
+
+  const requestInfo = { method, url: resolveUrl(input) };
