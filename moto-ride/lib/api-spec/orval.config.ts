@@ -36,3 +36,22 @@ export default defineConfig({
         mutator: {
           path: path.resolve(apiClientReactSrc, "custom-fetch.ts"),
           name: "customFetch",
+        },
+      },
+    },
+  },
+  zod: {
+    input: {
+      target: "./openapi.yaml",
+      override: {
+        transformer: titleTransformer,
+      },
+    },
+    output: {
+      workspace: apiZodSrc,
+      client: "zod",
+      target: "generated",
+      schemas: { path: "generated/types", type: "typescript" },
+      mode: "split",
+      clean: true,
+      prettier: true,
