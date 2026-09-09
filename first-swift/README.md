@@ -36,3 +36,11 @@ Add screenshots or screen recordings of your app.
 
 ### Prerequisites
 
+- macOS with Xcode 15+
+- iOS Simulator or real iOS device
+
+### Installation
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
