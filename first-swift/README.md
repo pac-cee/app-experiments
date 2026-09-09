@@ -17,3 +17,22 @@ A brief description of what your Swift app does, its purpose, and the tech stack
 
 ## 🛠️ Tech Stack
 
+- **Language:** Swift
+- **Framework:** SwiftUI
+- **Tooling:** Xcode 15+
+- **Target Platform:** iOS 15+
+
+---
+
+## 📸 Screenshots
+
+Add screenshots or screen recordings of your app.
+
+> You can take screenshots using the iOS Simulator (`Cmd + S`) and drag them into this section.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
