@@ -17,3 +17,17 @@ app.post('/api/fetch-youtube-playlist', (req, res) => {
       { title: 'Watermelon Sugar', artist: 'Harry Styles' }
     ]
   });
+});
+
+// Mocked Spotify search
+app.post('/api/search-spotify', (req, res) => {
+  const { songs } = req.body;
+  // Pretend only some songs are found
+  const results = songs.map(song => ({
+    ...song,
+    found: song.title !== 'Levitating' // Simulate 'Levitating' not found
+  }));
+  res.json({ results });
+});
+
+app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
