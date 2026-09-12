@@ -36,3 +36,22 @@ body, html {
 
 .input {
   width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border: 1px solid #d2d6dc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f8fafc;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #1db954;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
