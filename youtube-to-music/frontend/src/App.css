@@ -55,3 +55,22 @@ body, html {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
+  margin-bottom: 8px;
+}
+.btn:disabled {
+  background: #b7e0c7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #e2e2e2;
+  border-top: 3px solid #1db954;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  vertical-align: middle;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
