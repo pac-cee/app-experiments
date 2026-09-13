@@ -93,3 +93,22 @@ body, html {
   background: #fff1f0;
   color: #d7263d;
   border: 1px solid #f5c6cb;
+}
+
+.results {
+  margin-top: 22px;
+}
+.results ul {
+  list-style: none;
+  padding: 0;
+}
+.results li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+  font-size: 1.04rem;
+}
+.found {
+  color: #1db954;
+}
