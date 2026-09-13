@@ -112,3 +112,22 @@ body, html {
 .found {
   color: #1db954;
 }
+.not-found {
+  color: #d7263d;
+}
+.icon {
+  font-size: 1.2rem;
+}
+.found-icon {
+  color: #1db954;
+}
+.not-found-icon {
+  color: #d7263d;
+}
+.not-found-text {
+  margin-left: 6px;
+  font-size: 0.97rem;
+  color: #d7263d;
+  background: #fff1f0;
+  border-radius: 4px;
+  padding: 2px 7px;
