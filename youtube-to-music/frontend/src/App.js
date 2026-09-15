@@ -74,3 +74,17 @@ function App() {
                     <FaCheckCircle className="icon found-icon" />
                   ) : (
                     <FaTimesCircle className="icon not-found-icon" />
+                  )}
+                  <span>{song.title} - {song.artist}</span>
+                  {!song.found && <span className="not-found-text">Not found</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default App;
