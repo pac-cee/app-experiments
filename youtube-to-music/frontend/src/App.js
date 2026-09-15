@@ -55,3 +55,22 @@ function App() {
           placeholder="Paste YouTube playlist link"
           value={playlistUrl}
           onChange={e => setPlaylistUrl(e.target.value)}
+          className="input"
+        />
+        <select value={platform} onChange={e => setPlatform(e.target.value)} className="input">
+          <option value="spotify">Spotify</option>
+          <option value="apple">Apple Music (coming soon)</option>
+        </select>
+        <button onClick={handleTransfer} disabled={!playlistUrl || loading} className="btn">
+          {loading ? <span className="spinner"></span> : 'Transfer Playlist'}
+        </button>
+        {results && (
+          <div className="results">
+            <h4>Results:</h4>
+            <ul>
+              {results.map((song, idx) => (
+                <li key={idx} className={song.found ? 'found' : 'not-found'}>
+                  {song.found ? (
+                    <FaCheckCircle className="icon found-icon" />
+                  ) : (
+                    <FaTimesCircle className="icon not-found-icon" />
