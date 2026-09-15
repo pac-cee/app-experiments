@@ -36,3 +36,22 @@ function App() {
       setSuccess(true);
     } catch (e) {
       setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="app-bg">
+      <div className="card">
+        <div className="logo-header">
+          <FaMusic className="logo-icon" />
+          <h2>YouTube Playlist to Spotify/Apple Music</h2>
+        </div>
+        {error && <div className="banner error">{error}</div>}
+        {success && <div className="banner success">Playlist processed!</div>}
+        <input
+          type="text"
+          placeholder="Paste YouTube playlist link"
+          value={playlistUrl}
+          onChange={e => setPlaylistUrl(e.target.value)}
