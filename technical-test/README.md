@@ -17,3 +17,22 @@ A simple REST API built for the Quarks Group backend development internship asse
 - ✅ In-memory data storage
 - ✅ Comprehensive error handling
 - ✅ Input validation (email format, required fields)
+- ✅ Duplicate email prevention
+- ✅ JSON responses for all endpoints
+
+## API Endpoints
+
+### 1. Create User
+**POST** `/users`
+
+**Request Body:**
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com"
+}
+```
+
+**Success Response (201):**
+```json
+{
