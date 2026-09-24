@@ -169,3 +169,22 @@ curl -X GET http://localhost:3000/users/nonexistent-id
 2. **Get User:**
    - Method: GET
    - URL: `http://localhost:3000/users/{user-id}`
+
+### Test Scenarios Covered
+
+- ✅ Successful user creation
+- ✅ Successful user retrieval
+- ✅ Missing required fields validation
+- ✅ Invalid email format validation
+- ✅ Duplicate email prevention
+- ✅ User not found error handling
+- ✅ Invalid route handling
+
+## Project Structure
+
+```
+quarks-group-api-assessment/
+├── server.js          # Main application file
+├── package.json       # Project dependencies and scripts
+├── README.md         # This documentation
+└── .gitignore        # Git ignore file
