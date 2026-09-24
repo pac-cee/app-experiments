@@ -188,3 +188,22 @@ quarks-group-api-assessment/
 ├── package.json       # Project dependencies and scripts
 ├── README.md         # This documentation
 └── .gitignore        # Git ignore file
+```
+
+## Error Handling
+
+The API implements comprehensive error handling for:
+
+- **Validation Errors**: Missing fields, invalid data types, malformed email
+- **Business Logic Errors**: Duplicate emails, user not found
+- **Server Errors**: Unexpected errors with proper logging
+- **Route Errors**: 404 for undefined endpoints
+
+All errors return consistent JSON responses with `error` and `message` fields.
+
+## Technical Decisions
+
+1. **UUID vs Incrementing Counter**: Used UUID for better uniqueness and scalability
+2. **Email Validation**: Implemented basic regex validation for email format
+3. **Case Sensitivity**: Emails are stored in lowercase to prevent duplicates
+4. **Memory Storage**: Simple object-based storage as per requirements
