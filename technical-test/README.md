@@ -36,3 +36,22 @@ A simple REST API built for the Quarks Group backend development internship asse
 **Success Response (201):**
 ```json
 {
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "John Doe",
+  "email": "john@example.com"
+}
+```
+
+**Error Responses:**
+- `400` - Missing required fields or invalid input
+- `409` - Email already exists
+- `500` - Internal server error
+
+### 2. Get User by ID
+**GET** `/users/:id`
+
+**Success Response (200):**
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "John Doe",
