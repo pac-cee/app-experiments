@@ -207,3 +207,22 @@ All errors return consistent JSON responses with `error` and `message` fields.
 2. **Email Validation**: Implemented basic regex validation for email format
 3. **Case Sensitivity**: Emails are stored in lowercase to prevent duplicates
 4. **Memory Storage**: Simple object-based storage as per requirements
+5. **Error Responses**: Consistent error format across all endpoints
+
+## Development Notes
+
+- The server runs on port 3000 by default (configurable via PORT environment variable)
+- All user data is lost when the server restarts (in-memory storage)
+- Email addresses are automatically converted to lowercase
+- Names and emails are trimmed of whitespace
+
+## Future Enhancements
+
+If this were a production application, potential improvements would include:
+- Database integration (PostgreSQL, MongoDB)
+- Authentication and authorization
+- Rate limiting
+- Request logging
+- Input sanitization
+- Unit and integration tests
+- API documentation with Swagger/OpenAPI
