@@ -93,3 +93,22 @@ A simple REST API built for the Quarks Group backend development internship asse
 
 ### Installation Steps
 
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd quarks-group-api-assessment
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the server:**
+   ```bash
+   npm start
+   ```
+
+   For development with auto-restart:
+   ```bash
+   npm run dev
