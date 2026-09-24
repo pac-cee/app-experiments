@@ -74,3 +74,22 @@ A simple REST API built for the Quarks Group backend development internship asse
     {
       "id": "550e8400-e29b-41d4-a716-446655440000",
       "name": "John Doe",
+      "email": "john@example.com"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "name": "Jane Smith",
+      "email": "jane@example.com"
+    }
+  ]
+}
+```
+
+## Installation & Setup
+
+### Prerequisites
+- Node.js (version 14 or higher)
+- npm (comes with Node.js)
+
+### Installation Steps
+
