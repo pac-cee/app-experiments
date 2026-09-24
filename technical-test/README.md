@@ -150,3 +150,22 @@ curl -X POST http://localhost:3000/users \
 #### 5. Test error handling - user not found:
 ```bash
 curl -X GET http://localhost:3000/users/nonexistent-id
+```
+
+### Using Postman or Thunder Client
+
+1. **Create User:**
+   - Method: POST
+   - URL: `http://localhost:3000/users`
+   - Headers: `Content-Type: application/json`
+   - Body (raw JSON):
+     ```json
+     {
+       "name": "Alice Johnson",
+       "email": "alice@example.com"
+     }
+     ```
+
+2. **Get User:**
+   - Method: GET
+   - URL: `http://localhost:3000/users/{user-id}`
