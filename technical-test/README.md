@@ -55,3 +55,22 @@ A simple REST API built for the Quarks Group backend development internship asse
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
   "name": "John Doe",
+  "email": "john@example.com"
+}
+```
+
+**Error Responses:**
+- `404` - User not found
+- `500` - Internal server error
+
+### 3. Get All Users (Bonus)
+**GET** `/users`
+
+**Success Response (200):**
+```json
+{
+  "count": 2,
+  "users": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "John Doe",
