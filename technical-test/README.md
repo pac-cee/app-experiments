@@ -131,3 +131,22 @@ curl -X POST http://localhost:3000/users \
 ```
 
 #### 2. Get user by ID (replace with actual ID from creation):
+```bash
+curl -X GET http://localhost:3000/users/550e8400-e29b-41d4-a716-446655440000
+```
+
+#### 3. Get all users:
+```bash
+curl -X GET http://localhost:3000/users
+```
+
+#### 4. Test error handling - missing fields:
+```bash
+curl -X POST http://localhost:3000/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "John Doe"}'
+```
+
+#### 5. Test error handling - user not found:
+```bash
+curl -X GET http://localhost:3000/users/nonexistent-id
