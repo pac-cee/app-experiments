@@ -112,3 +112,22 @@ A simple REST API built for the Quarks Group backend development internship asse
    For development with auto-restart:
    ```bash
    npm run dev
+   ```
+
+4. **Server will be running at:**
+   ```
+   http://localhost:3000
+   ```
+
+## Testing the API
+
+### Using cURL Commands
+
+#### 1. Create a new user:
+```bash
+curl -X POST http://localhost:3000/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "John Doe", "email": "john@example.com"}'
+```
+
+#### 2. Get user by ID (replace with actual ID from creation):
