@@ -74,3 +74,22 @@ app.post('/users', (req, res) => {
       message: 'An unexpected error occurred'
     });
   }
+});
+
+// GET /users/:id - Get user by ID
+app.get('/users/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Validate ID format (basic UUID validation)
+    if (!id || typeof id !== 'string') {
+      return res.status(400).json({
+        error: 'Invalid user ID',
+        message: 'User ID must be a valid string'
+      });
+    }
+
+    // Find user in memory storage
+    const user = users[id];
+
+    if (!user) {
