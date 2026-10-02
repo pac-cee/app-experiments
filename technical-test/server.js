@@ -150,3 +150,17 @@ app.use('*', (req, res) => {
 // Global error handler
 app.use((error, req, res, next) => {
   console.error('Unhandled error:', error);
+  res.status(500).json({
+    error: 'Internal server error',
+    message: 'An unexpected error occurred'
+  });
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log('📝 Available endpoints:');
+  console.log('  POST /users    - Create a new user');
+  console.log('  GET  /users/:id - Get user by ID');
+  console.log('  GET  /users    - Get all users (bonus)');
+});
