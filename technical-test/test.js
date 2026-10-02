@@ -55,3 +55,22 @@ function makeRequest(method, path, data = null) {
 }
 
 // Test cases
+async function runTests() {
+  console.log('🧪 Starting API Tests...\n');
+
+  let createdUserId = null;
+
+  try {
+    // Test 1: Create a user
+    console.log('Test 1: Creating a user...');
+    const createResponse = await makeRequest('POST', '/users', {
+      name: 'Test User',
+      email: 'test@example.com'
+    });
+    
+    console.log(`Status: ${createResponse.statusCode}`);
+    console.log(`Response:`, createResponse.body);
+    
+    if (createResponse.statusCode === 201 && createResponse.body.id) {
+      createdUserId = createResponse.body.id;
+      console.log('✅ User creation test passed\n');
