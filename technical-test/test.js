@@ -36,3 +36,22 @@ function makeRequest(method, path, data = null) {
           resolve({
             statusCode: res.statusCode,
             headers: res.headers,
+            body: body,
+          });
+        }
+      });
+    });
+
+    req.on('error', (error) => {
+      reject(error);
+    });
+
+    if (data) {
+      req.write(JSON.stringify(data));
+    }
+
+    req.end();
+  });
+}
+
+// Test cases
