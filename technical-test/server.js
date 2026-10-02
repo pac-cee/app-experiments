@@ -93,3 +93,22 @@ app.get('/users/:id', (req, res) => {
     const user = users[id];
 
     if (!user) {
+      return res.status(404).json({
+        error: 'User not found',
+        message: `No user found with ID: ${id}`
+      });
+    }
+
+    // Return user data
+    res.json(user);
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'An unexpected error occurred'
+    });
+  }
+});
+
+// GET /users - Get all users (bonus endpoint for testing)
+app.get('/users', (req, res) => {
