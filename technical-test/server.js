@@ -55,3 +55,22 @@ app.post('/users', (req, res) => {
     }
 
     // Generate unique ID and create user
+    const id = uuidv4();
+    const newUser = {
+      id,
+      name: name.trim(),
+      email: email.trim().toLowerCase()
+    };
+
+    // Store user in memory
+    users[id] = newUser;
+
+    // Return created user with 201 status
+    res.status(201).json(newUser);
+  } catch (error) {
+    console.error('Error creating user:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'An unexpected error occurred'
+    });
+  }
