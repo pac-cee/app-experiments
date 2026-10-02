@@ -131,3 +131,22 @@ app.get('/users', (req, res) => {
 app.get('/', (req, res) => {
   res.json({
     message: 'Welcome to the Quarks User API!',
+    endpoints: [
+      { method: 'POST', path: '/users', description: 'Create a new user' },
+      { method: 'GET', path: '/users/:id', description: 'Get user by ID' },
+      { method: 'GET', path: '/users', description: 'Get all users (bonus)' }
+    ]
+  });
+});
+
+// Handle 404 for undefined routes
+app.use('*', (req, res) => {
+  res.status(404).json({
+    error: 'Route not found',
+    message: `The requested route ${req.method} ${req.originalUrl} does not exist`
+  });
+});
+
+// Global error handler
+app.use((error, req, res, next) => {
+  console.error('Unhandled error:', error);
