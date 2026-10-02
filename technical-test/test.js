@@ -17,3 +17,22 @@ function makeRequest(method, path, data = null) {
       headers: {
         'Content-Type': 'application/json',
       },
+    };
+
+    const req = http.request(options, (res) => {
+      let body = '';
+      res.on('data', (chunk) => {
+        body += chunk;
+      });
+      res.on('end', () => {
+        try {
+          const parsedBody = JSON.parse(body);
+          resolve({
+            statusCode: res.statusCode,
+            headers: res.headers,
+            body: parsedBody,
+          });
+        } catch (error) {
+          resolve({
+            statusCode: res.statusCode,
+            headers: res.headers,
