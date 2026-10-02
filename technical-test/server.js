@@ -36,3 +36,22 @@ app.post('/users', (req, res) => {
         message: 'Name and email must be strings'
       });
     }
+
+    // Validate email format
+    if (!isValidEmail(email)) {
+      return res.status(400).json({
+        error: 'Invalid email format',
+        message: 'Please provide a valid email address'
+      });
+    }
+
+    // Check if email already exists
+    const existingUser = Object.values(users).find(user => user.email === email);
+    if (existingUser) {
+      return res.status(409).json({
+        error: 'Email already exists',
+        message: 'A user with this email already exists'
+      });
+    }
+
+    // Generate unique ID and create user
