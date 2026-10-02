@@ -112,3 +112,22 @@ app.get('/users/:id', (req, res) => {
 
 // GET /users - Get all users (bonus endpoint for testing)
 app.get('/users', (req, res) => {
+  try {
+    const allUsers = Object.values(users);
+    res.json({
+      count: allUsers.length,
+      users: allUsers
+    });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'An unexpected error occurred'
+    });
+  }
+});
+
+// Root endpoint - Welcome message
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Welcome to the Quarks User API!',
