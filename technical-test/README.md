@@ -226,3 +226,10 @@ If this were a production application, potential improvements would include:
 - Input sanitization
 - Unit and integration tests
 - API documentation with Swagger/OpenAPI
+- Environment-based configuration
+
+---
+
+**Author**: pacifique Bakundukize 
+**Assessment**: Quarks Group Backend Development Internship  
+**Date**: June 2025
