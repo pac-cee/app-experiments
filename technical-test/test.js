@@ -112,3 +112,22 @@ async function runTests() {
       name: 'Test User'
       // Missing email
     });
+    
+    console.log(`Status: ${missingFieldsResponse.statusCode}`);
+    console.log(`Response:`, missingFieldsResponse.body);
+    
+    if (missingFieldsResponse.statusCode === 400) {
+      console.log('✅ Missing fields validation test passed\n');
+    } else {
+      console.log('❌ Missing fields validation test failed\n');
+    }
+
+    // Test 5: Test duplicate email
+    console.log('Test 5: Testing duplicate email...');
+    const duplicateResponse = await makeRequest('POST', '/users', {
+      name: 'Another User',
+      email: 'test@example.com' // Same email as first user
+    });
+    
+    console.log(`Status: ${duplicateResponse.statusCode}`);
+    console.log(`Response:`, duplicateResponse.body);
