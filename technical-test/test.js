@@ -93,3 +93,22 @@ async function runTests() {
       }
     }
 
+    // Test 3: Test user not found
+    console.log('Test 3: Testing user not found...');
+    const notFoundResponse = await makeRequest('GET', '/users/nonexistent-id');
+    
+    console.log(`Status: ${notFoundResponse.statusCode}`);
+    console.log(`Response:`, notFoundResponse.body);
+    
+    if (notFoundResponse.statusCode === 404) {
+      console.log('✅ User not found test passed\n');
+    } else {
+      console.log('❌ User not found test failed\n');
+    }
+
+    // Test 4: Test missing fields validation
+    console.log('Test 4: Testing missing fields validation...');
+    const missingFieldsResponse = await makeRequest('POST', '/users', {
+      name: 'Test User'
+      // Missing email
+    });
