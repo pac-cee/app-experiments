@@ -74,3 +74,22 @@ async function runTests() {
     if (createResponse.statusCode === 201 && createResponse.body.id) {
       createdUserId = createResponse.body.id;
       console.log('✅ User creation test passed\n');
+    } else {
+      console.log('❌ User creation test failed\n');
+    }
+
+    // Test 2: Get the created user
+    if (createdUserId) {
+      console.log('Test 2: Getting user by ID...');
+      const getUserResponse = await makeRequest('GET', `/users/${createdUserId}`);
+      
+      console.log(`Status: ${getUserResponse.statusCode}`);
+      console.log(`Response:`, getUserResponse.body);
+      
+      if (getUserResponse.statusCode === 200 && getUserResponse.body.id === createdUserId) {
+        console.log('✅ Get user test passed\n');
+      } else {
+        console.log('❌ Get user test failed\n');
+      }
+    }
+
