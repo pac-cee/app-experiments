@@ -131,3 +131,22 @@ async function runTests() {
     
     console.log(`Status: ${duplicateResponse.statusCode}`);
     console.log(`Response:`, duplicateResponse.body);
+    
+    if (duplicateResponse.statusCode === 409) {
+      console.log('✅ Duplicate email test passed\n');
+    } else {
+      console.log('❌ Duplicate email test failed\n');
+    }
+
+    // Test 6: Get all users
+    console.log('Test 6: Getting all users...');
+    const getAllResponse = await makeRequest('GET', '/users');
+    
+    console.log(`Status: ${getAllResponse.statusCode}`);
+    console.log(`Response:`, getAllResponse.body);
+    
+    if (getAllResponse.statusCode === 200 && Array.isArray(getAllResponse.body.users)) {
+      console.log('✅ Get all users test passed\n');
+    } else {
+      console.log('❌ Get all users test failed\n');
+    }
