@@ -150,3 +150,15 @@ async function runTests() {
     } else {
       console.log('❌ Get all users test failed\n');
     }
+
+    console.log('🎉 All tests completed!');
+
+  } catch (error) {
+    console.error('❌ Test failed with error:', error.message);
+    console.log('\n💡 Make sure the server is running on http://localhost:3000');
+    console.log('   Start the server with: npm start');
+  }
+}
+
+// Run the tests
+runTests();
